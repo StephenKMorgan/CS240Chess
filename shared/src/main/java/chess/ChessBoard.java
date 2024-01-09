@@ -9,6 +9,8 @@ package chess;
 public class ChessBoard {
 
     public ChessBoard() {
+        //My 2d array of chess pieces that make up my board
+        ChessPiece[][] board = new ChessPiece[8][8];
         
     }
 
@@ -19,7 +21,15 @@ public class ChessBoard {
      * @param piece    the piece to add
      */
     public void addPiece(ChessPosition position, ChessPiece piece) {
-        throw new RuntimeException("Not implemented");
+        //Get the row and column of the position of the piece that I am adding to the board
+        int row = position.getRow(); 
+        int col = position.getColumn();
+
+        //Get the piece type of the piece that I am adding to the board
+        ChessPiece.PieceType pieceType = piece.getPieceType();
+
+        //Add the piece to the board
+        this.board[row][col] = piece;
     }
 
     /**
@@ -30,7 +40,15 @@ public class ChessBoard {
      * position
      */
     public ChessPiece getPiece(ChessPosition position) {
-        throw new RuntimeException("Not implemented");
+        //Get the row and column of the position of the piece that I am getting from the board
+        int row = position.getRow(); 
+        int col = position.getColumn();
+
+        //Get the piece at the position
+        ChessPiece chessPiece = this.board[row][col];
+
+        //Return the piece
+        return chessPiece;
     }
 
     /**
@@ -38,6 +56,8 @@ public class ChessBoard {
      * (How the game of chess normally starts)
      */
     public void resetBoard() {
-        throw new RuntimeException("Not implemented");
+        foreach (ChessPiece piece in board) {
+            piece = null;
+        }
     }
 }
