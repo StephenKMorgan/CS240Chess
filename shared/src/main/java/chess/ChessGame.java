@@ -11,6 +11,9 @@ import java.util.Collection;
 public class ChessGame {
 
     public ChessGame() {
+        //Implement the chess board
+        ChessBoard board = new ChessBoard();
+        turn = TeamColor.WHITE;
 
     }
 
@@ -18,7 +21,7 @@ public class ChessGame {
      * @return Which team's turn it is
      */
     public TeamColor getTeamTurn() {
-        throw new RuntimeException("Not implemented");
+        return this.turn;
     }
 
     /**
@@ -27,7 +30,7 @@ public class ChessGame {
      * @param team the team whose turn it is
      */
     public void setTeamTurn(TeamColor team) {
-        throw new RuntimeException("Not implemented");
+        this.turn = team;
     }
 
     /**
@@ -46,7 +49,7 @@ public class ChessGame {
      * startPosition
      */
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
-        throw new RuntimeException("Not implemented");
+        this.board.getPiece(startPosition)
     }
 
     /**
@@ -96,7 +99,33 @@ public class ChessGame {
      * @param board the new board to use
      */
     public void setBoard(ChessBoard board) {
-        throw new RuntimeException("Not implemented");
+        //Reset the board just in case
+        this.board.resetBoard();
+        //Adding all the black pieces to the board
+        this.board.addPiece(new ChessPosition(1, 1), new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.ROOK));
+        this.board.addPiece(new ChessPosition(1, 2), new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.KNIGHT));
+        this.board.addPiece(new ChessPosition(1, 3), new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.BISHOP));
+        this.board.addPiece(new ChessPosition(1, 4), new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.KING));
+        this.board.addPiece(new ChessPosition(1, 5), new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.QUEEN));
+        this.board.addPiece(new ChessPosition(1, 6), new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.BISHOP));
+        this.board.addPiece(new ChessPosition(1, 7), new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.KNIGHT));
+        this.board.addPiece(new ChessPosition(1, 8), new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.ROOK));
+        for (int i = 1; i <= 8; i++) {
+            this.board.addPiece(new ChessPosition(2, i), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.PAWN));
+        }
+
+        //Adding all the white pieces to the board
+        this.board.addPiece(new ChessPosition(8, 1), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.ROOK));
+        this.board.addPiece(new ChessPosition(8, 2), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.KNIGHT));
+        this.board.addPiece(new ChessPosition(8, 3), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.BISHOP));
+        this.board.addPiece(new ChessPosition(8, 4), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.QUEEN));
+        this.board.addPiece(new ChessPosition(8, 5), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.KING));
+        this.board.addPiece(new ChessPosition(8, 6), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.BISHOP));
+        this.board.addPiece(new ChessPosition(8, 7), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.KNIGHT));
+        this.board.addPiece(new ChessPosition(8, 8), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.ROOK));
+        for (int i = 1; i <= 8; i++) {
+            this.board.addPiece(new ChessPosition(7, i), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.PAWN));
+        }
     }
 
     /**
@@ -105,6 +134,6 @@ public class ChessGame {
      * @return the chessboard
      */
     public ChessBoard getBoard() {
-        throw new RuntimeException("Not implemented");
+        return this.board;
     }
 }
