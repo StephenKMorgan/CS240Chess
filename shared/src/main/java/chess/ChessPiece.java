@@ -107,16 +107,20 @@ public class ChessPiece {
                 break;
             //Check if the piece is a bishop
             case BISHOP:
-                addValidDiagonalMoves(1, 1);  // up-right
-                addValidDiagonalMoves(1, -1); // up-left
-                addValidDiagonalMoves(-1, 1); // down-right
-                addValidDiagonalMoves(-1, -1); // down-left
+                addValidDiagonalOrVerticalMoves(1, 1, row, col);  // up-right
+                addValidDiagonalOrVerticalMoves(1, -1, row, col); // up-left
+                addValidDiagonalOrVerticalMoves(-1, 1, row, col); // down-right
+                addValidDiagonalOrVerticalMoves(-1, -1, row, col); // down-left
                 break;
             //Check if the piece is a knight
             case KNIGHT:
                 break;
             //Check if the piece is a rook
             case ROOK:
+                addValidDiagonalOrVerticalMoves(1, 0, row, col);  // up
+                addValidDiagonalOrVerticalMoves(-1, 0, row, col); // down
+                addValidDiagonalOrVerticalMoves(0, 1, row, col); // right
+                addValidDiagonalOrVerticalMoves(0, -1, row, col); // left
                 break;
             //Check if the piece is a pawn
             case PAWN:
@@ -124,7 +128,7 @@ public class ChessPiece {
         }
     }
 
-    private void addValidDiagonalMoves(int rowIncrement, int colIncrement) {
+    private void addValidDiagonalOrVerticalMoves(int rowIncrement, int colIncrement, row, col) {
         for (int i = 1; i < 8; i++){
             try { 
                 ChessPiece move = board.getPiece(new ChessPosition(row + rowIncrement * i, col + colIncrement * i));
