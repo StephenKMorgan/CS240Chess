@@ -44,8 +44,18 @@ public class ChessBoard {
         int row = position.getRow(); 
         int col = position.getColumn();
 
+        //Check if the position is valid
+        if (row < 0 || row > 7 || col < 0 || col > 7) {
+            return null;
+        }
+
         //Get the piece at the position
         ChessPiece chessPiece = this.board[row][col];
+
+        //Check if there is a piece at the position if not return null
+        if (chessPiece == null) {
+            return null;
+        }
 
         //Return the piece
         return chessPiece;

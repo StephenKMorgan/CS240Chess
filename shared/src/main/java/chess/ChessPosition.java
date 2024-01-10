@@ -18,7 +18,8 @@ public class ChessPosition {
      * 1 codes for the bottom row
      */
     public int getRow() {
-        return this.row;
+        //Get the row of the position and subtract 1 to get the correct row in the array
+        return this.row - 1;
     }
 
     /**
@@ -26,6 +27,6 @@ public class ChessPosition {
      * 1 codes for the left row
      */
     public int getColumn() {
-        return this.col;
+        return this.col - 1;
     }
 }
