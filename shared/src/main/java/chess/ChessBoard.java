@@ -46,7 +46,7 @@ public class ChessBoard {
 
         //Check if the position is valid
         if (row < 0 || row > 7 || col < 0 || col > 7) {
-            return null;
+            throw new InvalidMoveException("Invalid position");
         }
 
         //Get the piece at the position
