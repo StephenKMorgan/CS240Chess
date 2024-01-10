@@ -8,10 +8,10 @@ package chess;
  */
 public class ChessBoard {
 
+    private ChessPiece[][] board;
+
     public ChessBoard() {
-        //My 2d array of chess pieces that make up my board
-        ChessPiece[][] board = new ChessPiece[8][8];
-        
+        this.board = new ChessPiece[8][8];        
     }
 
     /**
@@ -25,9 +25,6 @@ public class ChessBoard {
         int row = position.getRow(); 
         int col = position.getColumn();
 
-        //Get the piece type of the piece that I am adding to the board
-        ChessPiece.PieceType pieceType = piece.getPieceType();
-
         //Add the piece to the board
         this.board[row][col] = piece;
     }
@@ -38,8 +35,9 @@ public class ChessBoard {
      * @param position The position to get the piece from
      * @return Either the piece at the position, or null if no piece is at that
      * position
+     * @throws InvalidMoveException 
      */
-    public ChessPiece getPiece(ChessPosition position) {
+    public ChessPiece getPiece(ChessPosition position) throws InvalidMoveException {
         //Get the row and column of the position of the piece that I am getting from the board
         int row = position.getRow(); 
         int col = position.getColumn();
@@ -66,8 +64,10 @@ public class ChessBoard {
      * (How the game of chess normally starts)
      */
     public void resetBoard() {
-        foreach (ChessPiece piece in board) {
-            piece = null;
+        for (int i = 0; i < 8; i++){
+            for (int j = 0; j < 8; i++){
+                this.board[i][j] = null;
+            }
         }
     }
 }
