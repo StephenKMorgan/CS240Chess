@@ -88,9 +88,29 @@ public class ChessPiece {
                 break;
             //Check if the piece is a queen
             case QUEEN:
+            //Check the diagonal up and to the right
+                // for (int i = -8; i < 8; i++){
+                //     for (int j = -8; j < 8; j++){
+                //         try { 
+                //             ChessPiece move = board.getPiece(new ChessPosition(row + i, col + j));
+                //             if (move == null || move.getTeamColor() != teamColor)
+                //             {
+                //                 //Create a new chess move
+                //                 ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + i, col + j), null);
+                //                 //Add the move to the collection of valid moves
+                //                 validMoves.add(chessMove);
+                //             }
+                //         }
+                //         catch (InvalidMoveException e) { }
+                //     }
+                // }
                 break;
             //Check if the piece is a bishop
             case BISHOP:
+                addValidDiagonalMoves(1, 1);  // up-right
+                addValidDiagonalMoves(1, -1); // up-left
+                addValidDiagonalMoves(-1, 1); // down-right
+                addValidDiagonalMoves(-1, -1); // down-left
                 break;
             //Check if the piece is a knight
             case KNIGHT:
@@ -102,6 +122,22 @@ public class ChessPiece {
             case PAWN:
                 break;
         }
-}
+    }
+
+    private void addValidDiagonalMoves(int rowIncrement, int colIncrement) {
+        for (int i = 1; i < 8; i++){
+            try { 
+                ChessPiece move = board.getPiece(new ChessPosition(row + rowIncrement * i, col + colIncrement * i));
+                if (move == null || move.getTeamColor() != teamColor)
+                {
+                    //Create a new chess move
+                    ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + rowIncrement * i, col + colIncrement * i), null);
+                    //Add the move to the collection of valid moves
+                    validMoves.add(chessMove);
+                }
+            }
+            catch (InvalidMoveException e) { }
+        }
+    }
 }
 
