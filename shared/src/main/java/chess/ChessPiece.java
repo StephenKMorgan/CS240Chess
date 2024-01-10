@@ -49,6 +49,59 @@ public class ChessPiece {
      * @return Collection of valid moves
      */
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
-        throw new RuntimeException("Not implemented");
-    }
+        //Get the row and column of the position of the piece that I am getting from the board
+        int row = myPosition.getRow(); 
+        int col = myPosition.getColumn();
+
+        //Get the piece at the position
+        ChessPiece chessPiece = board.getPiece(myPosition);
+
+        //Get the piece type of the piece that I am adding to the board
+        ChessPiece.PieceType pieceType = chessPiece.getPieceType();
+
+        //Get the team color of the piece that I am adding to the board
+        ChessGame.TeamColor teamColor = chessPiece.getTeamColor();
+
+        //Create a collection of valid moves
+        Collection<ChessMove> validMoves = new Collection<ChessMove>();
+
+        //Switch on the piece type
+        switch (ChessPiece.PieceType){
+            //Check if the piece is a king
+            case KING:
+                for (int i = -1; i < 2; i++){
+                    for (int j = -1; j < 2; j++){
+                        try { 
+                            ChessPiece move = board.getPiece(new ChessPosition(row + i, col + j));
+                            if (move == null || move.getTeamColor() != teamColor)
+                            {
+                                //Create a new chess move
+                                ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + i, col + j), null);
+                                //Add the move to the collection of valid moves
+                                validMoves.add(chessMove);
+                            }
+                        }
+                        catch (InvalidMoveException e) { }
+                    }
+                }
+                
+                break;
+            //Check if the piece is a queen
+            case QUEEN:
+                break;
+            //Check if the piece is a bishop
+            case BISHOP:
+                break;
+            //Check if the piece is a knight
+            case KNIGHT:
+                break;
+            //Check if the piece is a rook
+            case ROOK:
+                break;
+            //Check if the piece is a pawn
+            case PAWN:
+                break;
+        }
 }
+}
+
