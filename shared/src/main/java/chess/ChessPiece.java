@@ -86,22 +86,14 @@ public class ChessPiece {
                 break;
             //Check if the piece is a queen
             case QUEEN:
-            //Check the diagonal up and to the right
-                // for (int i = -8; i < 8; i++){
-                //     for (int j = -8; j < 8; j++){
-                //         try { 
-                //             ChessPiece move = board.getPiece(new ChessPosition(row + i, col + j));
-                //             if (move == null || move.getTeamColor() != teamColor)
-                //             {
-                //                 //Create a new chess move
-                //                 ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + i, col + j), null);
-                //                 //Add the move to the collection of valid moves
-                //                 validMoves.add(chessMove);
-                //             }
-                //         }
-                //         catch (InvalidMoveException e) { }
-                //     }
-                // }
+                addValidDiagonalOrVerticalMoves(1, 0, row, col, board, validMoves, myPosition);  // up
+                addValidDiagonalOrVerticalMoves(-1, 0, row, col, board, validMoves, myPosition); // down
+                addValidDiagonalOrVerticalMoves(0, 1, row, col, board, validMoves, myPosition); // right
+                addValidDiagonalOrVerticalMoves(0, -1, row, col, board, validMoves, myPosition); // left
+                addValidDiagonalOrVerticalMoves(1, 1, row, col, board, validMoves, myPosition);  // up-right
+                addValidDiagonalOrVerticalMoves(1, -1, row, col, board, validMoves, myPosition); // up-left
+                addValidDiagonalOrVerticalMoves(-1, 1, row, col, board, validMoves, myPosition); // down-right
+                addValidDiagonalOrVerticalMoves(-1, -1, row, col, board, validMoves, myPosition); // down-left
                 break;
             //Check if the piece is a bishop
             case BISHOP:
@@ -112,6 +104,23 @@ public class ChessPiece {
                 break;
             //Check if the piece is a knight
             case KNIGHT:
+                for (int i = -2; i < 3; i++){
+                    for (int j = -2; j < 3; j++){
+                        if (Math.abs(i) != Math.abs(j) && i != 0 && j != 0){
+                            try { 
+                                ChessPiece move = board.getPiece(new ChessPosition(row + i, col + j));
+                                if (move == null || move.getTeamColor() != this.pieceColor)
+                                {
+                                    //Create a new chess move
+                                    ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + i, col + j), null);
+                                    //Add the move to the collection of valid moves
+                                    validMoves.add(chessMove);
+                                }
+                            }
+                            catch (InvalidMoveException e) { }
+                        }
+                    }
+                }
                 break;
             //Check if the piece is a rook
             case ROOK:
