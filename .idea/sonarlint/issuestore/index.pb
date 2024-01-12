@@ -13,3 +13,5 @@ Ashared/src/test/java/passoffTests/chessTests/ChessBoardTests.java,9\b\9b641009
 Qshared/src/test/java/passoffTests/chessTests/chessPieceTests/BishopMoveTests.java,0\1\01d938520fc54bb619cf4daa2dd07656e8498d2d
 Z
 *shared/src/main/java/chess/ChessBoard.java,d\f\dfc4ec84b5d57ac6e0266e9c319b728da99e0c51
+b
+2shared/src/test/java/passoffTests/TestFactory.java,e\9\e9394cf4f23ef8e3e7f7d6cf9f7b3605ba345448

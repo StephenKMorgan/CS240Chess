@@ -2,12 +2,14 @@ package passoffTests.chessTests.chessPieceTests;
 
 import org.junit.jupiter.api.Test;
 
+import chess.InvalidMoveException;
+
 import static passoffTests.TestFactory.*;
 
 public class BishopMoveTests {
 
     @Test
-    public void bishopMoveUntilEdge() {
+    public void bishopMoveUntilEdge() throws InvalidMoveException {
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -30,7 +32,7 @@ public class BishopMoveTests {
 
 
     @Test
-    public void bishopCaptureEnemy() {
+    public void bishopCaptureEnemy() throws InvalidMoveException {
         validateMoves("""
                         | | | | | | | | |
                         | | | |Q| | | | |
@@ -53,7 +55,7 @@ public class BishopMoveTests {
 
 
     @Test
-    public void bishopBlocked() {
+    public void bishopBlocked() throws InvalidMoveException {
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |

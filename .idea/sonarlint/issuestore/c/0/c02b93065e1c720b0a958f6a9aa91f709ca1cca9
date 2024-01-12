@@ -1,0 +1,10 @@
+
+v
+java:S2293A"YReplace the type specification in this constructor call with the diamond operator ("<>").(˜èïû8ôŸıøÏ1
+o
+java:S3776<"RRefactor this method to reduce its Cognitive Complexity from 36 to the 15 allowed.(°å†8ÔõßüÏ1
+J	java:S108R")Either remove or fill this block of code.(õÚƒ×ùÿÿÿÿ8Ÿ–‰­Ï1
+J	java:S108x")Either remove or fill this block of code.(õÚƒ×ùÿÿÿÿ8°–‰­Ï1
+K	java:S108š")Either remove or fill this block of code.(õÚƒ×ùÿÿÿÿ8ëõßüÏ1
+ã
+java:S6541<"ÅA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 66 to 64, Complexity from 18 to 14, Nesting Level from 6 to 2, Number of Variables from 15 to 6.(°å†8íõßüÏ1
