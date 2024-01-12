@@ -15,3 +15,5 @@ Z
 *shared/src/main/java/chess/ChessBoard.java,d\f\dfc4ec84b5d57ac6e0266e9c319b728da99e0c51
 b
 2shared/src/test/java/passoffTests/TestFactory.java,e\9\e9394cf4f23ef8e3e7f7d6cf9f7b3605ba345448
+Y
+)shared/src/main/java/chess/ChessMove.java,c\5\c52f67c55315a844e23611bb848b35269aaedb66
