@@ -8,9 +8,9 @@ package chess;
  */
 public class ChessPosition {
 
-    int row;
+    private int row;
 
-    int col;
+    private int col;
 
     public ChessPosition() {
         this.row = 0;
