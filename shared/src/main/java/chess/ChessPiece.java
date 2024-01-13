@@ -2,6 +2,7 @@ package chess;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 
 /**
  * Represents a single chess piece
@@ -10,18 +11,32 @@ import java.util.Collection;
  * signature of the existing methods.
  */
 public class ChessPiece {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ChessPiece that)) return false;
+        return pieceColor == that.pieceColor && type == that.type && Objects.equals(validMoves, that.validMoves);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pieceColor, type, validMoves);
+    }
 
     private ChessGame.TeamColor pieceColor;
     private PieceType type;
+    private Collection<ChessMove> validMoves;
 
     public ChessPiece() {
         this.pieceColor = ChessGame.TeamColor.WHITE;
         this.type = PieceType.PAWN;
+        this.validMoves = new ArrayList<ChessMove>();
     }
 
     public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
         this.pieceColor = pieceColor;
         this.type = type;
+        this.validMoves = new ArrayList<ChessMove>();
     }
 
     /**
@@ -62,7 +77,8 @@ public class ChessPiece {
         int row = myPosition.getRow(); 
         int col = myPosition.getColumn();
 
-        Collection<ChessMove> validMoves = new ArrayList<ChessMove>(); 
+        this.validMoves.clear();
+
         //Switch on the piece type
         switch (this.type){
             //Check if the piece is a king
@@ -76,7 +92,7 @@ public class ChessPiece {
                                 //Create a new chess move
                                 ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + i, col + j), null);
                                 //Add the move to the collection of valid moves
-                                validMoves.add(chessMove);
+                                this.validMoves.add(chessMove);
                             }
                         }
                         catch (InvalidMoveException e) { }
@@ -98,9 +114,9 @@ public class ChessPiece {
             //Check if the piece is a bishop
             case BISHOP:
                 addValidDiagonalOrVerticalMoves(1, 1, row, col, board, validMoves, myPosition);  // up-right
-                addValidDiagonalOrVerticalMoves(1, -1, row, col, board, validMoves, myPosition); // up-left
                 addValidDiagonalOrVerticalMoves(-1, 1, row, col, board, validMoves, myPosition); // down-right
                 addValidDiagonalOrVerticalMoves(-1, -1, row, col, board, validMoves, myPosition); // down-left
+                addValidDiagonalOrVerticalMoves(1, -1, row, col, board, validMoves, myPosition); // up-left
                 break;
             //Check if the piece is a knight
             case KNIGHT:
@@ -114,7 +130,7 @@ public class ChessPiece {
                                     //Create a new chess move
                                     ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + i, col + j), null);
                                     //Add the move to the collection of valid moves
-                                    validMoves.add(chessMove);
+                                    this.validMoves.add(chessMove);
                                 }
                             }
                             catch (InvalidMoveException e) { }
@@ -136,19 +152,19 @@ public class ChessPiece {
                 break;
             
         }
-        return validMoves;
+        return this.validMoves;
     }
 
     private void addValidDiagonalOrVerticalMoves(int rowIncrement, int colIncrement, int row, int col, ChessBoard board, Collection<ChessMove> validMoves, ChessPosition myPosition) {
         for (int i = 1; i < 8; i++){
             try { 
-                ChessPiece move = board.getPiece(new ChessPosition(row + rowIncrement * i, col + colIncrement * i));
+                ChessPiece move = board.getPiece(new ChessPosition(row + rowIncrement * i, col + colIncrement * i ));
                 if (move == null || move.getTeamColor() != this.pieceColor)
                 {
                     //Create a new chess move
                     ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + rowIncrement * i, col + colIncrement * i), null);
                     //Add the move to the collection of valid moves
-                    validMoves.add(chessMove);
+                    this.validMoves.add(chessMove);
                 }
             }
             catch (InvalidMoveException e) { }
