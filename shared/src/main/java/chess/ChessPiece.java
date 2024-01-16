@@ -87,11 +87,9 @@ public class ChessPiece {
                     for (int j = -1; j < 2; j++){
                         try { 
                             ChessPiece move = board.getPiece(new ChessPosition(row + i, col + j));
-                            if (move == null || move.getTeamColor() != this.pieceColor)
+                            if (move == null  || move.getTeamColor() != this.pieceColor)
                             {
-                                //Create a new chess move
                                 ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + i, col + j), null);
-                                //Add the move to the collection of valid moves
                                 this.validMoves.add(chessMove);
                             }
                         }
@@ -147,6 +145,7 @@ public class ChessPiece {
                 break;
             //Check if the piece is a pawn
             case PAWN:
+                //Check if the piece is white
                 break;
             default:
                 break;
@@ -159,12 +158,18 @@ public class ChessPiece {
         for (int i = 1; i < 8; i++){
             try { 
                 ChessPiece move = board.getPiece(new ChessPosition(row + rowIncrement * i, col + colIncrement * i ));
-                if (move == null || move.getTeamColor() != this.pieceColor)
+                if (move == null)
                 {
-                    //Create a new chess move
                     ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + rowIncrement * i, col + colIncrement * i), null);
-                    //Add the move to the collection of valid moves
                     this.validMoves.add(chessMove);
+                }
+                else if (move.getTeamColor() != this.pieceColor){
+                    ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + rowIncrement * i, col + colIncrement * i), null);
+                    this.validMoves.add(chessMove);
+                    i = 8;
+                }
+                else{
+                    i = 8;
                 }
             }
             catch (InvalidMoveException e) { }
