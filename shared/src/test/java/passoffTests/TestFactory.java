@@ -59,7 +59,7 @@ public class TestFactory {
         return endPos;
     }
 
-    static public void validateMoves(String boardText, ChessPosition startPosition, int[][] endPositions) {
+    static public void validateMoves(String boardText, ChessPosition startPosition, int[][] endPositions) throws InvalidMoveException {
         var board = loadBoard(boardText);
         var testPiece = board.getPiece(startPosition);
         var validMoves = loadMoves(startPosition, endPositions);

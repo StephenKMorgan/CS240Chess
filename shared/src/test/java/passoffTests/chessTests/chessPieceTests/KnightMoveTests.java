@@ -2,12 +2,14 @@ package passoffTests.chessTests.chessPieceTests;
 
 import org.junit.jupiter.api.Test;
 
+import chess.InvalidMoveException;
+
 import static passoffTests.TestFactory.*;
 
 public class KnightMoveTests {
 
     @Test
-    public void knightMiddleOfBoardWhite() {
+    public void knightMiddleOfBoardWhite() throws InvalidMoveException{
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -26,7 +28,7 @@ public class KnightMoveTests {
     }
 
     @Test
-    public void knightMiddleOfBoardBlack() {
+    public void knightMiddleOfBoardBlack() throws InvalidMoveException{
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -46,7 +48,7 @@ public class KnightMoveTests {
 
 
     @Test
-    public void knightEdgeOfBoardLeft() {
+    public void knightEdgeOfBoardLeft() throws InvalidMoveException{
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -63,7 +65,7 @@ public class KnightMoveTests {
     }
 
     @Test
-    public void knightEdgeOfBoardRight() {
+    public void knightEdgeOfBoardRight() throws InvalidMoveException{
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -80,7 +82,7 @@ public class KnightMoveTests {
     }
 
     @Test
-    public void knightEdgeOfBoardBottom() {
+    public void knightEdgeOfBoardBottom() throws InvalidMoveException{
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -97,7 +99,7 @@ public class KnightMoveTests {
     }
 
     @Test
-    public void knightEdgeOfBoardTop() {
+    public void knightEdgeOfBoardTop() throws InvalidMoveException{
         validateMoves("""
                         | | |N| | | | | |
                         | | | | | | | | |
@@ -115,7 +117,7 @@ public class KnightMoveTests {
 
 
     @Test
-    public void knightCornerOfBoardBottomRight() {
+    public void knightCornerOfBoardBottomRight() throws InvalidMoveException{
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -132,7 +134,7 @@ public class KnightMoveTests {
     }
 
     @Test
-    public void knightCornerOfBoardTopRight() {
+    public void knightCornerOfBoardTopRight() throws InvalidMoveException{
         validateMoves("""
                         | | | | | | | |N|
                         | | | | | | | | |
@@ -149,7 +151,7 @@ public class KnightMoveTests {
     }
 
     @Test
-    public void knightCornerOfBoardTopLeft() {
+    public void knightCornerOfBoardTopLeft() throws InvalidMoveException{
         validateMoves("""
                         |n| | | | | | | |
                         | | | | | | | | |
@@ -166,7 +168,7 @@ public class KnightMoveTests {
     }
 
     @Test
-    public void knightCornerOfBoardBottomLeft() {
+    public void knightCornerOfBoardBottomLeft() throws InvalidMoveException{
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -184,7 +186,7 @@ public class KnightMoveTests {
 
 
     @Test
-    public void knightBlocked() {
+    public void knightBlocked() throws InvalidMoveException{
         validateMoves("""
                         | | | | | | | | |
                         | | | |R| | | | |
@@ -202,7 +204,7 @@ public class KnightMoveTests {
 
 
     @Test
-    public void knightCaptureEnemy() {
+    public void knightCaptureEnemy() throws InvalidMoveException{
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |

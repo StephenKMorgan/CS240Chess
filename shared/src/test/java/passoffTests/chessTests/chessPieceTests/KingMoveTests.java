@@ -2,13 +2,15 @@ package passoffTests.chessTests.chessPieceTests;
 
 import org.junit.jupiter.api.Test;
 
+import chess.InvalidMoveException;
+
 import static passoffTests.TestFactory.*;
 
 
 public class KingMoveTests {
 
     @Test
-    public void kingMoveUntilEdge() {
+    public void kingMoveUntilEdge() throws InvalidMoveException{
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -26,7 +28,7 @@ public class KingMoveTests {
 
 
     @Test
-    public void kingCaptureEnemy() {
+    public void kingCaptureEnemy() throws InvalidMoveException{
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -44,7 +46,7 @@ public class KingMoveTests {
 
 
     @Test
-    public void kingBlocked() {
+    public void kingBlocked() throws InvalidMoveException{
         validateMoves("""
                         | | | | | | |r|k|
                         | | | | | | |p|p|
