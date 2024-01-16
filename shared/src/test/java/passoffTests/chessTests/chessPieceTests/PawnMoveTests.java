@@ -12,7 +12,7 @@ import static passoffTests.TestFactory.*;
 public class PawnMoveTests {
 
     @Test
-    public void pawnMiddleOfBoardWhite() throws InvalidMoveException {
+    public void pawnMiddleOfBoardWhite() {
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -29,7 +29,7 @@ public class PawnMoveTests {
     }
 
     @Test
-    public void pawnMiddleOfBoardBlack() throws InvalidMoveException {
+    public void pawnMiddleOfBoardBlack() {
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -47,7 +47,7 @@ public class PawnMoveTests {
 
 
     @Test
-    public void pawnInitialMoveWhite() throws InvalidMoveException {
+    public void pawnInitialMoveWhite() {
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -64,7 +64,7 @@ public class PawnMoveTests {
     }
 
     @Test
-    public void pawnInitialMoveBlack() throws InvalidMoveException {
+    public void pawnInitialMoveBlack() {
         validateMoves("""
                         | | | | | | | | |
                         | | |p| | | | | |
@@ -82,7 +82,7 @@ public class PawnMoveTests {
 
 
     @Test
-    public void pawnPromotionWhite() throws InvalidMoveException {
+    public void pawnPromotionWhite() {
         validatePromotion("""
                         | | | | | | | | |
                         | | |P| | | | | |
@@ -100,7 +100,7 @@ public class PawnMoveTests {
 
 
     @Test
-    public void edgePromotionBlack() throws InvalidMoveException {
+    public void edgePromotionBlack() {
         validatePromotion("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -118,7 +118,7 @@ public class PawnMoveTests {
 
 
     @Test
-    public void pawnPromotionCapture() throws InvalidMoveException {
+    public void pawnPromotionCapture() {
         validatePromotion("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -136,7 +136,7 @@ public class PawnMoveTests {
 
 
     @Test
-    public void pawnAdvanceBlockedWhite() throws InvalidMoveException {
+    public void pawnAdvanceBlockedWhite() {
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -153,7 +153,7 @@ public class PawnMoveTests {
     }
 
     @Test
-    public void pawnAdvanceBlockedBlack() throws InvalidMoveException {
+    public void pawnAdvanceBlockedBlack() {
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -171,7 +171,7 @@ public class PawnMoveTests {
 
 
     @Test
-    public void pawnAdvanceBlockedDoubleMoveWhite() throws InvalidMoveException {
+    public void pawnAdvanceBlockedDoubleMoveWhite() {
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -188,7 +188,7 @@ public class PawnMoveTests {
     }
 
     @Test
-    public void pawnAdvanceBlockedDoubleMoveBlack() throws InvalidMoveException {
+    public void pawnAdvanceBlockedDoubleMoveBlack() {
         validateMoves("""
                         | | | | | | | | |
                         | | |p| | | | | |
@@ -206,7 +206,7 @@ public class PawnMoveTests {
 
 
     @Test
-    public void pawnCaptureWhite() throws InvalidMoveException {
+    public void pawnCaptureWhite() {
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -223,7 +223,7 @@ public class PawnMoveTests {
     }
 
     @Test
-    public void pawnCaptureBlack() throws InvalidMoveException {
+    public void pawnCaptureBlack() {
         validateMoves("""
                         | | | | | | | | |
                         | | | | | | | | |
@@ -239,7 +239,7 @@ public class PawnMoveTests {
         );
     }
 
-    private void validatePromotion(String boardText, ChessPosition start, int[][] endPositions) throws InvalidMoveException {
+    private void validatePromotion(String boardText, ChessPosition start, int[][] endPositions) {
 
         var board = TestFactory.loadBoard(boardText);
         var testPiece = board.getPiece(start);
@@ -252,7 +252,8 @@ public class PawnMoveTests {
             validMoves.add(TestFactory.getNewMove(start, end, ChessPiece.PieceType.KNIGHT));
         }
 
-        Assertions.assertEquals(validMoves, testPiece.pieceMoves(board, start), "Wrong moves");
+        var pieceMoves = new HashSet<>(testPiece.pieceMoves(board, start));
+        Assertions.assertEquals(validMoves, pieceMoves, "Wrong moves");
     }
 
 }

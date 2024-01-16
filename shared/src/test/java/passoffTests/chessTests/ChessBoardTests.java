@@ -9,7 +9,7 @@ public class ChessBoardTests {
 
     @Test
     @DisplayName("Add and Get Piece")
-    public void getAddPiece() throws InvalidMoveException {
+    public void getAddPiece() {
         ChessPosition position = getNewPosition(4, 4);
         ChessPiece piece = getNewPiece(ChessGame.TeamColor.BLACK, ChessPiece.PieceType.BISHOP);
 
