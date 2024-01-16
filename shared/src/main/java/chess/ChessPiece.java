@@ -144,8 +144,40 @@ public class ChessPiece {
                 addValidDiagonalOrVerticalMoves(0, -1, row, col, board, validMoves, myPosition); // left
                 break;
             //Check if the piece is a pawn
-            case PAWN:
-                //Check if the piece is white
+            case PAWN:         
+                //Check if the pawn is in the starting position
+                if (row == 2 || row == 7){
+                    try {
+                        for (int i = 1; i < 3; i++){
+                            ChessPiece move = board.getPiece(new ChessPosition(row == 2 ? row + i : row - i, col));
+                            if (move == null)
+                            {
+                                ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row == 2 ? row + i : row - i, col), null);
+                                this.validMoves.add(chessMove);
+                            }
+                            else{
+                                i = 3;
+                            }
+                        } 
+                    }
+                    catch (InvalidMoveException e) { }
+                }
+                //Check for capture
+                try {
+                    for (int i = -1; i < 2; i += 2){
+                        ChessPiece move = board.getPiece(new ChessPosition(row + (this.pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col + i));
+                        if (move != null && move.getTeamColor() != this.pieceColor)
+                        {
+                            ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + (this.pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col + i), null);
+                            this.validMoves.add(chessMove);
+                        }
+                    }
+                }
+                catch (InvalidMoveException e) { }
+                //Check for en passant
+                //Check for promotion
+                //Check for normal move
+                     
                 break;
             default:
                 break;
