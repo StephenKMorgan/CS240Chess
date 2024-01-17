@@ -69,7 +69,7 @@ public class ChessBoard {
         if (row < 1 || row > 8 || col < 1 || col > 8) {
             throw new InvalidMoveException("Invalid position");
         }
-        //For some stupid reason the board starts at the bottom left corner with 1,1
+
         //Get the piece at the position
         ChessPiece chessPiece = this.board[8 - row][col - 1];
 
