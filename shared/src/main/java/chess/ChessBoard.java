@@ -2,6 +2,8 @@ package chess;
 
 import java.util.Arrays;
 
+import chess.ChessGame.TeamColor;
+
 /**
  * A chessboard that can hold and rearrange chess pieces.
  * <p>
@@ -36,7 +38,13 @@ public class ChessBoard {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ChessBoard that=(ChessBoard) o;
-        return Arrays.equals(board, that.board);
+        //since the board is a 2d array I need to use the Arrays.equals method twice
+        for (int i = 0; i < 8; i++) {
+            if (!Arrays.equals(this.board[i], that.board[i])) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -79,10 +87,35 @@ public class ChessBoard {
      * (How the game of chess normally starts)
      */
     public void resetBoard() {
-        for (int i = 0; i < 8; i++){
-            for (int j = 0; j < 8; i++){
-                this.board[i][j] = null;
-            }
+        //Clear all the pieces from the board
+        for (int i = 0; i < 8; i++) {
+            Arrays.fill(this.board[i], null);
+        }
+
+        //Add all the white pieces to the board
+        this.board[7][0] = new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.ROOK);
+        this.board[7][1] = new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.KNIGHT);
+        this.board[7][2] = new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.BISHOP);
+        this.board[7][3] = new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.QUEEN);
+        this.board[7][4] = new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.KING);
+        this.board[7][5] = new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.BISHOP);
+        this.board[7][6] = new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.KNIGHT);
+        this.board[7][7] = new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.ROOK);
+        for (int i = 0; i < 8; i++) {
+            this.board[6][i] = new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.PAWN);
+        }
+
+        //Add all the black pieces to the board
+        this.board[0][0] = new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.ROOK);
+        this.board[0][1] = new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.KNIGHT);
+        this.board[0][2] = new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.BISHOP);
+        this.board[0][3] = new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.QUEEN);
+        this.board[0][4] = new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.KING);
+        this.board[0][5] = new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.BISHOP);
+        this.board[0][6] = new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.KNIGHT);
+        this.board[0][7] = new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.ROOK);
+        for (int i = 0; i < 8; i++) {
+            this.board[1][i] = new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.PAWN);
         }
     }
 }
