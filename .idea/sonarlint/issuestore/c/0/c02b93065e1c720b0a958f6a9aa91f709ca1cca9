@@ -3,17 +3,9 @@ n
 java:S2293!"YReplace the type specification in this constructor call with the diamond operator ("<>").(üÉæ
 n
 java:S2293'"YReplace the type specification in this constructor call with the diamond operator ("<>").(üÉæ
-n	java:S127Ì"XRefactor the code in order to not assign to this loop counter from within the loop body.(¤ı²…
-n	java:S127Ï"XRefactor the code in order to not assign to this loop counter from within the loop body.(¤ı²…
-h
-java:S3776K"RRefactor this method to reduce its Cognitive Complexity from 58 to the 15 allowed.(°å†
+i
+java:S3776K"SRefactor this method to reduce its Cognitive Complexity from 111 to the 15 allowed.(°å†
 C	java:S108`")Either remove or fill this block of code.(õÚƒ×ùÿÿÿÿ
 K	java:S108†")Either remove or fill this block of code.(õÚƒ×ùÿÿÿÿ8Øñ†£Ñ1
-K	java:S108 ")Either remove or fill this block of code.(õÚƒ×ùÿÿÿÿ8Úñ†£Ñ1
-K	java:S108«")Either remove or fill this block of code.(õÚƒ×ùÿÿÿÿ8Üñ†£Ñ1
-K	java:S108¶")Either remove or fill this block of code.(õÚƒ×ùÿÿÿÿ8İñ†£Ñ1
-G
-java:S1172À"1Remove this unused method parameter "validMoves".(È¢¿
-K	java:S108Ò")Either remove or fill this block of code.(õÚƒ×ùÿÿÿÿ8àñ†£Ñ1
-Ü
-java:S6541K"ÅA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 95 to 64, Complexity from 24 to 14, Nesting Level from 6 to 2, Number of Variables from 23 to 6.(°å†
+İ
+java:S6541K"ÆA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 117 to 64, Complexity from 39 to 14, Nesting Level from 6 to 2, Number of Variables from 29 to 6.(°å†

@@ -146,42 +146,18 @@ public class ChessPiece {
             //Check if the piece is a pawn
             case PAWN:         
                 //Check if the pawn is in the starting position
-                if (row == 2 || row == 7){
-                    try {
-                        for (int i = 1; i < 3; i++){
-                            ChessPiece move = board.getPiece(new ChessPosition(row == 2 ? row + i : row - i, col));
-                            if (move == null)
-                            {
-                                ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row == 2 ? row + i : row - i, col), null);
-                                this.validMoves.add(chessMove);
-                            }
-                            else{
-                                i = 3;
-                            }
-                        } 
-                    }
-                    catch (InvalidMoveException e) { }
-                }
+                pawnCheckForFirstMove(row, col, board, myPosition);
                 //Check for capture
-                try {
-                    for (int i = -1; i < 2; i += 2){
-                        ChessPiece move = board.getPiece(new ChessPosition(row + (this.pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col + i));
-                        if (move != null && move.getTeamColor() != this.pieceColor)
-                        {
-                            ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + (this.pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col + i), null);
-                            this.validMoves.add(chessMove);
-                        }
-                    }
-                }
-                catch (InvalidMoveException e) { }
-                //Check for en passant
+                pawnCheckForCapture(row, col, board, myPosition);
+                //Check for en passant?
+                //No
                 //Check for promotion
+                pawnCheckForPromotion(row, col, board, myPosition);
                 //Check for normal move
-                     
+                pawnCheckForValidMove(row, col, board, myPosition);
                 break;
             default:
                 break;
-            
         }
         return this.validMoves;
     }
@@ -206,6 +182,75 @@ public class ChessPiece {
             }
             catch (InvalidMoveException e) { }
         }
+    }
+
+    private void pawnCheckForFirstMove(int row , int col, ChessBoard board, ChessPosition myPosition){
+        if ((this.pieceColor ==  ChessGame.TeamColor.WHITE && row == 2) || (this.pieceColor ==  ChessGame.TeamColor.BLACK && row == 7)){
+            try {
+                for (int i = 1; i < 3; i++){
+                    ChessPiece move = board.getPiece(new ChessPosition(row == 2 ? row + i : row - i, col));
+                    if (move == null)
+                    {
+                        ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row == 2 ? row + i : row - i, col), null);
+                        this.validMoves.add(chessMove);
+                    }
+                    else{
+                        i = 3;
+                    }
+                } 
+            }
+            catch (InvalidMoveException e) { }
+        }
+    }
+
+    private void pawnCheckForCapture(int row, int col, ChessBoard board, ChessPosition myPosition){
+        try {
+            for (int i = -1; i < 2; i += 2){
+                ChessPiece move = board.getPiece(new ChessPosition(row + (this.pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col + i));
+                if (move != null && move.getTeamColor() != this.pieceColor)
+                {
+                    if(pawnCheckForPromotion(row + (this.pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col + i, board, myPosition)){
+                        return;
+                    }
+                    else{
+                    ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + (this.pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col + i), null);
+                    this.validMoves.add(chessMove);
+                    }
+                }
+            }
+        }
+        catch (InvalidMoveException e) { }
+    }
+
+    private boolean pawnCheckForPromotion(int row, int col, ChessBoard board, ChessPosition myPosition){
+        if ((this.pieceColor ==  ChessGame.TeamColor.WHITE && row == 8) || (this.pieceColor ==  ChessGame.TeamColor.BLACK && row == 1)){
+            //loop the user to choose what piece they want to promote to
+            for (int i = 1; i < 5; i++){
+                //Create a new chess move
+                ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row, col), PieceType.values()[i]);
+                //Add the move to the collection of valid moves
+                this.validMoves.add(chessMove);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private void pawnCheckForValidMove(int row, int col, ChessBoard board, ChessPosition myPosition){
+        try {
+            ChessPiece move = board.getPiece(new ChessPosition(row + (this.pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col));
+            if (move == null)
+            {
+                if(pawnCheckForPromotion(row + (this.pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col, board, myPosition)){
+                    return;
+                }
+                else{
+                ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + (this.pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col), null);
+                this.validMoves.add(chessMove);
+                }
+            }
+        }
+        catch (InvalidMoveException e) { }
     }
 }
 
