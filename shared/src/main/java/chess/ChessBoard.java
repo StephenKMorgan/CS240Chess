@@ -60,14 +60,14 @@ public class ChessBoard {
      * position
      * @throws InvalidMoveException 
      */
-    public ChessPiece getPiece(ChessPosition position) throws InvalidMoveException {
+    public ChessPiece getPiece(ChessPosition position) {
         //Get the row and column of the position of the piece that I am getting from the board
         int row = position.getRow(); 
         int col = position.getColumn();
 
         //Check if the position is valid
         if (row < 1 || row > 8 || col < 1 || col > 8) {
-            throw new InvalidMoveException("Invalid position");
+            return new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.INVALID);
         }
 
         //Get the piece at the position

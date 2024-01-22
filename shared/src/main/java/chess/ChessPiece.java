@@ -48,7 +48,8 @@ public class ChessPiece {
         BISHOP,
         KNIGHT,
         ROOK,
-        PAWN
+        PAWN,
+        INVALID
     }
 
     /**
@@ -84,16 +85,13 @@ public class ChessPiece {
             //Check if the piece is a king
             case KING:
                 for (int i = -1; i < 2; i++){
-                    for (int j = -1; j < 2; j++){
-                        try { 
+                    for (int j = -1; j < 2; j++){ 
                             ChessPiece move = board.getPiece(new ChessPosition(row + i, col + j));
-                            if (move == null  || move.getTeamColor() != this.pieceColor)
+                            if (move == null || move.getTeamColor() != this.pieceColor && move.type != PieceType.INVALID)
                             {
                                 ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + i, col + j), null);
                                 this.validMoves.add(chessMove);
                             }
-                        }
-                        catch (InvalidMoveException e) { }
                     }
                 }
                 
@@ -121,17 +119,14 @@ public class ChessPiece {
                 for (int i = -2; i < 3; i++){
                     for (int j = -2; j < 3; j++){
                         if (Math.abs(i) != Math.abs(j) && i != 0 && j != 0){
-                            try { 
                                 ChessPiece move = board.getPiece(new ChessPosition(row + i, col + j));
-                                if (move == null || move.getTeamColor() != this.pieceColor)
+                                if (move == null || move.getTeamColor() != this.pieceColor && move.type != PieceType.INVALID)
                                 {
                                     //Create a new chess move
                                     ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + i, col + j), null);
                                     //Add the move to the collection of valid moves
                                     this.validMoves.add(chessMove);
                                 }
-                            }
-                            catch (InvalidMoveException e) { }
                         }
                     }
                 }
@@ -164,14 +159,13 @@ public class ChessPiece {
 
     private void addValidDiagonalOrVerticalMoves(int rowIncrement, int colIncrement, int row, int col, ChessBoard board, Collection<ChessMove> validMoves, ChessPosition myPosition) {
         for (int i = 1; i < 8; i++){
-            try { 
                 ChessPiece move = board.getPiece(new ChessPosition(row + rowIncrement * i, col + colIncrement * i ));
                 if (move == null)
                 {
                     ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + rowIncrement * i, col + colIncrement * i), null);
                     this.validMoves.add(chessMove);
                 }
-                else if (move.getTeamColor() != this.pieceColor){
+                else if (move.type != PieceType.INVALID && move.getTeamColor() != this.pieceColor){
                     ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + rowIncrement * i, col + colIncrement * i), null);
                     this.validMoves.add(chessMove);
                     i = 8;
@@ -179,14 +173,11 @@ public class ChessPiece {
                 else{
                     i = 8;
                 }
-            }
-            catch (InvalidMoveException e) { }
         }
     }
 
     private void pawnCheckForFirstMove(int row , int col, ChessBoard board, ChessPosition myPosition){
         if ((this.pieceColor ==  ChessGame.TeamColor.WHITE && row == 2) || (this.pieceColor ==  ChessGame.TeamColor.BLACK && row == 7)){
-            try {
                 for (int i = 1; i < 3; i++){
                     ChessPiece move = board.getPiece(new ChessPosition(row == 2 ? row + i : row - i, col));
                     if (move == null)
@@ -198,16 +189,13 @@ public class ChessPiece {
                         i = 3;
                     }
                 } 
-            }
-            catch (InvalidMoveException e) { }
         }
     }
 
     private void pawnCheckForCapture(int row, int col, ChessBoard board, ChessPosition myPosition){
-        try {
             for (int i = -1; i < 2; i += 2){
                 ChessPiece move = board.getPiece(new ChessPosition(row + (this.pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col + i));
-                if (move != null && move.getTeamColor() != this.pieceColor)
+                if (move != null && move.getTeamColor() != this.pieceColor && move.type != PieceType.INVALID)
                 {
                     if(pawnCheckForPromotion(row + (this.pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col + i, board, myPosition)){
                         return;
@@ -218,8 +206,6 @@ public class ChessPiece {
                     }
                 }
             }
-        }
-        catch (InvalidMoveException e) { }
     }
 
     private boolean pawnCheckForPromotion(int row, int col, ChessBoard board, ChessPosition myPosition){
@@ -237,7 +223,6 @@ public class ChessPiece {
     }
 
     private void pawnCheckForValidMove(int row, int col, ChessBoard board, ChessPosition myPosition){
-        try {
             ChessPiece move = board.getPiece(new ChessPosition(row + (this.pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col));
             if (move == null)
             {
@@ -249,8 +234,6 @@ public class ChessPiece {
                 this.validMoves.add(chessMove);
                 }
             }
-        }
-        catch (InvalidMoveException e) { }
     }
 }
 
