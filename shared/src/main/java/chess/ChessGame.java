@@ -171,7 +171,28 @@ public class ChessGame {
      */
     public boolean isInCheckmate(TeamColor teamColor) {
         //check if this team is in checkmate
-        //for each piece on the board that is the opposite color generate all the valid moves and see if there are any un the checkMoves collection
+        //Check if the king is in check and if there are any valid moves on the board for that teams pieces that could get the king out of check
+        if(this.isInCheck(teamColor)){
+            for(int i = 1; i <= 8; i++){
+                for(int j = 1; j <= 8; j++){
+                    ChessPosition position = new ChessPosition(i, j);
+                    ChessPiece piece = this.board.getPiece(position);
+                    if(piece != null && piece.getTeamColor() == teamColor){
+                        piece.pieceMoves(this.board, position);
+                        Collection<ChessMove> validMoves = piece.pieceMoves(this.board, position);
+                        if (validMoves != null && validMoves.size() > 0) {
+                            return false;
+                        }
+                        else{
+                            return true;
+                        }
+                    }
+                    else{
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 
