@@ -93,8 +93,7 @@ public class ChessPiece {
                                 this.validMoves.add(chessMove);
                             }
                     }
-                }
-                
+                }    
                 break;
             //Check if the piece is a queen
             case QUEEN:
@@ -145,7 +144,7 @@ public class ChessPiece {
                 //Check for capture
                 pawnCheckForCapture(row, col, board, myPosition);
                 //Check for en passant?
-                //No
+                //Extra credit later
                 //Check for promotion
                 pawnCheckForPromotion(row, col, board, myPosition);
                 //Check for normal move

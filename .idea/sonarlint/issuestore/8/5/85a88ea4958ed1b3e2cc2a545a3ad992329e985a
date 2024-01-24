@@ -1,0 +1,20 @@
+
+n
+java:S2293!"YReplace the type specification in this constructor call with the diamond operator ("<>").(üÉæ
+n
+java:S2293'"YReplace the type specification in this constructor call with the diamond operator ("<>").(üÉæ
+n	java:S127ª"XRefactor the code in order to not assign to this loop counter from within the loop body.(¤ı²…
+n	java:S127­"XRefactor the code in order to not assign to this loop counter from within the loop body.(¤ı²…
+s	java:S127¼"XRefactor the code in order to not assign to this loop counter from within the loop body.(Úš—­ıÿÿÿÿ
+h
+java:S3776L"RRefactor this method to reduce its Cognitive Complexity from 29 to the 15 allowed.(°å†
+G
+java:S1172Ÿ"1Remove this unused method parameter "validMoves".(È¢¿
+n
+java:S3776²"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(·ƒÊÃşÿÿÿÿ
+n
+java:S3776Â"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(¨ï½øÿÿÿÿ
+H
+java:S1172Ò",Remove this unused method parameter "board".(‚Á¾şıÿÿÿÿ
+2
+java:S3626å"Remove this redundant jump.(ûÁİ…

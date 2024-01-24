@@ -72,7 +72,9 @@ public class ChessGame {
      * @return True if the specified team is in check
      */
     public boolean isInCheck(TeamColor teamColor) {
+        //Check if the king is in check
         throw new RuntimeException("Not implemented");
+        
     }
 
     /**
@@ -82,6 +84,7 @@ public class ChessGame {
      * @return True if the specified team is in checkmate
      */
     public boolean isInCheckmate(TeamColor teamColor) {
+        //check if this team is in checkmate
         throw new RuntimeException("Not implemented");
     }
 
