@@ -82,6 +82,19 @@ public class ChessBoard {
         return chessPiece;
     }
 
+    public void removePiece(ChessPosition position) {
+        //Get the row and column of the position of the piece that I am removing from the board
+        int row = position.getRow(); 
+        int col = position.getColumn();
+
+        if (row < 1 || row > 8 || col < 1 || col > 8) {
+            return ;
+        }
+
+        //Remove the piece from the board
+        this.board[8 - row][col - 1] = null;
+    }
+
     /**
      * Sets the board to the default starting board
      * (How the game of chess normally starts)
