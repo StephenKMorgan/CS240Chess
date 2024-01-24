@@ -26,6 +26,7 @@ public class ChessPiece {
     private ChessGame.TeamColor pieceColor;
     private PieceType type;
     private Collection<ChessMove> validMoves;
+    private Collection<ChessMove> checkMoves;
 
     public ChessPiece() {
         this.pieceColor = ChessGame.TeamColor.WHITE;
@@ -66,6 +67,10 @@ public class ChessPiece {
         return this.type;
     }
 
+    public Collection<ChessMove> getCheckMoves() {
+        return this.checkMoves;
+    }
+
     /**
      * Calculates all the positions a chess piece can move to
      * Does not take into account moves that are illegal due to leaving the king in
@@ -91,6 +96,9 @@ public class ChessPiece {
                             {
                                 ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + i, col + j), null);
                                 this.validMoves.add(chessMove);
+                                if (move != null && move.getTeamColor() != this.pieceColor && move.type == PieceType.KING){
+                                    this.checkMoves.add(chessMove);
+                                }
                             }
                     }
                 }    
@@ -125,6 +133,9 @@ public class ChessPiece {
                                     ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + i, col + j), null);
                                     //Add the move to the collection of valid moves
                                     this.validMoves.add(chessMove);
+                                    if (move != null && move.getTeamColor() != this.pieceColor && move.type == PieceType.KING){
+                                        this.checkMoves.add(chessMove);
+                                    }
                                 }
                         }
                     }
@@ -167,6 +178,9 @@ public class ChessPiece {
                 else if (move.type != PieceType.INVALID && move.getTeamColor() != this.pieceColor){
                     ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + rowIncrement * i, col + colIncrement * i), null);
                     this.validMoves.add(chessMove);
+                    if (move != null && move.getTeamColor() != this.pieceColor && move.type == PieceType.KING){
+                        this.checkMoves.add(chessMove);
+                    }
                     i = 8;
                 }
                 else{
@@ -197,11 +211,17 @@ public class ChessPiece {
                 if (move != null && move.getTeamColor() != this.pieceColor && move.type != PieceType.INVALID)
                 {
                     if(pawnCheckForPromotion(row + (this.pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col + i, board, myPosition)){
+                        if (move != null && move.getTeamColor() != this.pieceColor && move.type == PieceType.KING){
+                            this.checkMoves.add(new ChessMove(myPosition, new ChessPosition(row + (this.pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col + i), null));
+                        }
                         return;
                     }
                     else{
                     ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + (this.pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col + i), null);
                     this.validMoves.add(chessMove);
+                    if (move != null && move.getTeamColor() != this.pieceColor && move.type == PieceType.KING){
+                        this.checkMoves.add(chessMove);
+                    }
                     }
                 }
             }
@@ -229,8 +249,8 @@ public class ChessPiece {
                     return;
                 }
                 else{
-                ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + (this.pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col), null);
-                this.validMoves.add(chessMove);
+                    ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + (this.pieceColor == ChessGame.TeamColor.WHITE ? 1 : -1), col), null);
+                    this.validMoves.add(chessMove);
                 }
             }
     }
