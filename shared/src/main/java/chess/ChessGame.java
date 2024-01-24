@@ -52,7 +52,38 @@ public class ChessGame {
      * startPosition
      */
     public Collection<ChessMove> validMoves(ChessPosition startPosition) {
-        throw new RuntimeException("Not implemented");
+        //Get the piece at the start position
+        ChessPiece piece = this.board.getPiece(startPosition);
+        //If there is no piece at the start position return null
+        if (piece == null) {
+            return null;
+        }
+        //If there is a piece at the start position return the valid moves for that piece
+        else {
+            //For each valid move check if it puts the king in check if so remove it from the collection
+            Collection<ChessMove> validMoves = piece.pieceMoves(this.board, startPosition);
+            //If there are no valid moves return null
+            if (validMoves.size() == 0) {
+                return null;
+            }
+            //If there are valid moves return them
+            else {
+                //check if the king is in check given each move and remove the move if it puts the king in check
+                for (ChessMove move : validMoves) {
+                    //Make the move
+                    this.board.addPiece(move.getEndPosition(), piece);
+                    this.board.removePiece(move.getStartPosition());
+                    //Check if the king is in check
+                    if (this.isInCheck(piece.getTeamColor())) {
+                        validMoves.remove(move);
+                    }
+                    //Undo the move
+                    this.board.addPiece(move.getStartPosition(), piece);
+                    this.board.removePiece(move.getEndPosition());
+                }
+                return validMoves;
+            }
+        }
     }
 
     /**
@@ -62,7 +93,43 @@ public class ChessGame {
      * @throws InvalidMoveException if move is invalid
      */
     public void makeMove(ChessMove move) throws InvalidMoveException {
-        throw new RuntimeException("Not implemented");
+        //Get the piece at the start position
+        ChessPiece piece = this.board.getPiece(move.getStartPosition());
+        //If there is no piece at the start position throw an exception
+        if (piece == null) {
+            throw new InvalidMoveException("There is no piece at the start position");
+        }
+        //If there is a piece at the start position check if the move is valid
+        else {
+            //Get the valid moves for the piece
+            Collection<ChessMove> validMoves = piece.pieceMoves(this.board, move.getStartPosition());
+            //If the move is not valid throw an exception
+            if (!validMoves.contains(move)) {
+                throw new InvalidMoveException("The move is not valid");
+            }
+            //If the move is valid make the move
+            else {
+                //Make the move
+                this.board.addPiece(move.getEndPosition(), piece);
+                this.board.removePiece(move.getStartPosition());
+                //Check if the king is in check
+                if (this.isInCheck(piece.getTeamColor())) {
+                    //Undo the move
+                    this.board.addPiece(move.getStartPosition(), piece);
+                    this.board.removePiece(move.getEndPosition());
+                    throw new InvalidMoveException("The move is not valid");
+                }
+                //If the king is not in check change the turn
+                else {
+                    if (this.turn == TeamColor.WHITE) {
+                        this.turn = TeamColor.BLACK;
+                    }
+                    else {
+                        this.turn = TeamColor.WHITE;
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -73,8 +140,27 @@ public class ChessGame {
      */
     public boolean isInCheck(TeamColor teamColor) {
         //Check if the king is in check
-        throw new RuntimeException("Not implemented");
-        
+        //for each piece on the board that is the opposite color generate all the valid moves and see if there are any un the checkMoves collection
+        for(int i = 1; i <= 8; i++){
+            for(int j = 1; j <= 8; j++){
+                ChessPosition position = new ChessPosition(i, j);
+                ChessPiece piece = this.board.getPiece(position);
+                if(piece != null && piece.getTeamColor() != teamColor){
+                    piece.pieceMoves(this.board, position);
+                    Collection<ChessMove> checkMoves = piece.getCheckMoves();
+                    if (checkMoves != null && checkMoves.size() > 0) {
+                        return true;
+                    }
+                    else{
+                        return false;
+                    }
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        return false;        
     }
 
     /**
@@ -85,7 +171,8 @@ public class ChessGame {
      */
     public boolean isInCheckmate(TeamColor teamColor) {
         //check if this team is in checkmate
-        throw new RuntimeException("Not implemented");
+        //for each piece on the board that is the opposite color generate all the valid moves and see if there are any un the checkMoves collection
+        return false;
     }
 
     /**
@@ -96,7 +183,10 @@ public class ChessGame {
      * @return True if the specified team is in stalemate, otherwise false
      */
     public boolean isInStalemate(TeamColor teamColor) {
-        throw new RuntimeException("Not implemented");
+        //check if this team is in stalemate
+        //for each piece on the board that is the opposite color generate all the valid moves and see if there are any un the checkMoves collection
+        return false;
+
     }
 
     /**
@@ -106,31 +196,8 @@ public class ChessGame {
      */
     public void setBoard(ChessBoard board) {
         //Reset the board just in case
-        this.board.resetBoard();
-        //Adding all the black pieces to the board
-        this.board.addPiece(new ChessPosition(1, 1), new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.ROOK));
-        this.board.addPiece(new ChessPosition(1, 2), new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.KNIGHT));
-        this.board.addPiece(new ChessPosition(1, 3), new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.BISHOP));
-        this.board.addPiece(new ChessPosition(1, 4), new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.KING));
-        this.board.addPiece(new ChessPosition(1, 5), new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.QUEEN));
-        this.board.addPiece(new ChessPosition(1, 6), new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.BISHOP));
-        this.board.addPiece(new ChessPosition(1, 7), new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.KNIGHT));
-        this.board.addPiece(new ChessPosition(1, 8), new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.ROOK));
-        for (int i = 1; i <= 8; i++) {
-            this.board.addPiece(new ChessPosition(2, i), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.PAWN));
-        }
-
-        //Adding all the white pieces to the board
-        this.board.addPiece(new ChessPosition(8, 1), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.ROOK));
-        this.board.addPiece(new ChessPosition(8, 2), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.KNIGHT));
-        this.board.addPiece(new ChessPosition(8, 3), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.BISHOP));
-        this.board.addPiece(new ChessPosition(8, 4), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.QUEEN));
-        this.board.addPiece(new ChessPosition(8, 5), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.KING));
-        this.board.addPiece(new ChessPosition(8, 6), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.BISHOP));
-        this.board.addPiece(new ChessPosition(8, 7), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.KNIGHT));
-        this.board.addPiece(new ChessPosition(8, 8), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.ROOK));
-        for (int i = 1; i <= 8; i++) {
-            this.board.addPiece(new ChessPosition(7, i), new ChessPiece(TeamColor.WHITE, ChessPiece.PieceType.PAWN));
+        if (this.board != null) {
+            this.board.resetBoard();
         }
     }
 
