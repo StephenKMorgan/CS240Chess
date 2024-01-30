@@ -2,6 +2,9 @@ package chess;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -83,8 +86,12 @@ public class ChessGame {
                     //Check if the king is in check
                     if (this.isInCheck(piece.getTeamColor())) {
                         validMoves.remove(move);
-                    }
+                    }                    
                 }
+                //Restore the board to the original board
+                this.board = new ChessBoard(boardCopy);
+                //sort the valid moves
+               
                 return validMoves;
             }
         }
@@ -188,8 +195,11 @@ public class ChessGame {
                     if(piece != null && piece.getTeamColor() == teamColor){
                         //Get the valid moves for the piece
                         Collection<ChessMove> validMoves = piece.pieceMoves(this.board, position);
+                        ChessBoard boardCopy = new ChessBoard(this.board);
                         //Check each move to see if it get the king out of check
                         for(ChessMove move : validMoves){
+                            //Restore the board to the original board using the copy
+                            this.board = new ChessBoard(boardCopy);
                             //Make the move
                             this.board.addPiece(move.getEndPosition(), piece);
                             this.board.removePiece(move.getStartPosition());
@@ -200,9 +210,6 @@ public class ChessGame {
                                 this.board.removePiece(move.getEndPosition());
                                 return false;
                             }
-                            //Undo the move
-                            this.board.addPiece(move.getStartPosition(), piece);
-                            this.board.removePiece(move.getEndPosition());
                         }
                     }
                 }
@@ -231,8 +238,11 @@ public class ChessGame {
                     if(piece != null && piece.getTeamColor() == teamColor){
                         //Get the valid moves for the piece
                         Collection<ChessMove> validMoves = piece.pieceMoves(this.board, position);
+                        ChessBoard boardCopy = new ChessBoard(this.board);
                         //Check each move to see if it get the king out of check
                         for(ChessMove move : validMoves){
+                            //Restore the board to the original board using the copy
+                            this.board = new ChessBoard(boardCopy);
                             //Make the move
                             this.board.addPiece(move.getEndPosition(), piece);
                             this.board.removePiece(move.getStartPosition());
@@ -243,9 +253,6 @@ public class ChessGame {
                                 this.board.removePiece(move.getEndPosition());
                                 return false;
                             }
-                            //Undo the move
-                            this.board.addPiece(move.getStartPosition(), piece);
-                            this.board.removePiece(move.getEndPosition());
                         }
                     }
                 }
