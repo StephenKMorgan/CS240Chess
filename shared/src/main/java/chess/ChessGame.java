@@ -219,15 +219,39 @@ public class ChessGame {
      * @return True if the specified team is in stalemate, otherwise false
      */
     public boolean isInStalemate(TeamColor teamColor) {
-        //check if this team is in stalemate
-        //if both teams are in checkmate then return true
-        if(this.isInCheckmate(TeamColor.WHITE) && this.isInCheckmate(TeamColor.BLACK)){
+        //check if this team is in stalemate by checking if the team is in check and has no valid moves
+        if(!this.isInCheck(teamColor)){
+            for(int i = 1; i <= 8; i++){
+                for(int j = 1; j <= 8; j++){
+                    ChessPosition position = new ChessPosition(i, j);
+                    ChessPiece piece = this.board.getPiece(position);
+                    if(piece != null && piece.getTeamColor() == teamColor){
+                        //Get the valid moves for the piece
+                        Collection<ChessMove> validMoves = piece.pieceMoves(this.board, position);
+                        //Check each move to see if it get the king out of check
+                        for(ChessMove move : validMoves){
+                            //Make the move
+                            this.board.addPiece(move.getEndPosition(), piece);
+                            this.board.removePiece(move.getStartPosition());
+                            //Check if the king is in check
+                            if (!this.isInCheck(teamColor)) {
+                                //Undo the move
+                                this.board.addPiece(move.getStartPosition(), piece);
+                                this.board.removePiece(move.getEndPosition());
+                                return false;
+                            }
+                            //Undo the move
+                            this.board.addPiece(move.getStartPosition(), piece);
+                            this.board.removePiece(move.getEndPosition());
+                        }
+                    }
+                }
+            }
             return true;
         }
         else{
             return false;
         }
-
     }
 
     /**

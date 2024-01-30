@@ -5,9 +5,11 @@ java:S1168<"+Return an empty collection instead of null.(Ґ№пЌ8“иШЯХ1
 java:S1155C">Use isEmpty() to check whether the collection is empty or not.(ФБґд8–иШЯХ1
 H
 java:S1168D"+Return an empty collection instead of null.(Ґ№пЌ8–иШЯХ1
+t
+java:S3776`"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(ђҐпКыяяяя8ўҐЌбХ1
 a
-java:S1155љ">Use isEmpty() to check whether the collection is empty or not.(Эф§±ьяяяя8ҐиШЯХ1
+java:S1155Ў">Use isEmpty() to check whether the collection is empty or not.(Эф§±ьяяяя8ҐиШЯХ1
 p
-java:S3776Є"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(ЕН†х8­иШЯХ1
-_
-java:S1126Щ"AReplace this if-then-else statement by a single return statement.(цА§ђ8µиШЯХ1
+java:S3776±"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(ЕН†х8­иШЯХ1
+u
+java:S3776Э"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(зёЫныяяяя8Ѓр§бХ1
