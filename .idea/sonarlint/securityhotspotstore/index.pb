@@ -29,15 +29,3 @@ q
 Ashared/src/test/java/passoffTests/chessTests/ChessBoardTests.java,9\b\9b6410093bb8fe026dcb494e17062e36d849bab6
 Y
 )shared/src/main/java/chess/ChessGame.java,1\2\12ee2b2e0577bf40c2f0f09ceb1e2b3d9b36bd7a
-j
-:src/test/java/passoffTests/chessTests/ChessBoardTests.java,9\e\9ebbbe5f2ab3f28e0d91b1a3e330d1f6d319c142
-S
-#src/main/java/chess/ChessBoard.java,1\3\139d0d4bb2b8e11a4e03dbed5b694452387fb52a
-S
-#src/main/java/chess/ChessPiece.java,8\5\85a88ea4958ed1b3e2cc2a545a3ad992329e985a
-V
-&src/main/java/chess/ChessPosition.java,1\2\12180158e3ed9f2b7cf9588a38f33fca071ee26a
-x
-Hsrc/test/java/passoffTests/chessTests/chessPieceTests/PawnMoveTests.java,7\4\74d39e18807bd4133eca21d9e39d9088150d34c4
-z
-Jsrc/test/java/passoffTests/chessTests/chessPieceTests/KnightMoveTests.java,5\b\5b890fb3c08f3eb6ee2e058f069a9db29dd22076

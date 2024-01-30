@@ -205,8 +205,13 @@ public class ChessGame {
      */
     public boolean isInStalemate(TeamColor teamColor) {
         //check if this team is in stalemate
-        //for each piece on the board that is the opposite color generate all the valid moves and see if there are any un the checkMoves collection
-        return false;
+        //if both teams are in checkmate then return true
+        if(this.isInCheckmate(TeamColor.WHITE) && this.isInCheckmate(TeamColor.BLACK)){
+            return true;
+        }
+        else{
+            return false;
+        }
 
     }
 
