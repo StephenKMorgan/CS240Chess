@@ -1,5 +1,6 @@
 package chess;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -69,8 +70,13 @@ public class ChessGame {
             }
             //If there are valid moves return them
             else {
+                //Copy the valid moves into a new collection for iteration
+                Collection<ChessMove> validMovesCopy = new ArrayList<>(validMoves);
+                ChessBoard boardCopy = new ChessBoard(this.board);
                 //check if the king is in check given each move and remove the move if it puts the king in check
-                for (ChessMove move : validMoves) {
+                for (ChessMove move : validMovesCopy) {
+                    //Restore the board to the original board using the copy
+                    this.board = new ChessBoard(boardCopy);
                     //Make the move
                     this.board.addPiece(move.getEndPosition(), piece);
                     this.board.removePiece(move.getStartPosition());
@@ -78,9 +84,6 @@ public class ChessGame {
                     if (this.isInCheck(piece.getTeamColor())) {
                         validMoves.remove(move);
                     }
-                    //Undo the move
-                    this.board.addPiece(move.getStartPosition(), piece);
-                    this.board.removePiece(move.getEndPosition());
                 }
                 return validMoves;
             }
