@@ -18,6 +18,14 @@ public class ChessBoard {
         this.board = new ChessPiece[8][8];        
     }
 
+    public ChessBoard(ChessBoard board) {
+        this.board = new ChessPiece[8][8];
+        //Copy the board
+        for (int i = 0; i < 8; i++) {
+            this.board[i] = Arrays.copyOf(board.board[i], 8);
+        }
+    }
+
     /**
      * Adds a chess piece to the chessboard
      *
