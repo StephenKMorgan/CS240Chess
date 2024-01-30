@@ -229,6 +229,9 @@ public class ChessGame {
         if (this.board != null) {
             this.board.resetBoard();
         }
+        //Set the board
+        this.board = board;
+        
     }
 
     /**

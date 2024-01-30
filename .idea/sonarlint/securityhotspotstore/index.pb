@@ -35,3 +35,5 @@ R
 "src/main/java/chess/ChessGame.java,7\3\73bf4fdc57c71c6f70f600b9fea515a646b27eef
 i
 9src/test/java/passoffTests/chessTests/ChessGameTests.java,5\f\5f36c3831d1af5af03a7886885b8b9b46c908369
+S
+#src/main/java/chess/ChessPiece.java,8\5\85a88ea4958ed1b3e2cc2a545a3ad992329e985a
