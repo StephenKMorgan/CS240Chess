@@ -37,3 +37,11 @@ i
 9src/test/java/passoffTests/chessTests/ChessGameTests.java,5\f\5f36c3831d1af5af03a7886885b8b9b46c908369
 S
 #src/main/java/chess/ChessPiece.java,8\5\85a88ea4958ed1b3e2cc2a545a3ad992329e985a
+R
+"src/main/java/chess/ChessMove.java,4\2\429c55da8253d8ee02138d80d1951c5e7d4a468c
+V
+&src/main/java/chess/ChessPosition.java,1\2\12180158e3ed9f2b7cf9588a38f33fca071ee26a
+[
++src/test/java/passoffTests/TestFactory.java,e\f\ef92c18298091d5f469cb3aa27c892701eb79258
+]
+-src/main/java/chess/InvalidMoveException.java,7\4\74dbc6a85b1a58bc483c83143b099c250c60bd7d

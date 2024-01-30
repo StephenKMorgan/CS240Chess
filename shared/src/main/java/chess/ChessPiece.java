@@ -15,7 +15,7 @@ public class ChessPiece {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ChessPiece that)) return false;
-        return pieceColor == that.pieceColor && type == that.type && Objects.equals(validMoves, that.validMoves);
+        return pieceColor == that.pieceColor && type == that.type;
     }
 
     @Override
@@ -32,12 +32,14 @@ public class ChessPiece {
         this.pieceColor = ChessGame.TeamColor.WHITE;
         this.type = PieceType.PAWN;
         this.validMoves = new ArrayList<ChessMove>();
+        this.checkMoves = new ArrayList<ChessMove>();
     }
 
     public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
         this.pieceColor = pieceColor;
         this.type = type;
         this.validMoves = new ArrayList<ChessMove>();
+        this.checkMoves = new ArrayList<ChessMove>();
     }
 
     /**

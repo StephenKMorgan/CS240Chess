@@ -108,11 +108,22 @@ public class ChessGame {
             if (!validMoves.contains(move)) {
                 throw new InvalidMoveException("The move is not valid");
             }
+            //Check if it is the correct teams turn
+            else if (piece.getTeamColor() != this.turn) {
+                throw new InvalidMoveException("It is not this teams turn");
+            }
             //If the move is valid make the move
             else {
-                //Make the move
-                this.board.addPiece(move.getEndPosition(), piece);
-                this.board.removePiece(move.getStartPosition());
+                //If the move is a pawn promotion promote the pawn
+                if (move.getPromotionPiece() != null) {
+                    this.board.addPiece(move.getEndPosition(), new ChessPiece(piece.getTeamColor(), move.getPromotionPiece()));
+                    this.board.removePiece(move.getStartPosition());
+                }
+                else{
+                    //Make the move
+                    this.board.addPiece(move.getEndPosition(), piece);
+                    this.board.removePiece(move.getStartPosition());
+                }                
                 //Check if the king is in check
                 if (this.isInCheck(piece.getTeamColor())) {
                     //Undo the move
@@ -244,11 +255,18 @@ public class ChessGame {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ChessGame chessGame)) return false;
-        return Objects.equals(board, chessGame.board) && turn == chessGame.turn;
+public boolean equals(Object obj) {
+    if (this == obj) {
+        return true;
     }
+    if (obj == null || getClass() != obj.getClass()) {
+        return false;
+    }
+    ChessBoard that = (ChessBoard) obj;
+    // compare the fields of this and that
+    // return true if they are all equal, false otherwise
+    return this.board.equals(that);
+}
 
     @Override
     public int hashCode() {
