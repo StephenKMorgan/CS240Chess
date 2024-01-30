@@ -648,13 +648,13 @@ public class ChessGameTests {
             ChessPosition knightPosition = getNewPosition(4, 3);
             var validMoves = loadMoves(knightPosition, new int[][]{{3, 5}, {6, 2}});
             Assertions.assertEquals(validMoves, game.validMoves(knightPosition),
-                    "ChessGame validMoves did not return the correct moves");
+                    "ChessGame validMoves did not return the correct moves for the knight");
 
             // Queen Moves
             ChessPosition queenPosition = getNewPosition(2, 4);
             validMoves = loadMoves(queenPosition, new int[][]{{3, 5}, {4, 4}});
             Assertions.assertEquals(validMoves, game.validMoves(queenPosition),
-                    "ChessGame validMoves did not return the correct moves");
+                    "ChessGame validMoves did not return the correct moves for the queen");
 
         }
 
