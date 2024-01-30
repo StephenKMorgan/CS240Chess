@@ -29,3 +29,7 @@ q
 Ashared/src/test/java/passoffTests/chessTests/ChessBoardTests.java,9\b\9b6410093bb8fe026dcb494e17062e36d849bab6
 Y
 )shared/src/main/java/chess/ChessGame.java,1\2\12ee2b2e0577bf40c2f0f09ceb1e2b3d9b36bd7a
+S
+#src/main/java/chess/ChessBoard.java,1\3\139d0d4bb2b8e11a4e03dbed5b694452387fb52a
+R
+"src/main/java/chess/ChessGame.java,7\3\73bf4fdc57c71c6f70f600b9fea515a646b27eef

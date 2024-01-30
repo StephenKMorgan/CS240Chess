@@ -139,28 +139,21 @@ public class ChessGame {
      * @return True if the specified team is in check
      */
     public boolean isInCheck(TeamColor teamColor) {
-        //Check if the king is in check
-        //for each piece on the board that is the opposite color generate all the valid moves and see if there are any un the checkMoves collection
         for(int i = 1; i <= 8; i++){
             for(int j = 1; j <= 8; j++){
                 ChessPosition position = new ChessPosition(i, j);
                 ChessPiece piece = this.board.getPiece(position);
                 if(piece != null && piece.getTeamColor() != teamColor){
                     piece.pieceMoves(this.board, position);
-                    Collection<ChessMove> checkMoves = piece.getCheckMoves();
-                    if (checkMoves != null && checkMoves.size() > 0) {
+                    Collection<ChessMove> checkedMoves = piece.getCheckMoves();
+                    if (checkedMoves != null && checkedMoves.size() > 0) {
                         return true;
                     }
-                    else{
-                        return false;
-                    }
-                }
-                else{
-                    return false;
                 }
             }
         }
-        return false;        
+        return false;
+                 
     }
 
     /**
@@ -170,30 +163,40 @@ public class ChessGame {
      * @return True if the specified team is in checkmate
      */
     public boolean isInCheckmate(TeamColor teamColor) {
-        //check if this team is in checkmate
-        //Check if the king is in check and if there are any valid moves on the board for that teams pieces that could get the king out of check
+        //First check if the team is in check
         if(this.isInCheck(teamColor)){
+            //If the team is in check check if there are any valid moves
             for(int i = 1; i <= 8; i++){
                 for(int j = 1; j <= 8; j++){
                     ChessPosition position = new ChessPosition(i, j);
                     ChessPiece piece = this.board.getPiece(position);
                     if(piece != null && piece.getTeamColor() == teamColor){
-                        piece.pieceMoves(this.board, position);
+                        //Get the valid moves for the piece
                         Collection<ChessMove> validMoves = piece.pieceMoves(this.board, position);
-                        if (validMoves != null && validMoves.size() > 0) {
-                            return false;
+                        //Check each move to see if it get the king out of check
+                        for(ChessMove move : validMoves){
+                            //Make the move
+                            this.board.addPiece(move.getEndPosition(), piece);
+                            this.board.removePiece(move.getStartPosition());
+                            //Check if the king is in check
+                            if (!this.isInCheck(teamColor)) {
+                                //Undo the move
+                                this.board.addPiece(move.getStartPosition(), piece);
+                                this.board.removePiece(move.getEndPosition());
+                                return false;
+                            }
+                            //Undo the move
+                            this.board.addPiece(move.getStartPosition(), piece);
+                            this.board.removePiece(move.getEndPosition());
                         }
-                        else{
-                            return true;
-                        }
-                    }
-                    else{
-                        return true;
                     }
                 }
             }
+            return true;
         }
-        return false;
+        else{
+            return false;
+        }
     }
 
     /**
