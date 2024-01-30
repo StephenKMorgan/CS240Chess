@@ -1,15 +1,15 @@
 
 H
-java:S1168<"+Return an empty collection instead of null.(¥¹ï8“èØßÕ1
+java:S1168="+Return an empty collection instead of null.(¥¹ï8¹á·áÕ1
 [
-java:S1155C">Use isEmpty() to check whether the collection is empty or not.(ÔÁ´ä8–èØßÕ1
+java:S1155D">Use isEmpty() to check whether the collection is empty or not.(ÔÁ´ä8ºá·áÕ1
 H
-java:S1168D"+Return an empty collection instead of null.(¥¹ï8–èØßÕ1
+java:S1168E"+Return an empty collection instead of null.(¥¹ï8»á·áÕ1
 t
-java:S3776`"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(¥ïÊûÿÿÿÿ8¢¥áÕ1
+java:S3776c"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(¥ïÊûÿÿÿÿ8¢¥áÕ1
 a
-java:S1155¡">Use isEmpty() to check whether the collection is empty or not.(İô§±üÿÿÿÿ8¥èØßÕ1
+java:S1155¤">Use isEmpty() to check whether the collection is empty or not.(İô§±üÿÿÿÿ8¥èØßÕ1
 p
-java:S3776±"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(ÅÍ†õ8­èØßÕ1
+java:S3776´"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(ÅÍ†õ8­èØßÕ1
 u
-java:S3776İ"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(ç¸Ûíûÿÿÿÿ8ğ§áÕ1
+java:S3776à"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(ç¸Ûíûÿÿÿÿ8ğ§áÕ1

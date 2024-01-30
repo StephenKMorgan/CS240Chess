@@ -86,6 +86,7 @@ public class ChessPiece {
         int col = myPosition.getColumn();
 
         this.validMoves.clear();
+        this.checkMoves.clear();
 
         //Switch on the piece type
         switch (this.type){
