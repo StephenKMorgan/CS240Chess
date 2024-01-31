@@ -205,12 +205,12 @@ public class ChessGame {
                             this.board.removePiece(move.getStartPosition());
                             //Check if the king is in check
                             if (!this.isInCheck(teamColor)) {
-                                //Undo the move
-                                this.board.addPiece(move.getStartPosition(), piece);
-                                this.board.removePiece(move.getEndPosition());
+                                //Restore the board to the original board
+                                this.board = new ChessBoard(boardCopy);
                                 return false;
                             }
                         }
+                        this.board = new ChessBoard(boardCopy);
                     }
                 }
             }
@@ -248,12 +248,12 @@ public class ChessGame {
                             this.board.removePiece(move.getStartPosition());
                             //Check if the king is in check
                             if (!this.isInCheck(teamColor)) {
-                                //Undo the move
-                                this.board.addPiece(move.getStartPosition(), piece);
-                                this.board.removePiece(move.getEndPosition());
+                                //Restore the board to the original board
+                                this.board = new ChessBoard(boardCopy);
                                 return false;
                             }
                         }
+                        this.board = new ChessBoard(boardCopy);
                     }
                 }
             }
