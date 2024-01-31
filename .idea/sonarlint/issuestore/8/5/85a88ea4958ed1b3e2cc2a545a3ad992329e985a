@@ -1,28 +1,31 @@
 
 n
-java:S2293""YReplace the type specification in this constructor call with the diamond operator ("<>").(üÉæ
+java:S2293("YReplace the type specification in this constructor call with the diamond operator ("<>").(üÉæ
 t
-java:S2293#"YReplace the type specification in this constructor call with the diamond operator ("<>").(üî¸µüÿÿÿÿ
+java:S2293)"YReplace the type specification in this constructor call with the diamond operator ("<>").(üî¸µüÿÿÿÿ
 u
-java:S2293)"YReplace the type specification in this constructor call with the diamond operator ("<>").(üÉæ8©çèàÕ1
+java:S2293/"YReplace the type specification in this constructor call with the diamond operator ("<>").(üÉæ8©çèàÕ1
 {
-java:S2293*"YReplace the type specification in this constructor call with the diamond operator ("<>").(üî¸µüÿÿÿÿ8©çèàÕ1
-n	java:S127»"XRefactor the code in order to not assign to this loop counter from within the loop body.(¤ý²…
-n	java:S127¾"XRefactor the code in order to not assign to this loop counter from within the loop body.(¤ý²…
-s	java:S127Í"XRefactor the code in order to not assign to this loop counter from within the loop body.(Úš—­ýÿÿÿÿ
+java:S22930"YReplace the type specification in this constructor call with the diamond operator ("<>").(üî¸µüÿÿÿÿ8©çèàÕ1
+n	java:S127Á"XRefactor the code in order to not assign to this loop counter from within the loop body.(¤ý²…
+n	java:S127Ä"XRefactor the code in order to not assign to this loop counter from within the loop body.(¤ý²…
+s	java:S127Ó"XRefactor the code in order to not assign to this loop counter from within the loop body.(Úš—­ýÿÿÿÿ
 S
-java:S2589¸"7Remove this expression which always evaluates to "true"(ƒŽ“òûÿÿÿÿ
+java:S2589¾"7Remove this expression which always evaluates to "true"(ƒŽ“òûÿÿÿÿ
+X	java:S125"<This block of commented-out lines of code should be removed.(­Ú»Í8Â”ÊãÕ1
+a
+java:S3358"DExtract this nested ternary operation into an independent statement.(Õ¿òø8Â”ÊãÕ1
 h
-java:S3776S"RRefactor this method to reduce its Cognitive Complexity from 42 to the 15 allowed.(°å†
+java:S3776Y"RRefactor this method to reduce its Cognitive Complexity from 42 to the 15 allowed.(°å†
 G
-java:S1172­"1Remove this unused method parameter "validMoves".(È¢¿
+java:S1172³"1Remove this unused method parameter "validMoves".(È¢¿
 n
-java:S3776Ã"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(·ƒÊÃþÿÿÿÿ
+java:S3776É"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(·ƒÊÃþÿÿÿÿ
 n
-java:S3776Ó"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(¨ï½øÿÿÿÿ
+java:S3776Ù"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(¨ï½øÿÿÿÿ
 H
-java:S1172é",Remove this unused method parameter "board".(‚Á¾þýÿÿÿÿ
+java:S1172ï",Remove this unused method parameter "board".(‚Á¾þýÿÿÿÿ
 2
-java:S3626ü"Remove this redundant jump.(ûÁÝ…
+java:S3626‚"Remove this redundant jump.(ûÁÝ…
 Ü
-java:S6541S"ÅA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 71 to 64, Complexity from 26 to 14, Nesting Level from 6 to 2, Number of Variables from 12 to 6.(°å†
+java:S6541Y"ÅA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 71 to 64, Complexity from 26 to 14, Nesting Level from 6 to 2, Number of Variables from 12 to 6.(°å†

@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * For a class that can manage a chess game, making moves on a board
@@ -90,9 +92,9 @@ public class ChessGame {
                 }
                 //Restore the board to the original board
                 this.board = new ChessBoard(boardCopy);
-                //sort the valid moves
-               
-                return validMoves;
+                Set<ChessMove> validMovesSet = new HashSet<>(validMoves);
+                return validMovesSet;
+
             }
         }
     }

@@ -23,6 +23,12 @@ public class ChessPiece {
         return Objects.hash(pieceColor, type, validMoves);
     }
 
+    @Override
+    public String toString() {
+        //if the color is white then return the pieces first letter in uppercase else return the piece first letter type in lowercase except for knight which is n;
+        return this.pieceColor == ChessGame.TeamColor.WHITE ? this.type.toString().substring(0, 1) : this.type == PieceType.KNIGHT ? "n" : this.type.toString().substring(0, 1).toLowerCase();
+    }
+
     private ChessGame.TeamColor pieceColor;
     private PieceType type;
     private Collection<ChessMove> validMoves;

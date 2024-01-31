@@ -1,15 +1,23 @@
 
+‡
+java:S1488_"eImmediately return this expression instead of assigning it to the temporary variable "validMovesSet".(±‰“üÿÿÿÿ8Âë«æÕ1
 H
-java:S1168="+Return an empty collection instead of null.(¥¹ï8¹á·áÕ1
+java:S1168B"+Return an empty collection instead of null.(¥¹ï8Àì«æÕ1
 [
-java:S1155D">Use isEmpty() to check whether the collection is empty or not.(ÔÁ´ä8ºá·áÕ1
+java:S1155I">Use isEmpty() to check whether the collection is empty or not.(ÔÁ´ä8Àì«æÕ1
 H
-java:S1168E"+Return an empty collection instead of null.(¥¹ï8»á·áÕ1
+java:S1168J"+Return an empty collection instead of null.(¥¹ï8Áì«æÕ1
 t
-java:S3776c"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(¥ïÊûÿÿÿÿ8¢¥áÕ1
+java:S3776l"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(¥ïÊûÿÿÿÿ8¢¥áÕ1
 a
-java:S1155¤">Use isEmpty() to check whether the collection is empty or not.(İô§±üÿÿÿÿ8¥èØßÕ1
+java:S1155­">Use isEmpty() to check whether the collection is empty or not.(İô§±üÿÿÿÿ8¥èØßÕ1
 p
-java:S3776´"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(ÅÍ†õ8­èØßÕ1
+java:S3776½"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(ÅÍ†õ8­èØßÕ1
 u
-java:S3776à"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(ç¸Ûíûÿÿÿÿ8ğ§áÕ1
+java:S3776é"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(ç¸Ûíûÿÿÿÿ8ñ£ñãÕ1
+T
+java:S1128"2Remove this unused import 'java.util.Collections'.(¢³ïÓşÿÿÿÿ8òıÈâÕ1
+N
+java:S1128"1Remove this unused import 'java.util.Comparator'.(î¹ó¹8©’İâÕ1
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8©’İâÕ1

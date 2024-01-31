@@ -26,6 +26,16 @@ public class ChessBoard {
         }
     }
 
+    @Override
+    public String toString() {
+        StringBuilder builder=new StringBuilder();
+        for (int i = 0; i < 8; i++) {
+            //display the board with | | between each piece and if the piece is null display a space
+            builder.append(Arrays.toString(this.board[i]).replace("null", " ").replace(",", " |").replace("[", "| ").replace("]", " |\n"));
+        }
+        return builder.toString();
+    }
+
     /**
      * Adds a chess piece to the chessboard
      *
@@ -139,4 +149,6 @@ public class ChessBoard {
             this.board[1][i] = new ChessPiece(TeamColor.BLACK, ChessPiece.PieceType.PAWN);
         }
     }
+
+
 }
