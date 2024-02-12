@@ -1,4 +1,4 @@
-package chess.model;
+package model;
 
 /**
  * Represents user data containing username, password, and email.

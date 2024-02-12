@@ -1,4 +1,4 @@
-package chess.model;
+package model;
 
 /**
  * Represents authentication data containing authToken and username.
