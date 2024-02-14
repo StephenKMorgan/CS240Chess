@@ -44,8 +44,7 @@ public class Server {
 
     public Object registerUser(Request req, Response res) throws ResponseException {
         var user = new Gson().fromJson(req.body(), UserData.class);
-        user = service.register(user);
-        return new Gson().toJson(user);
+        return new Gson().toJson(service.register(user));
     }
 
     public Object login(Request req, Response res) throws ResponseException {

@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import dataAccess.DataAccess;
 import exception.ResponseException;
+import model.AuthData;
 import model.GameData;
 import model.UserData;
 
@@ -14,9 +15,8 @@ public class Service {
         this.dataAccess = dataAccess;
     }
 
-    public UserData register(UserData userData) throws ResponseException {
-        dataAccess.register(userData);
-        return userData;
+    public AuthData register(UserData userData) throws ResponseException {
+        return dataAccess.register(userData);
     }
 
     public UserData login(UserData userData) throws ResponseException {
