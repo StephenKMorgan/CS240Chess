@@ -19,9 +19,8 @@ public class Service {
         return dataAccess.register(userData);
     }
 
-    public UserData login(UserData userData) throws ResponseException {
-        dataAccess.login(userData);
-        return userData;
+    public AuthData login(UserData userData) throws ResponseException {
+        return dataAccess.login(userData);
     }
 
     public void logout(String authToken) throws ResponseException {

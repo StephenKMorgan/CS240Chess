@@ -9,7 +9,7 @@ import model.GameData;
 
 public interface DataAccess {
     AuthData register(UserData userData) throws ResponseException;
-    UserData login(UserData userData) throws ResponseException;
+    AuthData login(UserData userData) throws ResponseException;
     void logout(String authToken) throws ResponseException;
     Collection<GameData> listGames(String authToken) throws ResponseException;
     GameData createGame(String authToken, String gameName) throws ResponseException;
