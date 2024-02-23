@@ -3,16 +3,23 @@ package service;
 import java.util.Collection;
 
 import dataAccess.DataAccess;
+import dataAccess.MemoryDataAccess;
 import exception.ResponseException;
 import model.AuthData;
 import model.GameData;
 import model.UserData;
 
+
 public class Service {
     private final DataAccess dataAccess;
 
+
     public Service(DataAccess dataAccess) {
         this.dataAccess = dataAccess;
+    }
+
+    public Service() {
+        this.dataAccess = new MemoryDataAccess( null, null, null);
     }
 
     public AuthData register(UserData userData) throws ResponseException {

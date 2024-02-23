@@ -1,0 +1,34 @@
+
+i
+java:S1192>"TDefine a constant instead of duplicating this literal "Error: Unauthorized" 5 times.(­ÛÇf
+u
+java:S1192)"SDefine a constant instead of duplicating this literal "Error: Bad Request" 4 times.(óÛ£Øûÿÿÿÿ8Ù†ÕÆÜ1
+Y
+java:S4973="<Strings and Boxed types should be compared using "equals()".(ŠÑÓ8á†ÕÆÜ1
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(šäåó
+r
+java:S3655S"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(—¸ûóøÿÿÿÿ8ó‡ÕÆÜ1
+r
+java:S3655~"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(éú—Äúÿÿÿÿ8ó‡ÕÆÜ1
+s
+java:S3655…"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ƒ¶Îùÿÿÿÿ8ó‡ÕÆÜ1
+m
+java:S3655="PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ŠÑÓ8ó‡ÕÆÜ1
+r
+java:S3655_"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(—¸ûóøÿÿÿÿ8ó‡ÕÆÜ1
+r
+java:S3655I"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(—¸ûóøÿÿÿÿ8ó‡ÕÆÜ1
+r
+java:S3655s"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(—¸ûóøÿÿÿÿ8ó‡ÕÆÜ1
+r
+java:S3655y"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(çøˆ‡øÿÿÿÿ8ó‡ÕÆÜ1
+m
+java:S3655L"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(˜Êß³8ó‡ÕÆÜ1
+r
+java:S3655f"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ŒäéÅúÿÿÿÿ8ó‡ÕÆÜ1
+X	java:S125"<This block of commented-out lines of code should be removed.(¹«Á½8û‡ÕÆÜ1
+X	java:S125"<This block of commented-out lines of code should be removed.(„È°8û‡ÕÆÜ1
+]	java:S125"<This block of commented-out lines of code should be removed.(Ï¨«Çúÿÿÿÿ8„ˆÕÆÜ1
+X	java:S125"<This block of commented-out lines of code should be removed.(œäˆŞ8„ˆÕÆÜ1
+P
+java:S1128".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ8‰ÕÆÜ1
