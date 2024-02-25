@@ -1,34 +1,20 @@
 
-i
-java:S1192>"TDefine a constant instead of duplicating this literal "Error: Unauthorized" 5 times.(­ÛÇf
-u
-java:S1192)"SDefine a constant instead of duplicating this literal "Error: Bad Request" 4 times.(óÛ£Øûÿÿÿÿ8Ù†ÕÆÜ1
-Y
-java:S4973="<Strings and Boxed types should be compared using "equals()".(ŠÑÓ8á†ÕÆÜ1
+|
+java:S2293ˆ"YReplace the type specification in this constructor call with the diamond operator ("<>").(’€Áïúÿÿÿÿ8ĞÔùúİ1
+p
+java:S1192""TDefine a constant instead of duplicating this literal "Error: Unauthorized" 6 times.(­ÛÇf8ÑÔùúİ1
+ƒ
+java:S1488"aImmediately return this expression instead of assigning it to the temporary variable "authToken".(Ğâƒåüÿÿÿÿ8ÑÔùúİ1
+ƒ
+java:S1488)"aImmediately return this expression instead of assigning it to the temporary variable "authToken".(Ğâƒåüÿÿÿÿ8ÑÔùúİ1
+E
+java:S5411%"(Use a primitive boolean expression here.(¼İµÖ8ÒÔùúİ1
 o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(šäåó
-r
-java:S3655S"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(—¸ûóøÿÿÿÿ8ó‡ÕÆÜ1
-r
-java:S3655~"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(éú—Äúÿÿÿÿ8ó‡ÕÆÜ1
-s
-java:S3655…"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ƒ¶Îùÿÿÿÿ8ó‡ÕÆÜ1
-m
-java:S3655="PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ŠÑÓ8ó‡ÕÆÜ1
-r
-java:S3655_"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(—¸ûóøÿÿÿÿ8ó‡ÕÆÜ1
-r
-java:S3655I"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(—¸ûóøÿÿÿÿ8ó‡ÕÆÜ1
-r
-java:S3655s"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(—¸ûóøÿÿÿÿ8ó‡ÕÆÜ1
-r
-java:S3655y"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(çøˆ‡øÿÿÿÿ8ó‡ÕÆÜ1
-m
-java:S3655L"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(˜Êß³8ó‡ÕÆÜ1
-r
-java:S3655f"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ŒäéÅúÿÿÿÿ8ó‡ÕÆÜ1
-X	java:S125"<This block of commented-out lines of code should be removed.(¹«Á½8û‡ÕÆÜ1
-X	java:S125"<This block of commented-out lines of code should be removed.(„È°8û‡ÕÆÜ1
-]	java:S125"<This block of commented-out lines of code should be removed.(Ï¨«Çúÿÿÿÿ8„ˆÕÆÜ1
-X	java:S125"<This block of commented-out lines of code should be removed.(œäˆŞ8„ˆÕÆÜ1
-P
-java:S1128".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ8‰ÕÆÜ1
+^
+java:S1126i"AReplace this if-then-else statement by a single return statement.(’üØ»8öÔùúİ1
+d
+java:S1126"AReplace this if-then-else statement by a single return statement.(¤ƒğøúÿÿÿÿ8ùÔùúİ1
+M
+java:S1172‹"0Remove this unused method parameter "authToken".(“ŞÑ8úÔùúİ1
+S
+java:S1172’"0Remove this unused method parameter "authToken".(õâ‡¨üÿÿÿÿ8ıÔùúİ1

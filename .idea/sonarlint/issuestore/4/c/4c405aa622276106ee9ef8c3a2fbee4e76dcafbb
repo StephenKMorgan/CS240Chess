@@ -1,6 +1,29 @@
 
-d
-java:S1192B"NDefine a constant instead of duplicating this literal "Authorization" 4 times.(¸…Óš
-a
-java:S1192)"FDefine a constant instead of duplicating this literal "/game" 3 times.(˜Ó€•þÿÿÿÿ
-V	java:S125!"<This block of commented-out lines of code should be removed.(²ŽÄ€ùÿÿÿÿ
+h
+java:S11921"FDefine a constant instead of duplicating this literal "/game" 3 times.(˜Ó€•þÿÿÿÿ8éÆ™úÝ1
+k
+java:S1192E"IDefine a constant instead of duplicating this literal "message" 16 times.(âÖÓ†ûÿÿÿÿ8êÆ™úÝ1
+
+java:S1192I"]Define a constant instead of duplicating this literal "Error: Internal Server Error" 7 times.(–×¸£ÿÿÿÿÿ8êÆ™úÝ1
+k
+java:S1192^"NDefine a constant instead of duplicating this literal "Authorization" 4 times.(¸…Óš8êÆ™úÝ1
+W	java:S125"<This block of commented-out lines of code should be removed.(éÁÄ%8¡Ç™úÝ1
+X	java:S125"<This block of commented-out lines of code should be removed.(ãêª´8£Ç™úÝ1
+X	java:S125"<This block of commented-out lines of code should be removed.(ãêª´8£Ç™úÝ1
+]	java:S125'"<This block of commented-out lines of code should be removed.(²ŽÄ€ùÿÿÿÿ8¥Ç™úÝ1
+L	java:S106C"+Replace this use of System.out by a logger.(ø±ƒ§øÿÿÿÿ8£˜ùÝ1
+L	java:S106G"+Replace this use of System.out by a logger.(ø±ƒ§øÿÿÿÿ8óÌ¿ùÝ1
+L	java:S106R"+Replace this use of System.out by a logger.(çö¥¬ùÿÿÿÿ8 úÝ1
+L	java:S106V"+Replace this use of System.out by a logger.(çö¥¬ùÿÿÿÿ8‘ úÝ1
+G	java:S106a"+Replace this use of System.out by a logger.(þ³ã8“ úÝ1
+G	java:S106e"+Replace this use of System.out by a logger.(þ³ã8“ úÝ1
+X	java:S125p"<This block of commented-out lines of code should be removed.(’ò§›8·Ç™úÝ1
+G	java:S106v"+Replace this use of System.out by a logger.(ã–÷¦8• úÝ1
+G	java:S106y"+Replace this use of System.out by a logger.(ÍÂ‰8– úÝ1
+G	java:S106}"+Replace this use of System.out by a logger.(ÍÂ‰8ºÇ™úÝ1
+M	java:S106‰"+Replace this use of System.out by a logger.(¥Ø¢ßüÿÿÿÿ8¼Ç™úÝ1
+M	java:S106"+Replace this use of System.out by a logger.(¥Ø¢ßüÿÿÿÿ8¾Ç™úÝ1
+H	java:S106›"+Replace this use of System.out by a logger.(¦€Ù­8ÁÇ™úÝ1
+H	java:S106Ÿ"+Replace this use of System.out by a logger.(¦€Ù­8ÁÇ™úÝ1
+M	java:S106ª"+Replace this use of System.out by a logger.(ÉÓÈÿÿÿÿÿ8ÃÇ™úÝ1
+M	java:S106®"+Replace this use of System.out by a logger.(ÉÓÈÿÿÿÿÿ8ÄÇ™úÝ1

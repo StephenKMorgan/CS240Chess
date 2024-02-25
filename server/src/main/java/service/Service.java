@@ -1,6 +1,6 @@
 package service;
 
-import java.util.Collection;
+import java.util.HashSet;
 
 import dataAccess.DataAccess;
 import dataAccess.MemoryDataAccess;
@@ -11,7 +11,14 @@ import model.UserData;
 
 
 public class Service {
-    private final DataAccess dataAccess = new MemoryDataAccess();
+    private DataAccess dataAccess = new MemoryDataAccess();
+    
+    public Service() {
+    }
+    
+    public Service(DataAccess dataAccess) {
+        this.dataAccess = dataAccess;
+    }
 
     //User
     public AuthData register(UserData userData) throws ResponseException {
@@ -37,7 +44,7 @@ public class Service {
     }
 
     //game
-    public Collection<GameData> listGames(String authToken) throws ResponseException {
+    public HashSet<GameData> listGames(String authToken) throws ResponseException {
         if (authToken == null || authToken.isEmpty()) {
             throw new ResponseException(400, "Error: Bad Request");
         }
@@ -52,7 +59,7 @@ public class Service {
     }
 
     public void joinGame(String clientColor, int gameID, String authToken) throws ResponseException {
-        if ( gameID < 0 || authToken == null || authToken.isEmpty()) {
+        if ( gameID <= 0 || authToken == null || authToken.isEmpty()) {
             throw new ResponseException(400, "Error: Bad Request");
         }
         dataAccess.joinGame(clientColor, gameID, authToken);

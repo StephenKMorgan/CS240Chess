@@ -1,8 +1,8 @@
 package dataAccess;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.UUID;
-import java.util.Collection;
 
 import chess.ChessGame;
 import exception.ResponseException;
@@ -19,7 +19,7 @@ public class MemoryDataAccess implements DataAccess{
     public AuthData register(UserData userData) throws ResponseException {
         //Check to make sure the user is not already taken
         if (getUser(userData.username()) != null){
-            throw new ResponseException(401, "Error: already taken");
+            throw new ResponseException(403, "Error: already taken");
         }
         //Create the user
         createUser(userData);
@@ -31,7 +31,7 @@ public class MemoryDataAccess implements DataAccess{
     public AuthData login(UserData userData) throws ResponseException {
         //Get the user from the database
         if(getUser(userData.username()) == null){
-            throw new ResponseException(500, "Error: Internal Server Error");
+            throw new ResponseException(401, "Error: Unauthorized");
         }
         //Check if the user is valid
         if (!validateUser(userData)){
@@ -51,7 +51,7 @@ public class MemoryDataAccess implements DataAccess{
         removeAuth(authToken);
     }
 
-    public Collection<GameData> listGames(String authToken) throws ResponseException {
+    public HashSet<GameData> listGames(String authToken) throws ResponseException {
         //Check if the auth token is valid
         if (!validateAuth(authToken)){
             throw new ResponseException(401, "Error: Unauthorized");
@@ -132,20 +132,18 @@ public class MemoryDataAccess implements DataAccess{
         return false;
     }
 
-    private Collection<GameData> getGames() {
-        return games.values();
+    private HashSet<GameData> getGames() {
+        return new HashSet<GameData>(games.values());
     }
 
     private GameData generateGame(String authToken, String gameName) {
-        int gameID = games.size();
-        var whiteUsername = authTokens.get(authToken).username();
-        var game = new GameData(gameID, whiteUsername, null, gameName, new ChessGame());
+        int gameID = games.size() + 1;
+        var game = new GameData(gameID, null, null, gameName, new ChessGame());
         games.put(gameID, game);
         return game;
     }
 
     private boolean validateGame(String clientColor, int gameID, String authToken) {
-        //The game is valid if it exists and is not full or if it is full and the user is already in the game or if the user is not in the game but the clientColor is null
         if (games.containsKey(gameID)) {
             var game = games.get(gameID);
             if (clientColor == null) {
@@ -159,14 +157,7 @@ public class MemoryDataAccess implements DataAccess{
                 if (game.blackUsername() == null) {
                     return true;
                 }
-            }
-            if (game.whiteUsername() == null || game.blackUsername() == null) {
-                return true;
-            }
-            if (game.whiteUsername().equals(authTokens.get(authToken).username()) || game.blackUsername().equals(authTokens.get(authToken).username())) {
-                return true;
-            }
-            
+            }            
         }
         return false;
     }
@@ -177,7 +168,7 @@ public class MemoryDataAccess implements DataAccess{
             game = new GameData(game.gameID(), game.whiteUsername(), game.blackUsername(), game.gameName(), game.game());
             games.put(gameID, game);
         } else {
-            if (clientColor.equals("white")) {
+            if (clientColor.equals("WHITE")) {
                 game = new GameData(game.gameID(), authTokens.get(authToken).username(), game.blackUsername(), game.gameName(), game.game());
                 games.put(gameID, game);
             } else {
