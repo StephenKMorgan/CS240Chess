@@ -53,41 +53,68 @@ public class Server {
     }
 
     public Object registerUser(Request req, Response res) throws ResponseException {
-        var user = new Gson().fromJson(req.body(), UserData.class);
-        return new Gson().toJson(service.register(user));
+        try {
+            var user = new Gson().fromJson(req.body(), UserData.class);
+            return new Gson().toJson(service.register(user));
+        } catch (Exception e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
+        }
     }
 
     public Object login(Request req, Response res) throws ResponseException {
-        var user = new Gson().fromJson(req.body(), UserData.class);
-        return new Gson().toJson(service.login(user));
+        try {
+            var user = new Gson().fromJson(req.body(), UserData.class);
+            return new Gson().toJson(service.login(user));
+        } catch (Exception e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
+        }
     }
 
     public Object logout(Request req, Response res) throws ResponseException {
-        service.logout(req.headers("Authorization"));
-        res.status(204);
+        try {
+            service.logout(req.headers("Authorization"));
+            res.status(204);
+        } catch (Exception e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
+        }
         return "";
     }
 
     public Object listGames(Request req, Response res) throws ResponseException {
-        return new Gson().toJson(service.listGames(req.headers("Authorization")));
+        try {
+            return new Gson().toJson(service.listGames(req.headers("Authorization")));
+        } catch (Exception e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
+        }
     }
 
     public Object createGame(Request req, Response res) throws ResponseException {
+        try {
         var game = new Gson().fromJson(req.body(), model.GameData.class);
         game = service.createGame(req.headers("Authorization"), game.gameName());
         return new Gson().toJson(game);
+        } catch (Exception e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
+        }
     }
 
     public Object joinGame(Request req, Response res) throws ResponseException {
+        try {
         var gameID = Integer.parseInt(req.params("gameID"));
         service.joinGame(req.queryParams("clientColor"), gameID, req.headers("Authorization"));
         res.status(204);
+        } catch (Exception e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
+        }
         return "";
     }
 
     public Object clearDB(Request req, Response res) throws ResponseException{
-        service.clearAll();
-        res.status(204);
+        try {
+            service.clearAll();
+        } catch (Exception e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
+        }
         return "";
     }
 
