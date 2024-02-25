@@ -1,29 +1,23 @@
 
+k
+java:S1192Z"NDefine a constant instead of duplicating this literal "Authorization" 4 times.(¸…Óš8êÆ™úİ1
 h
 java:S11921"FDefine a constant instead of duplicating this literal "/game" 3 times.(˜Ó€•şÿÿÿÿ8éÆ™úİ1
 k
-java:S1192E"IDefine a constant instead of duplicating this literal "message" 16 times.(âÖÓ†ûÿÿÿÿ8êÆ™úİ1
+java:S1192D"IDefine a constant instead of duplicating this literal "message" 16 times.(âÖÓ†ûÿÿÿÿ8êÆ™úİ1
 
-java:S1192I"]Define a constant instead of duplicating this literal "Error: Internal Server Error" 7 times.(–×¸£ÿÿÿÿÿ8êÆ™úİ1
-k
-java:S1192^"NDefine a constant instead of duplicating this literal "Authorization" 4 times.(¸…Óš8êÆ™úİ1
+java:S1192G"]Define a constant instead of duplicating this literal "Error: Internal Server Error" 7 times.(–×¸£ÿÿÿÿÿ8êÆ™úİ1
+†
+java:S1488k"dImmediately return this expression instead of assigning it to the temporary variable "jsonResponse".(ñÚÛıÿÿÿÿ8®¬üİ1
 W	java:S125"<This block of commented-out lines of code should be removed.(éÁÄ%8¡Ç™úİ1
 X	java:S125"<This block of commented-out lines of code should be removed.(ãêª´8£Ç™úİ1
 X	java:S125"<This block of commented-out lines of code should be removed.(ãêª´8£Ç™úİ1
 ]	java:S125'"<This block of commented-out lines of code should be removed.(²Ä€ùÿÿÿÿ8¥Ç™úİ1
-L	java:S106C"+Replace this use of System.out by a logger.(ø±ƒ§øÿÿÿÿ8£˜ùİ1
-L	java:S106G"+Replace this use of System.out by a logger.(ø±ƒ§øÿÿÿÿ8óÌ¿ùİ1
-L	java:S106R"+Replace this use of System.out by a logger.(çö¥¬ùÿÿÿÿ8 úİ1
-L	java:S106V"+Replace this use of System.out by a logger.(çö¥¬ùÿÿÿÿ8‘ úİ1
-G	java:S106a"+Replace this use of System.out by a logger.(ş³ã8“ úİ1
-G	java:S106e"+Replace this use of System.out by a logger.(ş³ã8“ úİ1
-X	java:S125p"<This block of commented-out lines of code should be removed.(’ò§›8·Ç™úİ1
-G	java:S106v"+Replace this use of System.out by a logger.(ã–÷¦8• úİ1
-G	java:S106y"+Replace this use of System.out by a logger.(ÍÂ‰8– úİ1
-G	java:S106}"+Replace this use of System.out by a logger.(ÍÂ‰8ºÇ™úİ1
-M	java:S106‰"+Replace this use of System.out by a logger.(¥Ø¢ßüÿÿÿÿ8¼Ç™úİ1
-M	java:S106"+Replace this use of System.out by a logger.(¥Ø¢ßüÿÿÿÿ8¾Ç™úİ1
-H	java:S106›"+Replace this use of System.out by a logger.(¦€Ù­8ÁÇ™úİ1
-H	java:S106Ÿ"+Replace this use of System.out by a logger.(¦€Ù­8ÁÇ™úİ1
-M	java:S106ª"+Replace this use of System.out by a logger.(ÉÓÈÿÿÿÿÿ8ÃÇ™úİ1
-M	java:S106®"+Replace this use of System.out by a logger.(ÉÓÈÿÿÿÿÿ8ÄÇ™úİ1
+M
+java:S1128"0Remove this unused import 'java.nio.file.Paths'.(áè°¯8æ ›üİ1
+J
+java:S1128".Remove this unused import 'java.util.HashSet'.(Ê‚êX8æ ›üİ1
+H
+java:S1128"+Remove this unused import 'model.GameData'.(Ãà—õ8æ ›üİ1
+`
+java:S1128">Remove this unused import 'server.websocket.WebSocketHandler'.(‚¥ÁËøÿÿÿÿ8æ ›üİ1

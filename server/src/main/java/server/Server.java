@@ -64,11 +64,9 @@ public class Server {
             var user = new Gson().fromJson(req.body(), UserData.class);
             return new Gson().toJson(service.register(user));
         } catch (ResponseException e) {
-            System.out.println("ResponseException occurred during register: " + e);
             res.status(e.StatusCode());
             return new Gson().toJson(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
-            System.out.println("ResponseException occurred during register: " + e);
             res.status(500);
             return new Gson().toJson(Collections.singletonMap("message", "Error: Internal Server Error"));
         }
@@ -79,11 +77,9 @@ public class Server {
             var user = new Gson().fromJson(req.body(), UserData.class);
             return new Gson().toJson(service.login(user));
         } catch (ResponseException e) {
-            System.out.println("ResponseException occurred during login: " + e);
             res.status(e.StatusCode());
             return new Gson().toJson(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
-            System.out.println("ResponseException occurred during login: " + e);
             res.status(500);
             return new Gson().toJson(Collections.singletonMap("message", "Error: Internal Server Error"));
         }
@@ -94,11 +90,9 @@ public class Server {
             service.logout(req.headers("Authorization"));
             res.status(200);
         } catch (ResponseException e) {
-            System.out.println("ResponseException occurred during logout: " + e);
             res.status(e.StatusCode());
             return new Gson().toJson(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
-            System.out.println("ResponseException occurred during logout: " + e);
             res.status(500);
             return new Gson().toJson(Collections.singletonMap("message", "Error: Internal Server Error"));
         }
@@ -108,21 +102,14 @@ public class Server {
     public Object listGames(Request req, Response res) throws ResponseException {
         try {
             var games = service.listGames(req.headers("Authorization"));
-            //Convert the hashmap of games to a JSON string and return it in the format: (add the "games" key to the JSON object)
-            //for example: { "games": [{"gameID": 1234, "whiteUsername":"", "blackUsername":"", "gameName:""} ]}
-            // Create a map with a single entry where the key is "games" and the value is the list of games
             Map<String, Object> response = new HashMap<>();
             response.put("games", games);
-            // Convert the map to a JSON string
             String jsonResponse = new Gson().toJson(response);
-            System.out.println(jsonResponse);
             return jsonResponse;
         } catch (ResponseException e) {
-            System.out.println("ResponseException occurred during listGames: " + e);
             res.status(e.StatusCode());
             return new Gson().toJson(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
-            System.out.println("ResponseException occurred during listGames: " + e);
             res.status(500);
             return new Gson().toJson(Collections.singletonMap("message", "Error: Internal Server Error"));
         }
@@ -134,11 +121,9 @@ public class Server {
         game = service.createGame(req.headers("Authorization"), game.gameName());
         return new Gson().toJson(game);
         } catch (ResponseException e) {
-            System.out.println("ResponseException occurred during createGame: " + e);
             res.status(e.StatusCode());
             return new Gson().toJson(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
-            System.out.println("ResponseException occurred during createGame: " + e);
             res.status(500);
             return new Gson().toJson(Collections.singletonMap("message", "Error: Internal Server Error"));
         }
@@ -152,11 +137,9 @@ public class Server {
         service.joinGame(playerColor, gameID, req.headers("Authorization"));
         res.status(200);
         } catch (ResponseException e) {
-            System.out.println("ResponseException occurred during joinGame: " + e);
             res.status(e.StatusCode());
             return new Gson().toJson(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
-            System.out.println("ResponseException occurred during joinGame: " + e);
             res.status(500);
             return new Gson().toJson(Collections.singletonMap("message", "Error: Internal Server Error"));
         }
@@ -167,11 +150,9 @@ public class Server {
         try {
             service.clearAll();
         } catch (ResponseException e) {
-            System.out.println("ResponseException occurred during clearAll: " + e);
             res.status(e.StatusCode());
             return new Gson().toJson(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
-            System.out.println("ResponseException occurred during clearAll: " + e);
             res.status(500);
             return new Gson().toJson(Collections.singletonMap("message", "Error: Internal Server Error"));
         }
