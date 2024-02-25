@@ -1,21 +1,41 @@
 
 ¨
-java:S3577"ŠRename class "serviceTest" to match the regular expression: '^((Test|IT)[a-zA-Z0-9_]+|[A-Z][a-zA-Z0-9_]*(Test|Tests|TestCase|IT|ITCase))$'(Šæ8Éó‹ûİ1
+java:S3577"ŠRename class "serviceTest" to match the regular expression: '^((Test|IT)[a-zA-Z0-9_]+|[A-Z][a-zA-Z0-9_]*(Test|Tests|TestCase|IT|ITCase))$'(Šæ8ü§Şûİ1
 ;
-java:S5786"Remove this 'public' modifier.(ìúìÃ8Éó‹ûİ1
+java:S5786"Remove this 'public' modifier.(ìúìÃ8üÕÒûİ1
 ;
-java:S5786'"Remove this 'public' modifier.(ÛŠÃ8Éó‹ûİ1
-@
-java:S57862"Remove this 'public' modifier.(«Çıÿÿÿÿ8Éó‹ûİ1
-@
-java:S5786@"Remove this 'public' modifier.(Òª­®şÿÿÿÿ8Êó‹ûİ1
-@
-java:S5786K"Remove this 'public' modifier.(ĞøŞ‹şÿÿÿÿ8Êó‹ûİ1
-@
-java:S5786W"Remove this 'public' modifier.(¢ıÓŸşÿÿÿÿ8Êó‹ûİ1
-@
-java:S5786d"Remove this 'public' modifier.(©ëºÉøÿÿÿÿ8Êó‹ûİ1
+java:S5786("Remove this 'public' modifier.(ÛŠÃ8üÕÒûİ1
 ;
-java:S5786q"Remove this 'public' modifier.(±½ˆ«8Êó‹ûİ1
+java:S57863"Remove this 'public' modifier.(¨şàØ8ü§Şûİ1
 ;
-java:S5786"Remove this 'public' modifier.(Šæ8Êó‹ûİ1
+java:S5786>"Remove this 'public' modifier.(¹™ÊÌ8éªãûİ1
+@
+java:S5786L"Remove this 'public' modifier.(¯Üò¥ÿÿÿÿÿ8›‰úûİ1
+@
+java:S5786W"Remove this 'public' modifier.(·›êøÿÿÿÿ8›‰úûİ1
+@
+java:S5786b"Remove this 'public' modifier.(°Ñ£ƒşÿÿÿÿ8›‰úûİ1
+@
+java:S5786n"Remove this 'public' modifier.(¦ËÉıúÿÿÿÿ8œ‰úûİ1
+;
+java:S5786y"Remove this 'public' modifier.(è«Ëò8œ‰úûİ1
+<
+java:S5786‡"Remove this 'public' modifier.(Ç‰™ë8œ‰úûİ1
+A
+java:S5786•"Remove this 'public' modifier.(¶óŞ‡ùÿÿÿÿ8œ‰úûİ1
+A
+java:S5786¢"Remove this 'public' modifier.(üÓÀñûÿÿÿÿ8œ‰úûİ1
+A
+java:S5786¯"Remove this 'public' modifier.(ˆƒ¸üÿÿÿÿÿ8œ‰úûİ1
+;
+java:S5786¼"Remove this 'public' modifier.(ß±æl8œ‰úûİ1
+<
+java:S5786Ë"Remove this 'public' modifier.(ØÌ¦š8œ‰úûİ1
+<
+java:S5786Û"Remove this 'public' modifier.(†˜­Ö8œ‰úûİ1
+A
+java:S5786è"Remove this 'public' modifier.(Í¹‰ëùÿÿÿÿ8œ‰úûİ1
+<
+java:S5786ñ"Remove this 'public' modifier.(öªïÒ8œ‰úûİ1
+;
+java:S5786"Remove this 'public' modifier.(Šæ8œ‰úûİ1
