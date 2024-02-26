@@ -31,25 +31,15 @@ Y
 )shared/src/main/java/chess/ChessGame.java,1\2\12ee2b2e0577bf40c2f0f09ceb1e2b3d9b36bd7a
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-m
-=src/tests/java/passoffTests/serverTests/StandardAPITests.java,b\d\bda83344e3a42bda63a6ff7543b479082a7edf29
-^
-.src/main/java/server/websocket/Connection.java,3\7\37defc871c22d622968a9058e47ef697c0948f12
-e
-5src/main/java/server/websocket/ConnectionManager.java,b\e\be314f4208de966ff617bff95c8b5fbf2664e831
-^
-.src/main/java/dataAccess/MemoryDataAccess.java,b\d\bd1257cd4d85dd1cb9825aef27927bccee09afe3
-P
- src/main/java/server/Server.java,4\c\4c405aa622276106ee9ef8c3a2fbee4e76dcafbb
-d
-4src/main/java/server/websocket/WebSocketHandler.java,a\1\a1e176380e02ea0e2874c86a0c686d03b73c8282
-Q
-!src/main/java/model/UserData.java,3\8\38719670ec0261570896dcf7e398500f4b350234
 R
 "src/main/java/service/Service.java,c\8\c89769fe181d330c440b8bb964f3bd35c8fc8e4e
-Q
-!src/main/java/model/AuthData.java,7\b\7bcd29809a55527ca1777bd63a3d1e148c92b46e
+^
+.src/main/java/dataAccess/MemoryDataAccess.java,b\d\bd1257cd4d85dd1cb9825aef27927bccee09afe3
+m
+=src/tests/java/passoffTests/serverTests/StandardAPITests.java,b\d\bda83344e3a42bda63a6ff7543b479082a7edf29
 Q
 !src/main/java/model/GameData.java,6\7\67153312f42cfc25e918e7241d99ff3d32f0ce01
+P
+ src/main/java/server/Server.java,4\c\4c405aa622276106ee9ef8c3a2fbee4e76dcafbb
 \
 ,src/tests/java/serviceTests/serviceTest.java,1\1\111d258a864b510ad619110c92e04e07b589f47b
