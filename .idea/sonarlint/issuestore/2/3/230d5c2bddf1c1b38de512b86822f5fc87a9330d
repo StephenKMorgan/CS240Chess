@@ -1,0 +1,28 @@
+
+`	java:S112S"FDefine and throw a dedicated exception instead of using a generic one.(ö½¾«üÿÿÿÿ
+€
+java:S1192V"eDefine a constant instead of duplicating this literal "Server response code was not 200 OK" 23 times.(ÁšÕúÿÿÿÿ
+z
+java:S1192~"_Define a constant instead of duplicating this literal "Response missing error message" 4 times.(¼ÿ–÷ıÿÿÿÿ
+‰
+java:S1192|"nDefine a constant instead of duplicating this literal "Server response code was not 401 Unauthorized" 9 times.(ò‚ğìıÿÿÿÿ
+‹
+java:S1192‹"oDefine a constant instead of duplicating this literal "Invalid Request didn't return an error message" 5 times.(·ŒœŸıÿÿÿÿ
+b
+java:S1192i"GDefine a constant instead of duplicating this literal "error" 28 times.(ü¿äóøÿÿÿÿ
+v
+java:S1192¾"_Define a constant instead of duplicating this literal "Response gave an error message" 4 times.(¾ùÆ
+~
+java:S1192¶"bDefine a constant instead of duplicating this literal "Result returned an error message" 10 times.(±¿Éÿÿÿÿÿ
+„
+java:S1192’"mDefine a constant instead of duplicating this literal "Server response code was not 400 Bad Request" 3 times.(”í«
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Äù”˜üÿÿÿÿ
+E	java:S106."+Replace this use of System.out by a logger.(íŸƒÿÿÿÿÿ
+c
+java:S5361T"HReplace this call to "replaceAll()" by a call to the "replace()" method.(î‚ªÿÿÿÿÿ
+R
+java:S2696«"6Make the enclosing method "static" or remove this set.(şÂãÚøÿÿÿÿ
+R
+java:S2696Í"6Make the enclosing method "static" or remove this set.(şÂãÚøÿÿÿÿ
+A
+java:S5960U"+Remove this assertion from production code.(½™„
