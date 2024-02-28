@@ -1,0 +1,35 @@
+Table: UserData
+ID (int), Username (charvar(50)), Password (charvar(50)), Email (charvar(200))
+```
+CREATE TABLE `chess`.`userdata` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(256) NOT NULL,
+  `password` VARCHAR(256) NOT NULL,
+  `email` VARCHAR(256) NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE);
+```
+Table: AuthData
+ID (int), Username (charvar(50)), AuthID (charvar(50))
+Username is a foreign key to UserData.Username
+```
+CREATE TABLE `chess`.`authdata` (
+  `username` VARCHAR(256) NOT NULL,
+  `authID` VARCHAR(256) NULL,
+  PRIMARY KEY (`username`),
+  CONSTRAINT `username`
+    FOREIGN KEY (`username`)
+    REFERENCES `chess`.`userdata` (`username`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+```
+
+Table: GameData
+ID (int), gameID (charvar(50)), whiteUsername (charvar(50)), blackUsername (charvar(50)), gameName (charvar(50)), game (JSON)
+```
+Table: GameList (connections between users and games)
+ID (int), gameID (charvar(50)), Username (charvar(50))
+Username is a foreign key to UserData.Username
+gameID is a foreign key to GameData.gameID
+```
