@@ -14,8 +14,12 @@ import exception.ResponseException;
 
 public class MySQLDataAccess implements DataAccess {
 
-    public MySQLDataAccess() throws ResponseException, DataAccessException {
-        configureDatabase();
+    public MySQLDataAccess() {
+        try {
+            configureDatabase();
+        } catch (ResponseException | DataAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public AuthData register(UserData userData) throws ResponseException {
