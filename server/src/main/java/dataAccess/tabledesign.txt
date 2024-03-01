@@ -1,35 +1,34 @@
-Table: UserData
-ID (int), Username (charvar(50)), Password (charvar(50)), Email (charvar(200))
-```
-CREATE TABLE `chess`.`userdata` (
-  `ID` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(256) NOT NULL,
-  `password` VARCHAR(256) NOT NULL,
-  `email` VARCHAR(256) NOT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE);
-```
-Table: AuthData
-ID (int), Username (charvar(50)), AuthID (charvar(50))
-Username is a foreign key to UserData.Username
-```
-CREATE TABLE `chess`.`authdata` (
-  `username` VARCHAR(256) NOT NULL,
-  `authID` VARCHAR(256) NULL,
-  PRIMARY KEY (`username`),
-  CONSTRAINT `username`
-    FOREIGN KEY (`username`)
-    REFERENCES `chess`.`userdata` (`username`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE);
-```
+CREATE TABLE `userdata` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `username` varchar(255) UNIQUE NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(255) UNIQUE
+);
 
-Table: GameData
-ID (int), gameID (charvar(50)), whiteUsername (charvar(50)), blackUsername (charvar(50)), gameName (charvar(50)), game (JSON)
-```
-Table: GameList (connections between users and games)
-ID (int), gameID (charvar(50)), Username (charvar(50))
-Username is a foreign key to UserData.Username
-gameID is a foreign key to GameData.gameID
-```
+CREATE TABLE `authdata` (
+  `authID` varchar(255) PRIMARY KEY NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `timestamp` datetime
+);
+
+CREATE TABLE `gamedata` (
+  `game_id` int PRIMARY KEY NOT NULL,
+  `whiteUsername` varchar(255),
+  `blackUsername` varchar(255),
+  `gameName` varchar(255) NOT NULL,
+  `game` JSON
+);
+
+CREATE TABLE `gamelists` (
+  `game_id` int,
+  `username` varchar(255)
+);
+
+ALTER TABLE `authdata` ADD FOREIGN KEY (`username`) REFERENCES `userdata` (`username`);
+
+ALTER TABLE `gamelists` ADD FOREIGN KEY (`username`) REFERENCES `userdata` (`username`);
+
+ALTER TABLE `gamelists` ADD FOREIGN KEY (`game_id`) REFERENCES `gamedata` (`game_id`);
+
+
+https://dbdiagram.io/d/Chess-240-65dfbff3cd45b569fb27dcf1
