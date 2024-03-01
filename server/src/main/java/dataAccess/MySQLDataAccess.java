@@ -18,72 +18,91 @@ public class MySQLDataAccess implements DataAccess {
         configureDatabase();
     }
 
-    public AuthData register(UserData userData) throws ResponseException, DataAccessException {
-        try (Connection conn = DatabaseManager.getConnection()) {
-            String sql = "INSERT INTO userdata (username, password, email) VALUES (?, ?, ?)";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, userData.username());
-            stmt.setString(2, userData.password());
-            stmt.setString(3, userData.email());
-            stmt.executeUpdate();
-            return createAuth(userData.username());
-        } catch (SQLException e) {
-            throw new ResponseException(403, "Error: already taken");
-        }
-    }
-
-    public AuthData login(UserData userData) throws ResponseException, DataAccessException {
-        try (Connection conn = DatabaseManager.getConnection()) {
-            String sql = "SELECT * FROM userdata WHERE username = ? AND password = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, userData.username());
-            stmt.setString(2, userData.password());
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return createAuth(userData.username());
-            } else {
-                throw new ResponseException(401, "Error: Unauthorized");
+    public AuthData register(UserData userData) throws ResponseException {
+        //Check to make sure the user is not already taken
+        try {
+            if (getUser(userData.username()) != null){
+                throw new ResponseException(403, "Error: already taken");
             }
-        } catch (SQLException e) {
-            throw new ResponseException(401, "Error: Unauthorized");
+        } catch (SQLException | DataAccessException | ResponseException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
         }
+        //Create the user
+        try {
+            createUser(userData);
+        } catch (SQLException | DataAccessException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
+        }          
+      
+        //Create a new auth token
+        AuthData authToken;
+        try {
+            authToken = createAuth(userData.username());
+        } catch (SQLException | DataAccessException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
+        }
+        return authToken;
     }
 
-    public void logout(String authToken) throws ResponseException, DataAccessException {
-        try (Connection conn = DatabaseManager.getConnection()) {
-            String sql = "DELETE FROM authdata WHERE authID = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, authToken);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
+    public AuthData login(UserData userData) throws ResponseException {
+        //Get the user from the database
+        if(getUser(userData.username()) == null){
             throw new ResponseException(401, "Error: Unauthorized");
         }
+        //Check if the user is valid
+        if (!validateUser(userData)){
+            throw new ResponseException(401, "Error: Unauthorized");
+        }
+        //Create a new auth token
+        var authToken = createAuth(userData.username());
+        return authToken;
     }
 
-    @Override
+    public void logout(String authToken) throws ResponseException {
+        //Check if the auth token is valid
+        if (getAuth(authToken) == null){
+            throw new ResponseException(401, "Error: Unauthorized");
+        }
+        //Remove the auth token
+        removeAuth(authToken);
+    }
+
     public HashSet<GameData> listGames(String authToken) throws ResponseException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listGames'");
+        //Check if the auth token is valid
+        if (!validateAuth(authToken)){
+            throw new ResponseException(401, "Error: Unauthorized");
+        }
+        //Return the list of games
+        return getGames();
     }
 
-    @Override
     public GameData createGame(String authToken, String gameName) throws ResponseException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createGame'");
+        //Check if the auth token is valid
+        if (!validateAuth(authToken)){
+            throw new ResponseException(401, "Error: Unauthorized");
+        }
+        //Create a new game
+        return generateGame(authToken, gameName);
     }
 
-    @Override
     public void joinGame(String clientColor, int gameID, String authToken) throws ResponseException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'joinGame'");
+        //Check if the auth token is valid
+        if (!validateAuth(authToken)){
+            throw new ResponseException(401, "Error: Unauthorized");
+        }
+        //Check if the game is valid
+        if (!validateGame(clientColor, gameID, authToken)){
+            throw new ResponseException(403, "Error: Already taken");
+        }
+        //Join the game
+        joinValidGame(clientColor, gameID, authToken);
     }
 
-    @Override
     public void clear() throws ResponseException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'clear'");
+        users.clear();
+        games.clear();
+        authTokens.clear();
     }
-
     
     
     //Helper functions
@@ -287,6 +306,24 @@ public class MySQLDataAccess implements DataAccess {
                     }
                 }
             }
+        }
+    }
+
+    private void clearAllData() throws SQLException, DataAccessException {
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String sql = "DELETE FROM userdata";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.executeUpdate();
+        }
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String sql = "DELETE FROM authdata";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.executeUpdate();
+        }
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String sql = "DELETE FROM gamedata";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.executeUpdate();
         }
     }
     
