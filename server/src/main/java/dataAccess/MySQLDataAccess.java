@@ -46,62 +46,113 @@ public class MySQLDataAccess implements DataAccess {
 
     public AuthData login(UserData userData) throws ResponseException {
         //Get the user from the database
-        if(getUser(userData.username()) == null){
-            throw new ResponseException(401, "Error: Unauthorized");
+        try {
+            if(getUser(userData.username()) == null){
+                throw new ResponseException(401, "Error: Unauthorized");
+            }
+        } catch (SQLException | DataAccessException | ResponseException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
         }
         //Check if the user is valid
-        if (!validateUser(userData)){
-            throw new ResponseException(401, "Error: Unauthorized");
+        try {
+            if (!validateUser(userData)){
+                throw new ResponseException(401, "Error: Unauthorized");
+            }
+        } catch (SQLException | DataAccessException | ResponseException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
         }
         //Create a new auth token
-        var authToken = createAuth(userData.username());
+        AuthData authToken;
+        try {
+            authToken = createAuth(userData.username());
+        } catch (SQLException | DataAccessException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
+        }
         return authToken;
     }
 
     public void logout(String authToken) throws ResponseException {
         //Check if the auth token is valid
-        if (getAuth(authToken) == null){
-            throw new ResponseException(401, "Error: Unauthorized");
+        try {
+            if (getAuth(authToken) == null){
+                throw new ResponseException(401, "Error: Unauthorized");
+            }
+        } catch (SQLException | DataAccessException | ResponseException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
         }
         //Remove the auth token
-        removeAuth(authToken);
+        try {
+            removeAuth(authToken);
+        } catch (SQLException | DataAccessException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
+        }
     }
 
     public HashSet<GameData> listGames(String authToken) throws ResponseException {
         //Check if the auth token is valid
-        if (!validateAuth(authToken)){
-            throw new ResponseException(401, "Error: Unauthorized");
+        try {
+            if (!validateAuth(authToken)){
+                throw new ResponseException(401, "Error: Unauthorized");
+            }
+        } catch (SQLException | DataAccessException | ResponseException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
         }
         //Return the list of games
-        return getGames();
+        try {
+            return getGames();
+        } catch (SQLException | DataAccessException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
+        }
     }
 
     public GameData createGame(String authToken, String gameName) throws ResponseException {
         //Check if the auth token is valid
-        if (!validateAuth(authToken)){
-            throw new ResponseException(401, "Error: Unauthorized");
+        try {
+            if (!validateAuth(authToken)){
+                throw new ResponseException(401, "Error: Unauthorized");
+            }
+        } catch (SQLException | DataAccessException | ResponseException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
         }
         //Create a new game
-        return generateGame(authToken, gameName);
+        try {
+            return generateGame(authToken, gameName);
+        } catch (SQLException | DataAccessException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
+        }
     }
 
     public void joinGame(String clientColor, int gameID, String authToken) throws ResponseException {
         //Check if the auth token is valid
-        if (!validateAuth(authToken)){
-            throw new ResponseException(401, "Error: Unauthorized");
+        try {
+            if (!validateAuth(authToken)){
+                throw new ResponseException(401, "Error: Unauthorized");
+            }
+        } catch (SQLException | DataAccessException | ResponseException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
         }
         //Check if the game is valid
-        if (!validateGame(clientColor, gameID, authToken)){
-            throw new ResponseException(403, "Error: Already taken");
+        try {
+            if (!validateGame(clientColor, gameID, authToken)){
+                throw new ResponseException(403, "Error: Already taken");
+            }
+        } catch (SQLException | DataAccessException | ResponseException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
         }
         //Join the game
-        joinValidGame(clientColor, gameID, authToken);
+        try {
+            joinValidGame(clientColor, gameID, authToken);
+        } catch (SQLException | DataAccessException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
+        }
     }
 
     public void clear() throws ResponseException {
-        users.clear();
-        games.clear();
-        authTokens.clear();
+        try {
+            clearAllData();
+        } catch (SQLException | DataAccessException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
+        }
     }
     
     
