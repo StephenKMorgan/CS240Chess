@@ -11,6 +11,10 @@ import exception.ResponseException;
 
 public class MySQLDataAccess implements DataAccess {
 
+    public MySQLDataAccess() throws ResponseException, DataAccessException {
+        configureDatabase();
+    }
+
     public AuthData register(UserData userData) throws ResponseException, DataAccessException {
         try (Connection conn = DatabaseManager.getConnection()) {
             String sql = "INSERT INTO userdata (username, password, email) VALUES (?, ?, ?)";
@@ -53,21 +57,6 @@ public class MySQLDataAccess implements DataAccess {
         }
     }
 
-    // Implement other methods similarly...
-
-    private AuthData createAuth(String username) throws SQLException, DataAccessException {
-        try (Connection conn = DatabaseManager.getConnection()) {
-            String sql = "INSERT INTO authdata (authID, username, timestamp) VALUES (?, ?, ?)";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            String authToken = UUID.randomUUID().toString();
-            stmt.setString(1, authToken);
-            stmt.setString(2, username);
-            stmt.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
-            stmt.executeUpdate();
-            return new AuthData(authToken, username);
-        }
-    }
-
     @Override
     public HashSet<GameData> listGames(String authToken) throws ResponseException {
         // TODO Auto-generated method stub
@@ -92,5 +81,36 @@ public class MySQLDataAccess implements DataAccess {
         throw new UnsupportedOperationException("Unimplemented method 'clear'");
     }
 
+    private AuthData createAuth(String username) throws SQLException, DataAccessException {
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String sql = "INSERT INTO authdata (authID, username, timestamp) VALUES (?, ?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            String authToken = UUID.randomUUID().toString();
+            stmt.setString(1, authToken);
+            stmt.setString(2, username);
+            stmt.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
+            stmt.executeUpdate();
+            return new AuthData(authToken, username);
+        }
+    }
+
     
+    private void configureDatabase() throws ResponseException, DataAccessException {
+        DatabaseManager.createDatabase();
+        String[] createStatements = {
+            "CREATE TABLE IF NOT EXISTS userdata (id int PRIMARY KEY AUTO_INCREMENT, username varchar(255) UNIQUE NOT NULL, password varchar(255) NOT NULL, email varchar(255) UNIQUE)",
+            "CREATE TABLE IF NOT EXISTS authdata (authID varchar(255) PRIMARY KEY NOT NULL, username varchar(255) NOT NULL, timestamp datetime, FOREIGN KEY (username) REFERENCES userdata (username))",
+            "CREATE TABLE IF NOT EXISTS gamedata (game_id int PRIMARY KEY NOT NULL, whiteUsername varchar(255), blackUsername varchar(255), gameName varchar(255) NOT NULL, game JSON)",
+            "CREATE TABLE IF NOT EXISTS gamelists (game_id int, username varchar(255), FOREIGN KEY (username) REFERENCES userdata (username), FOREIGN KEY (game_id) REFERENCES gamedata (game_id))"
+        };
+        try (var conn = DatabaseManager.getConnection()) {
+            for (var statement : createStatements) {
+                try (var preparedStatement = conn.prepareStatement(statement)) {
+                    preparedStatement.executeUpdate();
+                }
+            }
+        } catch (SQLException ex) {
+            throw new ResponseException(500, String.format("Unable to configure database: %s", ex.getMessage()));
+        }
+    }
 }
