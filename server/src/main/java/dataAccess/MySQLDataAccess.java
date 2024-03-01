@@ -1,43 +1,71 @@
 package dataAccess;
 
-import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.sql.*;
+import java.util.HashSet;
+import java.util.UUID;
 
-import exception.ResponseException;
 import model.AuthData;
 import model.GameData;
 import model.UserData;
+import exception.ResponseException;
 
-import com.google.gson.Gson;
+public class MySQLDataAccess implements DataAccess {
 
-import static java.sql.Statement.RETURN_GENERATED_KEYS;
-import static java.sql.Types.NULL;
-
-public class MySQLDataAccess implements DataAccess{
-
-    public MySQLDataAccess() throws ResponseException, DataAccessException {
-        configureDatabase();
+    public AuthData register(UserData userData) throws ResponseException, DataAccessException {
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String sql = "INSERT INTO userdata (username, password, email) VALUES (?, ?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, userData.username());
+            stmt.setString(2, userData.password());
+            stmt.setString(3, userData.email());
+            stmt.executeUpdate();
+            return createAuth(userData.username());
+        } catch (SQLException e) {
+            throw new ResponseException(403, "Error: already taken");
+        }
     }
 
-    @Override
-    public AuthData register(UserData userData) throws ResponseException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'register'");
+    public AuthData login(UserData userData) throws ResponseException, DataAccessException {
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String sql = "SELECT * FROM userdata WHERE username = ? AND password = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, userData.username());
+            stmt.setString(2, userData.password());
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return createAuth(userData.username());
+            } else {
+                throw new ResponseException(401, "Error: Unauthorized");
+            }
+        } catch (SQLException e) {
+            throw new ResponseException(401, "Error: Unauthorized");
+        }
     }
 
-    @Override
-    public AuthData login(UserData userData) throws ResponseException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'login'");
+    public void logout(String authToken) throws ResponseException, DataAccessException {
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String sql = "DELETE FROM authdata WHERE authID = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, authToken);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new ResponseException(401, "Error: Unauthorized");
+        }
     }
 
-    @Override
-    public void logout(String authToken) throws ResponseException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'logout'");
+    // Implement other methods similarly...
+
+    private AuthData createAuth(String username) throws SQLException, DataAccessException {
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String sql = "INSERT INTO authdata (authID, username, timestamp) VALUES (?, ?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            String authToken = UUID.randomUUID().toString();
+            stmt.setString(1, authToken);
+            stmt.setString(2, username);
+            stmt.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
+            stmt.executeUpdate();
+            return new AuthData(authToken, username);
+        }
     }
 
     @Override
@@ -64,108 +92,5 @@ public class MySQLDataAccess implements DataAccess{
         throw new UnsupportedOperationException("Unimplemented method 'clear'");
     }
 
-    private int executeUpdate(String statement, Object... params) throws ResponseException, DataAccessException {
-        try (var conn = DatabaseManager.getConnection()) {
-            try (var ps = conn.prepareStatement(statement, RETURN_GENERATED_KEYS)) {
-                for (var i = 0; i < params.length; i++) {
-                    var param = params[i];
-                    if (param instanceof String p) ps.setString(i + 1, p);
-                    else if (param instanceof Integer p) ps.setInt(i + 1, p);
-                    //else if (param instanceof PetType p) ps.setString(i + 1, p.toString());
-                    else if (param == null) ps.setNull(i + 1, NULL);
-                }
-                ps.executeUpdate();
-
-                var rs = ps.getGeneratedKeys();
-                if (rs.next()) {
-                    return rs.getInt(1);
-                }
-
-                return 0;
-            }
-        } catch (SQLException e) {
-            throw new ResponseException(500, String.format("unable to update database: %s, %s", statement, e.getMessage()));
-        }
-    }
-
-    private final String[] createStatements = {
-            """
-            CREATE TABLE IF NOT EXISTS  `chess`.`userdata` (
-                `ID` INT NOT NULL AUTO_INCREMENT,
-                `username` VARCHAR(256) NOT NULL,
-                `password` VARCHAR(256) NOT NULL,
-                `email` VARCHAR(256) NOT NULL,
-                PRIMARY KEY (`ID`),
-                UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,
-                UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE);
-            CREATE TABLE IF NOT EXISTS  authData (
-              `id` int NOT NULL AUTO_INCREMENT,
-              `username` varchar(256) NOT NULL,
-              `authID` varchar(256) NOT NULL,
-              PRIMARY KEY (`id`),
-              UNIQUE KEY `authID` (`authID`),
-              INDEX `username_index` (`username`),
-              FOREIGN KEY (`username`) REFERENCES `userData` (`username`)
-            )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci,
-            """,
-            """
-            CREATE TABLE IF NOT EXISTS  gameData (
-              `id` int NOT NULL AUTO_INCREMENT,
-              `gameID` varchar(256) NOT NULL,
-              `whiteUsername` varchar(256) NOT NULL,
-              `blackUsername` varchar(256) NOT NULL,
-              `gameName` varchar(256) NOT NULL,
-              `game` JSON NOT NULL,
-              PRIMARY KEY (`id`),
-              UNIQUE KEY `gameID` (`gameID`),
-              INDEX `whiteUsername_index` (`whiteUsername`),
-              INDEX `blackUsername_index` (`blackUsername`),
-              FOREIGN KEY (`whiteUsername`) REFERENCES `userData` (`username`),
-              FOREIGN KEY (`blackUsername`) REFERENCES `userData` (`username`)
-            )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci,
-            """,
-            """
-            CREATE TABLE IF NOT EXISTS  gameList (
-              `id` int NOT NULL AUTO_INCREMENT,
-              `gameID` varchar(256) NOT NULL,
-              `username` varchar(256) NOT NULL,
-              PRIMARY KEY (`id`),
-              INDEX `gameID_index` (`gameID`),
-              INDEX `username_index` (`username`),
-              FOREIGN KEY (`gameID`) REFERENCES `gameData` (`gameID`),
-              FOREIGN KEY (`username`) REFERENCES `userData` (`username`)
-            )
-            """
-    };
-
-//     Table: UserData
-// ID (int), Username (charvar(50)), Password (charvar(50)), Email (charvar(200))
-// ```
-// Table: AuthData
-// ID (int), Username (charvar(50)), AuthID (charvar(50))
-// Username is a foreign key to UserData.Username
-// ```
-// Table: GameData
-// ID (int), gameID (charvar(50)), whiteUsername (charvar(50)), blackUsername (charvar(50)), gameName (charvar(50)), game (JSON)
-
-// ```
-// Table: GameList (connections between users and games)
-// ID (int), gameID (charvar(50)), Username (charvar(50))
-// Username is a foreign key to UserData.Username
-// gameID is a foreign key to GameData.gameID
-// ```
-
-    private void configureDatabase() throws ResponseException, DataAccessException {
-        DatabaseManager.createDatabase();
-        try (var conn = DatabaseManager.getConnection()) {
-            for (var statement : createStatements) {
-                try (var preparedStatement = conn.prepareStatement(statement)) {
-                    preparedStatement.executeUpdate();
-                }
-            }
-        } catch (SQLException ex) {
-            throw new ResponseException(500, String.format("Unable to configure database: %s", ex.getMessage()));
-        }
-    }
     
 }
