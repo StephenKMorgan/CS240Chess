@@ -188,6 +188,107 @@ public class MySQLDataAccess implements DataAccess {
             return games;
         }
     }
+
+    private GameData generateGame(String authToken, String gameName) throws SQLException, DataAccessException {
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String sql = "SELECT * FROM gamedata";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            int gameID = 0;
+            while (rs.next()) {
+                gameID = Math.max(gameID, rs.getInt("game_id"));
+            }
+            gameID++;
+            ChessGame game = new ChessGame();
+            GameData newGame = new GameData(gameID, null, null, gameName, game);
+            String gameJson = new Gson().toJson(game);
+            try (Connection conn2 = DatabaseManager.getConnection()) {
+                String sql2 = "INSERT INTO gamedata (game_id, gameName, game) VALUES (?, ?, ?)";
+                PreparedStatement stmt2 = conn2.prepareStatement(sql2);
+                stmt2.setInt(1, gameID);
+                stmt2.setString(2, gameName);
+                stmt2.setString(3, gameJson);
+                stmt2.executeUpdate();
+            }
+            return newGame;
+        }
+    }
+
+    private boolean validateGame(String clientColor, int gameID, String authToken) throws SQLException, DataAccessException {
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String sql = "SELECT * FROM gamedata WHERE game_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, gameID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String whiteUsername = rs.getString("whiteUsername");
+                String blackUsername = rs.getString("blackUsername");
+                if (clientColor == null) {
+                    return true;
+                }
+                if (clientColor.equals("white")) {
+                    if (whiteUsername == null) {
+                        return true;
+                    }
+                } else {
+                    if (blackUsername == null) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+    }
+
+    private void joinValidGame(String clientColor, int gameID, String authToken) throws SQLException, DataAccessException {
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String sql = "SELECT * FROM gamedata WHERE game_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, gameID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String whiteUsername = rs.getString("whiteUsername");
+                String blackUsername = rs.getString("blackUsername");
+                if (clientColor == null) {
+                    if (whiteUsername == null) {
+                        try (Connection conn2 = DatabaseManager.getConnection()) {
+                            String sql2 = "UPDATE gamedata SET whiteUsername = ? WHERE game_id = ?";
+                            PreparedStatement stmt2 = conn2.prepareStatement(sql2);
+                            stmt2.setString(1, authToken);
+                            stmt2.setInt(2, gameID);
+                            stmt2.executeUpdate();
+                        }
+                    } else {
+                        try (Connection conn2 = DatabaseManager.getConnection()) {
+                            String sql2 = "UPDATE gamedata SET blackUsername = ? WHERE game_id = ?";
+                            PreparedStatement stmt2 = conn2.prepareStatement(sql2);
+                            stmt2.setString(1, authToken);
+                            stmt2.setInt(2, gameID);
+                            stmt2.executeUpdate();
+                        }
+                    }
+                } else {
+                    if (clientColor.equals("WHITE")) {
+                        try (Connection conn2 = DatabaseManager.getConnection()) {
+                            String sql2 = "UPDATE gamedata SET whiteUsername = ? WHERE game_id = ?";
+                            PreparedStatement stmt2 = conn2.prepareStatement(sql2);
+                            stmt2.setString(1, authToken);
+                            stmt2.setInt(2, gameID);
+                            stmt2.executeUpdate();
+                        }
+                    } else {
+                        try (Connection conn2 = DatabaseManager.getConnection()) {
+                            String sql2 = "UPDATE gamedata SET blackUsername = ? WHERE game_id = ?";
+                            PreparedStatement stmt2 = conn2.prepareStatement(sql2);
+                            stmt2.setString(1, authToken);
+                            stmt2.setInt(2, gameID);
+                            stmt2.executeUpdate();
+                        }
+                    }
+                }
+            }
+        }
+    }
     
     private void configureDatabase() throws ResponseException, DataAccessException {
         DatabaseManager.createDatabase();
