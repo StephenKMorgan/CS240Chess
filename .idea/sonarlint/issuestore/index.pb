@@ -47,3 +47,11 @@ P
  src/main/java/server/Server.java,4\c\4c405aa622276106ee9ef8c3a2fbee4e76dcafbb
 Q
 !src/main/java/model/UserData.java,3\8\38719670ec0261570896dcf7e398500f4b350234
+l
+<src/test/java/passoffTests/serverTests/PersistenceTests.java,0\b\0b64ed71f27f7335944fcca41777dc6e9c03b5b4
+R
+"src/main/java/service/Service.java,c\8\c89769fe181d330c440b8bb964f3bd35c8fc8e4e
+]
+-src/main/java/dataAccess/DatabaseManager.java,c\a\ca8e537e22592e882e6b882e3dc07228f03d6960
+P
+ src/main/resources/db.properties,7\7\779348f654a78c25c1b2a58c09d119b35347dc0d

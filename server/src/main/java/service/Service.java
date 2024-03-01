@@ -3,7 +3,9 @@ package service;
 import java.util.HashSet;
 
 import dataAccess.DataAccess;
+import dataAccess.DataAccessException;
 import dataAccess.MemoryDataAccess;
+import dataAccess.MySQLDataAccess;
 import exception.ResponseException;
 import model.AuthData;
 import model.GameData;
@@ -11,8 +13,10 @@ import model.UserData;
 
 
 public class Service {
-    private DataAccess dataAccess = new MemoryDataAccess();
+    //private DataAccess dataAccess = new MemoryDataAccess();
+    private DataAccess dataAccess = new MySQLDataAccess();
     
+
     public Service() {
     }
     
