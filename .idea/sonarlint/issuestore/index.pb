@@ -33,25 +33,17 @@ Y
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 Q
 !src/main/java/model/GameData.java,6\7\67153312f42cfc25e918e7241d99ff3d32f0ce01
-S
-#src/main/java/chess/ChessBoard.java,1\3\139d0d4bb2b8e11a4e03dbed5b694452387fb52a
-R
-"src/main/java/chess/ChessGame.java,7\3\73bf4fdc57c71c6f70f600b9fea515a646b27eef
-l
-<src/test/java/passoffTests/serverTests/StandardAPITests.java,2\3\230d5c2bddf1c1b38de512b86822f5fc87a9330d
-Q
-!src/main/java/model/AuthData.java,7\b\7bcd29809a55527ca1777bd63a3d1e148c92b46e
-Q
-!src/main/java/model/JoinData.java,0\a\0ace3a3e1f87f642bf664686a7961e6d3c3f016b
-P
- src/main/java/server/Server.java,4\c\4c405aa622276106ee9ef8c3a2fbee4e76dcafbb
-Q
-!src/main/java/model/UserData.java,3\8\38719670ec0261570896dcf7e398500f4b350234
-l
-<src/test/java/passoffTests/serverTests/PersistenceTests.java,0\b\0b64ed71f27f7335944fcca41777dc6e9c03b5b4
 R
 "src/main/java/service/Service.java,c\8\c89769fe181d330c440b8bb964f3bd35c8fc8e4e
+l
+<src/test/java/passoffTests/serverTests/StandardAPITests.java,2\3\230d5c2bddf1c1b38de512b86822f5fc87a9330d
+]
+-src/main/java/dataAccess/MySQLDataAccess.java,5\4\5414e5abfcc44c7678ba061a775a5a21d5bb74a1
 ]
 -src/main/java/dataAccess/DatabaseManager.java,c\a\ca8e537e22592e882e6b882e3dc07228f03d6960
 P
  src/main/resources/db.properties,7\7\779348f654a78c25c1b2a58c09d119b35347dc0d
+l
+<src/test/java/passoffTests/serverTests/PersistenceTests.java,0\b\0b64ed71f27f7335944fcca41777dc6e9c03b5b4
+P
+ src/main/java/server/Server.java,4\c\4c405aa622276106ee9ef8c3a2fbee4e76dcafbb

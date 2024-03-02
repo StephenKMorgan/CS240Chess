@@ -1,0 +1,57 @@
+
+`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+i
+java:S11927"TDefine a constant instead of duplicating this literal "Error: Unauthorized" 6 times.(­ÛÇf
+y
+java:S1192 "^Define a constant instead of duplicating this literal "Error: Internal Server Error" 16 times.(šúÀšúÿÿÿÿ
+e
+java:S1192„"NDefine a constant instead of duplicating this literal "blackUsername" 3 times.(úÓßä
+e
+java:S1192„"NDefine a constant instead of duplicating this literal "whiteUsername" 3 times.(úÓßä
+>
+java:S5411>"(Use a primitive boolean expression here.(¼İµÖ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(šäåó
+k
+java:S2095™"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÛáÙÏüÿÿÿÿ
+f
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095À"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095Ë"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095÷"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095ş"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095µ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+k
+java:S2095ä"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÛáÙÏüÿÿÿÿ
+k
+java:S2095Ò"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÛáÙÏüÿÿÿÿ
+f
+java:S2095¦"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+k
+java:S2095Ü"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÛáÙÏüÿÿÿÿ
+f
+java:S2095Ø"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095ï"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+k
+java:S2095Ê"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÛáÙÏüÿÿÿÿ
+f
+java:S2095ü"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095À"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095§"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095æ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095ò"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+G
+java:S1172Š"0Remove this unused method parameter "authToken".(êéÕ
+G
+java:S1172£"0Remove this unused method parameter "authToken".(©ñûû
+H
+java:S1481Å"2Remove this unused "blackUsername" local variable.(ÈÙğ@
