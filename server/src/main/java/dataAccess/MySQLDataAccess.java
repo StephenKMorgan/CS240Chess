@@ -4,6 +4,8 @@ import java.sql.*;
 import java.util.HashSet;
 import java.util.UUID;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import com.google.gson.Gson;
 
 import chess.ChessGame;
@@ -180,20 +182,32 @@ public class MySQLDataAccess implements DataAccess {
             String sql = "INSERT INTO userdata (username, password, email) VALUES (?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, userData.username());
-            stmt.setString(2, userData.password());
+            stmt.setString(2, encryptPassword(userData.password()));
             stmt.setString(3, userData.email());
             stmt.executeUpdate();
         }
     }
 
+    private String encryptPassword(String password) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String hashedPassword = encoder.encode(password);
+        return hashedPassword;
+    }
+
     private Boolean validateUser(UserData userData) throws SQLException, DataAccessException {
         try (Connection conn = DatabaseManager.getConnection()) {
-            String sql = "SELECT * FROM userdata WHERE username = ? AND password = ?";
+            String sql = "SELECT password FROM userdata WHERE username = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, userData.username());
-            stmt.setString(2, userData.password());
             ResultSet rs = stmt.executeQuery();
-            return rs.next();
+            
+            if (rs.next()) {
+                String storedHashedPassword = rs.getString("password");
+                BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+                return encoder.matches(userData.password(), storedHashedPassword);
+            } else {
+                return false;
+            }
         }
     }
 
