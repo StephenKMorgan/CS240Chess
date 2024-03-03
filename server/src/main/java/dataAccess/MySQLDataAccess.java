@@ -315,50 +315,33 @@ public class MySQLDataAccess implements DataAccess {
     }
 
     private void joinValidGame(String clientColor, int gameID, String authToken) throws SQLException, DataAccessException {
+        //use the gamelists table to join the game
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String sql = "INSERT INTO gamelists (game_id, username) VALUES (?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, gameID);
+            stmt.setString(2, getAuth(authToken).username());
+            stmt.executeUpdate();
+        }
+        //update the gamedata table to reflect the new player if they have selected a color to join
         try (Connection conn = DatabaseManager.getConnection()) {
             String sql = "SELECT * FROM gamedata WHERE game_id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, gameID);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                String whiteUsername = rs.getString("whiteUsername");
-                String blackUsername = rs.getString("blackUsername");
-                if (clientColor == null) {
-                    if (whiteUsername == null) {
-                        try (Connection conn2 = DatabaseManager.getConnection()) {
-                            String sql2 = "UPDATE gamedata SET whiteUsername = ? WHERE game_id = ?";
-                            PreparedStatement stmt2 = conn2.prepareStatement(sql2);
-                            stmt2.setString(1, authToken);
-                            stmt2.setInt(2, gameID);
-                            stmt2.executeUpdate();
-                        }
-                    } else {
-                        try (Connection conn2 = DatabaseManager.getConnection()) {
-                            String sql2 = "UPDATE gamedata SET blackUsername = ? WHERE game_id = ?";
-                            PreparedStatement stmt2 = conn2.prepareStatement(sql2);
-                            stmt2.setString(1, authToken);
-                            stmt2.setInt(2, gameID);
-                            stmt2.executeUpdate();
-                        }
-                    }
+                if (clientColor.equals("WHITE")) {
+                    String sql2 = "UPDATE gamedata SET whiteUsername = ? WHERE game_id = ?";
+                    PreparedStatement stmt2 = conn.prepareStatement(sql2);
+                    stmt2.setString(1, getAuth(authToken).username());
+                    stmt2.setInt(2, gameID);
+                    stmt2.executeUpdate();
                 } else {
-                    if (clientColor.equals("WHITE")) {
-                        try (Connection conn2 = DatabaseManager.getConnection()) {
-                            String sql2 = "UPDATE gamedata SET whiteUsername = ? WHERE game_id = ?";
-                            PreparedStatement stmt2 = conn2.prepareStatement(sql2);
-                            stmt2.setString(1, authToken);
-                            stmt2.setInt(2, gameID);
-                            stmt2.executeUpdate();
-                        }
-                    } else {
-                        try (Connection conn2 = DatabaseManager.getConnection()) {
-                            String sql2 = "UPDATE gamedata SET blackUsername = ? WHERE game_id = ?";
-                            PreparedStatement stmt2 = conn2.prepareStatement(sql2);
-                            stmt2.setString(1, authToken);
-                            stmt2.setInt(2, gameID);
-                            stmt2.executeUpdate();
-                        }
-                    }
+                    String sql2 = "UPDATE gamedata SET blackUsername = ? WHERE game_id = ?";
+                    PreparedStatement stmt2 = conn.prepareStatement(sql2);
+                    stmt2.setString(1, getAuth(authToken).username());
+                    stmt2.setInt(2, gameID);
+                    stmt2.executeUpdate();
                 }
             }
         }
