@@ -1,5 +1,11 @@
 package dataAccess;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.Properties;
 
@@ -14,20 +20,23 @@ public class DatabaseManager {
      */
     static {
         try {
-            try (var propStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("db.properties")) {
-                if (propStream == null) throw new Exception("Unable to laod db.properties");
-                Properties props = new Properties();
-                props.load(propStream);
-                databaseName = props.getProperty("db.name");
-                user = props.getProperty("db.user");
-                password = props.getProperty("db.password");
-
-                var host = props.getProperty("db.host");
-                var port = Integer.parseInt(props.getProperty("db.port"));
-                connectionUrl = String.format("jdbc:mysql://%s:%d", host, port);
+            InputStream propStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("db.properties");
+            if (propStream == null) {
+                throw new FileNotFoundException("Unable to load db.properties");
             }
-        } catch (Exception ex) {
-            throw new RuntimeException("unable to process db.properties. " + ex.getMessage());
+            Properties props = new Properties();
+            props.load(propStream);
+            databaseName = props.getProperty("db.name");
+            user = props.getProperty("db.user");
+            password = props.getProperty("db.password");
+    
+            String host = props.getProperty("db.host");
+            int port = Integer.parseInt(props.getProperty("db.port"));
+            connectionUrl = String.format("jdbc:mysql://%s:%d", host, port);
+        } catch (IOException ex) {
+            throw new RuntimeException("IO error while processing db.properties", ex);
+        } catch (NumberFormatException ex) {
+            throw new RuntimeException("db.port is not a valid integer in db.properties", ex);
         }
     }
 
