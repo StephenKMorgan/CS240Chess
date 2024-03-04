@@ -45,6 +45,23 @@ public class serviceSQLTests {
     }
 
     @Test
+    public void testRegisterMultipleUsersPass() {
+        UserData userData = new UserData("username", "password", "test@test.com");
+        UserData userData2 = new UserData("username2", "password", "test@test.com");
+        UserData userData3 = new UserData("username3", "password", "test@test.com");
+        try {
+            AuthData authData = service.register(userData);
+            Assertions.assertNotNull(authData);
+            AuthData authData2 = service.register(userData2);
+            Assertions.assertNotNull(authData2);
+            AuthData authData3 = service.register(userData3);
+            Assertions.assertNotNull(authData3);
+        } catch (ResponseException e) {
+            Assertions.fail("Unexpected exception: " + e.getMessage());
+        }
+    }
+
+    @Test
     public void testRegisterFail() {
         UserData userData = new UserData(null, "password", "test@test.com");
         try {
