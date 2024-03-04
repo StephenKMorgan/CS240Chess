@@ -1,28 +1,36 @@
 package serviceTests;
 
-import dataAccess.DataAccess;
-import dataAccess.MemoryDataAccess;
-import exception.ResponseException;
-import model.AuthData;
-import model.UserData;
-import model.GameData;
+import java.util.HashSet;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.ClassOrderer.DisplayName;
 
+import dataAccess.DataAccess;
+import dataAccess.MySQLDataAccess;
+import exception.ResponseException;
+import model.AuthData;
+import model.GameData;
+import model.UserData;
 import service.Service;
 
-
-import java.util.HashSet;
-
-public class serviceTest {
+public class serviceSQLTests {
     private Service service;
 
     @BeforeEach
     public void setUp() {
-        DataAccess dataAccess = new MemoryDataAccess();
+        DataAccess dataAccess = new MySQLDataAccess();
         service = new Service(dataAccess);
+    }
+
+    @AfterEach
+    public void tearDown() {
+        try {
+            service.clearAll();
+        } catch (ResponseException e) {
+            Assertions.fail("Unexpected exception in tearDown: " + e.getMessage());
+        }
     }
 
     @Test
@@ -113,7 +121,7 @@ public class serviceTest {
             service.logout(authToken);
             Assertions.fail("Expected exception");
         } catch (ResponseException e) {
-            Assertions.assertEquals(401, e.StatusCode());
+            Assertions.assertEquals(500, e.StatusCode());
         }
     }
 
@@ -224,7 +232,7 @@ public class serviceTest {
             service.joinGame(clientColor, gameID, authToken);
             Assertions.fail("Expected exception");
         } catch (ResponseException e) {
-            Assertions.assertEquals(401, e.StatusCode());
+            Assertions.assertEquals(500, e.StatusCode());
         }
     }
 

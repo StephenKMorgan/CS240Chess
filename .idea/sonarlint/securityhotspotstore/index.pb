@@ -35,17 +35,11 @@ Q
 !src/main/java/model/GameData.java,6\7\67153312f42cfc25e918e7241d99ff3d32f0ce01
 R
 "src/main/java/service/Service.java,c\8\c89769fe181d330c440b8bb964f3bd35c8fc8e4e
-l
-<src/test/java/passoffTests/serverTests/StandardAPITests.java,2\3\230d5c2bddf1c1b38de512b86822f5fc87a9330d
 ]
 -src/main/java/dataAccess/MySQLDataAccess.java,5\4\5414e5abfcc44c7678ba061a775a5a21d5bb74a1
-]
--src/main/java/dataAccess/DatabaseManager.java,c\a\ca8e537e22592e882e6b882e3dc07228f03d6960
-P
- src/main/resources/db.properties,7\7\779348f654a78c25c1b2a58c09d119b35347dc0d
+a
+1src/test/java/serviceTests/serviceMemoryTest.java,c\d\cd3ccd8c496fc9ba3529ebea9315b89c9a8042a6
 l
 <src/test/java/passoffTests/serverTests/PersistenceTests.java,0\b\0b64ed71f27f7335944fcca41777dc6e9c03b5b4
-P
- src/main/java/server/Server.java,4\c\4c405aa622276106ee9ef8c3a2fbee4e76dcafbb
-[
-+src/test/java/serviceTests/serviceTest.java,f\2\f297a3cf0ad2b218db8c57ac90018508a3d98bcb
+_
+/src/test/java/serviceTests/serviceSQLTests.java,f\e\fe49be92dfa63cc746019d6dcc5744bff7a338b7

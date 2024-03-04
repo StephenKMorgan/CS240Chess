@@ -362,13 +362,18 @@ public class MySQLDataAccess implements DataAccess {
     }
 
     private void clearAllData() throws SQLException, DataAccessException {
-        try (Connection conn = DatabaseManager.getConnection()) {
-            String sql = "DELETE FROM userdata";
+        try(Connection conn = DatabaseManager.getConnection()) {
+            String sql = "DELETE FROM gamelists";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.executeUpdate();
         }
         try (Connection conn = DatabaseManager.getConnection()) {
             String sql = "DELETE FROM authdata";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.executeUpdate();
+        }
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String sql = "DELETE FROM userdata";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.executeUpdate();
         }

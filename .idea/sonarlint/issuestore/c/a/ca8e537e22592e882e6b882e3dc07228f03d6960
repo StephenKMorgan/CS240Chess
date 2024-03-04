@@ -1,18 +1,0 @@
-
-g	java:S112%"FDefine and throw a dedicated exception instead of using a generic one.(”âó•ûÿÿÿÿ8ûûÏ–à1
-b	java:S112'"FDefine and throw a dedicated exception instead of using a generic one.(üÙ¿š8ûûÏ–à1
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(šäåó
-]
-java:S2095H"HUse try-with-resources or close this "Connection" in a "finally" clause.(’™İn
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Ùüğ8õØ¾–à1
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(À—£´8öØ¾–à1
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(…œìé8öØ¾–à1
-v	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Æ§Ïï8öØ¾–à1
-\
-java:S1118":Add a private constructor to hide the implicit public one.( ùÓ‹ÿÿÿÿÿ8øØ¾–à1
-F
-java:S1128")Remove this unused import 'java.io.File'.(†Ğ¥Å8‰Ù¾–à1
-Q
-java:S1128"4Remove this unused import 'java.io.FileInputStream'.(˜³ÉÓ8—üÏ–à1
-M
-java:S1128"0Remove this unused import 'java.nio.file.Paths'.(áè°¯8‹Ù¾–à1
