@@ -1,4 +1,4 @@
-package serviceTests;
+package dataAccessTests;
 
 import dataAccess.DataAccess;
 import dataAccess.MemoryDataAccess;
