@@ -30,13 +30,14 @@ public class MySQLDataAccess implements DataAccess {
             if (getUser(userData.username()) != null){
                 throw new ResponseException(403, "Error: already taken");
             }
-        } catch (SQLException | DataAccessException | ResponseException e) {
+        } catch (SQLException | DataAccessException e) {
             throw new ResponseException(500, "Error: Internal Server Error");
         }
         //Create the user
         try {
             createUser(userData);
         } catch (SQLException | DataAccessException e) {
+            System.out.println("Error in create user");
             throw new ResponseException(500, "Error: Internal Server Error");
         }          
       
@@ -56,7 +57,7 @@ public class MySQLDataAccess implements DataAccess {
             if(getUser(userData.username()) == null){
                 throw new ResponseException(401, "Error: Unauthorized");
             }
-        } catch (SQLException | DataAccessException | ResponseException e) {
+        } catch (SQLException | DataAccessException e) {
             throw new ResponseException(500, "Error: Internal Server Error");
         }
         //Check if the user is valid
@@ -64,7 +65,7 @@ public class MySQLDataAccess implements DataAccess {
             if (!validateUser(userData)){
                 throw new ResponseException(401, "Error: Unauthorized");
             }
-        } catch (SQLException | DataAccessException | ResponseException e) {
+        } catch (SQLException | DataAccessException e) {
             throw new ResponseException(500, "Error: Internal Server Error");
         }
         //Create a new auth token
@@ -83,7 +84,7 @@ public class MySQLDataAccess implements DataAccess {
             if (getAuth(authToken) == null){
                 throw new ResponseException(401, "Error: Unauthorized");
             }
-        } catch (SQLException | DataAccessException | ResponseException e) {
+        } catch (SQLException | DataAccessException e) {
             throw new ResponseException(500, "Error: Internal Server Error");
         }
         //Remove the auth token
@@ -100,7 +101,7 @@ public class MySQLDataAccess implements DataAccess {
             if (!validateAuth(authToken)){
                 throw new ResponseException(401, "Error: Unauthorized");
             }
-        } catch (SQLException | DataAccessException | ResponseException e) {
+        } catch (SQLException | DataAccessException e) {
             throw new ResponseException(500, "Error: Internal Server Error");
         }
         //Return the list of games
@@ -117,7 +118,7 @@ public class MySQLDataAccess implements DataAccess {
             if (!validateAuth(authToken)){
                 throw new ResponseException(401, "Error: Unauthorized");
             }
-        } catch (SQLException | DataAccessException | ResponseException e) {
+        } catch (SQLException | DataAccessException e) {
             throw new ResponseException(500, "Error: Internal Server Error");
         }
         //Create a new game
@@ -134,7 +135,7 @@ public class MySQLDataAccess implements DataAccess {
             if (!validateAuth(authToken)){
                 throw new ResponseException(401, "Error: Unauthorized");
             }
-        } catch (SQLException | DataAccessException | ResponseException e) {
+        } catch (SQLException | DataAccessException e) {
             throw new ResponseException(500, "Error: Internal Server Error");
         }
         //Check if the game is valid
@@ -142,7 +143,7 @@ public class MySQLDataAccess implements DataAccess {
             if (!validateGame(clientColor, gameID, authToken)){
                 throw new ResponseException(403, "Error: Already taken");
             }
-        } catch (SQLException | DataAccessException | ResponseException e) {
+        } catch (SQLException | DataAccessException e) {
             throw new ResponseException(500, "Error: Internal Server Error");
         }
         //Join the game
@@ -208,6 +209,9 @@ public class MySQLDataAccess implements DataAccess {
             } else {
                 return false;
             }
+        }
+        catch (SQLException | DataAccessException e) {
+            return false;
         }
     }
 
@@ -332,12 +336,15 @@ public class MySQLDataAccess implements DataAccess {
         //use the gamelists table to join the game
         try (Connection conn = DatabaseManager.getConnection()) {
             String sql = "INSERT INTO gamelists (game_id, username) VALUES (?, ?)";
-            PreparedStatement stmt = conn.prepareStatement(sql);
+             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, gameID);
             stmt.setString(2, getAuth(authToken).username());
             stmt.executeUpdate();
         }
         //update the gamedata table to reflect the new player if they have selected a color to join
+        if (clientColor == null) {
+            return;
+        }
         try (Connection conn = DatabaseManager.getConnection()) {
             String sql = "SELECT * FROM gamedata WHERE game_id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -387,7 +394,7 @@ public class MySQLDataAccess implements DataAccess {
     private void configureDatabase() throws ResponseException, DataAccessException {
         DatabaseManager.createDatabase();
         String[] createStatements = {
-            "CREATE TABLE IF NOT EXISTS userdata (id int PRIMARY KEY AUTO_INCREMENT, username varchar(255) UNIQUE NOT NULL, password varchar(255) NOT NULL, email varchar(255) UNIQUE)",
+            "CREATE TABLE IF NOT EXISTS userdata (id int PRIMARY KEY AUTO_INCREMENT, username varchar(255) UNIQUE NOT NULL, password varchar(255) NOT NULL, email varchar(255))",
             "CREATE TABLE IF NOT EXISTS authdata (authID varchar(255) PRIMARY KEY NOT NULL, username varchar(255) NOT NULL, timestamp datetime, FOREIGN KEY (username) REFERENCES userdata (username))",
             "CREATE TABLE IF NOT EXISTS gamedata (game_id int PRIMARY KEY NOT NULL, whiteUsername varchar(255), blackUsername varchar(255), gameName varchar(255) NOT NULL, game JSON)",
             "CREATE TABLE IF NOT EXISTS gamelists (game_id int, username varchar(255), FOREIGN KEY (username) REFERENCES userdata (username), FOREIGN KEY (game_id) REFERENCES gamedata (game_id))"

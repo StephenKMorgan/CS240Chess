@@ -1,28 +1,36 @@
 package dataAccessTests;
 
-import dataAccess.DataAccess;
-import dataAccess.MemoryDataAccess;
-import exception.ResponseException;
-import model.AuthData;
-import model.UserData;
-import model.GameData;
+import java.util.HashSet;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.ClassOrderer.DisplayName;
 
+import dataAccess.DataAccess;
+import dataAccess.MySQLDataAccess;
+import exception.ResponseException;
+import model.AuthData;
+import model.GameData;
+import model.UserData;
 import service.Service;
 
-
-import java.util.HashSet;
-
-public class serviceMemoryTest {
+public class serviceSQLTests {
     private Service service;
 
     @BeforeEach
     public void setUp() {
-        DataAccess dataAccess = new MemoryDataAccess();
+        DataAccess dataAccess = new MySQLDataAccess();
         service = new Service(dataAccess);
+    }
+
+    @AfterEach
+    public void tearDown() {
+        try {
+            service.clearAll();
+        } catch (ResponseException e) {
+            Assertions.fail("Unexpected exception in tearDown: " + e.getMessage());
+        }
     }
 
     @Test
@@ -194,6 +202,44 @@ public class serviceMemoryTest {
         int gameID = 1;
         try {
             service.joinGame(clientColor, gameID, authToken);
+        } catch (ResponseException e) {
+            Assertions.fail("Unexpected exception: " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testJoinGameWatcherPass() throws ResponseException {
+        UserData userData = new UserData("username", "password", "test@test.com");
+        AuthData authData = service.register(userData);
+        String authToken = authData.authToken();
+        service.createGame(authToken, "gameName");
+        String clientColor = null;
+        int gameID = 1;
+        try {
+            service.joinGame(clientColor, gameID, authToken);
+        } catch (ResponseException e) {
+            Assertions.fail("Unexpected exception: " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testJoinGameWatchersPass() throws ResponseException {
+        UserData userData = new UserData("username", "password", "test@test.com");
+        AuthData authData = service.register(userData);
+        String authToken = authData.authToken();
+        UserData userData2 = new UserData("username2", "password", "test@test.com");
+        AuthData authData2 = service.register(userData2);
+        String authToken2 = authData2.authToken();
+        UserData userData3 = new UserData("username3", "password", "test@test.com");
+        AuthData authData3 = service.register(userData3);
+        String authToken3 = authData3.authToken();
+        service.createGame(authToken, "gameName");
+        String clientColor = null;
+        int gameID = 1;
+        try {
+            service.joinGame(clientColor, gameID, authToken);
+            service.joinGame(clientColor, gameID, authToken2);
+            service.joinGame(clientColor, gameID, authToken3);
         } catch (ResponseException e) {
             Assertions.fail("Unexpected exception: " + e.getMessage());
         }
