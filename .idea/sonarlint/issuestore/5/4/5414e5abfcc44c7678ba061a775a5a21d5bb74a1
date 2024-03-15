@@ -12,47 +12,47 @@ o	java:S120"ZRename this package name to match the regular expression '^[a-z_
 b
 java:S2259Õ"FA "NullPointerException" could be thrown; "getAuth()" can return null.(ÈÃ‘­ÿÿÿÿÿ
 b
-java:S2259å"FA "NullPointerException" could be thrown; "getAuth()" can return null.(ŸªÏüÿÿÿÿ
-b
 java:S2259ë"FA "NullPointerException" could be thrown; "getAuth()" can return null.(ŸªÏüÿÿÿÿ
+b
+java:S2259å"FA "NullPointerException" could be thrown; "getAuth()" can return null.(ŸªÏüÿÿÿÿ
 f
-java:S2095¸"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-f
-java:S2095ê"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-f
-java:S2095ø"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-f
-java:S2095Ÿ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+java:S2095É"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
 f
 java:S2095€"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
 f
-java:S2095…"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+java:S2095û"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
 f
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-k
-java:S2095«"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÛáÙÏüÿÿÿÿ
+java:S2095Þ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
 f
-java:S2095ä"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÝúËâ
+java:S2095ê"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
 f
 java:S2095Ó"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
 f
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+java:S2095ê"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÝúËâ
+f
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+f
+java:S2095ä"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÝúËâ
+f
+java:S2095…"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
 f
 java:S2095Ý"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+f
+java:S2095ø"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+f
+java:S2095ö"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+f
+java:S2095Ÿ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
 f
 java:S2095ª"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
 f
 java:S2095¸"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
 f
-java:S2095Þ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+java:S2095¸"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+k
+java:S2095«"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÛáÙÏüÿÿÿÿ
 f
-java:S2095û"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-f
-java:S2095É"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-f
-java:S2095ö"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-f
-java:S2095ê"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÝúËâ
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
 @	java:S106("+Replace this use of System.out by a logger.(ì×•¨
 G
 java:S1172œ"0Remove this unused method parameter "authToken".(êŽéÕ

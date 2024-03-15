@@ -1,0 +1,14 @@
+
+i
+java:S1192”"FDefine a constant instead of duplicating this literal "Game " 3 times.(àï¤ıÿÿÿÿ8áìŸä1
+J
+java:S5411""(Use a primitive boolean expression here.(ÓŠ¢ùÿÿÿÿ8ãìŸä1
+L	java:S106"+Replace this use of System.out by a logger.(Ù¾Şªıÿÿÿÿ8„íŸä1
+G	java:S106 "+Replace this use of System.out by a logger.(÷ÂçÁ8…íŸä1
+L	java:S106!"+Replace this use of System.out by a logger.(ïïçéÿÿÿÿÿ8…íŸä1
+L	java:S106#"+Replace this use of System.out by a logger.(›Äæ÷üÿÿÿÿ8…íŸä1
+G	java:S106&"+Replace this use of System.out by a logger.(¢àóÄ8†íŸä1
+]	java:S1250"<This block of commented-out lines of code should be removed.(ñ¥ùšøÿÿÿÿ8‰íŸä1
+]	java:S125@"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8íŸä1
+I
+java:S1068"'Remove this unused "url" private field.(«Œåùÿÿÿÿ8™íŸä1
