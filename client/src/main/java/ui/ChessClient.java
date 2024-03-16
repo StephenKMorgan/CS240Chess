@@ -166,11 +166,16 @@ public class ChessClient {
         if(this.status == Status.LoggedOut){
             return "You must be logged in to join a game.";
         }
+        if (!color.equalsIgnoreCase("white") && !color.equalsIgnoreCase("black") && !color.equalsIgnoreCase("")) {
+            return "Invalid color. Use 'white', 'black' or leave it empty.";
+        }
         try {
             var game = server.joinGame(authData.authToken(), gameId, color);
             return "Game " + game.gameName() + " joined successfully!";
         } catch (ResponseException ex) {
             return ex.getMessage();
+        } catch (Exception ex) {
+            return "Failed to join game: " + ex.getMessage();
         }
     }
 

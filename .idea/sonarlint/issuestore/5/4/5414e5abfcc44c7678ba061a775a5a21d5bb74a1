@@ -12,47 +12,47 @@ o	java:S120"ZRename this package name to match the regular expression '^[a-z_
 b
 java:S2259æ"FA "NullPointerException" could be thrown; "getAuth()" can return null.(ŸªÏüÿÿÿÿ
 b
-java:S2259ì"FA "NullPointerException" could be thrown; "getAuth()" can return null.(ŸªÏüÿÿÿÿ
-b
 java:S2259Ö"FA "NullPointerException" could be thrown; "getAuth()" can return null.(ÈÃ‘­ÿÿÿÿÿ
+b
+java:S2259ì"FA "NullPointerException" could be thrown; "getAuth()" can return null.(ŸªÏüÿÿÿÿ
+f
+java:S2095å"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÝúËâ
+f
+java:S2095¹"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+f
+java:S2095 "OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+f
+java:S2095É"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+f
+java:S2095ü"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+f
+java:S2095¸"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+f
+java:S2095ª"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+f
+java:S2095ù"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+f
+java:S2095‘"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+f
+java:S2095Ô"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+f
+java:S2095÷"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+f
+java:S2095ß"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
 f
 java:S2095Ý"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
 k
 java:S2095¬"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÛáÙÏüÿÿÿÿ
 f
-java:S2095ß"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-f
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-f
-java:S2095¹"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-f
-java:S2095†"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-f
-java:S2095Ô"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-f
-java:S2095ü"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-f
-java:S2095‚"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-f
-java:S2095ù"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-f
-java:S2095¸"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-f
-java:S2095É"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-f
-java:S2095 "OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-f
-java:S2095‘"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
-f
-java:S2095å"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÝúËâ
+java:S2095ë"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÝúËâ
 f
 java:S2095ê"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
 f
-java:S2095÷"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
 f
-java:S2095ª"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
+java:S2095‚"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
 f
-java:S2095ë"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÝúËâ
+java:S2095†"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÐÀœ¢
 @	java:S106("+Replace this use of System.out by a logger.(ì×•¨
 G
 java:S1172"0Remove this unused method parameter "authToken".(êŽéÕ

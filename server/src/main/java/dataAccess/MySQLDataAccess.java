@@ -352,7 +352,7 @@ public class MySQLDataAccess implements DataAccess {
             stmt.setInt(1, gameID);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                if (clientColor.equals("WHITE")) {
+                if (clientColor.equalsIgnoreCase("WHITE")) {
                     String sql2 = "UPDATE gamedata SET whiteUsername = ? WHERE game_id = ?";
                     PreparedStatement stmt2 = conn.prepareStatement(sql2);
                     stmt2.setString(1, getAuth(authToken).username());
