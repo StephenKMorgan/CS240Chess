@@ -24,6 +24,7 @@ public class ChessGame {
     public ChessGame() {
         //Implement the chess board
         this.board = new ChessBoard();
+        setBoard(board);
         turn = TeamColor.WHITE;
     }
 

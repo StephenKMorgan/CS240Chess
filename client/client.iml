@@ -12,6 +12,8 @@
     <orderEntry type="module" module-name="server" scope="TEST" />
     <orderEntry type="library" name="google.code.gson" level="project" />
     <orderEntry type="library" name="junit.jupiter" level="project" />
+    <orderEntry type="module" module-name="server" />
+    <orderEntry type="module" module-name="server" />
   </component>
   <component name="SonarLintModuleSettings">
     <option name="uniqueId" value="ebf23ac5-14d5-4ce0-b3f2-d51b73a39a44" />

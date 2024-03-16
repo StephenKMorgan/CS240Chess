@@ -1,16 +1,18 @@
 
-h
-java:S1192/"FDefine a constant instead of duplicating this literal "/game" 3 times.(ê´ã£þÿÿÿÿ8Üˆ…Ÿä1
-X	java:S125"<This block of commented-out lines of code should be removed.(î–Öã8…‰…Ÿä1
-^
-java:S1075"ARefactor your code to get this URI from a customizable parameter.(ƒŽÈ¡8†‰…Ÿä1
-]
-java:S1075$"ARefactor your code to get this URI from a customizable parameter.(ìùÆ]8ˆ‰…Ÿä1
-c
-java:S1075*"ARefactor your code to get this URI from a customizable parameter.(†ªÎ­þÿÿÿÿ8‰‰…Ÿä1
-c
-java:S1075/"ARefactor your code to get this URI from a customizable parameter.(ê´ã£þÿÿÿÿ8Š‰…Ÿä1
-c
-java:S10754"ARefactor your code to get this URI from a customizable parameter.(ê´ã£þÿÿÿÿ8‹‰…Ÿä1
-c
-java:S1075:"ARefactor your code to get this URI from a customizable parameter.(ê´ã£þÿÿÿÿ8‰…Ÿä1
+a
+java:S11923"FDefine a constant instead of duplicating this literal "/game" 3 times.(ê´ã£þÿÿÿÿ
+ˆ
+java:S13192"mThe return type of this method should be an interface such as "Set" rather than the implementation "HashSet".(Š«·ÿùÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(î–Öã
+\
+java:S1075""ARefactor your code to get this URI from a customizable parameter.(”É÷ùÿÿÿÿ
+V
+java:S1075("ARefactor your code to get this URI from a customizable parameter.(ÛÌJ
+V
+java:S1075."ARefactor your code to get this URI from a customizable parameter.(ÛÌJ
+\
+java:S10753"ARefactor your code to get this URI from a customizable parameter.(ê´ã£þÿÿÿÿ
+\
+java:S10758"ARefactor your code to get this URI from a customizable parameter.(ê´ã£þÿÿÿÿ
+\
+java:S1075>"ARefactor your code to get this URI from a customizable parameter.(ê´ã£þÿÿÿÿ

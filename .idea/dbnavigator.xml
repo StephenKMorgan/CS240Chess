@@ -38,6 +38,7 @@
     <connection id="d4b27b46-165e-42e7-8225-e5ed604cb2c4" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="567eaf14-ad0a-445f-9eb3-76034346a0cb" dataset="chess.authdata" active-filter-id="" />
     <filter-actions connection-id="567eaf14-ad0a-445f-9eb3-76034346a0cb" dataset="mysql.engine_cost" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">

@@ -26,46 +26,53 @@ public class ChessClient {
         this.url = "http://localhost:4567";
     }
 
+    public ChessClient(String url) {
+        server = new ServerFacade(url);
+        this.url = url;
+    }
+
     public void  run() {
         Scanner scanner = new Scanner(System.in);
         System.out.println(EscapeSequences.ERASE_SCREEN);
         System.out.println(EscapeSequences.SET_TEXT_BOLD + "Welcome to Chess!" + EscapeSequences.RESET_TEXT_BOLD_FAINT);
         System.out.println("Type 'help' for a list of commands or 'quit' to exit the program.");
         while (isRunning) {
-            System.out.print("> ");
+            System.out.print(EscapeSequences.SET_TEXT_BOLD + this.status + EscapeSequences.RESET_TEXT_BOLD_FAINT + " >>>> ");
             var input = scanner.nextLine();
             var output = inputParser(input);
             System.out.println(output);
         }
-    }
-
-    public ChessClient(String url) {
-        server = new ServerFacade(url);
-        this.url = url;
+        System.exit(0);
     }
 
     public String inputParser(String input){
-        //try {
-            var tokens = input.toLowerCase().split(" ");
-            var cmd = (tokens.length > 0) ? tokens[0] : "help";
-            var params = Arrays.copyOfRange(tokens, 1, tokens.length);
-            return switch (cmd) {
-                case "quit" -> quit();
-                case "register" -> register(params[0], params[1], params[2]);
-                case "login" -> login(params[0], params[1]);
-                case "logout" -> logout();
-                case "list" -> listGames();
-                case "create" -> createGame(String.join(" ", params));
-                case "join" -> joinGame(Integer.parseInt(params[0]), params[1]);
-                case "observe" -> observeGame(Integer.parseInt(params[0]));
-                case "help" -> help();
-                default -> help();
-            };
-        // } 
-        // catch (ResponseException ex) {
-        //     return ex.getMessage();
-        // }
+        var tokens = input.toLowerCase().split(" ");
+        var cmd = (tokens.length > 0) ? tokens[0] : "help";
+        var params = Arrays.copyOfRange(tokens, 1, tokens.length);
+        return switch (cmd) {
+            case "quit" -> quit();
+            case "register" -> params.length < 3 ? "Missing parameters. Usage: register <username> <password> <email>" : register(params[0], params[1], params[2]);
+            case "login" -> params.length < 2 ? "Missing parameters. Usage: login <username> <password>" : login(params[0], params[1]);
+            case "logout" -> logout();
+            case "list" -> listGames();
+            case "create" -> params.length < 1 ? "Missing parameters. Usage: create <game name>" : createGame(String.join(" ", params));
+            case "join" -> params.length < 2 ? "Missing parameters. Usage: join <game id> <password>" : joinGame(Integer.parseInt(params[0]), params[1]);
+            case "observe" -> params.length < 1 ? "Missing parameters. Usage: observe <game id>" : observeGame(Integer.parseInt(params[0]));
+            case "devdebug" -> devDebug();
+            case "help" -> help();
+            default -> help();
+        };
     }
+
+    public String devDebug () {
+
+        return """
+        Dev Debug:
+        - Status: """ + status + """
+        - AuthData: """ + authData + """
+        - Server: """ + server + """
+                """;        
+    } 
 
     public String help() {
         if (status == Status.LoggedIn) {
@@ -133,7 +140,11 @@ public class ChessClient {
         }
         try {
             var games = server.listGames(authData.authToken());
-            return "Games: " + games;
+            var output = "Available games:\n";
+            for (var game : games) {
+                output += game.gameID() + " - " + game.gameName() + "\n";
+            }
+            return output;
         } catch (ResponseException ex) {
             return ex.getMessage();
         }

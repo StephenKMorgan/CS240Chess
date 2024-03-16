@@ -242,6 +242,7 @@ public class MySQLDataAccess implements DataAccess {
         }
     }
 
+
     private void removeAuth(String authToken) throws SQLException, DataAccessException {
         try (Connection conn = DatabaseManager.getConnection()) {
             String sql = "DELETE FROM authdata WHERE authID = ?";

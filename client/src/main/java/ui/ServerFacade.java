@@ -6,9 +6,11 @@ import model.AuthData;
 import model.GameData;
 import model.JoinData;
 import model.UserData;
+import server.Server;
 
 import java.io.*;
 import java.net.*;
+import java.util.HashSet;
 
 public class ServerFacade {
 
@@ -16,6 +18,8 @@ public class ServerFacade {
 
     public ServerFacade(String url) {
         serverUrl = url;
+        int port = Integer.parseInt(url.split(":")[2]);
+        var server = new Server().run(port);
     }
 
     //Spark Endpoints:
@@ -27,25 +31,25 @@ public class ServerFacade {
     // Spark.put("/game", this::joinGame);
 
     public AuthData registerUser(String username, String password, String email) throws ResponseException {
-        var path = "/user/register";
+        var path = "/user";
         var request = new UserData(username, password, email);
         return this.makeRequest("POST", path, request, AuthData.class, null);
     }
 
     public AuthData loginUser(String username, String password) throws ResponseException {
-        var path = "/session/login";
+        var path = "/session";
         var request = new UserData(username, password, null);
         return this.makeRequest("POST", path, request, AuthData.class, null);
     }
 
     public void logoutUser(String token) throws ResponseException {
-        var path = "/session/logout";
+        var path = "/session";
         this.makeRequest("DELETE", path, null, null, token);
     }
 
-    public GameData[] listGames(String token) throws ResponseException {
+    public HashSet<GameData> listGames(String token) throws ResponseException {
         var path = "/game";
-        return this.makeRequest("GET", path, null, GameData[].class, token);
+        return this.makeRequest("GET", path, null, HashSet.class, token);
     }
 
     public GameData createGame(String token, String gameName) throws ResponseException {
@@ -67,7 +71,7 @@ private <T> T makeRequest(String method, String path, Object request, Class<T> r
             http.setRequestMethod(method);
             http.setDoOutput(true);
             if (token != null) {
-                http.setRequestProperty("Authorization", "Bearer " + token);
+                http.setRequestProperty("Authorization", token);
             }
 
             writeBody(request, http);
