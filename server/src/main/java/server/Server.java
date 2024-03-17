@@ -138,8 +138,9 @@ public class Server {
         var joinData = new Gson().fromJson(req.body(), model.JoinData.class);
         int gameID = joinData.gameID();
         var playerColor = joinData.playerColor();
-        service.joinGame(playerColor, gameID, req.headers("Authorization"));
+        var game = service.joinGame(playerColor, gameID, req.headers("Authorization"));
         res.status(200);
+        return new Gson().toJson(game);
         } catch (ResponseException e) {
             res.status(e.StatusCode());
             return new Gson().toJson(Collections.singletonMap("message", e.getMessage()));
@@ -147,7 +148,6 @@ public class Server {
             res.status(500);
             return new Gson().toJson(Collections.singletonMap("message", "Error: Internal Server Error"));
         }
-        return new Gson().toJson(Collections.singletonMap("message", "Success"));
     }
 
     public Object clearDB(Request req, Response res) throws ResponseException{

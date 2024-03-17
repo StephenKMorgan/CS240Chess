@@ -129,7 +129,7 @@ public class MySQLDataAccess implements DataAccess {
         }
     }
 
-    public void joinGame(String clientColor, int gameID, String authToken) throws ResponseException {
+    public GameData joinGame(String clientColor, int gameID, String authToken) throws ResponseException {
         //Check if the auth token is valid
         try {
             if (!validateAuth(authToken)){
@@ -148,7 +148,7 @@ public class MySQLDataAccess implements DataAccess {
         }
         //Join the game
         try {
-            joinValidGame(clientColor, gameID, authToken);
+            return joinValidGame(clientColor, gameID, authToken);
         } catch (SQLException | DataAccessException e) {
             throw new ResponseException(500, "Error: Internal Server Error");
         }
@@ -333,7 +333,7 @@ public class MySQLDataAccess implements DataAccess {
         }
     }
 
-    private void joinValidGame(String clientColor, int gameID, String authToken) throws SQLException, DataAccessException {
+    private GameData joinValidGame(String clientColor, int gameID, String authToken) throws SQLException, DataAccessException {
         //use the gamelists table to join the game
         try (Connection conn = DatabaseManager.getConnection()) {
             String sql = "INSERT INTO gamelists (game_id, username) VALUES (?, ?)";
@@ -342,9 +342,17 @@ public class MySQLDataAccess implements DataAccess {
             stmt.setString(2, getAuth(authToken).username());
             stmt.executeUpdate();
         }
-        //update the gamedata table to reflect the new player if they have selected a color to join
         if (clientColor == null) {
-            return;
+            try (Connection conn = DatabaseManager.getConnection()) {
+                String sql = "SELECT * FROM gamedata WHERE game_id = ?";
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setInt(1, gameID);
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    return new GameData(rs.getInt("game_id"), rs.getString("whiteUsername"), rs.getString("blackUsername"), rs.getString("gameName"), convertJsonToChessGame(rs.getString("game")));
+                }
+            }
+            
         }
         try (Connection conn = DatabaseManager.getConnection()) {
             String sql = "SELECT * FROM gamedata WHERE game_id = ?";
@@ -365,8 +373,10 @@ public class MySQLDataAccess implements DataAccess {
                     stmt2.setInt(2, gameID);
                     stmt2.executeUpdate();
                 }
+                return new GameData(rs.getInt("game_id"), rs.getString("whiteUsername"), rs.getString("blackUsername"), rs.getString("gameName"), convertJsonToChessGame(rs.getString("game")));
             }
         }
+        return null;
     }
 
     private void clearAllData() throws SQLException, DataAccessException {

@@ -62,11 +62,11 @@ public class Service {
         return dataAccess.createGame(authToken, gameName);
     }
 
-    public void joinGame(String clientColor, int gameID, String authToken) throws ResponseException {
+    public GameData joinGame(String clientColor, int gameID, String authToken) throws ResponseException {
         if ( gameID <= 0 || authToken == null || authToken.isEmpty()) {
             throw new ResponseException(400, "Error: Bad Request");
         }
-        dataAccess.joinGame(clientColor, gameID, authToken);
+        return dataAccess.joinGame(clientColor, gameID, authToken);
     }
 
     //db

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import exception.ResponseException;
 import model.AuthData;
 import model.GameData;
+import model.GameResponseData;
 import model.JoinData;
 import model.UserData;
 import server.Server;
@@ -47,9 +48,9 @@ public class ServerFacade {
         this.makeRequest("DELETE", path, null, null, token);
     }
 
-    public HashSet<GameData> listGames(String token) throws ResponseException {
+    public GameResponseData listGames(String token) throws ResponseException {
         var path = "/game";
-        return this.makeRequest("GET", path, null, HashSet.class, token);
+        return this.makeRequest("GET", path, null, GameResponseData.class, token);
     }
 
     public GameData createGame(String token, String gameName) throws ResponseException {

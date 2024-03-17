@@ -1,8 +1,8 @@
 
 b
-java:S1192Ÿ"FDefine a constant instead of duplicating this literal "Game " 3 times.(àï¤ıÿÿÿÿ
+java:S1192¢"FDefine a constant instead of duplicating this literal "Game " 3 times.(àï¤ıÿÿÿÿ
 8
-java:S1643‘"Use a StringBuilder instead.(«ßı¸şÿÿÿÿ
+java:S1643”"Use a StringBuilder instead.(«ßı¸şÿÿÿÿ
 C
 java:S5411'"(Use a primitive boolean expression here.(ÓŠ¢ùÿÿÿÿ
 E	java:S106$"+Replace this use of System.out by a logger.(Ù¾Şªıÿÿÿÿ

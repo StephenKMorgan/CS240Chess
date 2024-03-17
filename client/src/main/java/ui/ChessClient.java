@@ -1,10 +1,16 @@
 package ui;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 
 import exception.ResponseException;
 import model.AuthData;
+import model.GameData;
+import model.GameResponseData;
 
 
 public class ChessClient {
@@ -15,6 +21,7 @@ public class ChessClient {
     private String url;
     private AuthData authData;
     private Boolean isRunning = true;
+    private GameData gameData;
 
     public static void main(String[] args) {
         var client = new ChessClient();
@@ -56,7 +63,7 @@ public class ChessClient {
             case "logout" -> logout();
             case "list" -> listGames();
             case "create" -> params.length < 1 ? "Missing parameters. Usage: create <game name>" : createGame(String.join(" ", params));
-            case "join" -> params.length < 2 ? "Missing parameters. Usage: join <game id> <password>" : joinGame(Integer.parseInt(params[0]), params[1]);
+            case "join" -> params.length < 1 ? "Missing parameters. Usage: join <game id>" : joinGame(Integer.parseInt(params[0]), params[1]);
             case "observe" -> params.length < 1 ? "Missing parameters. Usage: observe <game id>" : observeGame(Integer.parseInt(params[0]));
             case "devdebug" -> devDebug();
             case "help" -> help();
@@ -102,6 +109,9 @@ public class ChessClient {
     }
 
     public String register(String username, String password, String email) {
+        if(this.status == Status.LoggedIn){
+            return "You must be logged out to register a new user.";
+        }
         try {
             AuthData user = server.registerUser(username, password, email);
             this.authData = user;
@@ -119,6 +129,10 @@ public class ChessClient {
             this.status = Status.LoggedIn;
             return "User " + user.username() + " logged in successfully!";
         } catch (ResponseException ex) {
+            //if the error is a 401, the user entered the wrong password or username
+            if (ex.getMessage().contains("401")) {
+                return "Invalid username or password.";
+            }
             return ex.getMessage();
         }
     }
@@ -140,9 +154,11 @@ public class ChessClient {
         }
         try {
             var games = server.listGames(authData.authToken());
-            var output = "Available games:\n";
-            for (var game : games) {
-                output += game.gameID() + " - " + game.gameName() + "\n";
+            List<GameData> sortedGames = new ArrayList<>(games.games());
+            sortedGames.sort(Comparator.comparingInt(GameData::gameID));
+            String output = "Available games:\n";
+            for (GameData game : sortedGames) {
+                output += "Game " + game.gameID() + ": " + game.gameName() + "\n";
             }
             return output;
         } catch (ResponseException ex) {
@@ -171,8 +187,13 @@ public class ChessClient {
         }
         try {
             var game = server.joinGame(authData.authToken(), gameId, color);
-            return "Game " + game.gameName() + " joined successfully!";
+            this.gameData = game;
+            return displayBoard(color);
+
         } catch (ResponseException ex) {
+            if (ex.getMessage().contains("403")) {
+                return "This color is already taken. Please choose another one.";
+            }
             return ex.getMessage();
         } catch (Exception ex) {
             return "Failed to join game: " + ex.getMessage();
@@ -200,6 +221,29 @@ public class ChessClient {
         return "Goodbye!";
     }
 
-
+    private String displayBoard(String color) {
+        if (this.gameData == null) {
+            return "No game data available.";
+        }
+        //game contains the game data in this form {"turn": "WHITE", "board": {"board": [[{"type": "ROOK", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "KNIGHT", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "BISHOP", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "QUEEN", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "KING", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "BISHOP", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "KNIGHT", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "ROOK", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}], [{"type": "PAWN", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}], [null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null], [{"type": "PAWN", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}], [{"type": "ROOK", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "KNIGHT", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "BISHOP", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "QUEEN", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "KING", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "BISHOP", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "KNIGHT", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "ROOK", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}]]}}
+        var gameInfo = this.gameData.game();
+        //break down the game data into the board and the turn
+        var board = gameInfo.getBoard();
+        var turn = gameInfo.getTeamTurn();
+        var output = "Game " + this.gameData.gameName() + ":\n";
+        //display the board
+        for (int i = 0; i < board.size(); i++) {
+            for (int j = 0; j < board.get(i).size(); j++) {
+                var piece = board.get(i).get(j);
+                if (piece == null) {
+                    output += "  ";
+                } else {
+                    output += piece.getPieceColor().equalsIgnoreCase("WHITE") ? "W" : "B";
+                    output += piece.getType().substring(0, 1);
+                }
+            }
+            output += "\n";
+        }
+    }
     
 }

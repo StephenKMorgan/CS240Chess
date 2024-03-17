@@ -69,7 +69,7 @@ public class MemoryDataAccess implements DataAccess{
         return generateGame(authToken, gameName);
     }
 
-    public void joinGame(String clientColor, int gameID, String authToken) throws ResponseException {
+    public GameData joinGame(String clientColor, int gameID, String authToken) throws ResponseException {
         //Check if the auth token is valid
         if (!validateAuth(authToken)){
             throw new ResponseException(401, "Error: Unauthorized");
@@ -79,7 +79,7 @@ public class MemoryDataAccess implements DataAccess{
             throw new ResponseException(403, "Error: Already taken");
         }
         //Join the game
-        joinValidGame(clientColor, gameID, authToken);
+        return joinValidGame(clientColor, gameID, authToken);
     }
 
     public void clear() throws ResponseException {
@@ -162,11 +162,12 @@ public class MemoryDataAccess implements DataAccess{
         return false;
     }
 
-    private void joinValidGame(String clientColor, int gameID, String authToken) {
+    private GameData joinValidGame(String clientColor, int gameID, String authToken) {
         var game = games.get(gameID);
         if (clientColor == null) {
             game = new GameData(game.gameID(), game.whiteUsername(), game.blackUsername(), game.gameName(), game.game());
             games.put(gameID, game);
+            return game;
         } else {
             if (clientColor.equals("WHITE")) {
                 game = new GameData(game.gameID(), authTokens.get(authToken).username(), game.blackUsername(), game.gameName(), game.game());
@@ -175,6 +176,7 @@ public class MemoryDataAccess implements DataAccess{
                 game = new GameData(game.gameID(), game.whiteUsername(), authTokens.get(authToken).username(), game.gameName(), game.game());
                 games.put(gameID, game);
             }
+            return game;
         }
     }
 }
