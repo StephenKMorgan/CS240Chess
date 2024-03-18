@@ -1,16 +1,23 @@
 
-h
-java:S11924"FDefine a constant instead of duplicating this literal "/game" 3 times.(ê´ã£þÿÿÿÿ8íæ”Ìä1
-X	java:S125"<This block of commented-out lines of code should be removed.(î–Öã8Ÿç”Ìä1
-c
-java:S1075#"ARefactor your code to get this URI from a customizable parameter.(”É÷ùÿÿÿÿ8Ÿç”Ìä1
-]
-java:S1075)"ARefactor your code to get this URI from a customizable parameter.(ÛÌJ8Ÿç”Ìä1
-]
-java:S1075/"ARefactor your code to get this URI from a customizable parameter.(ÛÌJ8Ÿç”Ìä1
+a
+java:S11924"FDefine a constant instead of duplicating this literal "/game" 3 times.(ê´ã£þÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(î–Öã
+\
+java:S1075#"ARefactor your code to get this URI from a customizable parameter.(”É÷ùÿÿÿÿ
+V
+java:S1075)"ARefactor your code to get this URI from a customizable parameter.(ÛÌJ
+V
+java:S1075/"ARefactor your code to get this URI from a customizable parameter.(ÛÌJ
 \
 java:S10754"ARefactor your code to get this URI from a customizable parameter.(ê´ã£þÿÿÿÿ
 \
 java:S10759"ARefactor your code to get this URI from a customizable parameter.(ê´ã£þÿÿÿÿ
-c
-java:S1075?"ARefactor your code to get this URI from a customizable parameter.(ê´ã£þÿÿÿÿ8©ç”Ìä1
+\
+java:S1075?"ARefactor your code to get this URI from a customizable parameter.(ê´ã£þÿÿÿÿ
+A
+java:S1874F"+Remove this use of "URL"; it is deprecated.(„Ùï‡
+@	java:S106M"+Replace this use of System.out by a logger.(ƒëª±
+E	java:S106O"+Replace this use of System.out by a logger.(¶ÒÎþÿÿÿÿ
+?	java:S106T"+Replace this use of System.out by a logger.(”ó²D
+C
+java:S1128".Remove this unused import 'java.util.HashSet'.(Ê‚êX

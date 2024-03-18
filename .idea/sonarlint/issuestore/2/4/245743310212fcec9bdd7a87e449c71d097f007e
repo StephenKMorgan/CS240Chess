@@ -1,20 +1,49 @@
 
-b
-java:S1192¢"FDefine a constant instead of duplicating this literal "Game " 3 times.(àï¤ıÿÿÿÿ
-8
-java:S1643”"Use a StringBuilder instead.(«ßı¸şÿÿÿÿ
+d
+java:S1192¿"FDefine a constant instead of duplicating this literal "white" 3 times.(ß®ï8°ß†›å1
+d
+java:S1192§"FDefine a constant instead of duplicating this literal "Game " 3 times.(ÒÆ«“8°ß†›å1
+s	java:S117Ñ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(°—õıûÿÿÿÿ8°ß†›å1
+:
+java:S1643§"Use a StringBuilder instead.(ÒÆ«“8Àß†›å1
+?
+java:S1643ƒ"Use a StringBuilder instead.(úÈÎÀşÿÿÿÿ8Àß†›å1
+:
+java:S1643†"Use a StringBuilder instead.(“ôˆ‘8Àß†›å1
+:
+java:S1643ˆ"Use a StringBuilder instead.(¼ÿÁ²8Àß†›å1
+?
+java:S1643•"Use a StringBuilder instead.(úÈÎÀşÿÿÿÿ8Àß†›å1
+?
+java:S1643˜"Use a StringBuilder instead.(Š¡€’ÿÿÿÿÿ8Àß†›å1
+:
+java:S1643š"Use a StringBuilder instead.(Ö‚Ø™8Àß†›å1
 C
-java:S5411'"(Use a primitive boolean expression here.(ÓŠ¢ùÿÿÿÿ
-E	java:S106$"+Replace this use of System.out by a logger.(Ù¾Şªıÿÿÿÿ
-@	java:S106%"+Replace this use of System.out by a logger.(÷ÂçÁ
-E	java:S106&"+Replace this use of System.out by a logger.(ïïçéÿÿÿÿÿ
-@	java:S106("+Replace this use of System.out by a logger.(ãä×—
-@	java:S106+"+Replace this use of System.out by a logger.(¢àóÄ
+java:S54111"(Use a primitive boolean expression here.(ÓŠ¢ùÿÿÿÿ
+F
+java:S5411Ë"(Use a primitive boolean expression here.(±ƒî˜8Àß†›å1
+_
+java:S4973¥"<Strings and Boxed types should be compared using "equals()".(ÀªÌñşÿÿÿÿ8Àß†›å1
+E	java:S106."+Replace this use of System.out by a logger.(Ù¾Şªıÿÿÿÿ
+@	java:S106/"+Replace this use of System.out by a logger.(÷ÂçÁ
+E	java:S1060"+Replace this use of System.out by a logger.(ïïçéÿÿÿÿÿ
+@	java:S1062"+Replace this use of System.out by a logger.(ãä×—
+@	java:S1065"+Replace this use of System.out by a logger.(¢àóÄ
 G
-java:S5663G",Use simple literal for a single-line string.(ÿÈ¾Îşÿÿÿÿ
+java:S5663Q",Use simple literal for a single-line string.(ÿÈ¾Îşÿÿÿÿ
 G
-java:S5663H",Use simple literal for a single-line string.(¾¦¡§úÿÿÿÿ
+java:S5663R",Use simple literal for a single-line string.(¾¦¡§úÿÿÿÿ
 G
-java:S5663I",Use simple literal for a single-line string.(£–± ÿÿÿÿÿ
+java:S5663S",Use simple literal for a single-line string.(£–± ÿÿÿÿÿ
 B
-java:S1068"'Remove this unused "url" private field.(«Œåùÿÿÿÿ
+java:S5663T",Use simple literal for a single-line string.(ÛËÀ¨
+B
+java:S5663U",Use simple literal for a single-line string.(Ãé¥”
+G
+java:S5663V",Use simple literal for a single-line string.(ĞüÑ¾ıÿÿÿÿ
+C
+java:S1128".Remove this unused import 'java.util.HashSet'.(Ê‚êX
+H
+java:S1128"3Remove this unused import 'model.GameResponseData'.(›ôŒf
+S
+java:S1144Ñ"0Remove this unused private "errorParser" method.(°—õıûÿÿÿÿ8‹â†›å1

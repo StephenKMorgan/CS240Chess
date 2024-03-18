@@ -7,10 +7,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 
+import chess.ChessPiece;
+import chess.ChessPosition;
 import exception.ResponseException;
 import model.AuthData;
 import model.GameData;
 import model.GameResponseData;
+
 
 
 public class ChessClient {
@@ -78,7 +81,10 @@ public class ChessClient {
         - Status: """ + status + """
         - AuthData: """ + authData + """
         - Server: """ + server + """
-                """;        
+        - URL: """ + url + """
+        - GameData: """ + gameData + """
+        - IsRunning: """ + isRunning + """
+        """;        
     } 
 
     public String help() {
@@ -118,6 +124,7 @@ public class ChessClient {
             this.status = Status.LoggedIn;
             return "User " + user.username() + " registered successfully!";
         } catch (ResponseException ex) {
+
             return ex.getMessage();
         }
     }
@@ -129,7 +136,6 @@ public class ChessClient {
             this.status = Status.LoggedIn;
             return "User " + user.username() + " logged in successfully!";
         } catch (ResponseException ex) {
-            //if the error is a 401, the user entered the wrong password or username
             if (ex.getMessage().contains("401")) {
                 return "Invalid username or password.";
             }
@@ -188,7 +194,7 @@ public class ChessClient {
         try {
             var game = server.joinGame(authData.authToken(), gameId, color);
             this.gameData = game;
-            return displayBoard(color);
+            return displayGame(color);
 
         } catch (ResponseException ex) {
             if (ex.getMessage().contains("403")) {
@@ -206,7 +212,8 @@ public class ChessClient {
         }
         try {
             var game = server.joinGame(authData.authToken(), gameId, null);
-            return "Game " + game.gameName() + " observed successfully!";
+            this.gameData = game;
+            return displayGame("white");
         } catch (ResponseException ex) {
             return ex.getMessage();
         }
@@ -221,29 +228,125 @@ public class ChessClient {
         return "Goodbye!";
     }
 
-    private String displayBoard(String color) {
+    private String displayGame(String color) {
         if (this.gameData == null) {
             return "No game data available.";
         }
-        //game contains the game data in this form {"turn": "WHITE", "board": {"board": [[{"type": "ROOK", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "KNIGHT", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "BISHOP", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "QUEEN", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "KING", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "BISHOP", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "KNIGHT", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "ROOK", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}], [{"type": "PAWN", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "BLACK", "validMoves": []}], [null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null], [null, null, null, null, null, null, null, null], [{"type": "PAWN", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "PAWN", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}], [{"type": "ROOK", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "KNIGHT", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "BISHOP", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "QUEEN", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "KING", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "BISHOP", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "KNIGHT", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}, {"type": "ROOK", "checkMoves": [], "pieceColor": "WHITE", "validMoves": []}]]}}
         var gameInfo = this.gameData.game();
-        //break down the game data into the board and the turn
-        var board = gameInfo.getBoard();
         var turn = gameInfo.getTeamTurn();
         var output = "Game " + this.gameData.gameName() + ":\n";
-        //display the board
-        for (int i = 0; i < board.size(); i++) {
-            for (int j = 0; j < board.get(i).size(); j++) {
-                var piece = board.get(i).get(j);
-                if (piece == null) {
-                    output += "  ";
-                } else {
-                    output += piece.getPieceColor().equalsIgnoreCase("WHITE") ? "W" : "B";
-                    output += piece.getType().substring(0, 1);
-                }
-            }
-            output += "\n";
+
+        if (color.equalsIgnoreCase("white")) {
+            output += displayBoard();
+            output += "\n--------------------------------\n";
+            output += displayBoardInverted();
+        } else {
+            output += displayBoardInverted();
+            output += "\n--------------------------------\n";
+            output += displayBoard();
         }
+
+        return output + "\n" + "It is " + turn + "'s turn.";
+    }
+
+    private String displayBoard(){
+        var gameInfo = this.gameData.game();
+        var board = gameInfo.getBoard();
+        var output = "";
+
+        output += EscapeSequences.SET_TEXT_BOLD + displayAlphabet(false) + EscapeSequences.RESET_TEXT_BOLD_FAINT + "\n";
+        for (int i = 0; i < 8; i++) {
+            output += EscapeSequences.SET_TEXT_BOLD + (8 - i) + EscapeSequences.RESET_TEXT_BOLD_FAINT + " ";
+            for (int j = 0; j < 8; j++) {
+                var piece = board.getPiece(new ChessPosition(i + 1, j + 1));
+                output += (i + j) % 2 == 0 ? EscapeSequences.SET_BG_COLOR_LIGHT_BLUE + returnPieceChar(piece) + EscapeSequences.SET_BG_COLOR_DARK_GREY : EscapeSequences.SET_BG_COLOR_BLUE + EscapeSequences.SET_TEXT_COLOR_WHITE + returnPieceChar(piece) + EscapeSequences.SET_TEXT_COLOR_WHITE + EscapeSequences.SET_BG_COLOR_DARK_GREY;
+            }
+            output += EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.SET_TEXT_BOLD + (8 - i) + EscapeSequences.RESET_TEXT_BOLD_FAINT + "\n";
+        }
+        output += EscapeSequences.SET_TEXT_BOLD + displayAlphabet(false) + EscapeSequences.RESET_TEXT_BOLD_FAINT + EscapeSequences.SET_BG_COLOR_DARK_GREY;
+        return output;
+    }
+
+    private String displayBoardInverted(){
+        var gameInfo = this.gameData.game();
+        var board = gameInfo.getBoard();
+        var output = "";
+
+        output += EscapeSequences.SET_TEXT_BOLD + displayAlphabet(true) + EscapeSequences.RESET_TEXT_BOLD_FAINT + "\n";
+        for (int i = 7; i >= 0; i--) {
+            output += EscapeSequences.SET_TEXT_BOLD + (8 - i) + EscapeSequences.RESET_TEXT_BOLD_FAINT + " ";
+            for (int j = 7; j >= 0; j--) {
+                var piece = board.getPiece(new ChessPosition(i + 1, j + 1));
+                output += (i + j) % 2 == 0 ? EscapeSequences.SET_BG_COLOR_LIGHT_GREEN + returnPieceChar(piece) + EscapeSequences.SET_BG_COLOR_DARK_GREY : EscapeSequences.SET_BG_COLOR_GREEN + EscapeSequences.SET_TEXT_COLOR_WHITE + returnPieceChar(piece) + EscapeSequences.SET_TEXT_COLOR_WHITE + EscapeSequences.SET_BG_COLOR_DARK_GREY;
+            }
+            output += EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.SET_TEXT_BOLD + (i + 1) + EscapeSequences.RESET_TEXT_BOLD_FAINT + "\n";
+        }
+        output += EscapeSequences.SET_TEXT_BOLD + displayAlphabet(true) + EscapeSequences.RESET_TEXT_BOLD_FAINT + EscapeSequences.SET_BG_COLOR_DARK_GREY;
+        return output;
+    }
+
+
+    private String returnPieceChar(ChessPiece piece){
+        if (piece == null) {
+            return EscapeSequences.EMPTY;
+        }
+        if (piece.getTeamColor().toString() == "WHITE") {
+            switch (piece.getPieceType()) {
+                case PAWN:
+                    return EscapeSequences.SET_TEXT_COLOR_WHITE + EscapeSequences.WHITE_PAWN + EscapeSequences.SET_TEXT_COLOR_WHITE;
+                case ROOK:
+                    return EscapeSequences.SET_TEXT_COLOR_WHITE + EscapeSequences.WHITE_ROOK + EscapeSequences.SET_TEXT_COLOR_WHITE;
+                case KNIGHT:
+                    return EscapeSequences.SET_TEXT_COLOR_WHITE + EscapeSequences.WHITE_KNIGHT + EscapeSequences.SET_TEXT_COLOR_WHITE;
+                case BISHOP:
+                    return EscapeSequences.SET_TEXT_COLOR_WHITE + EscapeSequences.WHITE_BISHOP + EscapeSequences.SET_TEXT_COLOR_WHITE;
+                case QUEEN:
+                    return EscapeSequences.SET_TEXT_COLOR_WHITE + EscapeSequences.WHITE_QUEEN + EscapeSequences.SET_TEXT_COLOR_WHITE;
+                case KING:
+                    return EscapeSequences.SET_TEXT_COLOR_WHITE + EscapeSequences.WHITE_KING + EscapeSequences.SET_TEXT_COLOR_WHITE;        
+                default:
+                    return EscapeSequences.SET_TEXT_COLOR_WHITE + EscapeSequences.EMPTY + EscapeSequences.SET_TEXT_COLOR_WHITE;
+            }
+        } else {
+            switch (piece.getPieceType()) {
+                case PAWN:
+                    return EscapeSequences.SET_TEXT_COLOR_BLACK + EscapeSequences.BLACK_PAWN  + EscapeSequences.SET_TEXT_COLOR_WHITE;
+                case ROOK:
+                    return EscapeSequences.SET_TEXT_COLOR_BLACK + EscapeSequences.BLACK_ROOK + EscapeSequences.SET_TEXT_COLOR_WHITE;
+                case KNIGHT:
+                    return EscapeSequences.SET_TEXT_COLOR_BLACK + EscapeSequences.BLACK_KNIGHT + EscapeSequences.SET_TEXT_COLOR_WHITE;
+                case BISHOP:
+                    return EscapeSequences.SET_TEXT_COLOR_BLACK + EscapeSequences.BLACK_BISHOP + EscapeSequences.SET_TEXT_COLOR_WHITE;
+                case QUEEN:
+                    return EscapeSequences.SET_TEXT_COLOR_BLACK + EscapeSequences.BLACK_QUEEN + EscapeSequences.SET_TEXT_COLOR_WHITE;
+                case KING:
+                    return EscapeSequences.SET_TEXT_COLOR_BLACK + EscapeSequences.BLACK_KING + EscapeSequences.SET_TEXT_COLOR_WHITE;       
+                default:
+                    return EscapeSequences.SET_TEXT_COLOR_BLACK + EscapeSequences.EMPTY + EscapeSequences.SET_TEXT_COLOR_WHITE;
+            }
+        }
+    }
+
+    private String displayAlphabet(Boolean inverted){
+        if (inverted) {
+            return "  \u2003h\u2003 g\u2003 f\u2003 e\u2003 d\u2003 c\u2003 b\u2003 a";
+        }
+        return "  \u2003a\u2003 b\u2003 c\u2003 d\u2003 e\u2003 f\u2003 g\u2003 h";
+    }
+
+    private String errorParser(String Error){
+        switch (Error) {
+            case "400":
+                return "Invalid request.";
+            case "401":
+                return "Invalid username or password.";
+            case "403":
+                return "This color is already taken. Please choose another one.";     
+            case "500":
+                return "Internal server error.";   
+            default:
+                return Error;
+         }
     }
     
 }

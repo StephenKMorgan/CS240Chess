@@ -2,73 +2,73 @@
 `	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
 i
 java:S1192:"TDefine a constant instead of duplicating this literal "Error: Unauthorized" 6 times.(­ÛÇf
-g
-java:S1192—"IDefine a constant instead of duplicating this literal "gameName" 3 times.(úÓßä8ß²Íä1
-f
-java:S1192—"HDefine a constant instead of duplicating this literal "game_id" 4 times.(úÓßä8ß²Íä1
-Œ
-java:S1192¸"iDefine a constant instead of duplicating this literal "SELECT * FROM gamedata WHERE game_id = ?" 3 times.(ºíêäøÿÿÿÿ8ß²Íä1
+`
+java:S1192—"IDefine a constant instead of duplicating this literal "gameName" 3 times.(úÓßä
+_
+java:S1192—"HDefine a constant instead of duplicating this literal "game_id" 4 times.(úÓßä
+…
+java:S1192¸"iDefine a constant instead of duplicating this literal "SELECT * FROM gamedata WHERE game_id = ?" 3 times.(ºíêäøÿÿÿÿ
 y
 java:S1192""^Define a constant instead of duplicating this literal "Error: Internal Server Error" 16 times.(šúÀšúÿÿÿÿ
-l
-java:S1192—"NDefine a constant instead of duplicating this literal "blackUsername" 4 times.(úÓßä8ß²Íä1
-l
-java:S1192—"NDefine a constant instead of duplicating this literal "whiteUsername" 4 times.(úÓßä8ß²Íä1
-ƒ
-java:S1488Â"fImmediately return this expression instead of assigning it to the temporary variable "hashedPassword".(şİ½8ß²Íä1
+e
+java:S1192—"NDefine a constant instead of duplicating this literal "blackUsername" 4 times.(úÓßä
+e
+java:S1192—"NDefine a constant instead of duplicating this literal "whiteUsername" 4 times.(úÓßä
+|
+java:S1488Â"fImmediately return this expression instead of assigning it to the temporary variable "hashedPassword".(şİ½
 >
 java:S5411A"(Use a primitive boolean expression here.(¼İµÖ
 o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(šäåó
-i
-java:S2259î"FA "NullPointerException" could be thrown; "getAuth()" can return null.(ŸªÏüÿÿÿÿ8½à²Íä1
-i
-java:S2259Ö"FA "NullPointerException" could be thrown; "getAuth()" can return null.(ÈÃ‘­ÿÿÿÿÿ8½à²Íä1
-g
-java:S2259ë"IA "NullPointerException" could be thrown; "clientColor" is nullable here.(÷Ğ®˜8¾à²Íä1
-i
-java:S2259ô"FA "NullPointerException" could be thrown; "getAuth()" can return null.(ŸªÏüÿÿÿÿ8¾à²Íä1
+b
+java:S2259Ö"FA "NullPointerException" could be thrown; "getAuth()" can return null.(ÈÃ‘­ÿÿÿÿÿ
+b
+java:S2259î"FA "NullPointerException" could be thrown; "getAuth()" can return null.(ŸªÏüÿÿÿÿ
+b
+java:S2259ô"FA "NullPointerException" could be thrown; "getAuth()" can return null.(ŸªÏüÿÿÿÿ
+`
+java:S2259ë"IA "NullPointerException" could be thrown; "clientColor" is nullable here.(÷Ğ®˜
+k
+java:S2095¬"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÛáÙÏüÿÿÿÿ
 f
-java:S2095Ô"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+java:S2095ç"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095İ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
 f
 java:S2095¹"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
-r
-java:S2095¬"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÛáÙÏüÿÿÿÿ8¾à²Íä1
-m
-java:S2095ó"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(İúËâ8¾à²Íä1
+f
+java:S2095ê"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095ª"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095†"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095ó"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(İúËâ
 f
 java:S2095ù"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
 f
+java:S2095‘"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095í"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(İúËâ
+f
 java:S2095‚"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
-m
-java:S2095‹"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢8¿à²Íä1
-m
-java:S2095 "OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢8¿à²Íä1
-m
-java:S2095É"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢8¿à²Íä1
-m
-java:S2095†"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢8¿à²Íä1
-m
-java:S2095‘"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢8¿à²Íä1
-m
-java:S2095ç"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢8¿à²Íä1
-m
-java:S2095í"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(İúËâ8¿à²Íä1
-m
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢8¿à²Íä1
-m
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢8¿à²Íä1
-m
-java:S2095İ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢8¿à²Íä1
-m
-java:S2095ª"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢8¿à²Íä1
-m
-java:S2095ê"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢8¿à²Íä1
-m
-java:S2095¸"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢8¿à²Íä1
-m
-java:S2095Ü"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢8¿à²Íä1
+f
+java:S2095Ü"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095¸"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095Ô"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095‹"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095É"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095 "OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
+f
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ĞÀœ¢
 @	java:S106("+Replace this use of System.out by a logger.(ì×•¨
-N
-java:S1172"0Remove this unused method parameter "authToken".(êéÕ8õà²Íä1
-N
-java:S1172¶"0Remove this unused method parameter "authToken".(©ñûû8ûà²Íä1
+G
+java:S1172"0Remove this unused method parameter "authToken".(êéÕ
+G
+java:S1172¶"0Remove this unused method parameter "authToken".(©ñûû

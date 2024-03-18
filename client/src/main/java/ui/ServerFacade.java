@@ -23,13 +23,9 @@ public class ServerFacade {
         var server = new Server().run(port);
     }
 
-    //Spark Endpoints:
-    // Spark.post("/user", this::registerUser);
-    // Spark.post("/session", this::login);
-    // Spark.delete("/session", this::logout);
-    // Spark.get("/game", this::listGames);
-    // Spark.post("/game", this::createGame);
-    // Spark.put("/game", this::joinGame);
+    public ServerFacade() {
+        this("http://localhost:4567");
+    }
 
     public AuthData registerUser(String username, String password, String email) throws ResponseException {
         var path = "/user";
@@ -64,6 +60,27 @@ public class ServerFacade {
         var request = new JoinData(color, gameId);
         return this.makeRequest("PUT", path, request, GameData.class, token);
     }
+
+    public void clearData() {
+        try {
+            URL url = new URL(serverUrl + "/db");
+            HttpURLConnection http = (HttpURLConnection) url.openConnection();
+            http.setRequestMethod("DELETE");
+            http.connect();
+    
+            int responseCode = http.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                System.out.println("Database cleared");
+            } else {
+                System.out.println("Failed to clear data: Server returned response code " + responseCode);
+            }
+    
+            http.disconnect();
+        } catch (Exception ex) {
+            System.out.println("Failed to clear data: " + ex.getMessage());
+        }
+    }
+
 
 private <T> T makeRequest(String method, String path, Object request, Class<T> responseClass, String token) throws ResponseException {
         try {
