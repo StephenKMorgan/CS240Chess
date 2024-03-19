@@ -1,0 +1,19 @@
+
+m
+java:S1104"RMake status a static final constant or non-public and provide accessors if needed.(Á¼ûÿÿÿÿ
+m
+java:S1104"RMake server a static final constant or non-public and provide accessors if needed.(±¶Å¬úÿÿÿÿ
+-
+java:S1700"Rename field "preLogin"(§Ğ À
+G
+java:S1068",Remove this unused "database" private field.(ŒÓÏğúÿÿÿÿ
+B
+java:S1068"'Remove this unused "url" private field.(«Œåùÿÿÿÿ
+G
+java:S1068",Remove this unused "authData" private field.(Ö¿¡Âÿÿÿÿÿ
+H
+java:S1068"-Remove this unused "isRunning" private field.(§Â‰şÿÿÿÿ
+B
+java:S1068",Remove this unused "gameData" private field.(ÁÈ²‡
+B
+java:S1068",Remove this unused "preLogin" private field.(§Ğ À

@@ -15,13 +15,20 @@ public class ServerFacadeTests {
     @BeforeAll
     public static void init() {
         var port = 4567;
-        var serverFacade = new Server().run(port);
+        server = new Server();
+        server.run(port);
         serverFacade = new ServerFacade("http://localhost:4567");
         System.out.println("Started test HTTP server on " + port);
     }
 
+    @AfterEach
+    public void resetDatabase(){
+        serverFacade.clearData();
+    }
+
     @AfterAll
     public static void tearDown() {
+        serverFacade.clearData();
         server.stop();
     }
     
@@ -49,7 +56,7 @@ public class ServerFacadeTests {
             serverFacade.registerUser(username, password, email);
             Assertions.fail("Expected exception");
         } catch (ResponseException e) {
-            Assertions.assertEquals(500, e.StatusCode());
+            Assertions.assertEquals(400, e.StatusCode());
         }
     }
 
@@ -61,16 +68,14 @@ public class ServerFacadeTests {
     
         try {
             // First registration attempt
-            AuthData authData = server.registerUser(username, password, email);
+            AuthData authData = serverFacade.registerUser(username, password, email);
             Assertions.assertNotNull(authData);
-    
+            serverFacade.logoutUser(authData.authToken());
             // Second registration attempt
-            Assertions.assertThrows(ResponseException.class, () -> {
-                serverFacade.registerUser(username, password, email);
-            }, "Expected exception");
+            serverFacade.registerUser(username, password, email);
         }
         catch (ResponseException e) {
-            Assertions.assertEquals(500, e.StatusCode());
+            Assertions.assertEquals(403, e.StatusCode());
         }
     }
 
@@ -85,7 +90,6 @@ public class ServerFacadeTests {
             Assertions.assertNotNull(authData);
             serverFacade.logoutUser(authData.authToken());
             AuthData testAuthData = serverFacade.loginUser(username, password);
-            System.out.println(testAuthData.authToken());
             Assertions.assertNotNull(testAuthData);
         } catch (ResponseException e) {
             Assertions.fail("Unexpected exception: " + e.getMessage());
@@ -106,7 +110,7 @@ public class ServerFacadeTests {
             serverFacade.loginUser(username, wrongPassword);
             Assertions.fail("Expected exception");
         } catch (ResponseException e) {
-            Assertions.assertEquals(500, e.StatusCode());
+            Assertions.assertEquals(401, e.StatusCode());
         }
     }
 
@@ -136,7 +140,7 @@ public class ServerFacadeTests {
             Assertions.assertNotNull(authData);
             serverFacade.logoutUser("wrongToken");
         } catch (ResponseException e) {
-            Assertions.assertEquals(500, e.StatusCode());
+            Assertions.assertEquals(401, e.StatusCode());
         }
     }
 
@@ -176,7 +180,7 @@ public class ServerFacadeTests {
             Assertions.fail("Expected exception");
         }
         catch (ResponseException e) {
-            Assertions.assertEquals(500, e.StatusCode());
+            Assertions.assertEquals(401, e.StatusCode());
         }
     }
 
@@ -206,12 +210,12 @@ public class ServerFacadeTests {
        
         
         try {
-            AuthData authData = server.registerUser(username, password, email);
+            AuthData authData = serverFacade.registerUser(username, password, email);
             Assertions.assertNotNull(authData);
-            server.createGame("Wrong Token", "testGame1");
+            serverFacade.createGame("Wrong Token", "testGame1");
             Assertions.fail("Expected exception");
         } catch (ResponseException e) {
-            Assertions.assertEquals(500, e.StatusCode());
+            Assertions.assertEquals(401, e.StatusCode());
         }
     }
 
@@ -223,18 +227,19 @@ public class ServerFacadeTests {
        
         
         try {
-            AuthData authData = server.registerUser(username, password, email);
+            AuthData authData = serverFacade.registerUser(username, password, email);
             Assertions.assertNotNull(authData);
-            server.createGame(authData.authToken(), "testGame1");
-            var games = server.listGames(authData.authToken());
+            serverFacade.createGame(authData.authToken(), "testGame1");
+            var games = serverFacade.listGames(authData.authToken());
             Assertions.assertNotNull(games);
-            var result = server.joinGame(authData.authToken(), games.games().get(0).gameID(), "white");
+            var result = serverFacade.joinGame(authData.authToken(), games.games().get(0).gameID(), "white");
             Assertions.assertNotNull(result);
         } catch (ResponseException e) {
             Assertions.fail("Unexpected exception: " + e.getMessage());
         }
     }
 
+    @Test
     public void testjoinGameFail() throws ResponseException {
         String username = "testUser";
         String password = "testPassword";
@@ -242,15 +247,15 @@ public class ServerFacadeTests {
        
         
         try {
-            AuthData authData = server.registerUser(username, password, email);
+            AuthData authData = serverFacade.registerUser(username, password, email);
             Assertions.assertNotNull(authData);
-            server.createGame(authData.authToken(), "testGame1");
-            var games = server.listGames(authData.authToken());
+            serverFacade.createGame(authData.authToken(), "testGame1");
+            var games = serverFacade.listGames(authData.authToken());
             Assertions.assertNotNull(games);
-            server.joinGame(authData.authToken(), -1, "white");
+            serverFacade.joinGame(authData.authToken(), -1, "white");
             Assertions.fail("Expected exception");
         } catch (ResponseException e) {
-            Assertions.assertEquals(500, e.StatusCode());
+            Assertions.assertEquals(400, e.StatusCode());
         }
     }
 

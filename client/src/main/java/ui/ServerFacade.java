@@ -18,14 +18,9 @@ public class ServerFacade {
     private final String serverUrl;
 
     public ServerFacade(String url) {
-        serverUrl = url;
-        int port = Integer.parseInt(url.split(":")[2]);
-        var server = new Server().run(port);
+        this.serverUrl = url;
     }
 
-    public ServerFacade() {
-        this("http://localhost:4567");
-    }
 
     public AuthData registerUser(String username, String password, String email) throws ResponseException {
         var path = "/user";
@@ -97,7 +92,15 @@ private <T> T makeRequest(String method, String path, Object request, Class<T> r
             throwIfNotSuccessful(http);
             return readBody(http, responseClass);
         } catch (Exception ex) {
-            throw new ResponseException(500, ex.getMessage());
+            if (ex instanceof ResponseException) {
+                throw (ResponseException) ex;
+            } else if (ex instanceof URISyntaxException) {
+                throw new ResponseException(500, "Invalid URL: " + ex.getMessage());
+            } else if (ex instanceof IOException) {
+                throw new ResponseException(500, "Failed to connect to server: " + ex.getMessage());
+            } else {
+                throw new ResponseException(500, "Unknown error: " + ex.getMessage());
+            }
         }
     }
 
@@ -113,8 +116,9 @@ private <T> T makeRequest(String method, String path, Object request, Class<T> r
 
     private void throwIfNotSuccessful(HttpURLConnection http) throws IOException, ResponseException {
         var status = http.getResponseCode();
+        var message = http.getResponseMessage();
         if (!isSuccessful(status)) {
-            throw new ResponseException(status, "failure: " + status);
+            throw new ResponseException(status, "failure: " + message);
         }
     }
 
