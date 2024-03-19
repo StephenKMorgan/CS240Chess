@@ -35,13 +35,11 @@ Q
 !src/main/java/ui/ChessClient.java,2\4\245743310212fcec9bdd7a87e449c71d097f007e
 `
 0src/test/java/clientTests/ServerFacadeTests.java,c\f\cf4a6b87ba93a9e44d28b89d3437e0296868fa89
-R
-"src/main/java/ui/ServerFacade.java,4\c\4cbb54bad5ecf934f35ad6a5c112c802bed0f07c
-P
- src/main/java/server/Server.java,4\c\4c405aa622276106ee9ef8c3a2fbee4e76dcafbb
-S
-#src/main/java/ui/ChessGameREPL.java,6\7\671fd43d304989518644766f35520dd4c953e137
-N
-src/main/java/ui/PreLogin.java,1\8\1888b3eeacf71ba8b0d98cb514bf749768639189
 J
 src/main/java/ui/Game.java,e\e\ee0f2642ba2c61f3d68cc640f2065ce13e1d4499
+R
+"src/main/java/ui/ServerFacade.java,4\c\4cbb54bad5ecf934f35ad6a5c112c802bed0f07c
+Q
+!src/main/java/model/JoinData.java,0\a\0ace3a3e1f87f642bf664686a7961e6d3c3f016b
+P
+ src/main/java/server/Server.java,4\c\4c405aa622276106ee9ef8c3a2fbee4e76dcafbb

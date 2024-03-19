@@ -118,7 +118,7 @@ private <T> T makeRequest(String method, String path, Object request, Class<T> r
         var status = http.getResponseCode();
         var message = http.getResponseMessage();
         if (!isSuccessful(status)) {
-            throw new ResponseException(status, "failure: " + message);
+            throw new ResponseException(status, "failure: " + status+ "-" + message);
         }
     }
 

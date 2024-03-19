@@ -1,23 +1,0 @@
-
->
-java:S16436"Use a StringBuilder instead.(úÈÎÀþÿÿÿÿ8íˆÍ¦å1
-9
-java:S16439"Use a StringBuilder instead.(“ôˆ‘8íˆÍ¦å1
-9
-java:S1643;"Use a StringBuilder instead.(¼ÿÁ²8íˆÍ¦å1
->
-java:S1643H"Use a StringBuilder instead.(úÈÎÀþÿÿÿÿ8íˆÍ¦å1
->
-java:S1643K"Use a StringBuilder instead.(Š¡€’ÿÿÿÿÿ8íˆÍ¦å1
-9
-java:S1643M"Use a StringBuilder instead.(Ö‚Ø™8íˆÍ¦å1
-E
-java:S5411~"(Use a primitive boolean expression here.(±ƒî˜8îˆÍ¦å1
-^
-java:S4973X"<Strings and Boxed types should be compared using "equals()".(ÀªÌñþÿÿÿÿ8îˆÍ¦å1
-L
-java:S1068"*Remove this unused "server" private field.(¶±ª¯úÿÿÿÿ8¼‰Í¦å1
-G
-java:S1068"*Remove this unused "status" private field.(Ž¡ÒŽ8¼‰Í¦å1
-N
-java:S1068",Remove this unused "authData" private field.(Ö¿¡Âÿÿÿÿÿ8¼‰Í¦å1

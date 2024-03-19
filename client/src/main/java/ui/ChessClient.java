@@ -69,31 +69,17 @@ public class ChessClient {
         var params = Arrays.copyOfRange(tokens, 1, tokens.length);
         return switch (cmd) {
             case "quit" -> quit();
-            case "register" -> params.length < 3 ? "Missing parameters. Usage: register <username> <password> <email>" : register(params[0], params[1], params[2]);
-            case "login" -> params.length < 2 ? "Missing parameters. Usage: login <username> <password>" : login(params[0], params[1]);
+            case "help" -> help();
+            case "register" -> params.length < 3 ? EscapeSequences.SET_TEXT_COLOR_RED +"Missing parameters. Usage: register <username> <password> <email>"+ EscapeSequences.SET_TEXT_COLOR_WHITE : register(params[0], params[1], params[2]);
+            case "login" -> params.length < 2 ? EscapeSequences.SET_TEXT_COLOR_RED +"Missing parameters. Usage: login <username> <password>"+ EscapeSequences.SET_TEXT_COLOR_WHITE : login(params[0], params[1]);
             case "logout" -> logout();
             case "list" -> listGames();
-            case "create" -> params.length < 1 ? "Missing parameters. Usage: create <game name>" : createGame(String.join(" ", params));
-            case "join" -> params.length < 1 ? "Missing parameters. Usage: join <game id>" : joinGame(Integer.parseInt(params[0]), params[1]);
-            case "observe" -> params.length < 1 ? "Missing parameters. Usage: observe <game id>" : observeGame(Integer.parseInt(params[0]));
-            case "devdebug" -> devDebug();
-            case "help" -> help();
+            case "create" -> params.length < 1 ? EscapeSequences.SET_TEXT_COLOR_RED +"Missing parameters. Usage: create <game name>"+ EscapeSequences.SET_TEXT_COLOR_WHITE : createGame(String.join(" ", params));
+            case "join" -> params.length < 1 ? EscapeSequences.SET_TEXT_COLOR_RED +"Missing parameters. Usage: join <game id> [white|black|<empty>]"+ EscapeSequences.SET_TEXT_COLOR_WHITE : joinGame(params[0], params.length < 2 ? null : params[1]);
+            case "observe" -> params.length < 1 ? EscapeSequences.SET_TEXT_COLOR_RED +"Missing parameters. Usage: observe <game id>"+ EscapeSequences.SET_TEXT_COLOR_WHITE : observeGame(params[0]);
             default -> help();
         };
     }
-
-    public String devDebug () {
-
-        return """
-        Dev Debug:
-        - Status: """ + status + """
-        - AuthData: """ + authData + """
-        - Server: """ + server + """
-        - URL: """ + url + """
-        - GameData: """ + gameData + """
-        - IsRunning: """ + isRunning + """
-        """;        
-    } 
 
     public String help() {
         if (status == Status.LoggedIn) {
@@ -124,47 +110,50 @@ public class ChessClient {
 
     public String register(String username, String password, String email) {
         if(this.status == Status.LoggedIn){
-            return "You must be logged out to register a new user.";
+            return EscapeSequences.SET_TEXT_COLOR_RED + "You must be logged out to register a new user."+ EscapeSequences.SET_TEXT_COLOR_WHITE;
         }
         try {
             AuthData user = server.registerUser(username, password, email);
             this.authData = user;
             this.status = Status.LoggedIn;
-            return "User " + user.username() + " registered successfully!";
+            return EscapeSequences.SET_TEXT_COLOR_GREEN + "User " + user.username() + " registered successfully!"+ EscapeSequences.SET_TEXT_COLOR_WHITE;
         } catch (ResponseException ex) {
-
-            return ex.getMessage();
+            return errorParsing(Method.register, ex.getMessage());
         }
     }
 
     public String login(String username, String password) {
+        if(this.status == Status.LoggedIn){
+            return EscapeSequences.SET_TEXT_COLOR_RED + "You are already logged in."+ EscapeSequences.SET_TEXT_COLOR_WHITE;
+        }
         try {
             AuthData user = server.loginUser(username, password);
             this.authData = user;
             this.status = Status.LoggedIn;
-            return "User " + user.username() + " logged in successfully!";
+            return EscapeSequences.SET_TEXT_COLOR_GREEN + "User " + user.username() + " logged in successfully!"+ EscapeSequences.SET_TEXT_COLOR_WHITE;
         } catch (ResponseException ex) {
-            if (ex.getMessage().contains("401")) {
-                return "Invalid username or password.";
-            }
-            return ex.getMessage();
+            return errorParsing(Method.login, ex.getMessage());
         }
     }
 
     public String logout() {
+        if (this.status == Status.LoggedOut){
+            return EscapeSequences.SET_TEXT_COLOR_RED + "You are already logged out."+ EscapeSequences.SET_TEXT_COLOR_WHITE;
+        }
         try {
             server.logoutUser(authData.authToken());
+            var username = this.authData.username();
             this.authData = null;
             this.status = Status.LoggedOut;
-            return "User logged out successfully!";
+            return EscapeSequences.SET_TEXT_COLOR_GREEN + "The user " + username +" logged out successfully!"+ EscapeSequences.SET_TEXT_COLOR_WHITE;
         } catch (ResponseException ex) {
-            return ex.getMessage();
+            return errorParsing(Method.logout, ex.getMessage());
         }
     }
 
     public String listGames() {
         if(this.status == Status.LoggedOut){
-            return "You must be logged in to list games.";
+            return EscapeSequences.SET_TEXT_COLOR_RED + "You must be logged in to list games."+ EscapeSequences.SET_TEXT_COLOR_WHITE;
         }
         try {
             var games = server.listGames(authData.authToken());
@@ -172,58 +161,72 @@ public class ChessClient {
             sortedGames.sort(Comparator.comparingInt(GameData::gameID));
             String output = "Available games:\n";
             for (GameData game : sortedGames) {
-                output += "Game " + game.gameID() + ": " + game.gameName() + "\n";
+                output += String.format(
+                    "%-10s %-30s %-20s %-20s%n",
+                    "Game ID: " + game.gameID(),
+                    "| Game Name: " + game.gameName(),
+                    "| White: " + (game.whiteUsername() == null ? "empty" : game.whiteUsername()),
+                    "| Black: " + (game.blackUsername() == null ? "empty" : game.blackUsername())
+                );
             }
             return output;
         } catch (ResponseException ex) {
-            return ex.getMessage();
+            return errorParsing(Method.listGames, ex.getMessage());
         }
     }
 
     public String createGame(String gameName) {
         if(this.status == Status.LoggedOut){
-            return "You must be logged in to create a game.";
+            return EscapeSequences.SET_TEXT_COLOR_RED + "You must be logged in to create a game."+ EscapeSequences.SET_TEXT_COLOR_WHITE;
         }
         try {
             var game = server.createGame(authData.authToken(), gameName);
-            return "Game " + game.gameName() + " created successfully!";
+            return EscapeSequences.SET_TEXT_COLOR_GREEN + "Game " + game.gameName() + " created successfully!"+ EscapeSequences.SET_TEXT_COLOR_WHITE;
         } catch (ResponseException ex) {
-            return ex.getMessage();
+            return errorParsing(Method.createGame, ex.getMessage());
         }
     }
 
-    public String joinGame(int gameId, String color) {
+    public String joinGame(String gameId, String color) {
+        int ID = 0;
         if(this.status == Status.LoggedOut){
-            return "You must be logged in to join a game.";
+            return EscapeSequences.SET_TEXT_COLOR_RED + "You must be logged in to join a game."+ EscapeSequences.SET_TEXT_COLOR_WHITE;
         }
-        if (!color.equalsIgnoreCase("white") && !color.equalsIgnoreCase("black") && !color.equalsIgnoreCase("")) {
-            return "Invalid color. Use 'white', 'black' or leave it empty.";
+        if (color != null && !color.isBlank() && !color.equalsIgnoreCase("white") && !color.equalsIgnoreCase("black")) {
+            return EscapeSequences.SET_TEXT_COLOR_RED + "Invalid color. Use 'white', 'black' or leave it empty."+ EscapeSequences.SET_TEXT_COLOR_WHITE;
+        }
+        try{
+            ID = Integer.parseInt(gameId);
+        } catch (NumberFormatException ex) {
+            return EscapeSequences.SET_TEXT_COLOR_RED + "Invalid game ID."+ EscapeSequences.SET_TEXT_COLOR_WHITE;
         }
         try {
-            var game = server.joinGame(authData.authToken(), gameId, color);
-            this.gameData = game;
-            return new Game(gameData).displayGame(color);
+            this.gameData = server.joinGame(authData.authToken(), ID, color);
+            return new Game(gameData).displayGame(color == null ? "white":color);
 
         } catch (ResponseException ex) {
-            if (ex.getMessage().contains("403")) {
-                return "This color is already taken. Please choose another one.";
-            }
-            return ex.getMessage();
+            return errorParsing(Method.joinGame, ex.getMessage());
         } catch (Exception ex) {
-            return "Failed to join game: " + ex.getMessage();
+            return EscapeSequences.SET_TEXT_COLOR_RED + "Failed to join game: " + ex.getMessage()+ EscapeSequences.SET_TEXT_COLOR_WHITE;
         }
     }
 
-    public String observeGame(int gameId) {
+    public String observeGame(String gameId) {
+        int ID = 0;
         if(this.status == Status.LoggedOut){
-            return "You must be logged in to observe a game.";
+            return EscapeSequences.SET_TEXT_COLOR_RED + "You must be logged in to observe a game." + EscapeSequences.SET_TEXT_COLOR_WHITE;
+        }
+        try{
+            ID = Integer.parseInt(gameId);
+        } catch (NumberFormatException ex) {
+            return EscapeSequences.SET_TEXT_COLOR_RED + "Invalid game ID."+ EscapeSequences.SET_TEXT_COLOR_WHITE;
         }
         try {
-            var game = server.joinGame(authData.authToken(), gameId, null);
+            var game = server.joinGame(authData.authToken(), ID, null);
             this.gameData = game;
             return new Game(gameData).displayGame("White");
         } catch (ResponseException ex) {
-            return ex.getMessage();
+            return errorParsing(Method.observeGame, ex.getMessage());
         }
     }
 
@@ -235,5 +238,43 @@ public class ChessClient {
         this.isRunning = false;
         database.stop();
         return "Goodbye!";
+    }
+
+    private enum Method {
+        register,
+        login,
+        logout,
+        listGames,
+        createGame,
+        joinGame,
+        observeGame
+    }
+
+    private String errorParsing(Method method, String message) {
+        var code = message.split(": |-")[1];
+        switch (code) {
+            case "400":
+            if (method == Method.register) {
+                return EscapeSequences.SET_TEXT_COLOR_RED + "Please retry your registration." + EscapeSequences.SET_TEXT_COLOR_WHITE;
+            }
+            return EscapeSequences.SET_TEXT_COLOR_RED + "Please retry your entry." + EscapeSequences.SET_TEXT_COLOR_WHITE;
+            case "401":
+                if (method == Method.login) {
+                    return EscapeSequences.SET_TEXT_COLOR_RED + "Invalid username or password." + EscapeSequences.SET_TEXT_COLOR_WHITE;
+                }
+                return EscapeSequences.SET_TEXT_COLOR_RED + "You are currently unauthorized from preforming this function. \nPlease logout or quit and login again." + EscapeSequences.SET_TEXT_COLOR_WHITE;
+            case "403":
+                if (method == Method.register) {
+                    return EscapeSequences.SET_TEXT_COLOR_RED + "User already exists." + EscapeSequences.SET_TEXT_COLOR_WHITE;
+                }
+                if (method == Method.joinGame) {
+                    return EscapeSequences.SET_TEXT_COLOR_RED + "This color is already taken. Please choose another one." + EscapeSequences.SET_TEXT_COLOR_WHITE;
+                }
+                return EscapeSequences.SET_TEXT_COLOR_RED + "You are currently unauthorized from preforming this function. \nPlease logout or quit and login again." + EscapeSequences.SET_TEXT_COLOR_WHITE;
+            case "500":
+                return EscapeSequences.SET_TEXT_COLOR_RED + "Internal Server Error." + EscapeSequences.SET_TEXT_COLOR_WHITE;
+            default:
+                return EscapeSequences.SET_TEXT_COLOR_RED + "An unknown error has occurred." + EscapeSequences.SET_TEXT_COLOR_WHITE;
+        }
     }
 }
