@@ -6,6 +6,7 @@ import chess.ChessGame;
 public class JoinObserverCommand extends UserGameCommand{
 
     private Integer gameID;
+    private String username;
     private ChessGame.TeamColor playerColor;
 
     public JoinObserverCommand(String authToken) {
@@ -28,5 +29,16 @@ public class JoinObserverCommand extends UserGameCommand{
     public void setPlayerColor(ChessGame.TeamColor playerColor) {
         this.playerColor = playerColor;
     }
-    
+
+    public String getAuthToken() {
+        return getAuthToken();
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
 }

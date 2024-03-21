@@ -1,15 +1,11 @@
 
 d
-java:S1192^"NDefine a constant instead of duplicating this literal "Authorization" 4 times.(¸…Óš
+java:S1192\"NDefine a constant instead of duplicating this literal "Authorization" 4 times.(¸…Óš
 a
-java:S11921"FDefine a constant instead of duplicating this literal "/game" 3 times.(˜Ó€•şÿÿÿÿ
+java:S1192/"FDefine a constant instead of duplicating this literal "/game" 3 times.(˜Ó€•şÿÿÿÿ
 d
-java:S1192H"IDefine a constant instead of duplicating this literal "message" 15 times.(âÖÓ†ûÿÿÿÿ
+java:S1192F"IDefine a constant instead of duplicating this literal "message" 15 times.(âÖÓ†ûÿÿÿÿ
 x
-java:S1192K"]Define a constant instead of duplicating this literal "Error: Internal Server Error" 7 times.(–×¸£ÿÿÿÿÿ
+java:S1192I"]Define a constant instead of duplicating this literal "Error: Internal Server Error" 7 times.(–×¸£ÿÿÿÿÿ
 
-java:S1488o"dImmediately return this expression instead of assigning it to the temporary variable "jsonResponse".(ñÚÛıÿÿÿÿ
-P	java:S125"<This block of commented-out lines of code should be removed.(éÁÄ%
-Q	java:S125"<This block of commented-out lines of code should be removed.(ãêª´
-Q	java:S125"<This block of commented-out lines of code should be removed.(ãêª´
-V	java:S125'"<This block of commented-out lines of code should be removed.(²Ä€ùÿÿÿÿ
+java:S1488m"dImmediately return this expression instead of assigning it to the temporary variable "jsonResponse".(ñÚÛıÿÿÿÿ

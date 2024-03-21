@@ -2,6 +2,7 @@ package service;
 
 import java.util.HashSet;
 
+import chess.ChessMove;
 import dataAccess.DataAccess;
 import dataAccess.DataAccessException;
 import dataAccess.MemoryDataAccess;
@@ -72,5 +73,13 @@ public class Service {
     //db
     public void clearAll() throws ResponseException {
         dataAccess.clear();
+    }
+
+    //WebSocket
+    public void makeMove(int gameID, String authToken, ChessMove move) throws ResponseException {
+        if (gameID <= 0 || authToken == null || authToken.isEmpty() || move == null){
+            throw new ResponseException(400, "Error: Bad Request");
+        }
+        dataAccess.makeMove(gameID, authToken, move);
     }
 }

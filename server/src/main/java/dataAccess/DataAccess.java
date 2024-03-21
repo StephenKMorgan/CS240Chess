@@ -3,6 +3,7 @@ package dataAccess;
 import java.util.Collection;
 import java.util.HashSet;
 
+import chess.ChessMove;
 import exception.ResponseException;
 import model.UserData;
 import model.AuthData;
@@ -16,4 +17,5 @@ public interface DataAccess {
     GameData createGame(String authToken, String gameName) throws ResponseException;
     GameData joinGame(String clientColor, int gameID, String authToken) throws ResponseException;
     void clear() throws ResponseException;
+    void makeMove(int gameID, String authToken, ChessMove move) throws ResponseException;
 } 

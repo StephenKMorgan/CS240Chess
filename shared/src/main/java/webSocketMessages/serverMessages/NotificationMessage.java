@@ -9,11 +9,11 @@ public class NotificationMessage extends ServerMessage {
             this.serverMessageType = ServerMessageType.NOTIFICATION;
         }
     
-        public String getError() {
+        public String getMessage() {
             return message;
         }
     
-        public void setError(String message) {
+        public void setMessage(String message) {
             this.message = message;
         }
     

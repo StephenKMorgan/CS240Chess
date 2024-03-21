@@ -19,16 +19,16 @@ import exception.ResponseException;
 
 public class Server {
     private final Service service;
-    //private final WebSocketHandler webSocketHandler;
+    private final WebSocketHandler webSocketHandler;
 
     public Server() {
         this.service = new Service();
-        //this.webSocketHandler = new WebSocketHandler();
+        this.webSocketHandler = new WebSocketHandler();
     }
 
     public Server(Service service) {
         this.service = service;
-        //this.webSocketHandler = new WebSocketHandler();
+        this.webSocketHandler = new WebSocketHandler();
     }
 
 
@@ -36,8 +36,6 @@ public class Server {
         Spark.port(desiredPort);
 
         Spark.staticFiles.location("web");
-//        var webDir = Paths.get(Server.class.getProtectionDomain().getCodeSource().getLocation().getPath(), "web");
-//        Spark.externalStaticFileLocation(webDir.toString());
         Spark.webSocket("/connect", webSocketHandler);
 
         // Register your endpoints and handle exceptions here.

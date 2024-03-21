@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.UUID;
 
 import chess.ChessGame;
+import chess.ChessMove;
 import exception.ResponseException;
 import model.AuthData;
 import model.GameData;
@@ -178,5 +179,10 @@ public class MemoryDataAccess implements DataAccess{
             }
             return game;
         }
+    }
+
+    @Override
+    public void makeMove(int gameID, String authToken, ChessMove move) throws ResponseException {
+        throw new UnsupportedOperationException("Unimplemented method 'makeMove'");
     }
 }

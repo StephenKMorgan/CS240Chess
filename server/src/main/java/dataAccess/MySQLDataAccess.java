@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.google.gson.Gson;
 
 import chess.ChessGame;
+import chess.ChessMove;
+import chess.InvalidMoveException;
 import model.AuthData;
 import model.GameData;
 import model.UserData;
@@ -418,6 +420,31 @@ public class MySQLDataAccess implements DataAccess {
             }
         } catch (SQLException ex) {
             throw new ResponseException(500, String.format("Unable to configure database: %s", ex.getMessage()));
+        }
+    }
+
+    public void makeMove(int gameID, String authToken, ChessMove move) throws ResponseException {
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String sql = "SELECT * FROM gamedata WHERE game_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, gameID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                ChessGame game = convertJsonToChessGame(rs.getString("game"));
+                try {
+                    game.makeMove(move);
+                } catch (InvalidMoveException e) {
+                    throw new ResponseException(400, "Error: Bad Request");
+                }
+                String gameJson = new Gson().toJson(game);
+                String sql2 = "UPDATE gamedata SET game = ? WHERE game_id = ?";
+                PreparedStatement stmt2 = conn.prepareStatement(sql2);
+                stmt2.setString(1, gameJson);
+                stmt2.setInt(2, gameID);
+                stmt2.executeUpdate();
+            }
+        } catch (SQLException | DataAccessException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
         }
     }
 }
