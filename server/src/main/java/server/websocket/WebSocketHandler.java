@@ -4,10 +4,15 @@ import com.google.gson.Gson;
 import dataAccess.DataAccess;
 import exception.ResponseException;
 import org.eclipse.jetty.websocket.api.Session;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketError;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import webSocketMessages.Action;
 import webSocketMessages.Notification;
+import webSocketMessages.userCommands.JoinPlayerCommand;
+import webSocketMessages.userCommands.UserGameCommand;
 
 import java.io.IOException;
 import java.util.Timer;
@@ -16,38 +21,51 @@ import java.util.Timer;
 @WebSocket
 public class WebSocketHandler {
 
-    private final ConnectionManager connections = new ConnectionManager();
+    private WebSocketSessions sessions;
+
+    
+
+    @OnWebSocketConnect
+    public void onConnect(Session session) throws IOException {
+        System.out.println("Connected");
+        sessions = new WebSocketSessions();
+    }
+
+    @OnWebSocketClose
+    public void onClose(Session session) {
+        System.out.println("Closed");
+        sessions.removeSession(session);
+    }
+
+    @OnWebSocketError
+    public void onError(Throwable error) {
+        System.out.println("Error");
+        error.printStackTrace();
+    }
 
     @OnWebSocketMessage
-    public void onMessage(Session session, String message) throws IOException {
-        Action action = new Gson().fromJson(message, Action.class);
-        switch (action.type()) {
-            case ENTER -> enter(action.visitorName(), session);
-            case EXIT -> exit(action.visitorName());
+    public void onMessage(Session session, String message) throws IOException, ResponseException {
+        System.out.println("Message: " + message);
+        UserGameCommand command = new Gson().fromJson(message, UserGameCommand.class);
+        switch (command.getCommandType()) {
+            case JOIN_PLAYER:
+                joinPlayer((JoinPlayerCommand) command, session);
+                break;
+            default:
+                throw new ResponseException(500, "Invalid command type");
         }
     }
 
-    private void enter(String visitorName, Session session) throws IOException {
-        connections.add(visitorName, session);
-        var message = String.format("%s is in the shop", visitorName);
-        var notification = new Notification(Notification.Type.ARRIVAL, message);
-        connections.broadcast(visitorName, notification);
+    public void joinPlayer(JoinPlayerCommand command, Session session) {
+        sessions.addSessionToGame(command.getGameID(), command.getAuthToken(), session);
     }
 
-    private void exit(String visitorName) throws IOException {
-        connections.remove(visitorName);
-        var message = String.format("%s left the shop", visitorName);
-        var notification = new Notification(Notification.Type.DEPARTURE, message);
-        connections.broadcast(visitorName, notification);
+    public void joinObserver() {
+        sessions.addSessionToGame(0, "observer", null);
     }
 
-    public void makeNoise(String petName, String sound) throws ResponseException {
-        try {
-            var message = String.format("%s says %s", petName, sound);
-            var notification = new Notification(Notification.Type.NOISE, message);
-            connections.broadcast("", notification);
-        } catch (Exception ex) {
-            throw new ResponseException(500, ex.getMessage());
-        }
-    }
+    
+
+
+
 }

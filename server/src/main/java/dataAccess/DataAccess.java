@@ -15,5 +15,5 @@ public interface DataAccess {
     HashSet<GameData> listGames(String authToken) throws ResponseException;
     GameData createGame(String authToken, String gameName) throws ResponseException;
     GameData joinGame(String clientColor, int gameID, String authToken) throws ResponseException;
-    void clear() throws ResponseException;    
+    void clear() throws ResponseException;
 } 

@@ -1,0 +1,9 @@
+
+a
+java:S13014"KReplace this "switch" statement by "if" statements to increase readability.(ÏÊÆ
+E	java:S106 "+Replace this use of System.out by a logger.(´áÀŠÿÿÿÿÿ
+E	java:S106&"+Replace this use of System.out by a logger.(Öôíéøÿÿÿÿ
+E	java:S106,"+Replace this use of System.out by a logger.(êÓæøùÿÿÿÿ
+‚
+java:S11301"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(€¢ÂĞ
+@	java:S1062"+Replace this use of System.out by a logger.(«–¨†

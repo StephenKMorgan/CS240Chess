@@ -38,7 +38,7 @@ public class Server {
         Spark.staticFiles.location("web");
 //        var webDir = Paths.get(Server.class.getProtectionDomain().getCodeSource().getLocation().getPath(), "web");
 //        Spark.externalStaticFileLocation(webDir.toString());
-        //Spark.webSocket("/connect", webSocketHandler);
+        Spark.webSocket("/connect", webSocketHandler);
 
         // Register your endpoints and handle exceptions here.
         Spark.exception(ResponseException.class, this::handleResponseException);
