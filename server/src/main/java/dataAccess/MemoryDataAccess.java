@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import chess.ChessGame;
 import chess.ChessMove;
+import chess.InvalidMoveException;
 import exception.ResponseException;
 import model.AuthData;
 import model.GameData;
@@ -181,8 +182,50 @@ public class MemoryDataAccess implements DataAccess{
         }
     }
 
-    @Override
-    public void makeMove(int gameID, String authToken, ChessMove move) throws ResponseException {
-        throw new UnsupportedOperationException("Unimplemented method 'makeMove'");
+    public GameData makeMove(int gameID, String authToken, ChessMove move) throws ResponseException {
+        //get the game
+        var game = games.get(gameID);
+        //make the move
+        try {
+            game.game().makeMove(move);
+        } catch (InvalidMoveException e) {
+            throw new ResponseException(400, "Error: Bad Request");
+        }
+        //return the game
+        return game;
+    }
+
+    public String leaveGame(int gameID, String authToken) {
+        //get the game
+        var game = games.get(gameID);
+        //leave the game
+        if (game.whiteUsername().equals(authTokens.get(authToken).username())) {
+            game = new GameData(game.gameID(), null, game.blackUsername(), game.gameName(), game.game());
+            games.put(gameID, game);
+            return game.blackUsername();
+        } else {
+            game = new GameData(game.gameID(), game.whiteUsername(), null, game.gameName(), game.game());
+            games.put(gameID, game);
+            return game.whiteUsername();
+        }
+    }
+
+    public String resignGame(int gameID, String authToken) throws ResponseException {
+        //get the game
+        var game = games.get(gameID);
+        //resign the game
+        if (game.whiteUsername().equals(authTokens.get(authToken).username())) {
+            game = new GameData(game.gameID(), null, game.blackUsername(), game.gameName(), game.game());
+            games.put(gameID, game);
+            return game.blackUsername();
+        } else {
+            game = new GameData(game.gameID(), game.whiteUsername(), null, game.gameName(), game.game());
+            games.put(gameID, game);
+            return game.whiteUsername();
+        }
+    }
+
+    public GameData getGameData(int gameID, String authToken) {
+        return games.get(gameID);
     }
 }
