@@ -7,7 +7,6 @@ public class JoinObserverCommand extends UserGameCommand{
 
     private Integer gameID;
     private String username;
-    private ChessGame.TeamColor playerColor;
 
     public JoinObserverCommand(String authToken) {
         super(authToken);
@@ -20,14 +19,6 @@ public class JoinObserverCommand extends UserGameCommand{
 
     public void setGameID(Integer gameID) {
         this.gameID = gameID;
-    }
-
-    public ChessGame.TeamColor getPlayerColor() {
-        return playerColor;
-    }
-
-    public void setPlayerColor(ChessGame.TeamColor playerColor) {
-        this.playerColor = playerColor;
     }
 
     public String getAuthToken() {

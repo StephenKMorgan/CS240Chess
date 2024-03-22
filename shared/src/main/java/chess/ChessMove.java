@@ -63,4 +63,14 @@ public class ChessMove {
     public ChessPiece.PieceType getPromotionPiece() {
         return this.promotionPiece;
     }
+
+    //create a to string method that returns the start position, end position, and promotion piece in the format "Move from [startPosition] to [endPosition]" and if there is a promotion add " with promotion [promotionPiece]"
+    @Override
+    public String toString() {
+        String move = "Move from " + startPosition + " to " + endPosition;
+        if (promotionPiece != null) {
+            move += " with promotion " + promotionPiece;
+        }
+        return move;
+    }
 }

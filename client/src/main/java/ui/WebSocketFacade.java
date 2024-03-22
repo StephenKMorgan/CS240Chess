@@ -14,56 +14,111 @@ import javax.websocket.WebSocketContainer;
 
 import com.google.gson.Gson;
 
-import webSocketMessages.serverMessages.ServerMessage;
-
+import webSocketMessages.userCommands.JoinPlayerCommand;
+import webSocketMessages.userCommands.LeaveGameCommand;
+import webSocketMessages.userCommands.MakeMoveCommand;
 import chess.ChessGame;
+import chess.ChessMove;
 import exception.ResponseException;
 
-public class WebSocketFacade extends Endpoint {
+public class WebSocketFacade extends Endpoint implements MessageHandler.Whole<String>{
 
     private Session session;
-    private NotificationHandler notificationHandler;
+    private GameHandler gameHandler;
 
-    public WebSocketFacade(String url, NotificationHandler notificationHandler) throws ResponseException {
+    public void onOpen(Session session, EndpointConfig config) {}
+
+    public void onClose(){}
+
+    public void onError(){}
+
+    public WebSocketFacade(String url, GameHandler gameHandler) throws ResponseException {
         try {
             url = url.replace("http", "ws");
             URI socketURI = new URI(url + "/connect");
-            this.notificationHandler = notificationHandler;
+            this.gameHandler = gameHandler;
 
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
             this.session = container.connectToServer(this, socketURI);
 
-            //set message handler
-            this.session.addMessageHandler(new MessageHandler.Whole<String>() {
-                @Override
-                public void onMessage(String message) {
-                    ServerMessage notification = new Gson().fromJson(message, ServerMessage.class);
-                    notificationHandler.notify(notification);
-                }
-            });
+           
         } catch (DeploymentException | IOException | URISyntaxException ex) {
             throw new ResponseException(500, ex.getMessage());
         }
     }
 
-// User Game Commands
-// Command	Required Fields	Description
-// JOIN_PLAYER	Integer gameID, ChessGame.TeamColor playerColor	Used for a user to request to join a game.
-// JOIN_OBSERVER	Integer gameID	Used to request to start observing a game.
-// MAKE_MOVE	Integer gameID, ChessMove move	Used to request to make a move in a game.
-// LEAVE	Integer gameID	Tells the server you are leaving the game so it will stop sending you notifications.
-// RESIGN	Integer gameID	Forfeits the match and ends the game (no more moves can be made).
-// Server Messages
-// Command	Required Fields	Description
-// LOAD_GAME	game (can be any type, just needs to be called game)	Used by the server to send the current game state to a client. When a client receives this message, it will redraw the chess board.
-// ERROR	String errorMessage	This message is sent to a client when it sends an invalid command. The message must include the word Error.
-// NOTIFICATION	String message	This is a message meant to inform a player when another player made an action.
 
-   
+    //Outgoing messages
+    public void joinPlayer(String authToken, Integer gameID, String username, ChessGame.TeamColor playerColor) {
+        //Create the join player message as a join player command
+        var joinPlayerCommand = new JoinPlayerCommand(authToken);
+        joinPlayerCommand.setGameID(gameID);
+        joinPlayerCommand.setUsername(username);
+        joinPlayerCommand.setPlayerColor(playerColor);
 
+        //Send the message
+        sendMessage(joinPlayerCommand);
+    }
 
-@Override
-public void onOpen(Session arg0, EndpointConfig arg1) {
+    public void joinObserver(String authToken, Integer gameID, String username) {
+        //Create the join observer message as a join observer command
+        var joinObserverCommand = new JoinPlayerCommand(authToken);
+        joinObserverCommand.setGameID(gameID);
+        joinObserverCommand.setUsername(username);
+
+        //Send the message
+        sendMessage(joinObserverCommand);
+    }
+
+    public void makeMove(String authToken, Integer gameID, ChessMove move) {
+        //Create the make move message as a make move command
+        var makeMoveCommand = new MakeMoveCommand(authToken);
+        makeMoveCommand.setGameID(gameID);
+        makeMoveCommand.setMove(move);
+
+        //Send the message
+        sendMessage(makeMoveCommand);
+    }
+
+    public void leaveGame(String authToken, Integer gameID) {
+        //Create the leave game message as a leave game command
+        var leaveGameCommand = new LeaveGameCommand(authToken);
+        leaveGameCommand.setGameID(gameID);
+
+        //Send the message
+        sendMessage(leaveGameCommand);
+    }
+
+    public void resignGame(String authToken, Integer gameID) {
+        //Create the resign game message as a resign game command
+        var resignGameCommand = new LeaveGameCommand(authToken);
+        resignGameCommand.setGameID(gameID);
+
+        //Send the message
+        sendMessage(resignGameCommand);
+    }
     
-}
+    
+    public void onMessage(String message) {
+       //Deserialize the message
+        var gson = new Gson();
+        var messageObject = gson.fromJson(message, Object.class);
+
+        //Call gameHandler to process the message
+        if (messageObject instanceof ChessGame) {
+            gameHandler.updateGame((ChessGame) messageObject);
+        } else if (messageObject instanceof String) {
+            gameHandler.printMessage((String) messageObject);
+        }
+    }
+    
+   
+    private void sendMessage(Object message) {
+        try {
+            this.session.getBasicRemote().sendText(new Gson().toJson(message));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+  
 }

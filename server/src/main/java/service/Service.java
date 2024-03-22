@@ -76,10 +76,31 @@ public class Service {
     }
 
     //WebSocket
-    public void makeMove(int gameID, String authToken, ChessMove move) throws ResponseException {
+    public GameData makeMove(int gameID, String authToken, ChessMove move) throws ResponseException {
         if (gameID <= 0 || authToken == null || authToken.isEmpty() || move == null){
             throw new ResponseException(400, "Error: Bad Request");
         }
-        dataAccess.makeMove(gameID, authToken, move);
+        return dataAccess.makeMove(gameID, authToken, move);
+    }
+
+    public String leaveGame(int gameID, String authToken) throws ResponseException {
+        if (gameID <= 0 || authToken == null || authToken.isEmpty()){
+            throw new ResponseException(400, "Error: Bad Request");
+        }
+        return dataAccess.leaveGame(gameID, authToken);
+    }
+
+    public String resignGame(int gameID, String authToken) throws ResponseException {
+        if (gameID <= 0 || authToken == null || authToken.isEmpty()){
+            throw new ResponseException(400, "Error: Bad Request");
+        }
+        return dataAccess.resignGame(gameID, authToken);
+    }
+
+    public GameData getGameData(int gameID, String authToken) throws ResponseException {
+        if (gameID <= 0 || authToken == null || authToken.isEmpty()){
+            throw new ResponseException(400, "Error: Bad Request");
+        }
+        return dataAccess.getGameData(gameID, authToken);
     }
 }

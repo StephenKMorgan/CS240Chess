@@ -120,19 +120,52 @@ public class WebSocketHandler {
     }
 
     public void makeMove(MakeMoveCommand command, Session session) throws ResponseException, IOException {
-        //Verify the move
+        //Verify and make the move
+        var gameData = service.makeMove(command.getGameID(), command.getAuthToken(), command.getMove());
         
+        //Get the game data for notifications
+        var game = gameData.game();
+        var move = command.getMove().toString();
 
-        service.makeMove(command.getGameID(), command.getAuthToken(), command.getMove());
-        //sendMessage(command.getGameID(), "Move made", command.getAuthToken());
+        //Send a LoadGameMessage to all players
+        var loadMessage = new LoadGameMessage(ServerMessage.ServerMessageType.LOAD_GAME);
+        loadMessage.setGame(game);
+        broadcastMessage(command.getGameID(), loadMessage,"");
+
+        //Send a NotificationMessage to all players
+        var notificationMessage = new NotificationMessage(ServerMessage.ServerMessageType.NOTIFICATION);
+        notificationMessage.setMessage(move);
     }
 
-    public void leaveGame(LeaveGameCommand command, Session session) {
-        // sessions.removeSessionFromGame(command.getGameID(), command.getAuthToken(), session);
+    public void leaveGame(LeaveGameCommand command, Session session) throws IOException, ResponseException {
+        //Remove the session from the game
+        sessions.removeSessionFromGame(command.getGameID(), command.getAuthString(), session);
+
+        //Leave the game
+        var username = service.leaveGame(command.getGameID(), command.getAuthString());
+
+        //Get the game data for notifications
+        var gameID = command.getGameID(); 
+
+        //Send a NotificationMessage to the other players
+        var notificationMessage = new NotificationMessage(ServerMessage.ServerMessageType.NOTIFICATION);
+        notificationMessage.setMessage(username + " has left the game");
+        broadcastMessage(gameID, notificationMessage, command.getAuthString());
     }
 
-    public void resignGame(ResignCommand command, Session session) {
-        //
+    public void resignGame(ResignCommand command, Session session) throws ResponseException, IOException {
+        //Remove the session from the game
+        sessions.removeSessionFromGame(command.getGameID(), command.getAuthString(), session);
+        //Resign the game
+        var username = service.resignGame(command.getGameID(), command.getAuthString());
+
+        //Get the game data for notifications
+        var gameID = command.getGameID();
+
+        //Send a NotificationMessage to the other players
+        var notificationMessage = new NotificationMessage(ServerMessage.ServerMessageType.NOTIFICATION);
+        notificationMessage.setMessage(username + " has resigned the game");
+        broadcastMessage(gameID, notificationMessage, command.getAuthString());
     }
 
     private void sendMessage(Integer gameID, ServerMessage message, String authToken) throws ResponseException, IOException{

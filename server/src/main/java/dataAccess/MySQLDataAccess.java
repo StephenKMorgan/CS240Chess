@@ -381,6 +381,73 @@ public class MySQLDataAccess implements DataAccess {
         return null;
     }
 
+    public GameData makeMove(int gameID, String authToken, ChessMove move) throws ResponseException {
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String sql = "SELECT * FROM gamedata WHERE game_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, gameID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                ChessGame game = convertJsonToChessGame(rs.getString("game"));
+                try {
+                    game.makeMove(move);
+                } catch (InvalidMoveException e) {
+                    throw new ResponseException(400, "Error: Bad Request, invalid move");
+                }
+                String gameJson = new Gson().toJson(game);
+                String sql2 = "UPDATE gamedata SET game = ? WHERE game_id = ?";
+                PreparedStatement stmt2 = conn.prepareStatement(sql2);
+                stmt2.setString(1, gameJson);
+                stmt2.setInt(2, gameID);
+                stmt2.executeUpdate();
+            }
+            return new GameData(rs.getInt("game_id"), rs.getString("whiteUsername"), rs.getString("blackUsername"), rs.getString("gameName"), convertJsonToChessGame(rs.getString("game")));
+        } catch (SQLException | DataAccessException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
+        }
+    }
+
+    public String leaveGame(int gameID, String authToken) throws ResponseException {
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String sql = "DELETE FROM gamelists WHERE game_id = ? AND username = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            var username = getAuth(authToken).username();
+            stmt.setInt(1, gameID);
+            stmt.setString(2, username);
+            stmt.executeUpdate();
+            return username;
+        } catch (SQLException | DataAccessException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
+        }
+    }
+
+    public String resignGame(int gameID, String authToken) throws ResponseException {
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String sql = "SELECT * FROM gamedata WHERE game_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, gameID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String whiteUsername = rs.getString("whiteUsername");
+                String blackUsername = rs.getString("blackUsername");
+                if (whiteUsername.equals(getAuth(authToken).username())) {
+                    whiteUsername = null;
+                } else {
+                    blackUsername = null;
+                }
+                String sql2 = "UPDATE gamedata SET whiteUsername = ?, blackUsername = ? WHERE game_id = ?";
+                PreparedStatement stmt2 = conn.prepareStatement(sql2);
+                stmt2.setString(1, whiteUsername);
+                stmt2.setString(2, blackUsername);
+                stmt2.setInt(3, gameID);
+                stmt2.executeUpdate();
+            }
+            return getAuth(authToken).username();
+        } catch (SQLException | DataAccessException e) {
+            throw new ResponseException(500, "Error: Internal Server Error");
+        }
+    }
+
     private void clearAllData() throws SQLException, DataAccessException {
         try(Connection conn = DatabaseManager.getConnection()) {
             String sql = "DELETE FROM gamelists";
@@ -420,31 +487,6 @@ public class MySQLDataAccess implements DataAccess {
             }
         } catch (SQLException ex) {
             throw new ResponseException(500, String.format("Unable to configure database: %s", ex.getMessage()));
-        }
-    }
-
-    public void makeMove(int gameID, String authToken, ChessMove move) throws ResponseException {
-        try (Connection conn = DatabaseManager.getConnection()) {
-            String sql = "SELECT * FROM gamedata WHERE game_id = ?";
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, gameID);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                ChessGame game = convertJsonToChessGame(rs.getString("game"));
-                try {
-                    game.makeMove(move);
-                } catch (InvalidMoveException e) {
-                    throw new ResponseException(400, "Error: Bad Request");
-                }
-                String gameJson = new Gson().toJson(game);
-                String sql2 = "UPDATE gamedata SET game = ? WHERE game_id = ?";
-                PreparedStatement stmt2 = conn.prepareStatement(sql2);
-                stmt2.setString(1, gameJson);
-                stmt2.setInt(2, gameID);
-                stmt2.executeUpdate();
-            }
-        } catch (SQLException | DataAccessException e) {
-            throw new ResponseException(500, "Error: Internal Server Error");
         }
     }
 }
