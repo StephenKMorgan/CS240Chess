@@ -448,6 +448,21 @@ public class MySQLDataAccess implements DataAccess {
         }
     }
 
+    public GameData getGameData(int gameID, String authToken) {
+        try (Connection conn = DatabaseManager.getConnection()) {
+            String sql = "SELECT * FROM gamedata WHERE game_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, gameID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return new GameData(rs.getInt("game_id"), rs.getString("whiteUsername"), rs.getString("blackUsername"), rs.getString("gameName"), convertJsonToChessGame(rs.getString("game")));
+            }
+            return null;
+        } catch (SQLException | DataAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void clearAllData() throws SQLException, DataAccessException {
         try(Connection conn = DatabaseManager.getConnection()) {
             String sql = "DELETE FROM gamelists";

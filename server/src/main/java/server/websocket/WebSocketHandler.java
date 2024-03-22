@@ -80,8 +80,8 @@ public class WebSocketHandler {
         //Add the session to the game
         sessions.addSessionToGame(command.getGameID(), command.getAuthToken(), session);
 
-        //Join the game
-        var gameData = service.joinGame(command.getPlayerColor().toString(), command.getGameID(), command.getAuthToken());
+        //Get the joined game data
+        var gameData = service.getGameData(command.getGameID(), command.getAuthToken());
 
         //Get the game data for notifications
         var game = gameData.game();
@@ -102,8 +102,8 @@ public class WebSocketHandler {
         //Add the session to the game
         sessions.addSessionToGame(command.getGameID(), command.getAuthToken(), session);
 
-        //Join the game
-        var gameData = service.joinGame(null, command.getGameID(), command.getAuthToken());
+        //Get the joined game data
+        var gameData = service.getGameData(command.getGameID(), command.getAuthToken());
 
         //Get the game data for notifications
         var game = gameData.game();

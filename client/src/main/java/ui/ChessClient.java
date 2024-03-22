@@ -202,7 +202,8 @@ public class ChessClient {
         }
         try {
             this.gameData = server.joinGame(authData.authToken(), ID, color);
-            return new Game(gameData).displayGame(color == null ? "white":color);
+            new Game(this.gameData, this.url, this.authData, color).startGame();
+            return ""; 
 
         } catch (ResponseException ex) {
             return errorParsing(Method.joinGame, ex.getMessage());
@@ -224,7 +225,8 @@ public class ChessClient {
         try {
             var game = server.joinGame(authData.authToken(), ID, null);
             this.gameData = game;
-            return new Game(gameData).displayGame("White");
+            new Game(this.gameData, this.url, this.authData, null).startGame();
+            return "";
         } catch (ResponseException ex) {
             return errorParsing(Method.observeGame, ex.getMessage());
         }

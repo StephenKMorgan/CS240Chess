@@ -32,11 +32,10 @@ public class WebSocketFacade extends Endpoint implements MessageHandler.Whole<St
 
     public void onError(){}
 
-    public WebSocketFacade(String url, GameHandler gameHandler) throws ResponseException {
+    public WebSocketFacade(String url) throws ResponseException {
         try {
             url = url.replace("http", "ws");
             URI socketURI = new URI(url + "/connect");
-            this.gameHandler = gameHandler;
 
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
             this.session = container.connectToServer(this, socketURI);

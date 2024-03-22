@@ -1,7 +1,11 @@
 
-C
-java:S1604%"(Make this anonymous inner class a lambda(žÆÏ¹úÿÿÿÿ
-œ
-java:S1186B"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Úà›­ùÿÿÿÿ
-M
-java:S1068"7Remove this unused "notificationHandler" private field.(î˜ÓÝ
+£
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(«†®Ôþÿÿÿÿ8Ø£ô¢æ1
+ž
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ø’¼ñ8Ø£ô¢æ1
+£
+java:S1186!"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ñø…õúÿÿÿÿ8Ø£ô¢æ1
+n
+java:S6201k"LReplace this instanceof check and cast with 'instanceof ChessGame chessgame'(þÇ¨Ãûÿÿÿÿ8ï£ô¢æ1
+h
+java:S6201m"FReplace this instanceof check and cast with 'instanceof String string'(ÙÑóÂúÿÿÿÿ8ï£ô¢æ1
