@@ -14,6 +14,10 @@ import javax.websocket.WebSocketContainer;
 
 import com.google.gson.Gson;
 
+import webSocketMessages.serverMessages.ErrorMessage;
+import webSocketMessages.serverMessages.LoadGameMessage;
+import webSocketMessages.serverMessages.NotificationMessage;
+import webSocketMessages.userCommands.JoinObserverCommand;
 import webSocketMessages.userCommands.JoinPlayerCommand;
 import webSocketMessages.userCommands.LeaveGameCommand;
 import webSocketMessages.userCommands.MakeMoveCommand;
@@ -26,7 +30,9 @@ public class WebSocketFacade extends Endpoint implements MessageHandler.Whole<St
     private Session session;
     private GameHandler gameHandler;
 
-    public void onOpen(Session session, EndpointConfig config) {}
+    public void onOpen(Session session, EndpointConfig config) {
+        this.session = session;
+    }
 
     public void onClose(){}
 
@@ -34,15 +40,13 @@ public class WebSocketFacade extends Endpoint implements MessageHandler.Whole<St
 
     public WebSocketFacade(String url) throws ResponseException {
         try {
-            url = url.replace("http", "ws");
-            URI socketURI = new URI(url + "/connect");
-
+            //convert the http link to a ws link and add /connect to the end
+            url = url.replace("http://", "ws://") + "/connect";
             WebSocketContainer container = ContainerProvider.getWebSocketContainer();
-            this.session = container.connectToServer(this, socketURI);
-
-           
-        } catch (DeploymentException | IOException | URISyntaxException ex) {
-            throw new ResponseException(500, ex.getMessage());
+            var newSession = container.connectToServer(this, new URI(url));
+            onOpen(newSession, null);
+        } catch (DeploymentException | IOException | URISyntaxException e) {
+            throw new ResponseException(500, "Failed: 500 Failed to connect to the server");
         }
     }
 
@@ -61,7 +65,7 @@ public class WebSocketFacade extends Endpoint implements MessageHandler.Whole<St
 
     public void joinObserver(String authToken, Integer gameID, String username) {
         //Create the join observer message as a join observer command
-        var joinObserverCommand = new JoinPlayerCommand(authToken);
+        var joinObserverCommand = new JoinObserverCommand(authToken);
         joinObserverCommand.setGameID(gameID);
         joinObserverCommand.setUsername(username);
 
@@ -97,27 +101,35 @@ public class WebSocketFacade extends Endpoint implements MessageHandler.Whole<St
         sendMessage(resignGameCommand);
     }
     
-    
+    @Override
     public void onMessage(String message) {
        //Deserialize the message
         var gson = new Gson();
         var messageObject = gson.fromJson(message, Object.class);
-
+        System.out.println("Message received: " + messageObject);
         //Call gameHandler to process the message
-        if (messageObject instanceof ChessGame) {
-            gameHandler.updateGame((ChessGame) messageObject);
-        } else if (messageObject instanceof String) {
-            gameHandler.printMessage((String) messageObject);
+        if (messageObject instanceof LoadGameMessage) {
+            //cast the message to a LoadGameMessage and call the updateGame method
+            System.out.println("LoadGameMessage received");
+            gameHandler.updateGame(((LoadGameMessage) messageObject).getGame());
+        } else if (messageObject instanceof NotificationMessage) {
+            System.out.println("NotificationMessage received");
+            gameHandler.printMessage(((NotificationMessage) messageObject).getMessage());
+        } else if (messageObject instanceof ErrorMessage) {
+            System.out.println("ErrorMessage received");
+            gameHandler.printMessage(((ErrorMessage) messageObject).getError());
         }
     }
-    
-   
+
     private void sendMessage(Object message) {
-        try {
-            this.session.getBasicRemote().sendText(new Gson().toJson(message));
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (this.session != null && this.session.isOpen()) {
+            try {
+                this.session.getBasicRemote().sendText(new Gson().toJson(message));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Cannot send message. Session is either null or closed.");
         }
     }
-  
 }

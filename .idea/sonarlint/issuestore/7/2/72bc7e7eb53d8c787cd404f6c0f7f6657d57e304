@@ -1,11 +1,16 @@
 
-£
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(«†®Ôşÿÿÿÿ8Ø£ô¢æ1
 
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ø’¼ñ8Ø£ô¢æ1
+java:S1186%"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ø’¼ñ8è¤›Íæ1
 £
-java:S1186!"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ñø…õúÿÿÿÿ8Ø£ô¢æ1
-n
-java:S6201k"LReplace this instanceof check and cast with 'instanceof ChessGame chessgame'(şÇ¨Ãûÿÿÿÿ8ï£ô¢æ1
-h
-java:S6201m"FReplace this instanceof check and cast with 'instanceof String string'(ÙÑóÂúÿÿÿÿ8ï£ô¢æ1
+java:S1186'"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ñø…õúÿÿÿÿ8é¤›Íæ1
+G	java:S106m"+Replace this use of System.out by a logger.(µ£Œ´8ˆ‹ãÃæ1
+u
+java:S6201o"XReplace this instanceof check and cast with 'instanceof LoadGameMessage loadgamemessage'(ŞÙåû8‹ãÃæ1
+L	java:S106q"+Replace this use of System.out by a logger.(®­’Ùøÿÿÿÿ8™™íÌæ1
+‚
+java:S6201s"`Replace this instanceof check and cast with 'instanceof NotificationMessage notificationmessage'(“æºıÿÿÿÿ8™™íÌæ1
+L	java:S106t"+Replace this use of System.out by a logger.(ƒåùûÿÿÿÿ8š™íÌæ1
+o
+java:S6201v"RReplace this instanceof check and cast with 'instanceof ErrorMessage errormessage'(’ñì8š™íÌæ1
+G	java:S106w"+Replace this use of System.out by a logger.(¥¢Ñ8œ™íÌæ1
+M	java:S106„"+Replace this use of System.out by a logger.(ùÿ×óüÿÿÿÿ8õãûÌæ1

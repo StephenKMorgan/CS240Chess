@@ -1,7 +1,22 @@
 
-L	java:S106%"+Replace this use of System.out by a logger.(´áÀŠÿÿÿÿÿ8Ô¡ô¢æ1
-L	java:S106,"+Replace this use of System.out by a logger.(Öôíéøÿÿÿÿ8ó¡ô¢æ1
-L	java:S1062"+Replace this use of System.out by a logger.(êÓæøùÿÿÿÿ8ô¡ô¢æ1
-G	java:S1068"+Replace this use of System.out by a logger.(«–¨†8÷¡ô¢æ1
-K
-java:S1172z".Remove this unused method parameter "session".(ÃûşÖ8…¢ô¢æ1
+Z
+java:S4973¿"<Strings and Boxed types should be compared using "equals()".(ã¡Œÿ8Ü¥Íæ1
+‚
+java:S1130""lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(áÀ«Ì
+E	java:S106#"+Replace this use of System.out by a logger.(´áÀŠÿÿÿÿÿ
+@	java:S106*"+Replace this use of System.out by a logger.(¥ª©÷
+E	java:S1060"+Replace this use of System.out by a logger.(êÓæøùÿÿÿÿ
+@	java:S1066"+Replace this use of System.out by a logger.(«–¨†
+D
+java:S1172~".Remove this unused method parameter "session".(ÃûşÖ
+
+java:S1130¯"tRemove the declaration of thrown exception 'exception.ResponseException', as it cannot be thrown from method's body.(èÆíŠÿÿÿÿÿ
+X
+java:S1172¯"<Remove these unused method parameters "gameID", "authToken".(èÆíŠÿÿÿÿÿ
+H	java:S106³"+Replace this use of System.out by a logger.(³Ÿ‡‰8áÜ¥Íæ1
+H	java:S106¶"+Replace this use of System.out by a logger.(™Çû¶8áÜ¥Íæ1
+H	java:S106¹"+Replace this use of System.out by a logger.(•¶€ÿ8âÜ¥Íæ1
+
+java:S1130½"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(µ€ÕÓıÿÿÿÿ8ãÜ¥Íæ1
+H	java:S106Â"+Replace this use of System.out by a logger.(­ö‡š8åÜ¥Íæ1
+G	java:S106Å"+Replace this use of System.out by a logger.( •ğ8æÜ¥Íæ1

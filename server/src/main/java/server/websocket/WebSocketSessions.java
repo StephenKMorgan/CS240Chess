@@ -1,5 +1,6 @@
 package server.websocket;
 
+import java.util.HashMap;
 import java.util.Map;
 import org.eclipse.jetty.websocket.api.Session;
 
@@ -8,11 +9,16 @@ public class WebSocketSessions {
     
     private Map<Integer, Map<String, Session>> sessionMap;
 
+    public WebSocketSessions() {
+        //create the session map so that does not throw a null pointer exception
+        sessionMap = new HashMap<>();
+    }
+
     public void addSessionToGame(Integer gameID, String authToken, Session session) {
         if (sessionMap.containsKey(gameID)) {
             sessionMap.get(gameID).put(authToken, session);
         } else {
-            sessionMap.put(gameID, Map.of(authToken, session));
+            sessionMap.put(gameID, new HashMap<>(Map.of(authToken, session)));
         }
     }
 

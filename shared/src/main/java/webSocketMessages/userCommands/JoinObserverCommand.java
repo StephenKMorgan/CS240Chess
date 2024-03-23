@@ -21,10 +21,6 @@ public class JoinObserverCommand extends UserGameCommand{
         this.gameID = gameID;
     }
 
-    public String getAuthToken() {
-        return getAuthToken();
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }

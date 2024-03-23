@@ -30,10 +30,6 @@ public class JoinPlayerCommand extends UserGameCommand {
         this.playerColor = playerColor;
     }
 
-    public String getAuthToken() {
-        return getAuthToken();
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }

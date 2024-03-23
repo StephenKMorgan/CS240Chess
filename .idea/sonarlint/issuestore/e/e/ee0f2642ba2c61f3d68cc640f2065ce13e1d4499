@@ -1,30 +1,43 @@
 
 c
-java:S1192"FDefine a constant instead of duplicating this literal "white" 3 times.(§ıìÖ8“à¤æ1
->
-java:S1643U"Use a StringBuilder instead.(úÈÎÀşÿÿÿÿ8“à¤æ1
-9
-java:S1643X"Use a StringBuilder instead.(“ôˆ‘8“à¤æ1
-9
-java:S1643Z"Use a StringBuilder instead.(¼ÿÁ²8“à¤æ1
->
-java:S1643g"Use a StringBuilder instead.(úÈÎÀşÿÿÿÿ8“à¤æ1
->
-java:S1643j"Use a StringBuilder instead.(Š¡€’ÿÿÿÿÿ8“à¤æ1
-9
-java:S1643l"Use a StringBuilder instead.(Ö‚Ø™8“à¤æ1
+java:S1192""FDefine a constant instead of duplicating this literal "white" 3 times.(§ıìÖ8 ¿øÄæ1
+?
+java:S1643"Use a StringBuilder instead.(úÈÎÀşÿÿÿÿ8¡¿øÄæ1
+:
+java:S1643"Use a StringBuilder instead.(“ôˆ‘8¢¿øÄæ1
+:
+java:S1643’"Use a StringBuilder instead.(¼ÿÁ²8£¿øÄæ1
+?
+java:S1643Ÿ"Use a StringBuilder instead.(úÈÎÀşÿÿÿÿ8£¿øÄæ1
+?
+java:S1643¢"Use a StringBuilder instead.(Š¡€’ÿÿÿÿÿ8¤¿øÄæ1
+:
+java:S1643¤"Use a StringBuilder instead.(Ö‚Ø™8¤¿øÄæ1
 J
-java:S54111"(Use a primitive boolean expression here.(ñ¬Úüÿÿÿÿ8“à¤æ1
+java:S5411*"(Use a primitive boolean expression here.(ñ¬Úüÿÿÿÿ8¥¿øÄæ1
+J
+java:S54110"(Use a primitive boolean expression here.(ÕÅ‰úÿÿÿÿ8¥¿øÄæ1
+E
+java:S5411I"(Use a primitive boolean expression here.(À÷ä8€”Åæ1
 F
-java:S5411œ"(Use a primitive boolean expression here.(±ƒî˜8“à¤æ1
-^
-java:S4973v"<Strings and Boxed types should be compared using "equals()".(ÀªÌñşÿÿÿÿ8“à¤æ1
-X	java:S125$"<This block of commented-out lines of code should be removed.(‹Éÿ¼8ı“à¤æ1
-G	java:S1063"+Replace this use of System.out by a logger.(ÉØ’à8ı“à¤æ1
-L	java:S1065"+Replace this use of System.out by a logger.(Õƒçøÿÿÿÿ8ı“à¤æ1
-U
-java:S1135°"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8÷Ó‰¤æ1
-U
-java:S1135¶"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿ8ùÓ‰¤æ1
+java:S5411Ô"(Use a primitive boolean expression here.(±ƒî˜8¦¿øÄæ1
+_
+java:S4973®"<Strings and Boxed types should be compared using "equals()".(ÀªÌñşÿÿÿÿ8§¿øÄæ1
+L	java:S106-"+Replace this use of System.out by a logger.(ÀÄ¯®ûÿÿÿÿ8áÀøÄæ1
+L	java:S106."+Replace this use of System.out by a logger.(Õƒçøÿÿÿÿ8ãÀøÄæ1
+[
+java:S11170"9Rename "color" which hides the field declared at line 21.(ÕÅ‰úÿÿÿÿ8äÀøÄæ1
+G	java:S1061"+Replace this use of System.out by a logger.(ìûãÓ8äÀøÄæ1
+G	java:S1064"+Replace this use of System.out by a logger.(¢àóÄ8åÀøÄæ1
+O
+java:S6126J"2Replace this String concatenation with Text block.(´ë³8 ”Åæ1
+O
+java:S6126P"2Replace this String concatenation with Text block.(´ë³8¡”Åæ1
+[
+java:S3400d"9Remove this method and declare a constant for this value.(Ë›ûŸüÿÿÿÿ8£”Åæ1
+M
+java:S1172b"+Remove this unused method parameter "move".(Ò¹¼ûÿÿÿÿ8¤”Åæ1
+H	java:S106ê"+Replace this use of System.out by a logger.(äè¥†8üÀøÄæ1
+M	java:S106ï"+Replace this use of System.out by a logger.(Ûˆ¯Æÿÿÿÿÿ8şÀøÄæ1
 I
-java:S1068"'Remove this unused "url" private field.(«Œåùÿÿÿÿ8”à¤æ1
+java:S1068"'Remove this unused "url" private field.(«Œåùÿÿÿÿ8ÿÀøÄæ1

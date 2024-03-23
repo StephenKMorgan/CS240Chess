@@ -1,6 +1,6 @@
 
 g	java:S117¿"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëî¸›
-n	java:S117Ø"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëî¸›8ªÔÜ£æ1
+g	java:S117Ø"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëî¸›
 8
 java:S1643¤"Use a StringBuilder instead.(›¹şÿÿÿÿ
 m
@@ -33,3 +33,12 @@ u	java:S115ù"ZRename this constant name to match the regular expression '^[A-
 u	java:S115ú"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(œ’ºöüÿÿÿÿ
 u	java:S115û"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ìÈĞÉúÿÿÿÿ
 u	java:S115ü"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Ú’¾¥üÿÿÿÿ
+C
+java:S1128".Remove this unused import 'java.util.HashSet'.(Ê‚êX
+H
+java:S1128
+"-Remove this unused import 'chess.ChessPiece'.(Á€“ˆûÿÿÿÿ
+K
+java:S1128"0Remove this unused import 'chess.ChessPosition'.(¸ä—•ıÿÿÿÿ
+H
+java:S1128"3Remove this unused import 'model.GameResponseData'.(›ôŒf

@@ -1,5 +1,8 @@
 package ui;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 import chess.ChessGame;
 import chess.ChessPiece;
 import chess.ChessPosition;
@@ -18,6 +21,7 @@ public class Game implements GameHandler {
     private String color;
     private Boolean isObserver = false; 
     private WebSocketFacade webSocketFacade;
+    private boolean isRunning = true;
 
     public Game(GameData gameData, String url, AuthData authData, String givenColor) throws ResponseException {
         this.gameData = gameData;
@@ -33,26 +37,78 @@ public class Game implements GameHandler {
         this.webSocketFacade = new WebSocketFacade(url);
     }
 
-    //Scanner scanner = new Scanner(System.in);
-    // System.out.println(EscapeSequences.ERASE_SCREEN);
-    // System.out.println(EscapeSequences.SET_TEXT_BOLD + "Welcome to Chess!" + EscapeSequences.RESET_TEXT_BOLD_FAINT);
-    // System.out.println("Type 'help' for a list of commands or 'quit' to exit the program.");
-    // while (isRunning) {
-    //     System.out.print(EscapeSequences.SET_TEXT_BOLD + this.status + EscapeSequences.RESET_TEXT_BOLD_FAINT + " >>>> ");
-    //     var input = scanner.nextLine();
-    //     var output = inputParser(input);
-    //     System.out.println(output);
-    // }
-    // System.exit(0);
-
     public void startGame() {
-        // if(isObserver) { webSocketFacade.joinObserver(this.authData.authToken(), this.gameData.gameID(), this.authData.username());}
-        // else { webSocketFacade.joinPlayer(this.authData.authToken(), this.gameData.gameID(), this.authData.username(), this.convertTeamColor()); }
-        System.out.println(EscapeSequences.SET_TEXT_BOLD + "Welcome to the game" + gameData.gameName() + "! EscapeSequences.RESET_TEXT_BOLD_FAINT");
+        Scanner scanner = new Scanner(System.in);
+        if(isObserver) { webSocketFacade.joinObserver(this.authData.authToken(), this.gameData.gameID(), this.authData.username());}
+        else { webSocketFacade.joinPlayer(this.authData.authToken(), this.gameData.gameID(), this.authData.username(), this.convertTeamColor()); }
 
+        System.out.println(EscapeSequences.SET_TEXT_BOLD + "Welcome to the game " + gameData.gameName() + "!" + EscapeSequences.RESET_TEXT_BOLD_FAINT + " (Type 'help' for a list of commands or 'quit' to exit the program.)");
         System.out.print(displayGame(this.color));
-
+        while (isRunning) {
+            var color = isObserver ? "Observer" : this.color;
+            System.out.print(EscapeSequences.SET_TEXT_BOLD + color + " >>>> " + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+            String input = scanner.nextLine();
+            String output = inputParser(input);
+            System.out.println(output);
+        }
     }
+
+    public String inputParser(String input){
+        var tokens = input.toLowerCase().split(" ");
+        var cmd = (tokens.length > 0) ? tokens[0] : "help";
+        var params = Arrays.copyOfRange(tokens, 1, tokens.length);
+        return switch (cmd) {
+            case "quit" -> quit();
+            case "help" -> help();
+            case "redraw", "redrawing chess board \n" -> displayGame(this.color);
+            case "leave" -> leaveGame();
+            case "move" -> params.length != 2 ? "Invalid move command. Usage: move <from> <to>." : makeMove(input);
+            case "resign" -> "You have resigned the game.";
+            case "highlight", "highlight legal moves" -> "You have highlighted the legal moves.";
+            default -> help();
+        };
+    }
+
+    private String help(){
+        if (isObserver) {
+            return "Available commands:\n" +
+                    "help - Display this help message.\n" +
+                    "quit - Exit the program.\n" +
+                    "Redraw Chess Board or Redraw - Redraw the chess board.\n" +
+                    "Leave - Leave the game.\n";
+        } else {
+        return "Available commands:\n" +
+                "help - Display this help message.\n" +
+                "quit - Exit the program.\n" +
+                "redraw - Redraw the chess board.\n" +
+                "leave - Leave the game.\n" +
+                "move - Make a move. Usage: move <from> <to>.\n" +
+                "resign - Resign the game.\n" +
+                "highlight - Highlight all legal moves for a piece. Usage: highlight legal moves <position>.\n";
+        }
+    }
+
+    private String leaveGame()
+    {
+        webSocketFacade.leaveGame(this.authData.authToken(), this.gameData.gameID());
+        isRunning = false;
+        return "You have left the game.";
+    }
+
+    private String makeMove(String move){
+        //parse the move and send it to the server
+        return "You have made a move.";
+    }
+
+    private String quit(){
+        isRunning = false;
+        //shutdown the websocket
+        webSocketFacade.onClose();
+        //Also needs to send a leave game message and quit the program
+        return "Goodbye!";
+    }
+
+
     
     public String displayGame(String color) {
         if (this.gameData == null) {
@@ -173,13 +229,13 @@ public class Game implements GameHandler {
 
     @Override
     public void updateGame(ChessGame game) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateGame'");
+        //redraw the game with the new game data
+        this.gameData = new GameData(this.gameData.gameID(), this.gameData.whiteUsername(), this.gameData.blackUsername(), this.gameData.gameName(), game);
+        System.out.println("\n" + displayGame(this.color));
     }
 
     @Override
     public void printMessage(String message) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'printMessage'");
+        System.out.println("\n INCOMING MESSAGE >>>> " + message);
     }   
 }
