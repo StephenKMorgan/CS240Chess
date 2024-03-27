@@ -415,6 +415,26 @@ public class MySQLDataAccess implements DataAccess {
             stmt.setInt(1, gameID);
             stmt.setString(2, username);
             stmt.executeUpdate();
+            //if they are a player in a game remove them from the white or black username
+            String sql2 = "SELECT * FROM gamedata WHERE game_id = ?";
+            PreparedStatement stmt2 = conn.prepareStatement(sql2);
+            stmt2.setInt(1, gameID);
+            ResultSet rs = stmt2.executeQuery();
+            if (rs.next()) {
+                String whiteUsername = rs.getString("whiteUsername");
+                String blackUsername = rs.getString("blackUsername");
+                if (whiteUsername != null && whiteUsername.equals(username)) {
+                    whiteUsername = null;
+                } else if (blackUsername != null && blackUsername.equals(username)) {
+                    blackUsername = null;
+                }
+                String sql3 = "UPDATE gamedata SET whiteUsername = ?, blackUsername = ? WHERE game_id = ?";
+                PreparedStatement stmt3 = conn.prepareStatement(sql3);
+                stmt3.setString(1, whiteUsername);
+                stmt3.setString(2, blackUsername);
+                stmt3.setInt(3, gameID);
+                stmt3.executeUpdate();
+            }
             return username;
         } catch (SQLException | DataAccessException e) {
             throw new ResponseException(500, "Error: Internal Server Error");

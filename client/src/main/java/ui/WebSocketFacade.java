@@ -53,12 +53,11 @@ public class WebSocketFacade extends Endpoint {
             url = url.replace("http://", "ws://") + "/connect";
             WebSocketContainer container=ContainerProvider.getWebSocketContainer();
             this.session = container.connectToServer(this, new URI(url));
-            //this.session.addMessageHandler((MessageHandler.Whole<String>) this::recivedMessage);
             this.session.addMessageHandler(new MessageHandler.Whole<String>() {
-            public void onMessage(String message) {
+                  public void onMessage(String message) {
                 recivedMessage(message);
             }
-        });
+             });
         } catch (DeploymentException | IOException | URISyntaxException e) {
             throw new ResponseException(500, "Failed: 500 Failed to connect to the server");
         }
@@ -115,7 +114,6 @@ public class WebSocketFacade extends Endpoint {
     }
     
     public void recivedMessage(String message) {
-//         System.out.println("Message received: " + message);
          // Parse the JSON into a JsonObject
          var gson = new Gson();
          var jsonElement = gson.fromJson(message, JsonElement.class);

@@ -1,65 +1,64 @@
 
 
-java:S1192u"KDefine a constant instead of duplicating this literal "[a-h][1-8]" 3 times.(´œ„¼8†ô‡è1J$d9318f24-1166-46ea-a567-f9b1c3859182
+java:S1192u"KDefine a constant instead of duplicating this literal "[a-h][1-8]" 3 times.(´œ„¼8†ô‡è1J$29694b81-bb99-44bd-8ba6-9b8b96ee62fe
 ‰
-java:S1192+"FDefine a constant instead of duplicating this literal "white" 3 times.(§ıìÖ8†ô‡è1J$66da35b2-be10-483f-92fb-fed637d00974
+java:S1192+"FDefine a constant instead of duplicating this literal "white" 3 times.(§ıìÖ8†ô‡è1J$08e94d15-11a3-4b5a-8460-320d9e0a6586
 Š
-java:S1192:"GDefine a constant instead of duplicating this literal " >>>> " 3 times.(ìûãÓ8†ô‡è1J$2ff37ac6-1fbf-47b0-8187-87b16db7259a
+java:S1192:"GDefine a constant instead of duplicating this literal " >>>> " 3 times.(ìûãÓ8†ô‡è1J$c718505d-6c38-480e-af3b-cc5adf626884
 e
-java:S1643Ú"Use a StringBuilder instead.(úÈÎÀşÿÿÿÿ8×­·‰è1J$f14b57b4-9fe0-4b3f-83f5-8d515d11bb25
+java:S1643Ş"Use a StringBuilder instead.(úÈÎÀşÿÿÿÿ8×­·‰è1J$b582658b-dc9a-4888-bbd7-743b6a5157ad
 `
-java:S1643Ş"Use a StringBuilder instead.(§™‘õ8×­·‰è1J$e5ecf7a1-609c-4d92-91a4-b1d2103f0644
+java:S1643â"Use a StringBuilder instead.(§™‘õ8×­·‰è1J$5647677a-04a4-4277-a013-c0971c6a5a35
 `
-java:S1643à"Use a StringBuilder instead.(·›ë²8ìíè1J$d1762f48-3e1c-4938-ad22-16a6379b4908
+java:S1643ä"Use a StringBuilder instead.(·›ë²8ìíè1J$b6447062-cdd9-4755-985f-6df37aa1f41b
 `
-java:S1643â"Use a StringBuilder instead.(“ôˆ‘8ìíè1J$4849b693-3ee6-49bb-a2da-d07b17c705f2
+java:S1643æ"Use a StringBuilder instead.(“ôˆ‘8ìíè1J$72257ac9-0034-4d27-9a81-ff1a6df341d3
 `
-java:S1643æ"Use a StringBuilder instead.(¼ÿÁ²8ìíè1J$7f0e41df-3468-4f95-93cf-648f0bff1332
+java:S1643é"Use a StringBuilder instead.(¼ÿÁ²8†ô‡è1J$686cc1bb-3001-4252-b426-56434398fe3e
+`
+java:S1643ö"Use a StringBuilder instead.(­¦€¤8ô‡è1J$4717d588-7f2f-49e1-9d18-af26c034e293
 e
-java:S1643ó"Use a StringBuilder instead.(úÈÎÀşÿÿÿÿ8†ô‡è1J$0b0afa10-e77d-416c-8f69-95fe1318e7d8
-e
-java:S1643ö"Use a StringBuilder instead.(Š¡€’ÿÿÿÿÿ8†ô‡è1J$e43bf484-c642-4140-8bb2-5999d139efa4
+java:S1643ù"Use a StringBuilder instead.(Š¡€’ÿÿÿÿÿ8èá¿è1J$44023a85-44b7-4f52-9b37-9db1df2a2f5f
 `
-java:S1643ø"Use a StringBuilder instead.(Ö‚Ø™8ô‡è1J$98be031a-cef8-494d-aaa3-c0ee663489df
+java:S1643û"Use a StringBuilder instead.(Ö‚Ø™8èá¿è1J$51217f83-c586-4910-9754-373f1426cfab
 p
-java:S54113"(Use a primitive boolean expression here.(ñ¬Úüÿÿÿÿ8ô‡è1J$d665d414-25fd-48b8-96f8-20f048532847
+java:S54113"(Use a primitive boolean expression here.(ñ¬Úüÿÿÿÿ8ô‡è1J$85616c90-dc31-42fb-b35a-ecfe828abd7a
 p
-java:S54119"(Use a primitive boolean expression here.(ÕÅ‰úÿÿÿÿ8ô‡è1J$5005777f-d1a9-485b-954b-4e259e56c95c
+java:S54119"(Use a primitive boolean expression here.(ÕÅ‰úÿÿÿÿ8ô‡è1J$36ada407-3ba6-43b1-94a4-0c98134f466f
 k
-java:S5411R"(Use a primitive boolean expression here.(À÷ä8ô‡è1J$58bd5ae9-1a0d-4eb5-9519-cb7af5c36e67
+java:S5411R"(Use a primitive boolean expression here.(À÷ä8ô‡è1J$90a648ae-5b83-401f-aa2c-92d4a4322fa8
 l
-java:S5411¨"(Use a primitive boolean expression here.(±ƒî˜8Ú­·‰è1J$ef60bb33-6875-4234-9b7a-b3ddca2e24f9
+java:S5411«"(Use a primitive boolean expression here.(±ƒî˜8Ú­·‰è1J$d3caed3a-c927-4ca7-8ca1-e76941c479c5
 …
-java:S4973‚"<Strings and Boxed types should be compared using "equals()".(ÀªÌñşÿÿÿÿ8Ü­·‰è1J$40f6ccc7-3a63-45e5-b7c4-f79482404e2d
+java:S4973…"<Strings and Boxed types should be compared using "equals()".(ÀªÌñşÿÿÿÿ8Ü­·‰è1J$614a722a-d4d3-4da0-9820-10fe76596153
 
-java:S2259"DA "NullPointerException" could be thrown; "toMove" is nullable here.(¯Úõÿÿÿÿÿ8ë÷‡è1J$d61e74fb-eb01-4996-8291-642452b43dae
-r	java:S1066"+Replace this use of System.out by a logger.(ÀÄ¯®ûÿÿÿÿ8ìíè1J$69b9495f-50ec-4c33-a16d-ddf0123f0f8e
-r	java:S1067"+Replace this use of System.out by a logger.(Õƒçøÿÿÿÿ8ìíè1J$7d4f7ffe-76e8-4256-b11b-3f8dcb365305
+java:S2259"DA "NullPointerException" could be thrown; "toMove" is nullable here.(¯Úõÿÿÿÿÿ8ë÷‡è1J$15d858b8-47b8-4650-85d1-1ab62f366ca2
+r	java:S1066"+Replace this use of System.out by a logger.(ÀÄ¯®ûÿÿÿÿ8ìíè1J$29ad4918-05f2-43ea-8c8d-e548648e54c2
+r	java:S1067"+Replace this use of System.out by a logger.(Õƒçøÿÿÿÿ8ìíè1J$ff2bdebb-f8d1-4757-a633-a00f2db3761e
 
-java:S11179"9Rename "color" which hides the field declared at line 28.(ÕÅ‰úÿÿÿÿ8„ø‡è1J$f0a91685-1df3-4fa3-875b-0eda2ab595d4
-m	java:S106:"+Replace this use of System.out by a logger.(ìûãÓ8îíè1J$065749ca-e258-492e-a7bd-0ca649a7f13a
-m	java:S106="+Replace this use of System.out by a logger.(¢àóÄ8îíè1J$8dc02fa0-1cd5-4e88-a0c1-e55580b2751b
+java:S11179"9Rename "color" which hides the field declared at line 28.(ÕÅ‰úÿÿÿÿ8„ø‡è1J$b58b37c2-dba3-44ab-8940-65053884c5e6
+m	java:S106:"+Replace this use of System.out by a logger.(ìûãÓ8îíè1J$fc2c2c00-e834-459d-b208-1f477c835901
+m	java:S106="+Replace this use of System.out by a logger.(¢àóÄ8îíè1J$d9d0869e-afed-482b-9949-e7e3e3d3964c
 u
-java:S6126S"2Replace this String concatenation with Text block.(´ë³8Œø‡è1J$252b2563-acca-4d87-a2ac-e69d12c076b8
+java:S6126S"2Replace this String concatenation with Text block.(´ë³8Œø‡è1J$27c25a30-8237-4fda-9a11-c030f3dd0f43
 u
-java:S6126Y"2Replace this String concatenation with Text block.(´ë³8Œø‡è1J$8e9043b8-e9fb-4a21-b484-a90db6815253
-s	java:S106ƒ"+Replace this use of System.out by a logger.(§­Œ¬ÿÿÿÿÿ8•ø‡è1J$59f242c7-c218-4a6b-a10c-649be5c89223
+java:S6126Y"2Replace this String concatenation with Text block.(´ë³8Œø‡è1J$2b93ef00-e538-49da-a873-47b49521af75
+s	java:S106ƒ"+Replace this use of System.out by a logger.(§­Œ¬ÿÿÿÿÿ8•ø‡è1J$89a8deb1-7ef6-453a-ba9b-31f61dfecc96
 ~
-java:S1854³":Remove this useless assignment to local variable "output".(¼û·Æ8œø‡è1J$91d52259-7b7f-45f1-92d1-a819b5131eae
+java:S1854·":Remove this useless assignment to local variable "output".(¼û·Æ8œø‡è1J$b19d010f-28b5-4b8e-abbb-dd50da9f7ca4
 ›
-java:S6204µ"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(œ Îäúÿÿÿÿ8¤ø‡è1J$0d474f30-c494-4dee-99fb-dca6877f90e9
+java:S6204¹"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(œ Îäúÿÿÿÿ8¤ø‡è1J$4ca05ff2-daef-499f-b2e8-182a2d5e165a
 
-java:S1612µ"FReplace this lambda with method reference 'ChessMove::getEndPosition'.(œ Îäúÿÿÿÿ8¬ø‡è1J$a2fadd33-45aa-4b1d-9ad1-8c479dda8316
-„	java:S125ä"<This block of commented-out lines of code should be removed.(ªØÜÄùÿÿÿÿ8âíè1J$d4a0d73e-95aa-48ab-a622-6ef4b179dc8e
-s	java:S106¾"+Replace this use of System.out by a logger.(Œ®Ä§ıÿÿÿÿ8Åø‡è1J$25e5d31e-fc7e-459f-b3fb-48bd7ef69f32
-n	java:S106¿"+Replace this use of System.out by a logger.(ìûãÓ8Åø‡è1J$773aba62-f806-43e8-8c62-69de10c327c9
-s	java:S106Ä"+Replace this use of System.out by a logger.(‹½Ã­ıÿÿÿÿ8Åø‡è1J$1dc798a2-1225-4eab-b759-67fc89b1d8cc
-n	java:S106Å"+Replace this use of System.out by a logger.(ìûãÓ8Åø‡è1J$ecd81d90-3ff2-4a2c-8ff6-6b37bb6490a1
+java:S1612¹"FReplace this lambda with method reference 'ChessMove::getEndPosition'.(œ Îäúÿÿÿÿ8¬ø‡è1J$158d0223-0e1b-498c-a54d-ba099beabfb9
+s	java:S106Á"+Replace this use of System.out by a logger.(Œ®Ä§ıÿÿÿÿ8Åø‡è1J$fc6c97b9-17ae-4b90-b026-bcbc456f4f4b
+n	java:S106Â"+Replace this use of System.out by a logger.(ìûãÓ8Åø‡è1J$3a3fc7b8-db5d-4f83-a80f-fa118820c1c2
+s	java:S106Ç"+Replace this use of System.out by a logger.(‹½Ã­ıÿÿÿÿ8Åø‡è1J$1359bd66-2b57-458f-b23b-eb8e35548efd
+n	java:S106È"+Replace this use of System.out by a logger.(ìûãÓ8Åø‡è1J$34174637-00e4-4371-8c0f-90787cd5ec5a
 x
-java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8øæîè1J$aa794345-667f-432e-9269-e37ae7e958c1
+java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8øæîè1J$8220bacc-d81c-4763-8d13-8042f82ebf62
 €
-java:S1128"8Remove this unused import 'java.net.URISyntaxException'.(Ä®íÿÿÿÿÿ8øæîè1J$fd62035b-029a-4488-a808-c7c71392a3f1
+java:S1128"8Remove this unused import 'java.net.URISyntaxException'.(Ä®íÿÿÿÿÿ8øæîè1J$b1ee597b-8067-40ff-bb8f-651f5e267ab6
 ˆ
-java:S1128"@Remove this unused import 'javax.websocket.DeploymentException'.(Ä”ªâøÿÿÿÿ8Êø‡è1J$8b72e719-be70-4320-9979-e0a664810963
+java:S1128"@Remove this unused import 'javax.websocket.DeploymentException'.(Ä”ªâøÿÿÿÿ8Êø‡è1J$5a0c5971-c752-453a-ab60-6c009a5b0f2e
 o
-java:S1068"'Remove this unused "url" private field.(«Œåùÿÿÿÿ8Íø‡è1J$26dc3ce4-fadf-4aab-8246-bb0b0f98cde9
+java:S1068"'Remove this unused "url" private field.(«Œåùÿÿÿÿ8Íø‡è1J$29116219-28e7-43a5-8e53-dbec0159617b
