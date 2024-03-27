@@ -1,16 +1,18 @@
 
-
-java:S1186%"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ø’¼ñ8è¤›Íæ1
-£
-java:S1186'"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ñø…õúÿÿÿÿ8é¤›Íæ1
-G	java:S106m"+Replace this use of System.out by a logger.(µ£Œ´8ˆ‹ãÃæ1
-u
-java:S6201o"XReplace this instanceof check and cast with 'instanceof LoadGameMessage loadgamemessage'(ŞÙåû8‹ãÃæ1
-L	java:S106q"+Replace this use of System.out by a logger.(®­’Ùøÿÿÿÿ8™™íÌæ1
-‚
-java:S6201s"`Replace this instanceof check and cast with 'instanceof NotificationMessage notificationmessage'(“æºıÿÿÿÿ8™™íÌæ1
-L	java:S106t"+Replace this use of System.out by a logger.(ƒåùûÿÿÿÿ8š™íÌæ1
-o
-java:S6201v"RReplace this instanceof check and cast with 'instanceof ErrorMessage errormessage'(’ñì8š™íÌæ1
-G	java:S106w"+Replace this use of System.out by a logger.(¥¢Ñ8œ™íÌæ1
-M	java:S106„"+Replace this use of System.out by a logger.(ùÿ×óüÿÿÿÿ8õãûÌæ1
+i
+java:S16049"(Make this anonymous inner class a lambda(ÆÏ¹úÿÿÿÿJ$4c44ff13-1ba4-4fbc-9cd0-1e933dba370a
+f	java:S106&"+Replace this use of System.out by a logger.(ÙâÂƒJ$8e397049-59cb-4ed4-9c17-7a1210d6775f
+v	java:S125%"<This block of commented-out lines of code should be removed.(¼íè&J$24e7c9b2-d671-4264-8213-251d724ec6f4
+f	java:S106*"+Replace this use of System.out by a logger.(ÉÂ…çJ$1cab1824-dc06-45af-818f-66aa0bb1defa
+k	java:S106."+Replace this use of System.out by a logger.(ÌÏ†ùÿÿÿÿJ$5535968d-2ae3-4bd0-b255-1241a3583768
+|	java:S1258"<This block of commented-out lines of code should be removed.(Ü¼¡šùÿÿÿÿJ$7d9bca47-f17f-4d2d-9334-5025404d850b
+|	java:S125v"<This block of commented-out lines of code should be removed.(Î¦•†ÿÿÿÿÿJ$69c05916-e9e5-4ccb-8287-44b8f9763453
+l	java:S106ƒ"+Replace this use of System.out by a logger.(®­’ÙøÿÿÿÿJ$2b8ddd85-e7d0-4d2c-a3fa-3e5e91025041
+l	java:S106ˆ"+Replace this use of System.out by a logger.(ƒåùûÿÿÿÿJ$68337913-c5a1-4736-9749-6109fcad07c1
+g	java:S106"+Replace this use of System.out by a logger.(¥¢ÑJ$635be022-7645-42ee-b497-c4c901bb9d23
+l	java:S106‘"+Replace this use of System.out by a logger.(²¢‰ˆøÿÿÿÿJ$67e8b2c0-70ce-4ba2-86bf-f6b5ded47181
+l	java:S106"+Replace this use of System.out by a logger.(ùÿ×óüÿÿÿÿJ$477b4761-f54b-42cf-a933-13c97770b947
+l
+java:S1128"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿJ$26a9255f-23cf-4be3-bbce-24917c885d1d
+j
+java:S1068!"/Remove this unused "gameHandler" private field.(ÀèÒ{J$3107c1a8-14ce-43d9-8070-bb192c1d8b18

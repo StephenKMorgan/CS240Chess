@@ -3,6 +3,7 @@ package ui;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.UUID;
 
 import javax.websocket.ContainerProvider;
 import javax.websocket.DeploymentException;
@@ -13,6 +14,7 @@ import javax.websocket.Session;
 import javax.websocket.WebSocketContainer;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 
 import webSocketMessages.serverMessages.ErrorMessage;
 import webSocketMessages.serverMessages.LoadGameMessage;
@@ -25,31 +27,42 @@ import chess.ChessGame;
 import chess.ChessMove;
 import exception.ResponseException;
 
-public class WebSocketFacade extends Endpoint implements MessageHandler.Whole<String>{
+public class WebSocketFacade extends Endpoint {
 
     private Session session;
     private GameHandler gameHandler;
+    private Game game;
 
     public void onOpen(Session session, EndpointConfig config) {
-        this.session = session;
+//        this.session = session;
+        System.out.println("WebSocket connection opened, session ID: " + session.getId());
     }
 
-    public void onClose(){}
+    public void onClose(){
+        System.out.println("onClose called");
+    }
 
-    public void onError(){}
+    public void onError(){
+        System.out.println("onError called");
+    }
 
-    public WebSocketFacade(String url) throws ResponseException {
+    public WebSocketFacade(String url, Game game) throws ResponseException {
         try {
+            this.game = game;
             //convert the http link to a ws link and add /connect to the end
             url = url.replace("http://", "ws://") + "/connect";
-            WebSocketContainer container = ContainerProvider.getWebSocketContainer();
-            var newSession = container.connectToServer(this, new URI(url));
-            onOpen(newSession, null);
+            WebSocketContainer container=ContainerProvider.getWebSocketContainer();
+            this.session = container.connectToServer(this, new URI(url));
+            //this.session.addMessageHandler((MessageHandler.Whole<String>) this::recivedMessage);
+            this.session.addMessageHandler(new MessageHandler.Whole<String>() {
+            public void onMessage(String message) {
+                recivedMessage(message);
+            }
+        });
         } catch (DeploymentException | IOException | URISyntaxException e) {
             throw new ResponseException(500, "Failed: 500 Failed to connect to the server");
         }
     }
-
 
     //Outgoing messages
     public void joinPlayer(String authToken, Integer gameID, String username, ChessGame.TeamColor playerColor) {
@@ -101,25 +114,38 @@ public class WebSocketFacade extends Endpoint implements MessageHandler.Whole<St
         sendMessage(resignGameCommand);
     }
     
-    @Override
-    public void onMessage(String message) {
-       //Deserialize the message
-        var gson = new Gson();
-        var messageObject = gson.fromJson(message, Object.class);
-        System.out.println("Message received: " + messageObject);
-        //Call gameHandler to process the message
-        if (messageObject instanceof LoadGameMessage) {
-            //cast the message to a LoadGameMessage and call the updateGame method
-            System.out.println("LoadGameMessage received");
-            gameHandler.updateGame(((LoadGameMessage) messageObject).getGame());
-        } else if (messageObject instanceof NotificationMessage) {
-            System.out.println("NotificationMessage received");
-            gameHandler.printMessage(((NotificationMessage) messageObject).getMessage());
-        } else if (messageObject instanceof ErrorMessage) {
-            System.out.println("ErrorMessage received");
-            gameHandler.printMessage(((ErrorMessage) messageObject).getError());
-        }
-    }
+    public void recivedMessage(String message) {
+//         System.out.println("Message received: " + message);
+         // Parse the JSON into a JsonObject
+         var gson = new Gson();
+         var jsonElement = gson.fromJson(message, JsonElement.class);
+         var jsonObject = jsonElement.getAsJsonObject();
+
+         // Extract the type of the message
+         var messageType = jsonObject.get("serverMessageType").getAsString();
+
+         // Deserialize into the specific message type based on the type information
+         switch (messageType) {
+             case "LOAD_GAME":
+                 var loadGameMessage = gson.fromJson(jsonObject, LoadGameMessage.class);
+                 System.out.println("LoadGameMessage received");
+                 game.updateGame(loadGameMessage.getGame());
+                 break;
+             case "NOTIFICATION":
+                 var notificationMessage = gson.fromJson(jsonObject, NotificationMessage.class);
+                 System.out.println("NotificationMessage received");
+                 game.printMessage(notificationMessage.getMessage());
+                 break;
+             case "ERROR":
+                 var errorMessage = gson.fromJson(jsonObject, ErrorMessage.class);
+                 System.out.println("ErrorMessage received");
+                 game.printMessage(errorMessage.getError());
+                 break;
+             default:
+                 System.out.println("Unknown message type: " + messageType);
+                 break;
+         }
+     }
 
     private void sendMessage(Object message) {
         if (this.session != null && this.session.isOpen()) {

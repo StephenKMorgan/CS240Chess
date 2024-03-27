@@ -1,43 +1,65 @@
 
-c
-java:S1192""FDefine a constant instead of duplicating this literal "white" 3 times.(§ıìÖ8 ¿øÄæ1
-?
-java:S1643"Use a StringBuilder instead.(úÈÎÀşÿÿÿÿ8¡¿øÄæ1
-:
-java:S1643"Use a StringBuilder instead.(“ôˆ‘8¢¿øÄæ1
-:
-java:S1643’"Use a StringBuilder instead.(¼ÿÁ²8£¿øÄæ1
-?
-java:S1643Ÿ"Use a StringBuilder instead.(úÈÎÀşÿÿÿÿ8£¿øÄæ1
-?
-java:S1643¢"Use a StringBuilder instead.(Š¡€’ÿÿÿÿÿ8¤¿øÄæ1
-:
-java:S1643¤"Use a StringBuilder instead.(Ö‚Ø™8¤¿øÄæ1
-J
-java:S5411*"(Use a primitive boolean expression here.(ñ¬Úüÿÿÿÿ8¥¿øÄæ1
-J
-java:S54110"(Use a primitive boolean expression here.(ÕÅ‰úÿÿÿÿ8¥¿øÄæ1
-E
-java:S5411I"(Use a primitive boolean expression here.(À÷ä8€”Åæ1
-F
-java:S5411Ô"(Use a primitive boolean expression here.(±ƒî˜8¦¿øÄæ1
-_
-java:S4973®"<Strings and Boxed types should be compared using "equals()".(ÀªÌñşÿÿÿÿ8§¿øÄæ1
-L	java:S106-"+Replace this use of System.out by a logger.(ÀÄ¯®ûÿÿÿÿ8áÀøÄæ1
-L	java:S106."+Replace this use of System.out by a logger.(Õƒçøÿÿÿÿ8ãÀøÄæ1
-[
-java:S11170"9Rename "color" which hides the field declared at line 21.(ÕÅ‰úÿÿÿÿ8äÀøÄæ1
-G	java:S1061"+Replace this use of System.out by a logger.(ìûãÓ8äÀøÄæ1
-G	java:S1064"+Replace this use of System.out by a logger.(¢àóÄ8åÀøÄæ1
-O
-java:S6126J"2Replace this String concatenation with Text block.(´ë³8 ”Åæ1
-O
-java:S6126P"2Replace this String concatenation with Text block.(´ë³8¡”Åæ1
-[
-java:S3400d"9Remove this method and declare a constant for this value.(Ë›ûŸüÿÿÿÿ8£”Åæ1
-M
-java:S1172b"+Remove this unused method parameter "move".(Ò¹¼ûÿÿÿÿ8¤”Åæ1
-H	java:S106ê"+Replace this use of System.out by a logger.(äè¥†8üÀøÄæ1
-M	java:S106ï"+Replace this use of System.out by a logger.(Ûˆ¯Æÿÿÿÿÿ8şÀøÄæ1
-I
-java:S1068"'Remove this unused "url" private field.(«Œåùÿÿÿÿ8ÿÀøÄæ1
+
+java:S1192u"KDefine a constant instead of duplicating this literal "[a-h][1-8]" 3 times.(´œ„¼8†ô‡è1J$d9318f24-1166-46ea-a567-f9b1c3859182
+‰
+java:S1192+"FDefine a constant instead of duplicating this literal "white" 3 times.(§ıìÖ8†ô‡è1J$66da35b2-be10-483f-92fb-fed637d00974
+Š
+java:S1192:"GDefine a constant instead of duplicating this literal " >>>> " 3 times.(ìûãÓ8†ô‡è1J$2ff37ac6-1fbf-47b0-8187-87b16db7259a
+e
+java:S1643Ú"Use a StringBuilder instead.(úÈÎÀşÿÿÿÿ8×­·‰è1J$f14b57b4-9fe0-4b3f-83f5-8d515d11bb25
+`
+java:S1643Ş"Use a StringBuilder instead.(§™‘õ8×­·‰è1J$e5ecf7a1-609c-4d92-91a4-b1d2103f0644
+`
+java:S1643à"Use a StringBuilder instead.(·›ë²8ìíè1J$d1762f48-3e1c-4938-ad22-16a6379b4908
+`
+java:S1643â"Use a StringBuilder instead.(“ôˆ‘8ìíè1J$4849b693-3ee6-49bb-a2da-d07b17c705f2
+`
+java:S1643æ"Use a StringBuilder instead.(¼ÿÁ²8ìíè1J$7f0e41df-3468-4f95-93cf-648f0bff1332
+e
+java:S1643ó"Use a StringBuilder instead.(úÈÎÀşÿÿÿÿ8†ô‡è1J$0b0afa10-e77d-416c-8f69-95fe1318e7d8
+e
+java:S1643ö"Use a StringBuilder instead.(Š¡€’ÿÿÿÿÿ8†ô‡è1J$e43bf484-c642-4140-8bb2-5999d139efa4
+`
+java:S1643ø"Use a StringBuilder instead.(Ö‚Ø™8ô‡è1J$98be031a-cef8-494d-aaa3-c0ee663489df
+p
+java:S54113"(Use a primitive boolean expression here.(ñ¬Úüÿÿÿÿ8ô‡è1J$d665d414-25fd-48b8-96f8-20f048532847
+p
+java:S54119"(Use a primitive boolean expression here.(ÕÅ‰úÿÿÿÿ8ô‡è1J$5005777f-d1a9-485b-954b-4e259e56c95c
+k
+java:S5411R"(Use a primitive boolean expression here.(À÷ä8ô‡è1J$58bd5ae9-1a0d-4eb5-9519-cb7af5c36e67
+l
+java:S5411¨"(Use a primitive boolean expression here.(±ƒî˜8Ú­·‰è1J$ef60bb33-6875-4234-9b7a-b3ddca2e24f9
+…
+java:S4973‚"<Strings and Boxed types should be compared using "equals()".(ÀªÌñşÿÿÿÿ8Ü­·‰è1J$40f6ccc7-3a63-45e5-b7c4-f79482404e2d
+
+java:S2259"DA "NullPointerException" could be thrown; "toMove" is nullable here.(¯Úõÿÿÿÿÿ8ë÷‡è1J$d61e74fb-eb01-4996-8291-642452b43dae
+r	java:S1066"+Replace this use of System.out by a logger.(ÀÄ¯®ûÿÿÿÿ8ìíè1J$69b9495f-50ec-4c33-a16d-ddf0123f0f8e
+r	java:S1067"+Replace this use of System.out by a logger.(Õƒçøÿÿÿÿ8ìíè1J$7d4f7ffe-76e8-4256-b11b-3f8dcb365305
+
+java:S11179"9Rename "color" which hides the field declared at line 28.(ÕÅ‰úÿÿÿÿ8„ø‡è1J$f0a91685-1df3-4fa3-875b-0eda2ab595d4
+m	java:S106:"+Replace this use of System.out by a logger.(ìûãÓ8îíè1J$065749ca-e258-492e-a7bd-0ca649a7f13a
+m	java:S106="+Replace this use of System.out by a logger.(¢àóÄ8îíè1J$8dc02fa0-1cd5-4e88-a0c1-e55580b2751b
+u
+java:S6126S"2Replace this String concatenation with Text block.(´ë³8Œø‡è1J$252b2563-acca-4d87-a2ac-e69d12c076b8
+u
+java:S6126Y"2Replace this String concatenation with Text block.(´ë³8Œø‡è1J$8e9043b8-e9fb-4a21-b484-a90db6815253
+s	java:S106ƒ"+Replace this use of System.out by a logger.(§­Œ¬ÿÿÿÿÿ8•ø‡è1J$59f242c7-c218-4a6b-a10c-649be5c89223
+~
+java:S1854³":Remove this useless assignment to local variable "output".(¼û·Æ8œø‡è1J$91d52259-7b7f-45f1-92d1-a819b5131eae
+›
+java:S6204µ"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(œ Îäúÿÿÿÿ8¤ø‡è1J$0d474f30-c494-4dee-99fb-dca6877f90e9
+
+java:S1612µ"FReplace this lambda with method reference 'ChessMove::getEndPosition'.(œ Îäúÿÿÿÿ8¬ø‡è1J$a2fadd33-45aa-4b1d-9ad1-8c479dda8316
+„	java:S125ä"<This block of commented-out lines of code should be removed.(ªØÜÄùÿÿÿÿ8âíè1J$d4a0d73e-95aa-48ab-a622-6ef4b179dc8e
+s	java:S106¾"+Replace this use of System.out by a logger.(Œ®Ä§ıÿÿÿÿ8Åø‡è1J$25e5d31e-fc7e-459f-b3fb-48bd7ef69f32
+n	java:S106¿"+Replace this use of System.out by a logger.(ìûãÓ8Åø‡è1J$773aba62-f806-43e8-8c62-69de10c327c9
+s	java:S106Ä"+Replace this use of System.out by a logger.(‹½Ã­ıÿÿÿÿ8Åø‡è1J$1dc798a2-1225-4eab-b759-67fc89b1d8cc
+n	java:S106Å"+Replace this use of System.out by a logger.(ìûãÓ8Åø‡è1J$ecd81d90-3ff2-4a2c-8ff6-6b37bb6490a1
+x
+java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8øæîè1J$aa794345-667f-432e-9269-e37ae7e958c1
+€
+java:S1128"8Remove this unused import 'java.net.URISyntaxException'.(Ä®íÿÿÿÿÿ8øæîè1J$fd62035b-029a-4488-a808-c7c71392a3f1
+ˆ
+java:S1128"@Remove this unused import 'javax.websocket.DeploymentException'.(Ä”ªâøÿÿÿÿ8Êø‡è1J$8b72e719-be70-4320-9979-e0a664810963
+o
+java:S1068"'Remove this unused "url" private field.(«Œåùÿÿÿÿ8Íø‡è1J$26dc3ce4-fadf-4aab-8246-bb0b0f98cde9

@@ -18,6 +18,7 @@
     <orderEntry type="module" module-name="server" />
     <orderEntry type="module" module-name="server" />
     <orderEntry type="library" name="glassfish.tyrus.bundles.standalone.client" level="project" />
+    <orderEntry type="library" name="slf4j.simple" level="project" />
   </component>
   <component name="SonarLintModuleSettings">
     <option name="uniqueId" value="ebf23ac5-14d5-4ce0-b3f2-d51b73a39a44" />

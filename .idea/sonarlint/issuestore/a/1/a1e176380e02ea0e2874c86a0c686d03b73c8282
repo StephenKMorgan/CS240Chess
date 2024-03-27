@@ -1,22 +1,25 @@
 
-Z
-java:S4973¿"<Strings and Boxed types should be compared using "equals()".(ã¡Œÿ8Ü¥Íæ1
-‚
-java:S1130""lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(áÀ«Ì
-E	java:S106#"+Replace this use of System.out by a logger.(´áÀŠÿÿÿÿÿ
-@	java:S106*"+Replace this use of System.out by a logger.(¥ª©÷
-E	java:S1060"+Replace this use of System.out by a logger.(êÓæøùÿÿÿÿ
-@	java:S1066"+Replace this use of System.out by a logger.(«–¨†
-D
-java:S1172~".Remove this unused method parameter "session".(ÃûşÖ
-
-java:S1130¯"tRemove the declaration of thrown exception 'exception.ResponseException', as it cannot be thrown from method's body.(èÆíŠÿÿÿÿÿ
+y
+java:S4973Å"<Strings and Boxed types should be compared using "equals()".(ã¡ŒÿJ$20d185a6-fec6-4dc9-a02f-ee4386336dc4
+]
+java:S1116"Remove this empty statement.(ş–Œ™ıÿÿÿÿJ$c48f0dba-47dc-4f90-9e30-db0aac2e9c04
+¨
+java:S1130""lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(áÀ«ÌJ$16331042-b116-4833-b578-40e2b434d265
+k	java:S106#"+Replace this use of System.out by a logger.(´áÀŠÿÿÿÿÿJ$5d029a12-41df-4334-b5bf-35a2867f0c99
+f	java:S106("+Replace this use of System.out by a logger.(¥ª©÷J$9da7f611-5416-4fc1-bdeb-499d5d4405eb
+k	java:S106."+Replace this use of System.out by a logger.(êÓæøùÿÿÿÿJ$b95777ac-f83c-4c3d-ba00-10fef1bbffe3
+f	java:S1064"+Replace this use of System.out by a logger.(«–¨†J$68980b26-6ae3-43e4-ae6c-51e250a4d692
 X
-java:S1172¯"<Remove these unused method parameters "gameID", "authToken".(èÆíŠÿÿÿÿÿ
-H	java:S106³"+Replace this use of System.out by a logger.(³Ÿ‡‰8áÜ¥Íæ1
-H	java:S106¶"+Replace this use of System.out by a logger.(™Çû¶8áÜ¥Íæ1
-H	java:S106¹"+Replace this use of System.out by a logger.(•¶€ÿ8âÜ¥Íæ1
-
-java:S1130½"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(µ€ÕÓıÿÿÿÿ8ãÜ¥Íæ1
-H	java:S106Â"+Replace this use of System.out by a logger.(­ö‡š8åÜ¥Íæ1
-G	java:S106Å"+Replace this use of System.out by a logger.( •ğ8æÜ¥Íæ1
+java:S1854"<Remove this useless assignment to local variable "gameData".(‡©Ô8ùÛè1
+¶
+java:S1130³"tRemove the declaration of thrown exception 'exception.ResponseException', as it cannot be thrown from method's body.(èÆíŠÿÿÿÿÿJ$bd8611dc-28fc-4ca9-b050-f7fa2c78fe69
+~
+java:S1172³"<Remove these unused method parameters "gameID", "authToken".(èÆíŠÿÿÿÿÿJ$b4f04ffb-efda-47e4-bb43-0035b0193398
+g	java:S106·"+Replace this use of System.out by a logger.(ñà¸¨J$7e6fa3ea-51f9-452c-9a77-8e5f5e4e4794
+g	java:S106»"+Replace this use of System.out by a logger.(™Çû¶J$d50828ce-287c-4c55-ad71-7b226713f038
+g	java:S106¾"+Replace this use of System.out by a logger.(•¶€ÿJ$1ff46d16-8b24-46da-bebe-cb90550b3d19
+®
+java:S1130Â"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(µ€ÕÓıÿÿÿÿJ$52485beb-746b-4019-88c4-816d2a9efe2e
+g	java:S106Ã"+Replace this use of System.out by a logger.(‚³Ã‡J$7cdfe81c-6a34-4a18-910e-6291705601e3
+g	java:S106È"+Replace this use of System.out by a logger.(­ö‡šJ$3ac2705e-c4b6-435b-8d2d-93a2e90a421d
+f	java:S106Ë"+Replace this use of System.out by a logger.( •ğJ$3a2d20af-8d31-4938-a37a-c5294bff4362

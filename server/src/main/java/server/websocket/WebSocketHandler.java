@@ -26,15 +26,13 @@ import java.io.IOException;
 @WebSocket
 public class WebSocketHandler {
 
-    private WebSocketSessions sessions;
-    private Service service;
+    private WebSocketSessions sessions = new WebSocketSessions();;
+    private Service service = new Service();
 
     
     @OnWebSocketConnect
     public void onConnect(Session session) throws IOException {
         System.out.println("Connected");
-        sessions = new WebSocketSessions();
-        service = new Service();
     }
 
     @OnWebSocketClose
@@ -121,11 +119,15 @@ public void onMessage(Session session, String message) throws ResponseException,
         //Send a NotificationMessage to the other players
         var notificationMessage = new NotificationMessage(ServerMessage.ServerMessageType.NOTIFICATION);
         notificationMessage.setMessage(username + " has joined the game as an observer");
+        broadcastMessage(command.getGameID(), notificationMessage, command.getAuthString());
     }
 
     public void makeMove(MakeMoveCommand command, Session session) throws ResponseException, IOException {
         //Verify and make the move
         var gameData = service.makeMove(command.getGameID(), command.getAuthToken(), command.getMove());
+        
+        // Refresh the game data after the move
+        gameData = service.getGameData(command.getGameID(), command.getAuthToken());
         
         //Get the game data for notifications
         var game = gameData.game();
@@ -134,11 +136,13 @@ public void onMessage(Session session, String message) throws ResponseException,
         //Send a LoadGameMessage to all players
         var loadMessage = new LoadGameMessage(ServerMessage.ServerMessageType.LOAD_GAME);
         loadMessage.setGame(game);
-        broadcastMessage(command.getGameID(), loadMessage,"");
+        sendMessage(command.getGameID(), loadMessage, command.getAuthString(), session);
+        broadcastMessage(command.getGameID(), loadMessage, command.getAuthString());
 
         //Send a NotificationMessage to all players
         var notificationMessage = new NotificationMessage(ServerMessage.ServerMessageType.NOTIFICATION);
         notificationMessage.setMessage(move);
+        broadcastMessage(command.getGameID(), notificationMessage, command.getAuthString());
     }
 
     public void leaveGame(LeaveGameCommand command, Session session) throws IOException, ResponseException {
@@ -176,8 +180,9 @@ public void onMessage(Session session, String message) throws ResponseException,
         if (session != null) {
             if (session.isOpen()) {
                 String jsonMessage = new Gson().toJson(message);
-                System.out.println("Sending message: " + jsonMessage);
+                System.out.println("Sending message to session: " + session + ", message: " + jsonMessage);
                 session.getRemote().sendString(jsonMessage);
+                session.getRemote().flush();
             } else {
                 System.out.println("Cannot send message. Session is closed.");
             }
@@ -187,6 +192,7 @@ public void onMessage(Session session, String message) throws ResponseException,
     }
     
     private void broadcastMessage(Integer gameID, ServerMessage message, String exceptThisAuthToken) throws IOException{
+        System.out.println("Broadcasting message: " + message);
         sessions.getSessionsForGame(gameID).forEach((authToken, session) -> {
             if (authToken != exceptThisAuthToken) {
                 try {

@@ -35,18 +35,18 @@ public class ChessClient {
 
     public ChessClient() {
         server = new ServerFacade("http://localhost:4567");
-        this.url = "http://localhost:4567";
-        this.database = new Server();
-        database.run(4567);
+         this.url = "http://localhost:4567";
+        // this.database = new Server();
+        // database.run(4567);
 
     }
 
     public ChessClient(String url) {
         server = new ServerFacade(url);
-        this.url = url;
-        this.database = new Server();
-        var port = Integer.parseInt(url.split(":")[2]);
-        database.run(port);
+         this.url = url;
+        // this.database = new Server();
+        // var port = Integer.parseInt(url.split(":")[2]);
+        // database.run(port);
     }
 
     public void  run() {
@@ -238,7 +238,7 @@ public class ChessClient {
         }
         this.status = Status.LoggedOut;
         this.isRunning = false;
-        database.stop();
+        // database.stop();
         return "Goodbye!";
     }
 

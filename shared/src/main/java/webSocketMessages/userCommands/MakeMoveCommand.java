@@ -29,6 +29,6 @@ public class MakeMoveCommand extends UserGameCommand {
     }
 
     public String getAuthToken() {
-        return getAuthToken();
+        return getAuthString();
     }
 }
