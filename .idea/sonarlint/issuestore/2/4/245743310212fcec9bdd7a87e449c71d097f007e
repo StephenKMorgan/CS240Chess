@@ -1,0 +1,38 @@
+
+	java:S117¼"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëî¸›J$bd197aa6-f38c-443d-ad2b-8bac5b9376bb
+	java:S117Õ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëî¸›J$dd372ca4-7906-4a89-80f7-69387fa712de
+^
+java:S1643¡"Use a StringBuilder instead.(›¹şÿÿÿÿJ$ff8719c4-c91e-4a70-a0b1-8f55e6678b83
+“
+java:S1104"RMake status a static final constant or non-public and provide accessors if needed.(Á¼ûÿÿÿÿJ$46f90a40-55e0-41ef-846c-91b2fc735c2d
+“
+java:S1104"RMake server a static final constant or non-public and provide accessors if needed.(±¶Å¬úÿÿÿÿJ$f5d2d859-5d7a-4632-9a54-f255782ee9f6
+•
+java:S1104"TMake database a static final constant or non-public and provide accessors if needed.(Úî´‚ùÿÿÿÿJ$2e816c35-ba1c-42b1-a892-e9cb4be3d045
+‹
+java:S1104"OMake url a static final constant or non-public and provide accessors if needed.(…åØJ$b83dd947-41c9-4487-b1c2-e4367611bef4
+
+java:S1104"TMake authData a static final constant or non-public and provide accessors if needed.(»ªÑ¾J$9355e22a-7814-44f2-8e21-d7be9857c906
+–
+java:S1104"UMake isRunning a static final constant or non-public and provide accessors if needed.(†Â¯şÿÿÿÿJ$849d37bb-3ead-48a9-ae36-5cfb282b802b
+•
+java:S1104"TMake gameData a static final constant or non-public and provide accessors if needed.(ŒçåÁúÿÿÿÿJ$91fb54d9-092e-4c41-9fd3-61e1b2601f73
+i
+java:S54116"(Use a primitive boolean expression here.(ÓŠ¢ùÿÿÿÿJ$36396c15-0f46-48b8-a777-a290366fe268
+|	java:S125$"<This block of commented-out lines of code should be removed.(ãˆ—ÁûÿÿÿÿJ$53f02fea-f8be-4663-a9a2-0d70aa15f40b
+|	java:S125,"<This block of commented-out lines of code should be removed.(ãˆ—ÁûÿÿÿÿJ$23222935-d519-4d18-9890-2cd1c63b95e3
+k	java:S1063"+Replace this use of System.out by a logger.(Ù¾ŞªıÿÿÿÿJ$344404b8-96be-4891-bf35-8709441c8a39
+f	java:S1064"+Replace this use of System.out by a logger.(÷ÂçÁJ$6288ded4-a1d8-43ad-a8fc-55ebadbff7b9
+k	java:S1065"+Replace this use of System.out by a logger.(ïïçéÿÿÿÿÿJ$25aea5ac-bc34-42ed-8ef2-e6481cc2782c
+f	java:S1067"+Replace this use of System.out by a logger.(ãä×—J$2b7216d2-2219-4a18-ab2b-804b8524a891
+f	java:S106:"+Replace this use of System.out by a logger.(¢àóÄJ$3a4a50a1-41ca-4cba-a5f1-29b76318f627
+…
+java:S3358K"DExtract this nested ternary operation into an independent statement.(ÖÇßáúÿÿÿÿJ$5f594100-19a5-4d76-af78-5e0172a78568
+}	java:S125î"<This block of commented-out lines of code should be removed.(ğ°äµùÿÿÿÿJ$95f2e087-a9c4-4e62-8d5a-46cbea2318d5
+–	java:S115ó"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(·÷ßJ$0524ebf1-8654-4402-92ad-f6cafcd4b95c
+›	java:S115ô"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Âéõ´şÿÿÿÿJ$b7b0ff18-3854-4947-853d-6d48fbc166e6
+–	java:S115õ"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(»ì®J$27c23854-e09a-45ce-8b7c-20ce479e5dec
+›	java:S115ö"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(İ½³‘úÿÿÿÿJ$f2b0fd08-7c07-40bb-8eda-22d55597f1de
+›	java:S115÷"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(œ’ºöüÿÿÿÿJ$5d665056-2f9e-4cdb-950b-38dbe07e2f5e
+›	java:S115ø"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ìÈĞÉúÿÿÿÿJ$58ec7342-8240-41f8-a542-86acf92d5406
+›	java:S115ù"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Ú’¾¥üÿÿÿÿJ$50a97ff9-2079-415f-9fbc-cbcd326d898a

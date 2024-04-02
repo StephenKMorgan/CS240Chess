@@ -1,7 +1,5 @@
 package ui;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Scanner;
@@ -14,9 +12,6 @@ import chess.ChessPosition;
 import exception.ResponseException;
 import model.AuthData;
 import model.GameData;
-
-import javax.websocket.DeploymentException;
-
 
 /**
  * ChessGameREPL

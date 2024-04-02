@@ -41,3 +41,15 @@ P
  src/main/java/server/Server.java,4\c\4c405aa622276106ee9ef8c3a2fbee4e76dcafbb
 T
 $src/main/java/server/serverMain.java,1\2\12b31a2bdfc1e4e4b5b8d843430055dff91457d2
+R
+"src/main/java/ui/ServerFacade.java,4\c\4cbb54bad5ecf934f35ad6a5c112c802bed0f07c
+Q
+!src/main/java/ui/ChessClient.java,2\4\245743310212fcec9bdd7a87e449c71d097f007e
+U
+%src/main/java/ui/EscapeSequences.java,f\5\f5164a7694d7bc0ec5a278873d5b206d75837ac4
+J
+src/main/java/ui/Game.java,e\e\ee0f2642ba2c61f3d68cc640f2065ce13e1d4499
+Q
+!src/main/java/ui/GameHandler.java,f\c\fca645f564c4df1e02149d75b5a4aa317f8de36c
+L
+src/main/java/ui/Status.java,9\e\9e27960b7040fbb07e7f54df389d46b7b7316f1b

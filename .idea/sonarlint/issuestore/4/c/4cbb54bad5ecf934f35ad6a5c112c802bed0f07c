@@ -1,0 +1,28 @@
+
+‡
+java:S1192)"FDefine a constant instead of duplicating this literal "/game" 3 times.(ê´ã£şÿÿÿÿJ$c2fe09df-18be-428b-986a-a50f2e65dccb
+‰
+java:S1075"ARefactor your code to get this URI from a customizable parameter.(”É÷ùÿÿÿÿ8Ä’Ì†ê1J$4354a84c-da64-4a2f-9132-5215afde3b4a
+ƒ
+java:S1075"ARefactor your code to get this URI from a customizable parameter.(ÛÌJ8Æ’Ì†ê1J$34072197-b9f2-4c6f-80eb-69e188b6a959
+ƒ
+java:S1075$"ARefactor your code to get this URI from a customizable parameter.(ÛÌJ8È’Ì†ê1J$a88f2b58-1c16-42a8-b0ed-e1ec6d60618e
+‰
+java:S1075)"ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ8É’Ì†ê1J$970970a0-bbc9-4501-a5e7-3f3932e73b9b
+‰
+java:S1075."ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ8Ê’Ì†ê1J$ccbc02b6-3dfb-4907-9997-f9571205a1a3
+‰
+java:S10754"ARefactor your code to get this URI from a customizable parameter.(ê´ã£şÿÿÿÿ8Ì’Ì†ê1J$9db35acd-2795-4620-b2ec-426c580dca01
+n
+java:S1874;"+Remove this use of "URL"; it is deprecated.(„Ùï‡8Ï’Ì†ê1J$47aa0cee-560e-4473-b70a-26a5ca54d82e
+m	java:S106B"+Replace this use of System.out by a logger.(ƒëª±8Ò’Ì†ê1J$e14ba8fa-47a1-4c17-bc36-475228cf266d
+r	java:S106D"+Replace this use of System.out by a logger.(¶ÒÎşÿÿÿÿ8Ó’Ì†ê1J$335bb032-de83-4627-aefc-96076eac5006
+l	java:S106I"+Replace this use of System.out by a logger.(”ó²D8Ô’Ì†ê1J$95996226-d72a-4b41-a1cb-59929bf8cb7b
+ƒ
+java:S1193]"@Replace the usage of the "instanceof" operator by a catch block.(İô“ğ8Ø’Ì†ê1J$e502abb4-b332-4329-b167-bc02ab14ea99
+ˆ
+java:S1193_"@Replace the usage of the "instanceof" operator by a catch block.(£›İûÿÿÿÿ8Ø’Ì†ê1J$b2fe58b3-77fd-4ceb-bddf-542984c3d166
+ƒ
+java:S1193a"@Replace the usage of the "instanceof" operator by a catch block.(š÷•8Ù’Ì†ê1J$e6f51af2-8518-4d0c-80aa-d2727cec555e
+Ÿ
+java:S6201]"\Replace this instanceof check and cast with 'instanceof ResponseException responseexception'(İô“ğ8Ú’Ì†ê1J$1aa6521b-de06-40b0-b330-9ded5667bbe8

@@ -3,16 +3,13 @@ package ui;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 
-import chess.ChessPiece;
-import chess.ChessPosition;
+
 import exception.ResponseException;
 import model.AuthData;
 import model.GameData;
-import model.GameResponseData;
 import server.Server;
 
 

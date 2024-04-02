@@ -3,7 +3,6 @@ package ui;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.UUID;
 
 import javax.websocket.ContainerProvider;
 import javax.websocket.DeploymentException;

@@ -7,11 +7,9 @@ import model.GameData;
 import model.GameResponseData;
 import model.JoinData;
 import model.UserData;
-import server.Server;
 
 import java.io.*;
 import java.net.*;
-import java.util.HashSet;
 
 public class ServerFacade {
 
