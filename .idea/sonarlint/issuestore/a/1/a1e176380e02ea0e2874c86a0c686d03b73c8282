@@ -1,39 +1,33 @@
 
-S
-java:S4973å"<Strings and Boxed types should be compared using "equals()".(ã¡Œÿ
-7
-java:S1116!"Remove this empty statement.(ş–Œ™ıÿÿÿÿ
-‚
-java:S1130%"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(áÀ«Ì
-E	java:S106&"+Replace this use of System.out by a logger.(´áÀŠÿÿÿÿÿ
-@	java:S106+"+Replace this use of System.out by a logger.(£Õö±
-@	java:S1062"+Replace this use of System.out by a logger.(÷²Ò©
-@	java:S1066"+Replace this use of System.out by a logger.(òåå„
-@	java:S1069"+Replace this use of System.out by a logger.(şÖ‘Ø
-‡
-java:S1130?"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(é‚ï»ûÿÿÿÿ
-@	java:S106@"+Replace this use of System.out by a logger.(«–¨†
-2
-java:S3626—"Remove this redundant jump.(ûÁİ…
-2
-java:S3626Ì"Remove this redundant jump.(ûÁİ…
-S
-java:S1854Ô"<Remove this useless assignment to local variable "gameData".(‰×úÊ
-2
-java:S3626ı"Remove this redundant jump.(ûÁİ…
-2
-java:S3626³"Remove this redundant jump.(ûÁİ…
-2
-java:S3626Í"Remove this redundant jump.(ûÁİ…
-
-java:S1130Ò"tRemove the declaration of thrown exception 'exception.ResponseException', as it cannot be thrown from method's body.(ÂĞ™üøÿÿÿÿ
+]
+java:S1116!"Remove this empty statement.(ş–Œ™ıÿÿÿÿJ$e6b3ae8e-1db7-46b8-a253-2a90f6cbb313
+¨
+java:S1130%"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(áÀ«ÌJ$04084926-5dfb-428b-ae92-b576bb4090ef
+k	java:S106&"+Replace this use of System.out by a logger.(´áÀŠÿÿÿÿÿJ$2e48e9e4-9ac7-48a5-af9d-8a2bdeae9ee8
+f	java:S106+"+Replace this use of System.out by a logger.(£Õö±J$4fa077dc-9cdf-41d5-8a01-dafcdcf1d093
+f	java:S1062"+Replace this use of System.out by a logger.(÷²Ò©J$1c60bca6-f464-4fd8-8075-fc034d7c0750
+f	java:S1066"+Replace this use of System.out by a logger.(òåå„J$cb8439ab-610b-481a-a623-a9c8953a9f59
+f	java:S1069"+Replace this use of System.out by a logger.(şÖ‘ØJ$be7dd248-d3f2-4837-9433-6d590b1ba43a
+­
+java:S1130?"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(é‚ï»ûÿÿÿÿJ$638e55b4-2173-4e6e-92a1-96472269cd99
+f	java:S106@"+Replace this use of System.out by a logger.(«–¨†J$28b3cf5a-a5f9-4f8b-9ae9-5a97c0bfb536
 X
-java:S1172Ñ"<Remove these unused method parameters "gameID", "authToken".(©û·Ãùÿÿÿÿ
-A	java:S106Ö"+Replace this use of System.out by a logger.(ñà¸¨
-A	java:S106Ú"+Replace this use of System.out by a logger.(™Çû¶
-A	java:S106İ"+Replace this use of System.out by a logger.(•¶€ÿ
-ƒ
-java:S1130â"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(¹£ş
-A	java:S106ã"+Replace this use of System.out by a logger.(‚³Ã‡
-A	java:S106è"+Replace this use of System.out by a logger.(­ö‡š
-@	java:S106ë"+Replace this use of System.out by a logger.( •ğ
+java:S3626—"Remove this redundant jump.(ûÁİ…J$56806d35-5009-4246-9948-f9ce5fdd6f4f
+X
+java:S3626Ì"Remove this redundant jump.(ûÁİ…J$5e67831c-b11e-4121-b926-13b2d15f11d3
+y
+java:S1854Ô"<Remove this useless assignment to local variable "gameData".(‰×úÊJ$9ea32129-7bdd-4f7e-b962-640320e7f00c
+X
+java:S3626ı"Remove this redundant jump.(ûÁİ…J$fcbbdcd1-7a0a-4b54-b949-4c7b33bdc03b
+¶
+java:S1130Ó"tRemove the declaration of thrown exception 'exception.ResponseException', as it cannot be thrown from method's body.(ÂĞ™üøÿÿÿÿJ$cfd7731a-eb91-4df5-9170-56491390bfe3
+~
+java:S1172Ò"<Remove these unused method parameters "gameID", "authToken".(©û·ÃùÿÿÿÿJ$2b813bea-55b0-4767-8620-8d24d081c3c6
+g	java:S106×"+Replace this use of System.out by a logger.(ñà¸¨J$60953d13-b09b-4646-a169-57865b2492d5
+g	java:S106Û"+Replace this use of System.out by a logger.(™Çû¶J$10e5efc1-ce2a-446d-9aa0-fabbd7272026
+g	java:S106Ş"+Replace this use of System.out by a logger.(•¶€ÿJ$17417823-3197-4297-9509-a74fa89d0889
+©
+java:S1130ã"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(¹£şJ$efd1f864-9900-4527-95e5-ecde6e6f67a0
+g	java:S106ä"+Replace this use of System.out by a logger.(Ì›úŸJ$f449c685-89f1-4589-abec-d375f3730c56
+g	java:S106é"+Replace this use of System.out by a logger.(­ö‡šJ$6b9df8f0-2555-4bee-bc9a-75883a5efce8
+f	java:S106ì"+Replace this use of System.out by a logger.( •ğJ$c3dccfa7-d07e-4232-a5e0-3ef8e2487c92

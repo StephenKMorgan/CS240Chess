@@ -383,16 +383,35 @@ public class MySQLDataAccess implements DataAccess {
 
     public GameData makeMove(int gameID, String authToken, ChessMove move) throws ResponseException {
         try (Connection conn = DatabaseManager.getConnection()) {
+            //Make the move
             String sql = "SELECT * FROM gamedata WHERE game_id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, gameID);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
+                //Check if the user is authorized to make the move
+                String whiteUsername = rs.getString("whiteUsername");
+                String blackUsername = rs.getString("blackUsername");
+                String username = getAuth(authToken).username();
+                if (!username.equals(whiteUsername) && !username.equals(blackUsername)) {
+                    throw new ResponseException(401, "Unauthorized, Observer cannot make move");
+                }
                 ChessGame game = convertJsonToChessGame(rs.getString("game"));
                 try {
+                    //Check to for game over
+                    if (game.getTeamTurn() == ChessGame.TeamColor.FINISHED) {
+                        throw new ResponseException(400, "Bad Request, game is over");
+                    }
+                    //Check to make sure that the user is not moving a piece that is not theirs
+                    String pieceColor = game.getBoard().getPiece(move.getStartPosition()).getTeamColor().toString();
+                    if (pieceColor.equals("WHITE") && !username.equals(whiteUsername)) {
+                        throw new ResponseException(401, "Unauthorized, invalid color");
+                    } else if (pieceColor.equals("BLACK") && !username.equals(blackUsername)) {
+                        throw new ResponseException(401, "Unauthorized, invalid color");
+                    }
                     game.makeMove(move);
                 } catch (InvalidMoveException e) {
-                    throw new ResponseException(400, "Error: Bad Request, invalid move");
+                    throw new ResponseException(400, "Bad Request, invalid move");
                 }
                 String gameJson = new Gson().toJson(game);
                 String sql2 = "UPDATE gamedata SET game = ? WHERE game_id = ?";
@@ -403,7 +422,7 @@ public class MySQLDataAccess implements DataAccess {
             }
             return new GameData(rs.getInt("game_id"), rs.getString("whiteUsername"), rs.getString("blackUsername"), rs.getString("gameName"), convertJsonToChessGame(rs.getString("game")));
         } catch (SQLException | DataAccessException e) {
-            throw new ResponseException(500, "Error: Internal Server Error");
+            throw new ResponseException(500, "Internal Server Error");
         }
     }
 
@@ -448,18 +467,31 @@ public class MySQLDataAccess implements DataAccess {
             stmt.setInt(1, gameID);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
+                //Get the game data. 
+                ChessGame game = convertJsonToChessGame(rs.getString("game"));
+                //Check to for game over
+                if (game.getTeamTurn() == ChessGame.TeamColor.FINISHED) {
+                    throw new ResponseException(400, "Bad Request, game is over");
+                }
+                //Set the game to finished
+                game.setTeamTurn(ChessGame.TeamColor.FINISHED);
+                //Resign the game if the user is a player
                 String whiteUsername = rs.getString("whiteUsername");
                 String blackUsername = rs.getString("blackUsername");
                 if (whiteUsername.equals(getAuth(authToken).username())) {
                     whiteUsername = null;
-                } else {
+                } else if (blackUsername.equals(getAuth(authToken).username())) {
                     blackUsername = null;
+                } else {
+                    throw new ResponseException(401, "Unauthorized, not a player in the game");
                 }
-                String sql2 = "UPDATE gamedata SET whiteUsername = ?, blackUsername = ? WHERE game_id = ?";
+                //Update the game data
+                String sql2 = "UPDATE gamedata SET whiteUsername = ?, blackUsername = ?, game = ? WHERE game_id = ?";
                 PreparedStatement stmt2 = conn.prepareStatement(sql2);
                 stmt2.setString(1, whiteUsername);
                 stmt2.setString(2, blackUsername);
-                stmt2.setInt(3, gameID);
+                stmt2.setString(3, new Gson().toJson(game));
+                stmt2.setInt(4, gameID);
                 stmt2.executeUpdate();
             }
             return getAuth(authToken).username();

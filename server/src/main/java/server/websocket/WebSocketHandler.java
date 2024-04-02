@@ -215,7 +215,7 @@ public class WebSocketHandler {
             return;
         }
 
-        // Refresh the game data after the move
+        //Refresh the game data after the move
         try {
             gameData = service.getGameData(command.getGameID(), command.getAuthToken());
         } catch (ResponseException e) {
@@ -255,9 +255,6 @@ public class WebSocketHandler {
     }
 
     public void leaveGame(LeaveGameCommand command, Session session) {
-        // Remove the session from the game
-        sessions.removeSessionFromGame(command.getGameID(), command.getAuthString(), session);
-
         // Leave the game
         String username;
         try {
@@ -279,8 +276,7 @@ public class WebSocketHandler {
             return;
         }
         var game = gameData.game();
-        // Set the current player to the word "Finished"
-        game.setTeamTurn(TeamColor.FINISHED);
+ 
         // Send a LoadGameMessage to all players
         var loadMessage = new LoadGameMessage(ServerMessage.ServerMessageType.LOAD_GAME);
         loadMessage.setGame(game);
@@ -306,11 +302,12 @@ public class WebSocketHandler {
             onError(session, e);
             return;
         }
+
+        // Remove the session from the game
+        sessions.removeSessionFromGame(command.getGameID(), command.getAuthString(), session);
     }
 
     public void resignGame(ResignCommand command, Session session) {
-        // Remove the session from the game
-        sessions.removeSessionFromGame(command.getGameID(), command.getAuthString(), session);
         // Resign the game
         String username;
         try {
@@ -327,11 +324,14 @@ public class WebSocketHandler {
         var notificationMessage = new NotificationMessage(ServerMessage.ServerMessageType.NOTIFICATION);
         notificationMessage.setMessage(username + " has resigned the game.");
         try {
-            broadcastMessage(gameID, notificationMessage, command.getAuthString());
+            broadcastMessage(gameID, notificationMessage, "");
         } catch (IOException e) {
             onError(session, e);
             return;
         }
+
+        // Remove the session from the game
+        sessions.removeSessionFromGame(command.getGameID(), command.getAuthString(), session);
     }
 
     private void sendMessage(Integer gameID, ServerMessage message, String authToken, Session session)
@@ -352,9 +352,9 @@ public class WebSocketHandler {
 
     private void broadcastMessage(Integer gameID, ServerMessage message, String exceptThisAuthToken)
             throws IOException {
-        System.out.println("Broadcasting message: " + message);
+        System.out.println("Broadcasting message: " + message.toString());
         sessions.getSessionsForGame(gameID).forEach((authToken, session) -> {
-            if (authToken != exceptThisAuthToken) {
+            if (!Objects.equals(authToken, exceptThisAuthToken)) {
                 try {
                     String jsonMessage = new Gson().toJson(message);
                     System.out.println("Broadcasting message: " + jsonMessage);

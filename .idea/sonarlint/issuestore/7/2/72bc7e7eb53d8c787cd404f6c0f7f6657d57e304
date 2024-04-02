@@ -1,16 +1,16 @@
 
-i
-java:S16048"(Make this anonymous inner class a lambda(ÆÏ¹úÿÿÿÿJ$71860c5e-3e42-4a48-a704-99bed3884c8e
-f	java:S106&"+Replace this use of System.out by a logger.(ÙâÂƒJ$8ed5b650-87e5-4e06-9dd1-4db764e6e76f
-v	java:S125%"<This block of commented-out lines of code should be removed.(¼íè&J$83d8bfc0-7a5f-48bd-acdc-fb652f4184bc
-f	java:S106*"+Replace this use of System.out by a logger.(ÉÂ…çJ$10156ab5-9b0c-43ef-b62d-345f843b9b3f
-k	java:S106."+Replace this use of System.out by a logger.(ÌÏ†ùÿÿÿÿJ$79309393-3050-4893-b96c-99b323a11ea3
-l	java:S106"+Replace this use of System.out by a logger.(®­’ÙøÿÿÿÿJ$cb1859d0-3825-4b25-abc5-09c044023903
-l	java:S106†"+Replace this use of System.out by a logger.(ƒåùûÿÿÿÿJ$e810ba0d-f255-43a0-bad8-dcfdd39e94ec
-g	java:S106‹"+Replace this use of System.out by a logger.(¥¢ÑJ$7c9354d0-a2e5-4a41-b5e2-838579c90d33
-l	java:S106"+Replace this use of System.out by a logger.(²¢‰ˆøÿÿÿÿJ$9c84f6a6-4431-41f3-8a1e-bf6d5c1e486e
-l	java:S106œ"+Replace this use of System.out by a logger.(ùÿ×óüÿÿÿÿJ$3f5f3fbf-4c82-4c8c-96fe-5b8ee715b1e5
-M
-java:S1128"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8‰‚„ê1
-j
-java:S1068!"/Remove this unused "gameHandler" private field.(ÀèÒ{J$b357f8d6-bf4d-4461-a48b-7041c2174dc5
+C
+java:S16048"(Make this anonymous inner class a lambda(ÆÏ¹úÿÿÿÿ
+@	java:S106&"+Replace this use of System.out by a logger.(ÙâÂƒ
+P	java:S125%"<This block of commented-out lines of code should be removed.(¼íè&
+@	java:S106*"+Replace this use of System.out by a logger.(ÉÂ…ç
+E	java:S106."+Replace this use of System.out by a logger.(ÌÏ†ùÿÿÿÿ
+F	java:S106"+Replace this use of System.out by a logger.(®­’Ùøÿÿÿÿ
+F	java:S106†"+Replace this use of System.out by a logger.(ƒåùûÿÿÿÿ
+A	java:S106‹"+Replace this use of System.out by a logger.(¥¢Ñ
+F	java:S106"+Replace this use of System.out by a logger.(²¢‰ˆøÿÿÿÿ
+F	java:S106œ"+Replace this use of System.out by a logger.(ùÿ×óüÿÿÿÿ
+F
+java:S1128"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ
+D
+java:S1068!"/Remove this unused "gameHandler" private field.(ÀèÒ{
