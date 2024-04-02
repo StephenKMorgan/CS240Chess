@@ -67,9 +67,9 @@ public class ChessMove {
     //create a to string method that returns the start position, end position, and promotion piece in the format "Move from [startPosition] to [endPosition]" and if there is a promotion add " with promotion [promotionPiece]"
     @Override
     public String toString() {
-        String move = "Move from " + startPosition + " to " + endPosition;
+        String move = "Move from " + startPosition.toString() + " to " + endPosition.toString();
         if (promotionPiece != null) {
-            move += " with promotion " + promotionPiece;
+            move += " with promotion " + promotionPiece.toString();
         }
         return move;
     }

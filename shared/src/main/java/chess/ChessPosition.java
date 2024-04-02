@@ -51,4 +51,10 @@ public class ChessPosition {
     public int getColumn() {
         return this.col;
     }
+
+    //toString converts the row and column to a string for example row 7 and col 1 would be "a7"
+    @Override
+    public String toString() {
+        return String.valueOf((char) ('a' + col - 1)) + row;
+    }
 }
