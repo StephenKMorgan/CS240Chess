@@ -267,32 +267,6 @@ public class WebSocketHandler {
         // Get the game data for notifications
         var gameID = command.getGameID();
 
-        // Refresh the game data after the move
-        GameData gameData;
-        try {
-            gameData = service.getGameData(command.getGameID(), command.getAuthString());
-        } catch (ResponseException e) {
-            onError(session, e);
-            return;
-        }
-        var game = gameData.game();
- 
-        // Send a LoadGameMessage to all players
-        var loadMessage = new LoadGameMessage(ServerMessage.ServerMessageType.LOAD_GAME);
-        loadMessage.setGame(game);
-        try {
-            sendMessage(command.getGameID(), loadMessage, command.getAuthString(), session);
-        } catch (ResponseException | IOException e) {
-            onError(session, e);
-            return;
-        }
-        try {
-            broadcastMessage(command.getGameID(), loadMessage, command.getAuthString());
-        } catch (IOException e) {
-            onError(session, e);
-            return;
-        }
-
         // Send a NotificationMessage to the other players
         var notificationMessage = new NotificationMessage(ServerMessage.ServerMessageType.NOTIFICATION);
         notificationMessage.setMessage(username + " has left the game");
