@@ -228,4 +228,8 @@ public class MemoryDataAccess implements DataAccess{
     public GameData getGameData(int gameID, String authToken) {
         return games.get(gameID);
     }
+
+    public String getUsernameFromAuthToken(String authToken) {
+        return authTokens.get(authToken).username();
+    }
 }

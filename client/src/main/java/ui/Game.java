@@ -72,7 +72,7 @@ public class Game implements GameHandler {
             case "redraw", "redrawing chess board \n" -> displayGame(this.color);
             case "leave" -> leaveGame();
             case "move" -> params.length != 2 ? "Invalid move command. Usage: move <from> <to>." : makeMove(input);
-            case "resign" -> "You have resigned the game.";
+            case "resign" -> resign();
             case "highlight", "highlight legal moves" -> params.length != 1 ? "Invalid highlight command. Usage: highlight legal moves <position>." : highlightLegalMoves(params[0]);
             default -> help();
         };
@@ -145,6 +145,21 @@ public class Game implements GameHandler {
         var chessMove = new chess.ChessMove(fromMove, toMove, promotion);
         webSocketFacade.makeMove(this.authData.authToken(), this.gameData.gameID(), chessMove); 
         return "You have made the move " + from + " " + to + ".";
+    }
+
+    private String resign(){
+        //conferm with the user that they want to resign
+        //send the resign message
+        System.out.println("Are you sure you want to resign? (yes/no)");
+        try (Scanner scanner = new Scanner(System.in)) {
+            var input = scanner.nextLine();
+            if (!input.equalsIgnoreCase("yes") || !input.equalsIgnoreCase("y")) {
+                return "Resignation cancelled.";
+            } else {
+                webSocketFacade.resignGame(this.authData.authToken(), this.gameData.gameID());
+            }
+        }
+        return "You have resigned the game.";
     }
 
     private String quit(){

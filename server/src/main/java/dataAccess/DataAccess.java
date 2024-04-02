@@ -24,4 +24,5 @@ public interface DataAccess {
     String leaveGame(int gameID, String authToken) throws ResponseException;
     String resignGame(int gameID, String authToken) throws ResponseException;
     GameData getGameData(int gameID, String authToken);
+    String getUsernameFromAuthToken(String authToken);
 } 

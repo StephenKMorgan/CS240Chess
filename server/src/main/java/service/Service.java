@@ -103,4 +103,11 @@ public class Service {
         }
         return dataAccess.getGameData(gameID, authToken);
     }
+
+    public String getUsernameFromAuthToken(String authToken) throws ResponseException {
+        if (authToken == null || authToken.isEmpty()){
+            throw new ResponseException(400, "Error: Bad Request");
+        }
+        return dataAccess.getUsernameFromAuthToken(authToken);
+    }
 }

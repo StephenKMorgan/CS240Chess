@@ -483,6 +483,14 @@ public class MySQLDataAccess implements DataAccess {
         }
     }
 
+    public String getUsernameFromAuthToken(String authToken) {
+        try {
+            return getAuth(authToken).username();
+        } catch (SQLException | DataAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void clearAllData() throws SQLException, DataAccessException {
         try(Connection conn = DatabaseManager.getConnection()) {
             String sql = "DELETE FROM gamelists";

@@ -137,7 +137,7 @@ public class WebSocketFacade extends Endpoint {
              case "ERROR":
                  var errorMessage = gson.fromJson(jsonObject, ErrorMessage.class);
                  System.out.println("ErrorMessage received");
-                 game.printMessage(errorMessage.getError());
+                 game.printMessage(errorMessage.getErrorMessage());
                  break;
              default:
                  System.out.println("Unknown message type: " + messageType);
