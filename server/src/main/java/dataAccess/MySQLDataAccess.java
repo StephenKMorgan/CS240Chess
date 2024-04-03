@@ -1,13 +1,9 @@
 package dataAccess;
-
 import java.sql.*;
 import java.util.HashSet;
 import java.util.UUID;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import com.google.gson.Gson;
-
 import chess.ChessGame;
 import chess.ChessMove;
 import chess.InvalidMoveException;
@@ -27,7 +23,6 @@ public class MySQLDataAccess implements DataAccess {
     }
 
     public AuthData register(UserData userData) throws ResponseException {
-        //Check to make sure the user is not already taken
         try {
             if (getUser(userData.username()) != null){
                 throw new ResponseException(403, "Error: already taken");
@@ -35,15 +30,12 @@ public class MySQLDataAccess implements DataAccess {
         } catch (SQLException | DataAccessException e) {
             throw new ResponseException(500, "Error: Internal Server Error");
         }
-        //Create the user
         try {
             createUser(userData);
         } catch (SQLException | DataAccessException e) {
             System.out.println("Error in create user");
             throw new ResponseException(500, "Error: Internal Server Error");
         }          
-      
-        //Create a new auth token
         AuthData authToken;
         try {
             authToken = createAuth(userData.username());
@@ -54,7 +46,6 @@ public class MySQLDataAccess implements DataAccess {
     }
 
     public AuthData login(UserData userData) throws ResponseException {
-        //Get the user from the database
         try {
             if(getUser(userData.username()) == null){
                 throw new ResponseException(401, "Error: Unauthorized");
@@ -62,7 +53,6 @@ public class MySQLDataAccess implements DataAccess {
         } catch (SQLException | DataAccessException e) {
             throw new ResponseException(500, "Error: Internal Server Error");
         }
-        //Check if the user is valid
         try {
             if (!validateUser(userData)){
                 throw new ResponseException(401, "Error: Unauthorized");
@@ -70,7 +60,6 @@ public class MySQLDataAccess implements DataAccess {
         } catch (SQLException | DataAccessException e) {
             throw new ResponseException(500, "Error: Internal Server Error");
         }
-        //Create a new auth token
         AuthData authToken;
         try {
             authToken = createAuth(userData.username());
@@ -81,7 +70,6 @@ public class MySQLDataAccess implements DataAccess {
     }
 
     public void logout(String authToken) throws ResponseException {
-        //Check if the auth token is valid
         try {
             if (getAuth(authToken) == null){
                 throw new ResponseException(401, "Error: Unauthorized");
@@ -89,7 +77,6 @@ public class MySQLDataAccess implements DataAccess {
         } catch (SQLException | DataAccessException e) {
             throw new ResponseException(500, "Error: Internal Server Error");
         }
-        //Remove the auth token
         try {
             removeAuth(authToken);
         } catch (SQLException | DataAccessException e) {
@@ -98,7 +85,6 @@ public class MySQLDataAccess implements DataAccess {
     }
 
     public HashSet<GameData> listGames(String authToken) throws ResponseException {
-        //Check if the auth token is valid
         try {
             if (!validateAuth(authToken)){
                 throw new ResponseException(401, "Error: Unauthorized");
@@ -106,7 +92,6 @@ public class MySQLDataAccess implements DataAccess {
         } catch (SQLException | DataAccessException e) {
             throw new ResponseException(500, "Error: Internal Server Error");
         }
-        //Return the list of games
         try {
             return getGames();
         } catch (SQLException | DataAccessException e) {
@@ -115,57 +100,20 @@ public class MySQLDataAccess implements DataAccess {
     }
 
     public GameData createGame(String authToken, String gameName) throws ResponseException {
-        //Check if the auth token is valid
-        try {
-            if (!validateAuth(authToken)){
-                throw new ResponseException(401, "Error: Unauthorized");
-            }
-        } catch (SQLException | DataAccessException e) {
-            throw new ResponseException(500, "Error: Internal Server Error");
-        }
-        //Create a new game
-        try {
-            return generateGame(authToken, gameName);
-        } catch (SQLException | DataAccessException e) {
-            throw new ResponseException(500, "Error: Internal Server Error");
-        }
+        try { if (!validateAuth(authToken)){ throw new ResponseException(401, "Error: Unauthorized"); } } catch (SQLException | DataAccessException e) { throw new ResponseException(500, "Error: Internal Server Error"); }
+        try { return generateGame(authToken, gameName); } catch (SQLException | DataAccessException e) { throw new ResponseException(500, "Error: Internal Server Error"); }
     }
 
     public GameData joinGame(String clientColor, int gameID, String authToken) throws ResponseException {
-        //Check if the auth token is valid
-        try {
-            if (!validateAuth(authToken)){
-                throw new ResponseException(401, "Error: Unauthorized");
-            }
-        } catch (SQLException | DataAccessException e) {
-            throw new ResponseException(500, "Error: Internal Server Error");
-        }
-        //Check if the game is valid
-        try {
-            if (!validateGame(clientColor, gameID, authToken)){
-                throw new ResponseException(403, "Error: Already taken");
-            }
-        } catch (SQLException | DataAccessException e) {
-            throw new ResponseException(500, "Error: Internal Server Error");
-        }
-        //Join the game
-        try {
-            return joinValidGame(clientColor, gameID, authToken);
-        } catch (SQLException | DataAccessException e) {
-            throw new ResponseException(500, "Error: Internal Server Error");
-        }
+        try { if (!validateAuth(authToken)){ throw new ResponseException(401, "Error: Unauthorized"); } } catch (SQLException | DataAccessException e) { throw new ResponseException(500, "Error: Internal Server Error"); }
+        try { if (!validateGame(clientColor, gameID, authToken)){ throw new ResponseException(403, "Error: Already taken");} } catch (SQLException | DataAccessException e) { throw new ResponseException(500, "Error: Internal Server Error");}
+        try { return joinValidGame(clientColor, gameID, authToken);} catch (SQLException | DataAccessException e) {throw new ResponseException(500, "Error: Internal Server Error");}
     }
 
     public void clear() throws ResponseException {
-        try {
-            clearAllData();
-        } catch (SQLException | DataAccessException e) {
-            throw new ResponseException(500, "Error: Internal Server Error");
-        }
+        try { clearAllData(); } catch (SQLException | DataAccessException e) { throw new ResponseException(500, "Error: Internal Server Error");}
     }
     
-    
-    //Helper functions
     private UserData getUser(String username) throws SQLException, DataAccessException {
         try (Connection conn = DatabaseManager.getConnection()) {
             String sql = "SELECT * FROM userdata WHERE username = ?";
@@ -336,7 +284,6 @@ public class MySQLDataAccess implements DataAccess {
     }
 
     private GameData joinValidGame(String clientColor, int gameID, String authToken) throws SQLException, DataAccessException {
-        //use the gamelists table to join the game
         try (Connection conn = DatabaseManager.getConnection()) {
             String sql = "INSERT INTO gamelists (game_id, username) VALUES (?, ?)";
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -383,13 +330,11 @@ public class MySQLDataAccess implements DataAccess {
 
     public GameData makeMove(int gameID, String authToken, ChessMove move) throws ResponseException {
         try (Connection conn = DatabaseManager.getConnection()) {
-            //Make the move
             String sql = "SELECT * FROM gamedata WHERE game_id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, gameID);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                //Check if the user is authorized to make the move
                 String whiteUsername = rs.getString("whiteUsername");
                 String blackUsername = rs.getString("blackUsername");
                 String username = getAuth(authToken).username();
@@ -398,11 +343,9 @@ public class MySQLDataAccess implements DataAccess {
                 }
                 ChessGame game = convertJsonToChessGame(rs.getString("game"));
                 try {
-                    //Check to for game over
                     if (game.getTeamTurn() == ChessGame.TeamColor.FINISHED) {
                         throw new ResponseException(400, "Bad Request, game is over");
                     }
-                    //Check to make sure that the user is not moving a piece that is not theirs
                     String pieceColor = game.getBoard().getPiece(move.getStartPosition()).getTeamColor().toString();
                     if (pieceColor.equals("WHITE") && !username.equals(whiteUsername)) {
                         throw new ResponseException(401, "Unauthorized, invalid color");
@@ -434,7 +377,6 @@ public class MySQLDataAccess implements DataAccess {
             stmt.setInt(1, gameID);
             stmt.setString(2, username);
             stmt.executeUpdate();
-            //if they are a player in a game remove them from the white or black username
             String sql2 = "SELECT * FROM gamedata WHERE game_id = ?";
             PreparedStatement stmt2 = conn.prepareStatement(sql2);
             stmt2.setInt(1, gameID);
@@ -467,15 +409,11 @@ public class MySQLDataAccess implements DataAccess {
             stmt.setInt(1, gameID);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                //Get the game data. 
                 ChessGame game = convertJsonToChessGame(rs.getString("game"));
-                //Check to for game over
                 if (game.getTeamTurn() == ChessGame.TeamColor.FINISHED) {
                     throw new ResponseException(400, "Bad Request, game is over");
                 }
-                //Set the game to finished
                 game.setTeamTurn(ChessGame.TeamColor.FINISHED);
-                //Resign the game if the user is a player
                 String whiteUsername = rs.getString("whiteUsername");
                 String blackUsername = rs.getString("blackUsername");
                 if (whiteUsername.equals(getAuth(authToken).username())) {
@@ -485,7 +423,6 @@ public class MySQLDataAccess implements DataAccess {
                 } else {
                     throw new ResponseException(401, "Unauthorized, not a player in the game");
                 }
-                //Update the game data
                 String sql2 = "UPDATE gamedata SET whiteUsername = ?, blackUsername = ?, game = ? WHERE game_id = ?";
                 PreparedStatement stmt2 = conn.prepareStatement(sql2);
                 stmt2.setString(1, whiteUsername);
@@ -555,11 +492,7 @@ public class MySQLDataAccess implements DataAccess {
             "CREATE TABLE IF NOT EXISTS gamelists (game_id int, username varchar(255), FOREIGN KEY (username) REFERENCES userdata (username), FOREIGN KEY (game_id) REFERENCES gamedata (game_id))"
         };
         try (var conn = DatabaseManager.getConnection()) {
-            for (var statement : createStatements) {
-                try (var preparedStatement = conn.prepareStatement(statement)) {
-                    preparedStatement.executeUpdate();
-                }
-            }
+            for (var statement : createStatements) { try (var preparedStatement = conn.prepareStatement(statement)) { preparedStatement.executeUpdate(); } }
         } catch (SQLException ex) {
             throw new ResponseException(500, String.format("Unable to configure database: %s", ex.getMessage()));
         }
