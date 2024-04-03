@@ -22,10 +22,7 @@ import com.google.gson.JsonElement;
 import webSocketMessages.serverMessages.ErrorMessage;
 import webSocketMessages.serverMessages.LoadGameMessage;
 import webSocketMessages.serverMessages.NotificationMessage;
-import webSocketMessages.userCommands.JoinObserverCommand;
-import webSocketMessages.userCommands.JoinPlayerCommand;
-import webSocketMessages.userCommands.LeaveGameCommand;
-import webSocketMessages.userCommands.MakeMoveCommand;
+import webSocketMessages.userCommands.*;
 import chess.ChessGame;
 import chess.ChessMove;
 import exception.ResponseException;
@@ -109,7 +106,7 @@ public class WebSocketFacade extends Endpoint {
 
     public void resignGame(String authToken, Integer gameID) {
         //Create the resign game message as a resign game command
-        var resignGameCommand = new LeaveGameCommand(authToken);
+        var resignGameCommand = new ResignCommand(authToken);
         resignGameCommand.setGameID(gameID);
 
         //Send the message
@@ -129,7 +126,7 @@ public class WebSocketFacade extends Endpoint {
          switch (messageType) {
              case "LOAD_GAME":
                  var loadGameMessage = gson.fromJson(jsonObject, LoadGameMessage.class);
-                 game.updateGame(loadGameMessage.getGame());
+                 game.updateGame(loadGameMessage.getGame(), loadGameMessage.getWhiteUsername(), loadGameMessage.getBlackUsername());
                  break;
              case "NOTIFICATION":
                  var notificationMessage = gson.fromJson(jsonObject, NotificationMessage.class);

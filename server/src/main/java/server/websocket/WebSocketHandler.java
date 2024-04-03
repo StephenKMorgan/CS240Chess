@@ -108,6 +108,8 @@ public class WebSocketHandler {
         // Get the game data for notifications
         var game = gameData.game();
         var username = command.getUsername();
+        var whiteUsername = gameData.whiteUsername();
+        var blackUsername = gameData.blackUsername();
 
         if (game.getTeamTurn() == TeamColor.FINISHED) {
             onError(session, new ResponseException(400, "Game is finished"));
@@ -125,7 +127,7 @@ public class WebSocketHandler {
         // Add the session to the game
         sessions.addSessionToGame(command.getGameID(), command.getAuthString(), session);
 
-        sendMessagesForJoinAndObserve(game, command.getGameID(), command.getAuthString(), session, username + " has joined the game as the " + command.getPlayerColor().toString() + " player");
+        sendMessagesForJoinAndObserve(game, command.getGameID(), command.getAuthString(), session, username + " has joined the game as the " + command.getPlayerColor().toString() + " player", whiteUsername, blackUsername);
     }
 
     public void joinObserver(JoinObserverCommand command, Session session) {
@@ -145,6 +147,8 @@ public class WebSocketHandler {
         // Get the game data for notifications
         var game = gameData.game();
         var username = command.getUsername();
+        var whiteUsername = gameData.whiteUsername();
+        var blackUsername = gameData.blackUsername();
 
         if (game.getTeamTurn() == TeamColor.FINISHED) {
             onError(session, new ResponseException(400, "Game is finished"));
@@ -154,7 +158,7 @@ public class WebSocketHandler {
         // Add the session to the game
         sessions.addSessionToGame(command.getGameID(), command.getAuthString(), session);
 
-        sendMessagesForJoinAndObserve(game, command.getGameID(), command.getAuthString(), session, username + " has joined the game as an observer");
+        sendMessagesForJoinAndObserve(game, command.getGameID(), command.getAuthString(), session, username + " has joined the game as an observer", whiteUsername, blackUsername);
     }
 
     public void makeMove(MakeMoveCommand command, Session session) {
@@ -178,10 +182,14 @@ public class WebSocketHandler {
         // Get the game data for notifications
         var game = gameData.game();
         var move = command.getMove().toString();
+        var whiteUsername = gameData.whiteUsername();
+        var blackUsername = gameData.blackUsername();
 
         // Send a LoadGameMessage to all players
         var loadMessage = new LoadGameMessage(ServerMessage.ServerMessageType.LOAD_GAME);
         loadMessage.setGame(game);
+        loadMessage.setWhiteUsername(whiteUsername);
+        loadMessage.setBlackUsername(blackUsername);
         try {
             sendMessage(command.getGameID(), loadMessage, command.getAuthString(), session);
         } catch (ResponseException | IOException e) {
@@ -260,12 +268,14 @@ public class WebSocketHandler {
         sessions.removeSessionFromGame(command.getGameID(), command.getAuthString(), session);
     }
 
-    private void sendMessagesForJoinAndObserve(ChessGame game, Integer command, String message, Session session, String username) {
+    private void sendMessagesForJoinAndObserve(ChessGame game, Integer gameID, String authToken, Session session, String message, String whiteUsername, String blackUsername) {
         // Send a LoadGameMessage to the player
         var loadMessage=new LoadGameMessage(ServerMessage.ServerMessageType.LOAD_GAME);
         loadMessage.setGame(game);
+        loadMessage.setWhiteUsername(whiteUsername);
+        loadMessage.setBlackUsername(blackUsername);
         try {
-            sendMessage(command, loadMessage, message, session);
+            sendMessage(gameID, loadMessage, authToken, session);
         } catch (ResponseException | IOException e) {
             onError(session, e);
             return;
@@ -273,9 +283,9 @@ public class WebSocketHandler {
 
         // Send a NotificationMessage to the other players
         var notificationMessage=new NotificationMessage(ServerMessage.ServerMessageType.NOTIFICATION);
-        notificationMessage.setMessage(username);
+        notificationMessage.setMessage(message);
         try {
-            broadcastMessage(command, notificationMessage, message);
+            broadcastMessage(gameID, notificationMessage, authToken);
         } catch (IOException e) {
             onError(session, e);
             return;

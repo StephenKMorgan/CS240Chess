@@ -2,6 +2,7 @@ package ui;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,7 @@ public class Game implements GameHandler {
     private boolean isRunning = true;
     private ChessPosition highlightPosition = null;
     private Collection<ChessPosition> highlightMoves = null;
+    private Scanner scanner = new Scanner(System.in);
 
     public Game(GameData gameData, String url, AuthData authData, String givenColor) throws ResponseException {
         this.gameData = gameData;
@@ -41,13 +43,18 @@ public class Game implements GameHandler {
         this.webSocketFacade = new WebSocketFacade(url, this);
     }
 
+
+    // public void closeScanner() {
+    //     if (scanner != null) {
+    //         scanner.close();
+    //     }
+    // }
+
     public void startGame() {
-        Scanner scanner = new Scanner(System.in);
+      
         if(isObserver) { webSocketFacade.joinObserver(this.authData.authToken(), this.gameData.gameID(), this.authData.username());}
         else { webSocketFacade.joinPlayer(this.authData.authToken(), this.gameData.gameID(), this.authData.username(), this.convertTeamColor()); }
-
         System.out.println(EscapeSequences.SET_TEXT_BOLD + "Welcome to the game " + gameData.gameName() + "!" + EscapeSequences.RESET_TEXT_BOLD_FAINT + " (Type 'help' for a list of commands or 'quit' to exit the program.)");
-        System.out.print(displayGame(this.color));
         while (isRunning) {
             var color = isObserver ? "Observer" : this.color;
             System.out.print(EscapeSequences.SET_TEXT_BOLD + color + " >>>> " + EscapeSequences.RESET_TEXT_BOLD_FAINT);
@@ -55,6 +62,7 @@ public class Game implements GameHandler {
             String output = inputParser(input);
             System.out.println(output);
         }
+   
     }
 
     public String inputParser(String input){
@@ -143,18 +151,28 @@ public class Game implements GameHandler {
     }
 
     private String resign(){
-        //conferm with the user that they want to resign
-        //send the resign message
+        if(isObserver) return "Observers cannot resign. Please leave the game instead.";
+        //Check to make sure that the other player has not already resigned and the game is still ongoing
+        if (this.gameData.game().getTeamTurn() == ChessGame.TeamColor.FINISHED) {
+            return "The game has already ended.";
+        }
+        //see of the other player has resigned
+        // if ((Objects.equals(this.color, "white") && this.gameData.blackUsername() == null ) || (Objects.equals(this.color, "black") && this.gameData.whiteUsername() == null)){
+        //     return "The other player has already resigned or left the game.";
+        // }
         System.out.println("Are you sure you want to resign? (yes/no)");
-        try (Scanner scanner = new Scanner(System.in)) {
             var input = scanner.nextLine();
-            if (!input.equalsIgnoreCase("yes") || !input.equalsIgnoreCase("y")) {
+            if (!input.equalsIgnoreCase("yes") && !input.equalsIgnoreCase("y")) {
                 return "Resignation cancelled.";
             } else {
-                webSocketFacade.resignGame(this.authData.authToken(), this.gameData.gameID());
+                resignGame();
             }
-        }
         return "You have resigned the game.";
+    }
+
+    private void resignGame(){
+        isRunning = false;
+        webSocketFacade.resignGame(this.authData.authToken(), this.gameData.gameID());
     }
 
     private String quit(){
@@ -242,7 +260,7 @@ public class Game implements GameHandler {
             }
             output += EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.SET_TEXT_BOLD + (8 - i) + EscapeSequences.RESET_TEXT_BOLD_FAINT + "\n";
         }
-        output += EscapeSequences.SET_TEXT_BOLD + displayAlphabet(false) + EscapeSequences.RESET_TEXT_BOLD_FAINT + EscapeSequences.SET_BG_COLOR_DARK_GREY;
+        output += EscapeSequences.SET_TEXT_BOLD + displayAlphabet(true) + EscapeSequences.RESET_TEXT_BOLD_FAINT + EscapeSequences.SET_BG_COLOR_DARK_GREY;
         return output;
     }
 
@@ -260,7 +278,7 @@ public class Game implements GameHandler {
             }
             output += EscapeSequences.SET_BG_COLOR_DARK_GREY + EscapeSequences.SET_TEXT_BOLD + (8 - i) + EscapeSequences.RESET_TEXT_BOLD_FAINT + "\n";
         }
-        output += EscapeSequences.SET_TEXT_BOLD + displayAlphabet(false) + EscapeSequences.RESET_TEXT_BOLD_FAINT + EscapeSequences.SET_BG_COLOR_DARK_GREY;
+        output += EscapeSequences.SET_TEXT_BOLD + displayAlphabet(true) + EscapeSequences.RESET_TEXT_BOLD_FAINT + EscapeSequences.SET_BG_COLOR_DARK_GREY;
         return output;
     }
 
@@ -325,16 +343,17 @@ public class Game implements GameHandler {
     }
 
     @Override
-    public void updateGame(ChessGame game) {
-        //redraw the game with the new game data
-        this.gameData = new GameData(this.gameData.gameID(), this.gameData.whiteUsername(), this.gameData.blackUsername(), this.gameData.gameName(), game);
-        System.out.println("GameUpdate\n" + displayGame(this.color));
-        System.out.print(EscapeSequences.SET_TEXT_BOLD + this.color + " >>>> " + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+    public void updateGame(ChessGame game, String whiteUsername, String blackUsername) {
+        var playerColor = Boolean.TRUE.equals(isObserver) ? "Observer" : this.color;
+        this.gameData = new GameData(this.gameData.gameID(), whiteUsername, blackUsername, this.gameData.gameName(), game);
+        System.out.println("\nGameUpdate\n" + displayGame(this.color));
+        System.out.print(EscapeSequences.SET_TEXT_BOLD + playerColor + " >>>> " + EscapeSequences.RESET_TEXT_BOLD_FAINT);
     }
 
     @Override
     public void printMessage(String message) {
-        System.out.println("INCOMING MESSAGE >>>> " + message);
-        System.out.print(EscapeSequences.SET_TEXT_BOLD + this.color + " >>>> " + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+        var playerColor = isObserver ? "Observer" : this.color;
+        System.out.println("\nINCOMING MESSAGE >>>> " + message);
+        System.out.print(EscapeSequences.SET_TEXT_BOLD + playerColor + " >>>> " + EscapeSequences.RESET_TEXT_BOLD_FAINT);
     }   
 }

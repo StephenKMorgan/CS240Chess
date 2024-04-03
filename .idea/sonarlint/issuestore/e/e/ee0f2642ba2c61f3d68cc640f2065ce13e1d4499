@@ -1,59 +1,70 @@
 
-a
-java:S1192p"KDefine a constant instead of duplicating this literal "[a-h][1-8]" 3 times.(´œ„¼
-\
-java:S1192&"FDefine a constant instead of duplicating this literal "white" 3 times.(§ıìÖ
-]
-java:S11925"GDefine a constant instead of duplicating this literal " >>>> " 3 times.(ìûãÓ
-8
-java:S1643è"Use a StringBuilder instead.(úÈÎÀşÿÿÿÿ
-3
-java:S1643ì"Use a StringBuilder instead.(§™‘õ
-3
-java:S1643î"Use a StringBuilder instead.(·›ë²
-3
-java:S1643ğ"Use a StringBuilder instead.(“ôˆ‘
-3
-java:S1643ó"Use a StringBuilder instead.(¼ÿÁ²
-8
-java:S1643€"Use a StringBuilder instead.(úÈÎÀşÿÿÿÿ
-8
-java:S1643ƒ"Use a StringBuilder instead.(Š¡€’ÿÿÿÿÿ
-3
-java:S1643…"Use a StringBuilder instead.(¼ÿÁ²
-C
-java:S5411."(Use a primitive boolean expression here.(ñ¬Úüÿÿÿÿ
-C
-java:S54114"(Use a primitive boolean expression here.(ÕÅ‰úÿÿÿÿ
->
-java:S5411M"(Use a primitive boolean expression here.(À÷ä
-?
-java:S5411µ"(Use a primitive boolean expression here.(±ƒî˜
-X
-java:S4973"<Strings and Boxed types should be compared using "equals()".(ÀªÌñşÿÿÿÿ
-_
-java:S2259|"DA "NullPointerException" could be thrown; "toMove" is nullable here.(¯Úõÿÿÿÿÿ
-E	java:S1061"+Replace this use of System.out by a logger.(ÀÄ¯®ûÿÿÿÿ
-E	java:S1062"+Replace this use of System.out by a logger.(Õƒçøÿÿÿÿ
-T
-java:S11174"9Rename "color" which hides the field declared at line 23.(ÕÅ‰úÿÿÿÿ
-@	java:S1065"+Replace this use of System.out by a logger.(ìûãÓ
-@	java:S1068"+Replace this use of System.out by a logger.(¢àóÄ
-H
-java:S6126N"2Replace this String concatenation with Text block.(´ë³
-H
-java:S6126T"2Replace this String concatenation with Text block.(´ë³
-E	java:S106~"+Replace this use of System.out by a logger.(§­Œ¬ÿÿÿÿÿ
-A	java:S106”"+Replace this use of System.out by a logger.(˜ê³õ
-Q
-java:S1854Á":Remove this useless assignment to local variable "output".(¼û·Æ
-n
-java:S6204Ã"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(œ Îäúÿÿÿÿ
-b
-java:S1612Ã"FReplace this lambda with method reference 'ChessMove::getEndPosition'.(œ Îäúÿÿÿÿ
-F	java:S106Ë"+Replace this use of System.out by a logger.(Œ®Ä§ıÿÿÿÿ
-A	java:S106Ì"+Replace this use of System.out by a logger.(ìûãÓ
-F	java:S106Ñ"+Replace this use of System.out by a logger.(‹½Ã­ıÿÿÿÿ
-A	java:S106Ò"+Replace this use of System.out by a logger.(ìûãÓ
-B
-java:S1068"'Remove this unused "url" private field.(«Œåùÿÿÿÿ
+
+java:S1192x"KDefine a constant instead of duplicating this literal "[a-h][1-8]" 3 times.(´œ„¼8¹Âû’ê1J$c8db406d-f592-47c5-877e-2f9df07fbcdf
+‰
+java:S1192("FDefine a constant instead of duplicating this literal "white" 3 times.(§ıìÖ8¹Âû’ê1J$0f13dbac-2e7b-4084-974f-afb65f14715a
+Š
+java:S1192<"GDefine a constant instead of duplicating this literal " >>>> " 3 times.(ìûãÓ8¹Âû’ê1J$19b25e91-f2d3-41d9-8908-b5d6bc612a91
+‘
+java:S1192;"IDefine a constant instead of duplicating this literal "Observer" 3 times.(ÕÅ‰úÿÿÿÿ8¹Âû’ê1J$14783a69-0834-495d-a041-86dc28ae70e5
+e
+java:S1643ú"Use a StringBuilder instead.(úÈÎÀşÿÿÿÿ8»Âû’ê1J$ade59c34-6b4b-48fa-9d3b-71309d4528fd
+`
+java:S1643ş"Use a StringBuilder instead.(§™‘õ8»Âû’ê1J$8c99b138-9732-487c-b7f6-a18e03f75f81
+`
+java:S1643€"Use a StringBuilder instead.(·›ë²8»Âû’ê1J$9c4e72d0-503b-4c86-a517-dd3f4bf6b41f
+`
+java:S1643‚"Use a StringBuilder instead.(“ôˆ‘8»Âû’ê1J$628f96dc-74a1-4365-beda-2f0dc2f74d42
+`
+java:S1643…"Use a StringBuilder instead.(¼ÿÁ²8»Âû’ê1J$312ee8ea-92db-4c7c-8fe1-c0f331bb83f0
+e
+java:S1643’"Use a StringBuilder instead.(úÈÎÀşÿÿÿÿ8»Âû’ê1J$49528575-751d-41d9-8738-0586cd1d6e08
+e
+java:S1643•"Use a StringBuilder instead.(Š¡€’ÿÿÿÿÿ8»Âû’ê1J$80806c63-0863-44e4-a5c6-0aec54d262af
+`
+java:S1643—"Use a StringBuilder instead.(¼ÿÁ²8»Âû’ê1J$236925e5-ad2e-44d1-a875-f9d65fa8051e
+p
+java:S54117"(Use a primitive boolean expression here.(ñ¬Úüÿÿÿÿ8½Âû’ê1J$dd54442a-213c-4b42-a651-c20362994c97
+p
+java:S5411;"(Use a primitive boolean expression here.(ÕÅ‰úÿÿÿÿ8½Âû’ê1J$b1807fcb-5060-4f3f-9a9a-828020e11c0e
+k
+java:S5411U"(Use a primitive boolean expression here.(À÷ä8½Âû’ê1J$76e4b8ce-8eef-49a5-88ce-d576278016dc
+l
+java:S5411š"(Use a primitive boolean expression here.(ş¿ò8½Âû’ê1J$669ed5fc-7de3-44ed-8792-bf0bc4bd9d96
+l
+java:S5411Ç"(Use a primitive boolean expression here.(±ƒî˜8½Âû’ê1J$09757d9f-f182-4d81-94ff-912ec35cff04
+l
+java:S5411ã"(Use a primitive boolean expression here.(›Ùêµ8½Âû’ê1J$c47ccda2-a409-4b95-96ce-41d2caa6c673
+…
+java:S4973¡"<Strings and Boxed types should be compared using "equals()".(ÀªÌñşÿÿÿÿ8¿Âû’ê1J$89d24336-367b-4a2a-9a9e-ce1545c9169e
+
+java:S2259„"DA "NullPointerException" could be thrown; "toMove" is nullable here.(¯Úõÿÿÿÿÿ8‚Äû’ê1J$bcee56a8-4f8f-48f8-8ad5-876c366862e1
+ƒ	java:S125/"<This block of commented-out lines of code should be removed.(ÂŸëÉşÿÿÿÿ8ŠÄû’ê1J$f3145de7-13fd-43fe-978e-ff8c9c457a4f
+r	java:S1069"+Replace this use of System.out by a logger.(ÀÄ¯®ûÿÿÿÿ8‹Äû’ê1J$3c64fcc2-9172-46f4-8477-047ab8a32b8e
+
+java:S1117;"9Rename "color" which hides the field declared at line 24.(ÕÅ‰úÿÿÿÿ8ŒÄû’ê1J$a16d535d-7375-4356-962e-dbd56fccefe9
+m	java:S106<"+Replace this use of System.out by a logger.(ìûãÓ8ŒÄû’ê1J$ad7665ca-5542-4c62-9ddd-8734c08714c6
+m	java:S106?"+Replace this use of System.out by a logger.(¢àóÄ8Äû’ê1J$5d6179c9-4f89-4ae6-83fb-35db7a854d04
+u
+java:S6126V"2Replace this String concatenation with Text block.(´ë³8Äû’ê1J$a694a46c-ac22-4710-9169-28d89756769d
+u
+java:S6126\"2Replace this String concatenation with Text block.(´ë³8Äû’ê1J$85758c06-07ef-442a-a65d-2e2cad942697
+s	java:S106†"+Replace this use of System.out by a logger.(§­Œ¬ÿÿÿÿÿ8’Äû’ê1J$cdb120b2-a9f2-441e-8bbb-7f923d8b6b8e
+„
+java:S1117‡";Rename "scanner" which hides the field declared at line 30.(µ—ö“ùÿÿÿÿ8’Äû’ê1J$37e17027-db55-45c0-8319-1001c9089e93
+n	java:S106£"+Replace this use of System.out by a logger.(˜ê³õ8•Äû’ê1J$497d93d6-9dbe-4a8c-87d3-38a3c6f1c760
+Y	java:S125 "<This block of commented-out lines of code should be removed.(ŠÎ•³8¤°ı“ê1
+~
+java:S1854Ó":Remove this useless assignment to local variable "output".(¼û·Æ8™Äû’ê1J$f1674c24-9372-48b9-8683-a289792376f9
+›
+java:S6204Õ"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(œ Îäúÿÿÿÿ8šÄû’ê1J$4c443127-bca3-4f10-8e4d-18f20ee86fc4
+
+java:S1612Õ"FReplace this lambda with method reference 'ChessMove::getEndPosition'.(œ Îäúÿÿÿÿ8›Äû’ê1J$7bff6b5d-60dd-4ee0-9f10-71725db3060a
+s	java:S106İ"+Replace this use of System.out by a logger.(á¢¸½úÿÿÿÿ8¢Äû’ê1J$737a5039-b4c9-4b8d-a08f-59dd626fd647
+n	java:S106Ş"+Replace this use of System.out by a logger.(˜‘À8¢Äû’ê1J$0e894dfe-509c-4dcc-9e23-ce0c3b6dfa7b
+s	java:S106ä"+Replace this use of System.out by a logger.(Ûˆ¯Æÿÿÿÿÿ8¢Äû’ê1J$ec2d0f9b-cfb0-4198-9cb0-c93d6afdf20b
+n	java:S106å"+Replace this use of System.out by a logger.(˜‘À8¢Äû’ê1J$e5bc6010-07a4-4a34-8564-53dbda7df518
+K
+java:S1128".Remove this unused import 'java.util.Objects'.(¼¸õ›8µ°ı“ê1
+o
+java:S1068"'Remove this unused "url" private field.(«Œåùÿÿÿÿ8¤Äû’ê1J$38878cb8-9fb8-4ef8-8a98-a020ba1cd402
