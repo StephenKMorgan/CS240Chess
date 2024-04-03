@@ -178,7 +178,7 @@ public class ChessClient {
     }
 
     public String joinGame(String gameId, String color) {
-        int ID = 0;
+        int id = 0;
         if(this.status == Status.LoggedOut){
             return EscapeSequences.SET_TEXT_COLOR_RED + "You must be logged in to join a game."+ EscapeSequences.SET_TEXT_COLOR_WHITE;
         }
@@ -186,12 +186,12 @@ public class ChessClient {
             return EscapeSequences.SET_TEXT_COLOR_RED + "Invalid color. Use 'white', 'black' or leave it empty."+ EscapeSequences.SET_TEXT_COLOR_WHITE;
         }
         try{
-            ID = Integer.parseInt(gameId);
+            id = Integer.parseInt(gameId);
         } catch (NumberFormatException ex) {
             return EscapeSequences.SET_TEXT_COLOR_RED + "Invalid game ID."+ EscapeSequences.SET_TEXT_COLOR_WHITE;
         }
         try {
-            this.gameData = server.joinGame(authData.authToken(), ID, color);
+            this.gameData = server.joinGame(authData.authToken(), id, color);
             new Game(this.gameData, this.url, this.authData, color).startGame();
             return ""; 
 
@@ -203,17 +203,17 @@ public class ChessClient {
     }
 
     public String observeGame(String gameId) {
-        int ID = 0;
+        int id = 0;
         if(this.status == Status.LoggedOut){
             return EscapeSequences.SET_TEXT_COLOR_RED + "You must be logged in to observe a game." + EscapeSequences.SET_TEXT_COLOR_WHITE;
         }
         try{
-            ID = Integer.parseInt(gameId);
+            id = Integer.parseInt(gameId);
         } catch (NumberFormatException ex) {
             return EscapeSequences.SET_TEXT_COLOR_RED + "Invalid game ID."+ EscapeSequences.SET_TEXT_COLOR_WHITE;
         }
         try {
-            var game = server.joinGame(authData.authToken(), ID, null);
+            var game = server.joinGame(authData.authToken(), id, null);
             this.gameData = game;
             new Game(this.gameData, this.url, this.authData, null).startGame();
             return "";

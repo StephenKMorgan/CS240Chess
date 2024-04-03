@@ -191,34 +191,7 @@ public class ChessGame {
     public boolean isInCheckmate(TeamColor teamColor) {
         //First check if the team is in check
         if(this.isInCheck(teamColor)){
-            //If the team is in check check if there are any valid moves
-            for(int i = 1; i <= 8; i++){
-                for(int j = 1; j <= 8; j++){
-                    ChessPosition position = new ChessPosition(i, j);
-                    ChessPiece piece = this.board.getPiece(position);
-                    if(piece != null && piece.getTeamColor() == teamColor){
-                        //Get the valid moves for the piece
-                        Collection<ChessMove> validMoves = piece.pieceMoves(this.board, position);
-                        ChessBoard boardCopy = new ChessBoard(this.board);
-                        //Check each move to see if it get the king out of check
-                        for(ChessMove move : validMoves){
-                            //Restore the board to the original board using the copy
-                            this.board = new ChessBoard(boardCopy);
-                            //Make the move
-                            this.board.addPiece(move.getEndPosition(), piece);
-                            this.board.removePiece(move.getStartPosition());
-                            //Check if the king is in check
-                            if (!this.isInCheck(teamColor)) {
-                                //Restore the board to the original board
-                                this.board = new ChessBoard(boardCopy);
-                                return false;
-                            }
-                        }
-                        this.board = new ChessBoard(boardCopy);
-                    }
-                }
-            }
-            return true;
+            return hasValidMoveToEscapeCheck(teamColor);
         }
         else{
             return false;
@@ -235,33 +208,7 @@ public class ChessGame {
     public boolean isInStalemate(TeamColor teamColor) {
         //check if this team is in stalemate by checking if the team is in check and has no valid moves
         if(!this.isInCheck(teamColor)){
-            for(int i = 1; i <= 8; i++){
-                for(int j = 1; j <= 8; j++){
-                    ChessPosition position = new ChessPosition(i, j);
-                    ChessPiece piece = this.board.getPiece(position);
-                    if(piece != null && piece.getTeamColor() == teamColor){
-                        //Get the valid moves for the piece
-                        Collection<ChessMove> validMoves = piece.pieceMoves(this.board, position);
-                        ChessBoard boardCopy = new ChessBoard(this.board);
-                        //Check each move to see if it get the king out of check
-                        for(ChessMove move : validMoves){
-                            //Restore the board to the original board using the copy
-                            this.board = new ChessBoard(boardCopy);
-                            //Make the move
-                            this.board.addPiece(move.getEndPosition(), piece);
-                            this.board.removePiece(move.getStartPosition());
-                            //Check if the king is in check
-                            if (!this.isInCheck(teamColor)) {
-                                //Restore the board to the original board
-                                this.board = new ChessBoard(boardCopy);
-                                return false;
-                            }
-                        }
-                        this.board = new ChessBoard(boardCopy);
-                    }
-                }
-            }
-            return true;
+            return hasValidMoveToEscapeCheck(teamColor);
         }
         else{
             return false;
@@ -309,5 +256,35 @@ public boolean equals(Object obj) {
     @Override
     public int hashCode() {
         return Objects.hash(board, turn);
+    }
+
+    private boolean hasValidMoveToEscapeCheck(TeamColor teamColor){
+        for(int i = 1; i <= 8; i++){
+            for(int j = 1; j <= 8; j++){
+                ChessPosition position = new ChessPosition(i, j);
+                ChessPiece piece = this.board.getPiece(position);
+                if(piece != null && piece.getTeamColor() == teamColor){
+                    //Get the valid moves for the piece
+                    Collection<ChessMove> validMoves = piece.pieceMoves(this.board, position);
+                    ChessBoard boardCopy = new ChessBoard(this.board);
+                    //Check each move to see if it get the king out of check
+                    for(ChessMove move : validMoves){
+                        //Restore the board to the original board using the copy
+                        this.board = new ChessBoard(boardCopy);
+                        //Make the move
+                        this.board.addPiece(move.getEndPosition(), piece);
+                        this.board.removePiece(move.getStartPosition());
+                        //Check if the king is in check
+                        if (!this.isInCheck(teamColor)) {
+                            //Restore the board to the original board
+                            this.board = new ChessBoard(boardCopy);
+                            return false;
+                        }
+                    }
+                    this.board = new ChessBoard(boardCopy);
+                }
+            }
+        }
+        return true;
     }
 }

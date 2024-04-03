@@ -56,7 +56,7 @@ public class ServerFacadeTests {
             serverFacade.registerUser(username, password, email);
             Assertions.fail("Expected exception");
         } catch (ResponseException e) {
-            Assertions.assertEquals(400, e.StatusCode());
+            Assertions.assertEquals(400, e.statusCode());
         }
     }
 
@@ -75,7 +75,7 @@ public class ServerFacadeTests {
             serverFacade.registerUser(username, password, email);
         }
         catch (ResponseException e) {
-            Assertions.assertEquals(403, e.StatusCode());
+            Assertions.assertEquals(403, e.statusCode());
         }
     }
 
@@ -110,7 +110,7 @@ public class ServerFacadeTests {
             serverFacade.loginUser(username, wrongPassword);
             Assertions.fail("Expected exception");
         } catch (ResponseException e) {
-            Assertions.assertEquals(401, e.StatusCode());
+            Assertions.assertEquals(401, e.statusCode());
         }
     }
 
@@ -140,7 +140,7 @@ public class ServerFacadeTests {
             Assertions.assertNotNull(authData);
             serverFacade.logoutUser("wrongToken");
         } catch (ResponseException e) {
-            Assertions.assertEquals(401, e.StatusCode());
+            Assertions.assertEquals(401, e.statusCode());
         }
     }
 
@@ -180,7 +180,7 @@ public class ServerFacadeTests {
             Assertions.fail("Expected exception");
         }
         catch (ResponseException e) {
-            Assertions.assertEquals(401, e.StatusCode());
+            Assertions.assertEquals(401, e.statusCode());
         }
     }
 
@@ -215,7 +215,7 @@ public class ServerFacadeTests {
             serverFacade.createGame("Wrong Token", "testGame1");
             Assertions.fail("Expected exception");
         } catch (ResponseException e) {
-            Assertions.assertEquals(401, e.StatusCode());
+            Assertions.assertEquals(401, e.statusCode());
         }
     }
 
@@ -255,7 +255,7 @@ public class ServerFacadeTests {
             serverFacade.joinGame(authData.authToken(), -1, "white");
             Assertions.fail("Expected exception");
         } catch (ResponseException e) {
-            Assertions.assertEquals(400, e.StatusCode());
+            Assertions.assertEquals(400, e.statusCode());
         }
     }
 

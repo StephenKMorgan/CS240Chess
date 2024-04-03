@@ -1,33 +1,35 @@
 
+
+java:S3973 "GUse indentation to denote the code conditionally executed by this "if".(õæŠşÿÿÿÿ8ì¬Áê1J$a881bfd5-603d-48b1-a7f6-e3847bc3e27a
+
+java:S3973¢"GUse indentation to denote the code conditionally executed by this "if".(¯ÚÎúÿÿÿÿ8í¬Áê1J$5cd8b3bf-89cc-493f-b19f-52c3d126cb5d
 ]
-java:S1116!"Remove this empty statement.(ş–Œ™ıÿÿÿÿJ$7a23103c-a9ff-47b5-b645-6d103d605a9f
+java:S1116""Remove this empty statement.(ş–Œ™ıÿÿÿÿJ$33a96666-2d42-4583-ba0b-93d2d2465f66
 ¨
-java:S1130%"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(áÀ«ÌJ$64a5d22b-82b4-45f8-a683-3df698707466
-k	java:S106&"+Replace this use of System.out by a logger.(´áÀŠÿÿÿÿÿJ$ae033159-a93b-4122-ab88-61d199292a33
-f	java:S106+"+Replace this use of System.out by a logger.(£Õö±J$dc749096-7048-495c-918d-1ff1edb0a6cc
-f	java:S1062"+Replace this use of System.out by a logger.(÷²Ò©J$cf3ebbf2-633f-40f3-8a75-eb6b7aec4706
-f	java:S1066"+Replace this use of System.out by a logger.(òåå„J$a4196959-3f1f-4e9a-b5f7-40f29ee70d15
-f	java:S1069"+Replace this use of System.out by a logger.(şÖ‘ØJ$ab63efa7-082a-489a-9157-c5af35f8ee23
+java:S1130&"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(áÀ«ÌJ$8b6a8c80-f4aa-4f1b-b3a4-f5e81967a864
+k	java:S106'"+Replace this use of System.out by a logger.(´áÀŠÿÿÿÿÿJ$fefe4833-9ceb-4583-9f4a-0b5cbfcbdb16
+f	java:S106,"+Replace this use of System.out by a logger.(£Õö±J$c056e91b-f44e-45c3-b698-64100983e139
+f	java:S1063"+Replace this use of System.out by a logger.(÷²Ò©J$0c0910b1-9550-4520-9bbb-62da2ff649be
+f	java:S1067"+Replace this use of System.out by a logger.(òåå„J$3b4795db-64d3-4f0c-b4e7-3d66d7ee1aa5
+f	java:S106:"+Replace this use of System.out by a logger.(şÖ‘ØJ$66792816-2f98-4251-944f-959c6043ef13
 ­
-java:S1130?"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(é‚ï»ûÿÿÿÿJ$cebfb031-83ce-4d9b-a6b6-79063e35b173
-f	java:S106@"+Replace this use of System.out by a logger.(«–¨†J$fe1bed58-09e1-4ccf-97f4-e4037d33b720
-X
-java:S3626—"Remove this redundant jump.(ûÁİ…J$bbc63801-c6b0-4a62-bf38-a5864fa4cc50
-X
-java:S3626Ì"Remove this redundant jump.(ûÁİ…J$d9b7408a-3c65-44ca-be5e-abb5ca4f8480
-y
-java:S1854Ô"<Remove this useless assignment to local variable "gameData".(‰×úÊJ$3207ac7b-c395-4153-aa5b-14d77a98115a
-X
-java:S3626ı"Remove this redundant jump.(ûÁİ…J$d88fa352-2454-4238-8fd7-a164ada0de15
+java:S1130@"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(é‚ï»ûÿÿÿÿJ$93a4576a-45ed-44d6-8b84-d4611e39b06b
+f	java:S106A"+Replace this use of System.out by a logger.(«–¨†J$76533534-2563-46db-b7a6-035a82e93b16
+_
+java:S3626³"Remove this redundant jump.(ûÁİ…8Ô•óê1J$9b0801ab-df41-4e7d-b3c1-54ad738b6878
+€
+java:S1854»"<Remove this useless assignment to local variable "gameData".(‰×úÊ8¶Øê1J$dee714d6-2ec0-4565-8d26-1f862b726a55
+_
+java:S3626ä"Remove this redundant jump.(ûÁİ…8í¼÷ê1J$b267b8e5-aea0-4429-95d1-755f2437382c
 ¶
-java:S1130¸"tRemove the declaration of thrown exception 'exception.ResponseException', as it cannot be thrown from method's body.(ÂĞ™üøÿÿÿÿJ$40841b0b-3009-4e38-ba25-52bf41e9a0ec
+java:S1130ª"tRemove the declaration of thrown exception 'exception.ResponseException', as it cannot be thrown from method's body.(ÂĞ™üøÿÿÿÿJ$492280de-80ce-4355-82b4-d06e1adbcddd
 ~
-java:S1172·"<Remove these unused method parameters "gameID", "authToken".(©û·ÃùÿÿÿÿJ$047882d3-76fa-464c-9708-d9c1bd88fbd7
-g	java:S106¼"+Replace this use of System.out by a logger.(ñà¸¨J$ed5ed33e-bc2a-4480-8e41-5adc753d03c5
-g	java:S106À"+Replace this use of System.out by a logger.(™Çû¶J$f185934a-c0cb-4e46-8487-8d947eb7a464
-g	java:S106Ã"+Replace this use of System.out by a logger.(•¶€ÿJ$e1c80dba-e508-4694-bfb9-5873962556ad
+java:S1172©"<Remove these unused method parameters "gameID", "authToken".(©û·ÃùÿÿÿÿJ$d6eb2dc9-0a7d-4b01-82ac-50d0cbe4ae8f
+g	java:S106®"+Replace this use of System.out by a logger.(ñà¸¨J$35614e52-1e6a-4d63-b2ff-d8cc93aad5cf
+g	java:S106²"+Replace this use of System.out by a logger.(™Çû¶J$0a2d3634-dc9b-4b66-8706-4f37fa995b58
+g	java:S106µ"+Replace this use of System.out by a logger.(•¶€ÿJ$3e35da67-b699-46a9-a386-e0b57ee42195
 ©
-java:S1130È"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(¹£şJ$5a574520-e670-4ec5-8e0f-5a84f5a5ed34
-g	java:S106É"+Replace this use of System.out by a logger.(Ì›úŸJ$3a219ae7-c7ad-461f-ba7f-580ca307998a
-g	java:S106Î"+Replace this use of System.out by a logger.(­ö‡šJ$13b5febd-5059-4c72-8f00-ac94b6fb9493
-f	java:S106Ñ"+Replace this use of System.out by a logger.( •ğJ$02188abd-e322-43b3-9351-7a94746f4751
+java:S1130º"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(¹£şJ$8c45b12a-9615-4f75-881a-0b42a4b8a772
+g	java:S106»"+Replace this use of System.out by a logger.(Ì›úŸJ$64f7f1da-4b98-446c-b37b-51367dbccc1f
+g	java:S106À"+Replace this use of System.out by a logger.(­ö‡šJ$6db29c18-cf33-4290-a6ba-481323ed7976
+f	java:S106Ã"+Replace this use of System.out by a logger.( •ğJ$76aca7d7-f02c-4e36-908f-bd6d21b7db4a

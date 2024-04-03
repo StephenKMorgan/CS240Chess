@@ -1,5 +1,6 @@
 package server.websocket;
 
+import chess.ChessGame;
 import com.google.gson.Gson;
 
 import chess.ChessGame.TeamColor;
@@ -91,16 +92,6 @@ public class WebSocketHandler {
     }
 
     public void joinPlayer(JoinPlayerCommand command, Session session) {
-        //If the username field in the command is null, look up the username from the authToken
-        if (command.getUsername() == null) {
-            try {
-                command.setUsername(service.getUsernameFromAuthToken(command.getAuthString()));
-            } catch (ResponseException e) {
-                onError(session, e);
-                return;
-            }
-        }
-
         // Get the joined game data
         GameData gameData;
         try {
@@ -108,6 +99,10 @@ public class WebSocketHandler {
         } catch (ResponseException e) {
             onError(session, e);
             return;
+        }
+
+        if (command.getUsername() == null) {
+            setUsernameFromAuthToken(command, session);
         }
 
         // Get the game data for notifications
@@ -130,37 +125,12 @@ public class WebSocketHandler {
         // Add the session to the game
         sessions.addSessionToGame(command.getGameID(), command.getAuthString(), session);
 
-        // Send a LoadGameMessage to the player
-        var loadMessage = new LoadGameMessage(ServerMessage.ServerMessageType.LOAD_GAME);
-        loadMessage.setGame(game);
-        try {
-            sendMessage(command.getGameID(), loadMessage, command.getAuthString(), session);
-        } catch (ResponseException | IOException e) {
-            onError(session, e);
-            return;
-        }
-
-        // Send a NotificationMessage to the other players
-        var notificationMessage = new NotificationMessage(ServerMessage.ServerMessageType.NOTIFICATION);
-        notificationMessage.setMessage(
-                username + " has joined the game as the " + command.getPlayerColor().toString() + " player");
-        try {
-            broadcastMessage(command.getGameID(), notificationMessage, command.getAuthString());
-        } catch (IOException e) {
-            onError(session, e);
-            return;
-        }
+        sendMessagesForJoinAndObserve(game, command.getGameID(), command.getAuthString(), session, username + " has joined the game as the " + command.getPlayerColor().toString() + " player");
     }
 
     public void joinObserver(JoinObserverCommand command, Session session) {
-        //If the username field in the command is null, look up the username from the authToken
         if (command.getUsername() == null) {
-            try {
-                command.setUsername(service.getUsernameFromAuthToken(command.getAuthString()));
-            } catch (ResponseException e) {
-                onError(session, e);
-                return;
-            }
+            setUsernameFromAuthToken(command, session);
         }
         
         // Get the joined game data
@@ -184,25 +154,7 @@ public class WebSocketHandler {
         // Add the session to the game
         sessions.addSessionToGame(command.getGameID(), command.getAuthString(), session);
 
-        // Send a LoadGameMessage to the player
-        var loadMessage = new LoadGameMessage(ServerMessage.ServerMessageType.LOAD_GAME);
-        loadMessage.setGame(game);
-        try {
-            sendMessage(command.getGameID(), loadMessage, command.getAuthString(), session);
-        } catch (ResponseException | IOException e) {
-            onError(session, e);
-            return;
-        }
-
-        // Send a NotificationMessage to the other players
-        var notificationMessage = new NotificationMessage(ServerMessage.ServerMessageType.NOTIFICATION);
-        notificationMessage.setMessage(username + " has joined the game as an observer");
-        try {
-            broadcastMessage(command.getGameID(), notificationMessage, command.getAuthString());
-        } catch (IOException e) {
-            onError(session, e);
-            return;
-        }
+        sendMessagesForJoinAndObserve(game, command.getGameID(), command.getAuthString(), session, username + " has joined the game as an observer");
     }
 
     public void makeMove(MakeMoveCommand command, Session session) {
@@ -306,6 +258,39 @@ public class WebSocketHandler {
 
         // Remove the session from the game
         sessions.removeSessionFromGame(command.getGameID(), command.getAuthString(), session);
+    }
+
+    private void sendMessagesForJoinAndObserve(ChessGame game, Integer command, String message, Session session, String username) {
+        // Send a LoadGameMessage to the player
+        var loadMessage=new LoadGameMessage(ServerMessage.ServerMessageType.LOAD_GAME);
+        loadMessage.setGame(game);
+        try {
+            sendMessage(command, loadMessage, message, session);
+        } catch (ResponseException | IOException e) {
+            onError(session, e);
+            return;
+        }
+
+        // Send a NotificationMessage to the other players
+        var notificationMessage=new NotificationMessage(ServerMessage.ServerMessageType.NOTIFICATION);
+        notificationMessage.setMessage(username);
+        try {
+            broadcastMessage(command, notificationMessage, message);
+        } catch (IOException e) {
+            onError(session, e);
+            return;
+        }
+    }
+
+    private <T extends UserGameCommand> void setUsernameFromAuthToken(T command, Session session) {
+        try {
+            if(command.getCommandType() == UserGameCommand.CommandType.JOIN_PLAYER)
+            ((JoinPlayerCommand) command).setUsername(service.getUsernameFromAuthToken(command.getAuthString()));
+            else if(command.getCommandType() == UserGameCommand.CommandType.JOIN_OBSERVER)
+            ((JoinObserverCommand) command).setUsername(service.getUsernameFromAuthToken(command.getAuthString()));
+        } catch (ResponseException e) {
+            onError(session, e);
+        }
     }
 
     private void sendMessage(Integer gameID, ServerMessage message, String authToken, Session session)

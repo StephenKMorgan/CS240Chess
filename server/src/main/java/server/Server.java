@@ -66,7 +66,7 @@ public class Server {
             var user = new Gson().fromJson(req.body(), UserData.class);
             return new Gson().toJson(service.register(user));
         } catch (ResponseException e) {
-            res.status(e.StatusCode());
+            res.status(e.statusCode());
             return new Gson().toJson(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
             res.status(500);
@@ -79,7 +79,7 @@ public class Server {
             var user = new Gson().fromJson(req.body(), UserData.class);
             return new Gson().toJson(service.login(user));
         } catch (ResponseException e) {
-            res.status(e.StatusCode());
+            res.status(e.statusCode());
             return new Gson().toJson(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
             res.status(500);
@@ -92,7 +92,7 @@ public class Server {
             service.logout(req.headers("Authorization"));
             res.status(200);
         } catch (ResponseException e) {
-            res.status(e.StatusCode());
+            res.status(e.statusCode());
             return new Gson().toJson(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
             res.status(500);
@@ -109,7 +109,7 @@ public class Server {
             String jsonResponse = new Gson().toJson(response);
             return jsonResponse;
         } catch (ResponseException e) {
-            res.status(e.StatusCode());
+            res.status(e.statusCode());
             return new Gson().toJson(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
             res.status(500);
@@ -123,7 +123,7 @@ public class Server {
         game = service.createGame(req.headers("Authorization"), game.gameName());
         return new Gson().toJson(game);
         } catch (ResponseException e) {
-            res.status(e.StatusCode());
+            res.status(e.statusCode());
             return new Gson().toJson(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
             res.status(500);
@@ -140,7 +140,7 @@ public class Server {
         res.status(200);
         return new Gson().toJson(game);
         } catch (ResponseException e) {
-            res.status(e.StatusCode());
+            res.status(e.statusCode());
             return new Gson().toJson(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
             res.status(500);
@@ -152,7 +152,7 @@ public class Server {
         try {
             service.clearAll();
         } catch (ResponseException e) {
-            res.status(e.StatusCode());
+            res.status(e.statusCode());
             return new Gson().toJson(Collections.singletonMap("message", e.getMessage()));
         } catch (Exception e) {
             res.status(500);
@@ -162,7 +162,7 @@ public class Server {
     }
 
     public void handleResponseException(ResponseException e, Request req, Response res) {
-        res.status(e.StatusCode());
+        res.status(e.statusCode());
         res.body(e.getMessage());
     }
 
