@@ -35,9 +35,11 @@ public class WebSocketFacade extends Endpoint {
     private Session session;
     private GameHandler gameHandler;
     private Game game;
+    private int grade;
 
     @OnOpen
     public void onOpen(Session session, EndpointConfig config) {
+        this.grade = 0;
         System.out.println("WebSocket connection opened, session ID: " + session.getId());
     }
 
@@ -59,8 +61,9 @@ public class WebSocketFacade extends Endpoint {
             WebSocketContainer container=ContainerProvider.getWebSocketContainer();
             this.session = container.connectToServer(this, new URI(url));
             this.session.addMessageHandler(new MessageHandler.Whole<String>() {
+                @SuppressWarnings("UnusedMethodReporter")
                 @OnMessage
-                public void onMessage(String message) {
+                public void onMessage(String message) {                    
                 receivedMessage(message);
             }
              });
