@@ -9,6 +9,10 @@ import javax.websocket.DeploymentException;
 import javax.websocket.Endpoint;
 import javax.websocket.EndpointConfig;
 import javax.websocket.MessageHandler;
+import javax.websocket.OnClose;
+import javax.websocket.OnError;
+import javax.websocket.OnMessage;
+import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.WebSocketContainer;
 
@@ -32,15 +36,17 @@ public class WebSocketFacade extends Endpoint {
     private GameHandler gameHandler;
     private Game game;
 
-    @SuppressWarnings("unused")
+    @OnOpen
     public void onOpen(Session session, EndpointConfig config) {
         System.out.println("WebSocket connection opened, session ID: " + session.getId());
     }
 
+    @OnClose
     public void onClose(){
         System.out.println("onClose called");
     }
 
+    @OnError
     public void onError(){
         System.out.println("onError called");
     }
@@ -53,7 +59,7 @@ public class WebSocketFacade extends Endpoint {
             WebSocketContainer container=ContainerProvider.getWebSocketContainer();
             this.session = container.connectToServer(this, new URI(url));
             this.session.addMessageHandler(new MessageHandler.Whole<String>() {
-                @SuppressWarnings("unused")
+                @OnMessage
                 public void onMessage(String message) {
                 receivedMessage(message);
             }

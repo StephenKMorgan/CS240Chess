@@ -1,13 +1,11 @@
 
-J
-java:S16046"(Make this anonymous inner class a lambda(ÆÏ¹úÿÿÿÿ8”Êºê1
-f	java:S106$"+Replace this use of System.out by a logger.(ÙâÂƒJ$a7569d92-5dd7-4134-b92e-86ef93e45320
-f	java:S106("+Replace this use of System.out by a logger.(ÉÂ…çJ$ee70120a-bb88-46e4-be9e-47d051b931d2
-k	java:S106,"+Replace this use of System.out by a logger.(ÌÏ†ùÿÿÿÿJ$43c55211-85b0-4d41-a4d8-47a07ccb737e
-k	java:S106"+Replace this use of System.out by a logger.(®­’ÙøÿÿÿÿJ$a219c7bf-4954-4b87-b72e-7c4af6e388b1
-l	java:S106„"+Replace this use of System.out by a logger.(ƒåùûÿÿÿÿJ$d3cbe833-21d5-4d0f-8bd6-756c209bb114
-H	java:S106‰"+Replace this use of System.out by a logger.(¥¢Ñ8ËÊºê1
-M	java:S106"+Replace this use of System.out by a logger.(²¢‰ˆøÿÿÿÿ8ÌÊºê1
-M	java:S106š"+Replace this use of System.out by a logger.(ùÿ×óüÿÿÿÿ8ÍÊºê1
+f	java:S106%"+Replace this use of System.out by a logger.(ÙâÂƒJ$47a90644-9eb2-4bb6-8d23-8f05af398a8d
+f	java:S106)"+Replace this use of System.out by a logger.(ÉÂ…çJ$f65c6960-7eab-41ad-b9a0-742d4a507da5
+r	java:S106-"+Replace this use of System.out by a logger.(ÌÏ†ùÿÿÿÿ8ËÊºê1J$0d81cfaa-683e-4b33-9fb1-4cf32de09061
+s	java:S106"+Replace this use of System.out by a logger.(®­’Ùøÿÿÿÿ8ÌÊºê1J$fc5f13ca-fbef-4618-b4e4-b4cc6141e2a9
+s	java:S106†"+Replace this use of System.out by a logger.(ƒåùûÿÿÿÿ8ÍÊºê1J$b34524b7-68cd-4616-874f-30d556cffc9a
+H	java:S106‹"+Replace this use of System.out by a logger.(¥¢Ñ8¿Şİê1
+M	java:S106"+Replace this use of System.out by a logger.(²¢‰ˆøÿÿÿÿ8¿Şİê1
+M	java:S106œ"+Replace this use of System.out by a logger.(ùÿ×óüÿÿÿÿ8ÁŞİê1
 j
-java:S1068 "/Remove this unused "gameHandler" private field.(ÀèÒ{J$e77a22e9-31fd-46ef-866b-e84e3d66d63e
+java:S1068 "/Remove this unused "gameHandler" private field.(ÀèÒ{J$a6d31b8e-6b95-4810-85cb-0fce2187af64
