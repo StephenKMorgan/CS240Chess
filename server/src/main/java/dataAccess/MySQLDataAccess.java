@@ -297,9 +297,7 @@ public class MySQLDataAccess implements DataAccess {
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 stmt.setInt(1, gameID);
                 ResultSet rs = stmt.executeQuery();
-                if (rs.next()) {
-                    return new GameData(rs.getInt("game_id"), rs.getString("whiteUsername"), rs.getString("blackUsername"), rs.getString("gameName"), convertJsonToChessGame(rs.getString("game")));
-                }
+                if (rs.next()) { return createGameDataFromResultSet(rs); }
             }
             
         }
@@ -443,9 +441,7 @@ public class MySQLDataAccess implements DataAccess {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, gameID);
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return new GameData(rs.getInt("game_id"), rs.getString("whiteUsername"), rs.getString("blackUsername"), rs.getString("gameName"), convertJsonToChessGame(rs.getString("game")));
-            }
+            if (rs.next()) { return createGameDataFromResultSet(rs); }
             return null;
         } catch (SQLException | DataAccessException e) {
             throw new RuntimeException(e);
@@ -481,6 +477,10 @@ public class MySQLDataAccess implements DataAccess {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.executeUpdate();
         }
+    }
+
+    private GameData createGameDataFromResultSet(ResultSet rs) throws SQLException {
+        return new GameData( rs.getInt("game_id"), rs.getString("whiteUsername"), rs.getString("blackUsername"), rs.getString("gameName"),  convertJsonToChessGame(rs.getString("game")));
     }
     
     private void configureDatabase() throws ResponseException, DataAccessException {
