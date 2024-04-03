@@ -43,13 +43,6 @@ public class Game implements GameHandler {
         this.webSocketFacade = new WebSocketFacade(url, this);
     }
 
-
-    // public void closeScanner() {
-    //     if (scanner != null) {
-    //         scanner.close();
-    //     }
-    // }
-
     public void startGame() {
       
         if(isObserver) { webSocketFacade.joinObserver(this.authData.authToken(), this.gameData.gameID(), this.authData.username());}
@@ -157,9 +150,9 @@ public class Game implements GameHandler {
             return "The game has already ended.";
         }
         //see of the other player has resigned
-        // if ((Objects.equals(this.color, "white") && this.gameData.blackUsername() == null ) || (Objects.equals(this.color, "black") && this.gameData.whiteUsername() == null)){
-        //     return "The other player has already resigned or left the game.";
-        // }
+        if ((Objects.equals(this.color, "white") && this.gameData.blackUsername() == null ) || (Objects.equals(this.color, "black") && this.gameData.whiteUsername() == null)){
+            return "The other player has already resigned or left the game.";
+        }
         System.out.println("Are you sure you want to resign? (yes/no)");
             var input = scanner.nextLine();
             if (!input.equalsIgnoreCase("yes") && !input.equalsIgnoreCase("y")) {
