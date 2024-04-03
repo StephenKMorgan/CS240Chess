@@ -106,13 +106,14 @@ public class ChessPiece {
                 break;
             //Check if the piece is a queen
             case QUEEN:
-                for (int i = -1; i <= 1; i++) {
-                    for (int j = -1; j <= 1; j++) {
-                        if (i != 0 || j != 0) {
-                            addValidDiagonalOrVerticalMoves(i, j, row, col, board, validMoves, myPosition);
-                        }
-                    }
-                }
+                addValidDiagonalOrVerticalMoves(1, 0, row, col, board, validMoves, myPosition);  // up
+                addValidDiagonalOrVerticalMoves(1, 1, row, col, board, validMoves, myPosition);  // up-right
+                addValidDiagonalOrVerticalMoves(1, -1, row, col, board, validMoves, myPosition); // up-left
+                addValidDiagonalOrVerticalMoves(0, 1, row, col, board, validMoves, myPosition); // right
+                addValidDiagonalOrVerticalMoves(-1, 0, row, col, board, validMoves, myPosition); // down
+                addValidDiagonalOrVerticalMoves(-1, 1, row, col, board, validMoves, myPosition); // down-right
+                addValidDiagonalOrVerticalMoves(-1, -1, row, col, board, validMoves, myPosition); // down-left
+                addValidDiagonalOrVerticalMoves(0, -1, row, col, board, validMoves, myPosition); // left
                 break;
             //Check if the piece is a bishop
             case BISHOP:
@@ -133,13 +134,10 @@ public class ChessPiece {
                 break;
             //Check if the piece is a rook
             case ROOK:
-                for (int i = -1; i <= 1; i++) {
-                    for (int j = -1; j <= 1; j++) {
-                        if (i != 0 || j != 0) {
-                            addValidDiagonalOrVerticalMoves(i, j, row, col, board, validMoves, myPosition);
-                        }
-                    }
-                }
+                addValidDiagonalOrVerticalMoves(1, 0, row, col, board, validMoves, myPosition);  // up
+                addValidDiagonalOrVerticalMoves(-1, 0, row, col, board, validMoves, myPosition); // down
+                addValidDiagonalOrVerticalMoves(0, 1, row, col, board, validMoves, myPosition); // right
+                addValidDiagonalOrVerticalMoves(0, -1, row, col, board, validMoves, myPosition); // left
                 break;
             //Check if the piece is a pawn
             case PAWN:         
