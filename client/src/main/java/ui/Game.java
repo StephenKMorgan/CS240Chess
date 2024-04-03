@@ -329,12 +329,12 @@ public class Game implements GameHandler {
         //redraw the game with the new game data
         this.gameData = new GameData(this.gameData.gameID(), this.gameData.whiteUsername(), this.gameData.blackUsername(), this.gameData.gameName(), game);
         System.out.println("GameUpdate\n" + displayGame(this.color));
-        System.out.print(EscapeSequences.SET_TEXT_BOLD + color + " >>>> " + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+        System.out.print(EscapeSequences.SET_TEXT_BOLD + this.color + " >>>> " + EscapeSequences.RESET_TEXT_BOLD_FAINT);
     }
 
     @Override
     public void printMessage(String message) {
         System.out.println("INCOMING MESSAGE >>>> " + message);
-        System.out.print(EscapeSequences.SET_TEXT_BOLD + color + " >>>> " + EscapeSequences.RESET_TEXT_BOLD_FAINT);
+        System.out.print(EscapeSequences.SET_TEXT_BOLD + this.color + " >>>> " + EscapeSequences.RESET_TEXT_BOLD_FAINT);
     }   
 }

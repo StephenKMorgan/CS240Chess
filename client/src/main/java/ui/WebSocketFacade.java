@@ -35,22 +35,17 @@ public class WebSocketFacade extends Endpoint {
     private Session session;
     private GameHandler gameHandler;
     private Game game;
-    private int grade;
 
     @OnOpen
     public void onOpen(Session session, EndpointConfig config) {
-        this.grade = 0;
-        System.out.println("WebSocket connection opened, session ID: " + session.getId());
     }
 
     @OnClose
     public void onClose(){
-        System.out.println("onClose called");
     }
 
     @OnError
     public void onError(){
-        System.out.println("onError called");
     }
 
     public WebSocketFacade(String url, Game game) throws ResponseException {
@@ -61,7 +56,6 @@ public class WebSocketFacade extends Endpoint {
             WebSocketContainer container=ContainerProvider.getWebSocketContainer();
             this.session = container.connectToServer(this, new URI(url));
             this.session.addMessageHandler(new MessageHandler.Whole<String>() {
-                @SuppressWarnings("UnusedMethodReporter")
                 @OnMessage
                 public void onMessage(String message) {                    
                 receivedMessage(message);
@@ -135,17 +129,14 @@ public class WebSocketFacade extends Endpoint {
          switch (messageType) {
              case "LOAD_GAME":
                  var loadGameMessage = gson.fromJson(jsonObject, LoadGameMessage.class);
-                 System.out.println("LoadGameMessage received");
                  game.updateGame(loadGameMessage.getGame());
                  break;
              case "NOTIFICATION":
                  var notificationMessage = gson.fromJson(jsonObject, NotificationMessage.class);
-                 System.out.println("NotificationMessage received");
                  game.printMessage(notificationMessage.getMessage());
                  break;
              case "ERROR":
                  var errorMessage = gson.fromJson(jsonObject, ErrorMessage.class);
-                 System.out.println("ErrorMessage received");
                  game.printMessage(errorMessage.getErrorMessage());
                  break;
              default:
