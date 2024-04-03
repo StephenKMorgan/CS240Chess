@@ -1,11 +1,11 @@
 
-Ä
-java:S1186%"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(òæì½8ä“·‘ê1J$1ba6ae32-2c51-429f-91a3-9d3477da2a17
-É
-java:S1186)"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(­úÛÿÿÿÿÿ8Ìº©‘ê1J$2e279b54-4a94-4a4b-9709-8827aea8697f
-Ä
-java:S1186-"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ŸÖµ¸8Îº©‘ê1J$24dfc240-bc6d-4580-b88e-fa9723efca2e
-s	java:S106Œ"+Replace this use of System.out by a logger.(²¢‰ˆøÿÿÿÿ8úøêê1J$45bd0e50-be4b-4754-afa0-64738992a74f
-s	java:S106™"+Replace this use of System.out by a logger.(ùÿ×óüÿÿÿÿ8üøêê1J$80fbcb22-849a-411f-9623-7d92faab7017
-q
-java:S1068!"/Remove this unused "gameHandler" private field.(ÀèÒ{8ıøêê1J$69fca74d-6492-4cd0-b393-95e44b9e50d1
+—
+java:S1186%"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(òæì½
+œ
+java:S1186)"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(­úÛÿÿÿÿÿ
+—
+java:S1186-"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ŸÖµ¸
+F	java:S106Œ"+Replace this use of System.out by a logger.(²¢‰ˆøÿÿÿÿ
+F	java:S106™"+Replace this use of System.out by a logger.(ùÿ×óüÿÿÿÿ
+D
+java:S1068!"/Remove this unused "gameHandler" private field.(ÀèÒ{

@@ -33,7 +33,7 @@ public class WebSocketFacade extends Endpoint {
     private GameHandler gameHandler;
     private Game game;
 
-    @OnOpen
+    @Override
     public void onOpen(Session session, EndpointConfig config) {
     }
 
@@ -53,7 +53,7 @@ public class WebSocketFacade extends Endpoint {
             WebSocketContainer container=ContainerProvider.getWebSocketContainer();
             this.session = container.connectToServer(this, new URI(url));
             this.session.addMessageHandler(new MessageHandler.Whole<String>() {
-                @OnMessage
+                @Override
                 public void onMessage(String message) {                    
                 receivedMessage(message);
             }

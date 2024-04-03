@@ -1,29 +1,29 @@
 
-›
-java:S2293("YReplace the type specification in this constructor call with the diamond operator ("<>").(üÉæ8¶ñàê1J$0e6871d3-da04-4f00-8e91-0f1fd0f39b16
-¡
-java:S2293)"YReplace the type specification in this constructor call with the diamond operator ("<>").(üî¸µüÿÿÿÿ8¶ñàê1J$ce31e5c7-40bf-4b0b-b913-b6ffbccf84ae
-›
-java:S2293/"YReplace the type specification in this constructor call with the diamond operator ("<>").(üÉæ8¶ñàê1J$3eddab16-230c-4b59-80a2-3fe7c2ce48ab
-¡
-java:S22930"YReplace the type specification in this constructor call with the diamond operator ("<>").(üî¸µüÿÿÿÿ8¶ñàê1J$2d732a54-8e9b-4a78-9d6f-6ff6d68e4b3b
-›	java:S127¹"XRefactor the code in order to not assign to this loop counter from within the loop body.(¤ı²…8¸ñàê1J$3f1c0dc3-a297-47be-a943-f4ee4b7d06c6
-›	java:S127¼"XRefactor the code in order to not assign to this loop counter from within the loop body.(¤ı²…8¸ñàê1J$3af843bb-2c1e-4968-a24c-46a757255952
- 	java:S127Ë"XRefactor the code in order to not assign to this loop counter from within the loop body.(Úš—­ıÿÿÿÿ8¸ñàê1J$46936890-daa9-4b93-9dfa-bf97056dd40c
-€
-java:S2589¶"7Remove this expression which always evaluates to "true"(ƒ“òûÿÿÿÿ8–÷àê1J$b8d319b2-d449-4284-ba4c-73921a80afd8
-~	java:S125"<This block of commented-out lines of code should be removed.(­Ú»Í8œ÷àê1J$88ad43c1-770c-4e68-bdbe-49ebe7390766
-‡
-java:S3358"DExtract this nested ternary operation into an independent statement.(Õ¿òø8÷àê1J$c21235b9-3b6b-4f4c-a261-ca8d1dc13454
-•
-java:S3776Y"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(°å†8¢÷àê1J$991210dd-4661-4feb-86bc-efd95767367f
+n
+java:S2293("YReplace the type specification in this constructor call with the diamond operator ("<>").(üÉæ
 t
-java:S1172«"1Remove this unused method parameter "validMoves".(È¢¿8«÷àê1J$200c8c3e-7c54-4511-89fc-7b0bdd48341d
-›
-java:S3776Á"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(·ƒÊÃşÿÿÿÿ8®÷àê1J$ef6b64c1-da37-450b-a3fc-0c963f223cb9
-›
-java:S3776Ñ"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(¨ï½øÿÿÿÿ8°÷àê1J$dcbbfe96-35fd-490f-ab93-673cdbbe5f62
-u
-java:S1172ç",Remove this unused method parameter "board".(‚Á¾şıÿÿÿÿ8³÷àê1J$bd378b10-5cb7-4736-a0fd-358f9287b347
-_
-java:S3626ú"Remove this redundant jump.(ûÁİ…8´÷àê1J$44456929-813f-4e94-9595-295fb5c87748
+java:S2293)"YReplace the type specification in this constructor call with the diamond operator ("<>").(üî¸µüÿÿÿÿ
+n
+java:S2293/"YReplace the type specification in this constructor call with the diamond operator ("<>").(üÉæ
+t
+java:S22930"YReplace the type specification in this constructor call with the diamond operator ("<>").(üî¸µüÿÿÿÿ
+n	java:S127¹"XRefactor the code in order to not assign to this loop counter from within the loop body.(¤ı²…
+n	java:S127¼"XRefactor the code in order to not assign to this loop counter from within the loop body.(¤ı²…
+s	java:S127Ë"XRefactor the code in order to not assign to this loop counter from within the loop body.(Úš—­ıÿÿÿÿ
+S
+java:S2589¶"7Remove this expression which always evaluates to "true"(ƒ“òûÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(­Ú»Í
+Z
+java:S3358"DExtract this nested ternary operation into an independent statement.(Õ¿òø
+h
+java:S3776Y"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(°å†
+G
+java:S1172«"1Remove this unused method parameter "validMoves".(È¢¿
+n
+java:S3776Á"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(·ƒÊÃşÿÿÿÿ
+n
+java:S3776Ñ"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(¨ï½øÿÿÿÿ
+H
+java:S1172ç",Remove this unused method parameter "board".(‚Á¾şıÿÿÿÿ
+2
+java:S3626ú"Remove this redundant jump.(ûÁİ…

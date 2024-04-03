@@ -1,35 +1,35 @@
 
+c
+java:S3973©"GUse indentation to denote the code conditionally executed by this "if".(õæŠşÿÿÿÿ
+c
+java:S3973«"GUse indentation to denote the code conditionally executed by this "if".(¯ÚÎúÿÿÿÿ
+7
+java:S1116""Remove this empty statement.(ş–Œ™ıÿÿÿÿ
+‚
+java:S1130&"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(áÀ«Ì
+E	java:S106'"+Replace this use of System.out by a logger.(´áÀŠÿÿÿÿÿ
+@	java:S106,"+Replace this use of System.out by a logger.(£Õö±
+@	java:S1063"+Replace this use of System.out by a logger.(÷²Ò©
+@	java:S1067"+Replace this use of System.out by a logger.(òåå„
+@	java:S106:"+Replace this use of System.out by a logger.(şÖ‘Ø
+‡
+java:S1130@"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(é‚ï»ûÿÿÿÿ
+@	java:S106A"+Replace this use of System.out by a logger.(«–¨†
+S
+java:S1854¨"<Remove this useless assignment to local variable "gameData".(‰×úÊ
+2
+java:S3626Õ"Remove this redundant jump.(ûÁİ…
+2
+java:S3626£"Remove this redundant jump.(ûÁİ…
 
-java:S3973¥"GUse indentation to denote the code conditionally executed by this "if".(õæŠşÿÿÿÿ8ì¬Áê1J$f61a9c0e-00e6-400d-8fa7-685f7fc4e2c1
-
-java:S3973§"GUse indentation to denote the code conditionally executed by this "if".(¯ÚÎúÿÿÿÿ8í¬Áê1J$4348734e-6829-449d-a87a-b9029953f8fc
-]
-java:S1116""Remove this empty statement.(ş–Œ™ıÿÿÿÿJ$22690e28-8240-41c9-8ab5-9233aaf1a8df
-¨
-java:S1130&"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(áÀ«ÌJ$c1217a27-3800-4bc0-b5ca-ddd673ea927d
-k	java:S106'"+Replace this use of System.out by a logger.(´áÀŠÿÿÿÿÿJ$96ca98ff-bcd9-4885-ab73-4e8a170dab0f
-f	java:S106,"+Replace this use of System.out by a logger.(£Õö±J$2088974c-2ee5-4c51-a653-26ed228b6eb1
-f	java:S1063"+Replace this use of System.out by a logger.(÷²Ò©J$db42c0d6-ebb0-4f8e-b01b-0fcfcf754cf0
-f	java:S1067"+Replace this use of System.out by a logger.(òåå„J$a0618b5e-5152-4476-9c80-983f29a00b17
-f	java:S106:"+Replace this use of System.out by a logger.(şÖ‘ØJ$02db153b-7464-467a-a789-064a2b8db11a
-­
-java:S1130@"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(é‚ï»ûÿÿÿÿJ$a7ad0e3e-99b5-4d0a-8a80-8ac60088f812
-f	java:S106A"+Replace this use of System.out by a logger.(«–¨†J$830bf166-b9c8-40e0-9ac8-58b24dac5dc6
-€
-java:S1854¨"<Remove this useless assignment to local variable "gameData".(‰×úÊ8§úÉ“ê1J$b1e2e4e0-f54b-4a9d-97fe-a0d3e83203a1
-_
-java:S3626Ñ"Remove this redundant jump.(ûÁİ…8ÿ¢†ê1J$9ea0bb89-a1ac-4d3b-a66c-dea3a829de18
-_
-java:S3626Ÿ"Remove this redundant jump.(ûÁİ…8¯úÉ“ê1J$b1868809-6848-4b04-aed1-220c76b256ab
-¶
-java:S1130¯"tRemove the declaration of thrown exception 'exception.ResponseException', as it cannot be thrown from method's body.(ÂĞ™üøÿÿÿÿJ$31795c39-9669-4ca5-bbb5-9ba0159879a1
-~
-java:S1172®"<Remove these unused method parameters "gameID", "authToken".(©û·ÃùÿÿÿÿJ$41f69a3e-e168-4e4a-9fd4-31a0b8b69747
-g	java:S106³"+Replace this use of System.out by a logger.(ñà¸¨J$1e1f4990-c3d9-4783-b078-b335919c5428
-g	java:S106·"+Replace this use of System.out by a logger.(™Çû¶J$bf21c975-9874-4406-aa1f-d1dff369df84
-g	java:S106º"+Replace this use of System.out by a logger.(•¶€ÿJ$1293f3bc-5014-4c65-a6a2-6f39c5b05d99
-©
-java:S1130¿"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(¹£şJ$94ecc2a3-0a0f-4d0e-8799-ce591d9080f4
-g	java:S106À"+Replace this use of System.out by a logger.(Ì›úŸJ$a1e484ea-3a7e-4e4d-8714-9f78bc6ac1eb
-g	java:S106Å"+Replace this use of System.out by a logger.(­ö‡šJ$7a3e9bda-8ef9-4eac-b2ce-b19f66cd97a9
-f	java:S106È"+Replace this use of System.out by a logger.( •ğJ$884ab693-e9b1-4d57-837b-eab651451c66
+java:S1130³"tRemove the declaration of thrown exception 'exception.ResponseException', as it cannot be thrown from method's body.(ÂĞ™üøÿÿÿÿ
+X
+java:S1172²"<Remove these unused method parameters "gameID", "authToken".(©û·Ãùÿÿÿÿ
+A	java:S106·"+Replace this use of System.out by a logger.(ñà¸¨
+A	java:S106»"+Replace this use of System.out by a logger.(™Çû¶
+A	java:S106¾"+Replace this use of System.out by a logger.(•¶€ÿ
+ƒ
+java:S1130Ã"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(¹£ş
+A	java:S106Ä"+Replace this use of System.out by a logger.(Ì›úŸ
+A	java:S106É"+Replace this use of System.out by a logger.(­ö‡š
+@	java:S106Ì"+Replace this use of System.out by a logger.( •ğ
