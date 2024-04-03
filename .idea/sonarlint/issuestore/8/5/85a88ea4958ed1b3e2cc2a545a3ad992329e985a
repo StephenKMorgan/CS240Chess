@@ -1,0 +1,29 @@
+
+›
+java:S2293("YReplace the type specification in this constructor call with the diamond operator ("<>").(üÉæ8¶ñàê1J$a06c2ac3-2660-4979-a15a-0b48ab456159
+¡
+java:S2293)"YReplace the type specification in this constructor call with the diamond operator ("<>").(üî¸µüÿÿÿÿ8¶ñàê1J$3a2b10a8-f162-402e-90d0-cfd81cb57d5e
+›
+java:S2293/"YReplace the type specification in this constructor call with the diamond operator ("<>").(üÉæ8¶ñàê1J$369faa88-38ed-4fbe-878b-4d2ab106aaa1
+¡
+java:S22930"YReplace the type specification in this constructor call with the diamond operator ("<>").(üî¸µüÿÿÿÿ8¶ñàê1J$7ce13292-e22c-4b74-8f2b-824018f66761
+›	java:S127¹"XRefactor the code in order to not assign to this loop counter from within the loop body.(¤ı²…8¸ñàê1J$064d814e-fe82-49b4-9c03-8490bc98ccf4
+›	java:S127¼"XRefactor the code in order to not assign to this loop counter from within the loop body.(¤ı²…8¸ñàê1J$b2ce4bea-e96c-4d36-afab-f104f08deae6
+ 	java:S127Ë"XRefactor the code in order to not assign to this loop counter from within the loop body.(Úš—­ıÿÿÿÿ8¸ñàê1J$a444cc41-01d9-4651-9996-a83615a54def
+€
+java:S2589¶"7Remove this expression which always evaluates to "true"(ƒ“òûÿÿÿÿ8–÷àê1J$21d5e21c-ec95-46cb-8d5b-769ccd29e44c
+~	java:S125"<This block of commented-out lines of code should be removed.(­Ú»Í8œ÷àê1J$fbe1b262-f049-4cbb-9010-66fcde30c1ab
+‡
+java:S3358"DExtract this nested ternary operation into an independent statement.(Õ¿òø8÷àê1J$5fc6752b-9082-46cc-ae7f-6de74b2f8da8
+•
+java:S3776Y"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(°å†8¢÷àê1J$aa48b7fa-1ee2-4f7a-870a-4a957db03adc
+t
+java:S1172«"1Remove this unused method parameter "validMoves".(È¢¿8«÷àê1J$441395bd-ead4-4a54-bd5a-3e77e0141031
+›
+java:S3776Á"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(·ƒÊÃşÿÿÿÿ8®÷àê1J$fe95517c-9ae5-4260-a908-f68dc586e3ff
+›
+java:S3776Ñ"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(¨ï½øÿÿÿÿ8°÷àê1J$f4b5e7e3-660f-4862-bd46-eb4cc2981101
+u
+java:S1172ç",Remove this unused method parameter "board".(‚Á¾şıÿÿÿÿ8³÷àê1J$9e4c926d-7127-4698-aece-1b5f3b17fb53
+_
+java:S3626ú"Remove this redundant jump.(ûÁİ…8´÷àê1J$049eb887-0396-4256-ad6b-1166d57a8042

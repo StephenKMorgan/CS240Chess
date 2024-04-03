@@ -33,7 +33,6 @@ public class WebSocketFacade extends Endpoint {
     private Game game;
 
     public void onOpen(Session session, EndpointConfig config) {
-//        this.session = session;
         System.out.println("WebSocket connection opened, session ID: " + session.getId());
     }
 
@@ -53,8 +52,8 @@ public class WebSocketFacade extends Endpoint {
             WebSocketContainer container=ContainerProvider.getWebSocketContainer();
             this.session = container.connectToServer(this, new URI(url));
             this.session.addMessageHandler(new MessageHandler.Whole<String>() {
-                  public void onMessage(String message) {
-                recivedMessage(message);
+                public void onMessage(String message) {
+                receivedMessage(message);
             }
              });
         } catch (DeploymentException | IOException | URISyntaxException e) {
@@ -112,7 +111,7 @@ public class WebSocketFacade extends Endpoint {
         sendMessage(resignGameCommand);
     }
     
-    public void recivedMessage(String message) {
+    public void receivedMessage(String message) {
          // Parse the JSON into a JsonObject
          var gson = new Gson();
          var jsonElement = gson.fromJson(message, JsonElement.class);

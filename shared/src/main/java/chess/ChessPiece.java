@@ -99,29 +99,20 @@ public class ChessPiece {
             //Check if the piece is a king
             case KING:
                 for (int i = -1; i < 2; i++){
-                    for (int j = -1; j < 2; j++){ 
-                            ChessPiece move = board.getPiece(new ChessPosition(row + i, col + j));
-                            if (move == null || move.getTeamColor() != this.pieceColor && move.type != PieceType.INVALID)
-                            {
-                                ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + i, col + j), null);
-                                this.validMoves.add(chessMove);
-                                if (move != null && move.getTeamColor() != this.pieceColor && move.type == PieceType.KING){
-                                    this.checkMoves.add(chessMove);
-                                }
-                            }
+                    for (int j = -1; j < 2; j++){
+                        checkAround(board, myPosition, row, i, col, j);
                     }
                 }    
                 break;
             //Check if the piece is a queen
             case QUEEN:
-                addValidDiagonalOrVerticalMoves(1, 0, row, col, board, validMoves, myPosition);  // up
-                addValidDiagonalOrVerticalMoves(-1, 0, row, col, board, validMoves, myPosition); // down
-                addValidDiagonalOrVerticalMoves(0, 1, row, col, board, validMoves, myPosition); // right
-                addValidDiagonalOrVerticalMoves(0, -1, row, col, board, validMoves, myPosition); // left
-                addValidDiagonalOrVerticalMoves(1, 1, row, col, board, validMoves, myPosition);  // up-right
-                addValidDiagonalOrVerticalMoves(1, -1, row, col, board, validMoves, myPosition); // up-left
-                addValidDiagonalOrVerticalMoves(-1, 1, row, col, board, validMoves, myPosition); // down-right
-                addValidDiagonalOrVerticalMoves(-1, -1, row, col, board, validMoves, myPosition); // down-left
+                for (int i = -1; i <= 1; i++) {
+                    for (int j = -1; j <= 1; j++) {
+                        if (i != 0 || j != 0) {
+                            addValidDiagonalOrVerticalMoves(i, j, row, col, board, validMoves, myPosition);
+                        }
+                    }
+                }
                 break;
             //Check if the piece is a bishop
             case BISHOP:
@@ -135,27 +126,20 @@ public class ChessPiece {
                 for (int i = -2; i < 3; i++){
                     for (int j = -2; j < 3; j++){
                         if (Math.abs(i) != Math.abs(j) && i != 0 && j != 0){
-                                ChessPiece move = board.getPiece(new ChessPosition(row + i, col + j));
-                                if (move == null || move.getTeamColor() != this.pieceColor && move.type != PieceType.INVALID)
-                                {
-                                    //Create a new chess move
-                                    ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + i, col + j), null);
-                                    //Add the move to the collection of valid moves
-                                    this.validMoves.add(chessMove);
-                                    if (move != null && move.getTeamColor() != this.pieceColor && move.type == PieceType.KING){
-                                        this.checkMoves.add(chessMove);
-                                    }
-                                }
+                            checkAround(board, myPosition, row, i, col, j);
                         }
                     }
                 }
                 break;
             //Check if the piece is a rook
             case ROOK:
-                addValidDiagonalOrVerticalMoves(1, 0, row, col, board, validMoves, myPosition);  // up
-                addValidDiagonalOrVerticalMoves(-1, 0, row, col, board, validMoves, myPosition); // down
-                addValidDiagonalOrVerticalMoves(0, 1, row, col, board, validMoves, myPosition); // right
-                addValidDiagonalOrVerticalMoves(0, -1, row, col, board, validMoves, myPosition); // left
+                for (int i = -1; i <= 1; i++) {
+                    for (int j = -1; j <= 1; j++) {
+                        if (i != 0 || j != 0) {
+                            addValidDiagonalOrVerticalMoves(i, j, row, col, board, validMoves, myPosition);
+                        }
+                    }
+                }
                 break;
             //Check if the piece is a pawn
             case PAWN:         
@@ -163,8 +147,6 @@ public class ChessPiece {
                 pawnCheckForFirstMove(row, col, board, myPosition);
                 //Check for capture
                 pawnCheckForCapture(row, col, board, myPosition);
-                //Check for en passant?
-                //Extra credit later
                 //Check for promotion
                 pawnCheckForPromotion(row, col, board, myPosition);
                 //Check for normal move
@@ -174,6 +156,18 @@ public class ChessPiece {
                 break;
         }
         return this.validMoves;
+    }
+
+    private void checkAround(ChessBoard board, ChessPosition myPosition, int row, int i, int col, int j) {
+        ChessPiece move = board.getPiece(new ChessPosition(row + i, col + j));
+        if (move == null || move.getTeamColor() != this.pieceColor && move.type != PieceType.INVALID)
+        {
+            ChessMove chessMove = new ChessMove(myPosition, new ChessPosition(row + i, col + j), null);
+            this.validMoves.add(chessMove);
+            if (move != null && move.getTeamColor() != this.pieceColor && move.type == PieceType.KING){
+                this.checkMoves.add(chessMove);
+            }
+        }
     }
 
     private void addValidDiagonalOrVerticalMoves(int rowIncrement, int colIncrement, int row, int col, ChessBoard board, Collection<ChessMove> validMoves, ChessPosition myPosition) {

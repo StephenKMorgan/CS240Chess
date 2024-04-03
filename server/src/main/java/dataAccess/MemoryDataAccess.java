@@ -195,10 +195,10 @@ public class MemoryDataAccess implements DataAccess{
         return game;
     }
 
-    public String leaveGame(int gameID, String authToken) {
+    public String updateGame(int gameID, String authToken) {
         //get the game
         var game = games.get(gameID);
-        //leave the game
+        //update the game
         if (game.whiteUsername().equals(authTokens.get(authToken).username())) {
             game = new GameData(game.gameID(), null, game.blackUsername(), game.gameName(), game.game());
             games.put(gameID, game);
@@ -209,20 +209,13 @@ public class MemoryDataAccess implements DataAccess{
             return game.whiteUsername();
         }
     }
-
+    
+    public String leaveGame(int gameID, String authToken) {
+        return updateGame(gameID, authToken);
+    }
+    
     public String resignGame(int gameID, String authToken) throws ResponseException {
-        //get the game
-        var game = games.get(gameID);
-        //resign the game
-        if (game.whiteUsername().equals(authTokens.get(authToken).username())) {
-            game = new GameData(game.gameID(), null, game.blackUsername(), game.gameName(), game.game());
-            games.put(gameID, game);
-            return game.blackUsername();
-        } else {
-            game = new GameData(game.gameID(), game.whiteUsername(), null, game.gameName(), game.game());
-            games.put(gameID, game);
-            return game.whiteUsername();
-        }
+        return updateGame(gameID, authToken);
     }
 
     public GameData getGameData(int gameID, String authToken) {

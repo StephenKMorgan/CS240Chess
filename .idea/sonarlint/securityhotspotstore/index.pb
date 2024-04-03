@@ -55,3 +55,5 @@ G
 src/main/java/Main.java,e\4\e44a8606ce010ad9b89aafdfcee2ab49afbf6d10
 S
 #src/main/java/server/ServerRun.java,6\b\6b8c4da17b0445d063baff6cb39044d57dce4650
+S
+#src/main/java/chess/ChessPiece.java,8\5\85a88ea4958ed1b3e2cc2a545a3ad992329e985a
