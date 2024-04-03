@@ -10,14 +10,12 @@ import java.util.Scanner;
 import exception.ResponseException;
 import model.AuthData;
 import model.GameData;
-import server.Server;
 
 
 public class ChessClient {
 
     public Status status = Status.LoggedOut;
     public ServerFacade server;
-    public Server database;
     public String url;
     public AuthData authData;
     public Boolean isRunning = true;
@@ -33,17 +31,12 @@ public class ChessClient {
     public ChessClient() {
         server = new ServerFacade("http://localhost:4567");
          this.url = "http://localhost:4567";
-        // this.database = new Server();
-        // database.run(4567);
 
     }
 
     public ChessClient(String url) {
         server = new ServerFacade(url);
          this.url = url;
-        // this.database = new Server();
-        // var port = Integer.parseInt(url.split(":")[2]);
-        // database.run(port);
     }
 
     public void  run() {
@@ -235,7 +228,6 @@ public class ChessClient {
         }
         this.status = Status.LoggedOut;
         this.isRunning = false;
-        // database.stop();
         return "Goodbye!";
     }
 
